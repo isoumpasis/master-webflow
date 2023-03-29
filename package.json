@@ -1,0 +1,13 @@
+{
+  "name": "master-webflow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "push": "git add . && git commit -m \"webflow push\" && git push origin master",
+    "pull": "git pull origin master"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
