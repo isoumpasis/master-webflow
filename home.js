@@ -90,8 +90,11 @@ makeSelect.addEventListener('change', function () {
     .then(data => {
       if (status !== 200) {
         endLoadingSelect(yearSelect);
-        yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
-        console.warn('status = ' + status);
+        if (data.msg === 'no models') {
+          yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
+        } else {
+          yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+        }
         return;
       }
       fetchedYears = data;
