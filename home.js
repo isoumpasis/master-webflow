@@ -375,6 +375,8 @@ function populateDescriptionSelect(fetchedModelObj) {
   }
 }
 
+descriptionSelect.addEventListener('change', e => descriptionOnChange(e.target.value));
+
 function descriptionOnChange(value) {
   // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
 
