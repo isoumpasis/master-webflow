@@ -41,24 +41,10 @@ select::-webkit-scrollbar-thumb,
 .chosen-value {
   letter-spacing: 1px;
 }
-.chosen-value::-webkit-input-placeholder {
-  color: #333;
-}
-.chosen-value:hover {
-  background-color: #dbdbdb;
-  cursor: pointer;
-}
-.chosen-value:hover::-webkit-input-placeholder {
-  color: #333;
-}
 .chosen-value:focus,
 .chosen-value.open {
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
   outline: 0;
-  color: #000;
-}
-.chosen-value:focus::-webkit-input-placeholder,
-.chosen-value.open::-webkit-input-placeholder {
   color: #000;
 }
 .value-list.open::-webkit-scrollbar {
@@ -69,7 +55,6 @@ select::-webkit-scrollbar-thumb,
 .value-list.open::-webkit-scrollbar-track {
   width: 10px;
   background-color: #dfdfdf;
-  /*     -webkit-box-shadow: inset 0 0 6px rgb(255,255,255); */
 }
 .value-list.open::-webkit-scrollbar-thumb {
   background-color: darkgray;
