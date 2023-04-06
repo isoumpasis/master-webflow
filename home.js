@@ -29,17 +29,148 @@ const yearSelect = document.querySelector('#yearSelect');
 const descriptionSelect = document.querySelector('#descriptionSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
-  initSelects();
-
-  function initSelects() {
-    modelSelect.disabled = true;
-    modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
-    yearSelect.disabled = true;
-    yearSelect.innerHTML = '<option value="">Χρονολογία</option>';
-    descriptionSelect.disabled = true;
-    descriptionSelect.innerHTML = '<option value="">Περιγραφή</option>';
-  }
+  initCustomDropdowns();
 });
+
+function initCustomDropdowns() {
+  initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
+  // modelSelect.disabled = true;
+  // modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
+  // yearSelect.disabled = true;
+  // yearSelect.innerHTML = '<option value="">Χρονολογία</option>';
+  // descriptionSelect.disabled = true;
+  // descriptionSelect.innerHTML = '<option value="">Περιγραφή</option>';
+}
+
+function initCustomDropdown({ dropdownId, placeholderStr }) {
+  const customDropdown = document.getElementById(dropdownId);
+  const inputField = customDropdown.querySelector('.chosen-value');
+  const inputImg = customDropdown.querySelector('.input-container img');
+  const dropdown = customDropdown.querySelector('.value-list');
+  const dropdownArray = [...dropdown.querySelectorAll('li')];
+  let valueArray = [];
+  dropdownArray.forEach(item => {
+    valueArray.push(item.textContent);
+  });
+
+  const closeDropdown = () => {
+    dropdown.classList.remove('open');
+    inputImg.style.transform = 'rotate(0deg)';
+  };
+
+  const openDropdown = () => {
+    dropdown.classList.add('open');
+    inputImg.style.transform = 'rotate(180deg)';
+    dropdown.scrollTop = 0;
+    dropdownArray.forEach(dropdown => {
+      dropdown.classList.remove('closed');
+    });
+  };
+
+  inputField.addEventListener('input', () => {
+    openDropdown();
+
+    let inputValue = inputField.value.toLowerCase();
+
+    if (inputValue.length > 0) {
+      let inputWords = inputValue.split(' ').filter(w => w.length > 0);
+
+      const lisToShow = dropdownArray.filter(li =>
+        inputWords.some(word =>
+          li.textContent.split(' ').some(liWord => liWord.toLowerCase().includes(word))
+        )
+      );
+      dropdownArray.forEach(li => li.classList.add('closed'));
+      lisToShow.forEach(li => li.classList.remove('closed'));
+    } else {
+      for (let i = 0; i < dropdownArray.length; i++) {
+        dropdownArray[i].classList.remove('closed');
+      }
+      customDropdownValueSelected(inputField.value);
+    }
+  });
+
+  dropdownArray.forEach(item => {
+    item.addEventListener('click', evt => {
+      inputField.value = item.textContent;
+      dropdownArray.forEach(dropdown => {
+        dropdown.classList.add('closed');
+      });
+      customDropdownValueSelected(inputField.value);
+    });
+  });
+
+  inputField.addEventListener('focus', () => {
+    inputField.placeholder = 'Αναζήτηση...';
+    openDropdown();
+  });
+
+  inputField.addEventListener('blur', () => {
+    inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+    closeDropdown();
+  });
+
+  inputImg.addEventListener('click', () => {
+    console.log('click', dropdown.classList.contains('open'));
+    if (dropdown.classList.contains('open')) {
+      closeDropdown();
+    } else {
+      openDropdown();
+    }
+  });
+
+  document.addEventListener('click', evt => {
+    const isDropdown = dropdown.contains(evt.target);
+    const isInput = inputField.contains(evt.target);
+    if (!isDropdown && !isInput) {
+      closeDropdown();
+    }
+  });
+}
+
+function customDropdownValueSelected(value) {
+  console.log(`selected: ${value}`);
+
+  let status;
+  fetch(urlYears, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ make: this.value })
+  })
+    .then(response => {
+      status = response.status;
+      return response.json();
+    })
+    .then(data => {
+      if (status !== 200) {
+        console.log('error', status, data);
+
+        // if (data.msg === 'no models') {
+        //   yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
+        // } else {
+        //   yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+        // }
+        return;
+      }
+      // fetchedYears = data;
+      // sessionStorage.clear(); //reset every time make changes
+      // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
+
+      console.log('data', data);
+      // populateYearSelect(fetchedYears);
+      // endLoadingSelect(yearSelect);
+    })
+    .catch(error => {
+      endLoadingSelect(yearSelect);
+      // let errorMsg;
+      // if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
+      // else errorMsg = 'Προσπαθήστε ξανά';
+      // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
+      console.error('Error Fetch:', error);
+    });
+}
 
 makeSelect.addEventListener('change', function () {
   modelSelect.disabled = true;
