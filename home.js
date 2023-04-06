@@ -18,6 +18,53 @@ const easyPayFileUploaderUrl = serverUrl + 'summaries/easyPay';
 // const baseDateUrl = serverUrl + 'lottery/base-date';
 const urlNotConvForm = serverUrl + 'notConvertible';
 
+const makeImgPrefix = 'https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/';
+const makeImgDict = {
+  'ALFA ROMEO': '6077f1d502c7ef4d03ff154b_Alfa_Romeo.png',
+  AUDI: '6077f607b580721ba1274496_Audi.png',
+  BMW: '6077f607325eb960af680a4e_BMW.png',
+  CADILLAC: '61b8fd8721dd7f462b25e630_Cadillac.png',
+  CHEVROLET: '6077f60729203574193c205c_Chevrolet.png',
+  CHRYSLER: '6077f6077735848685f48c4d_Chrysler.png',
+  CITROEN: '6077f607703f5581b7a6b6e9_Citroen.png',
+  DACIA: '6077f607ac4c2566782969fa_Dacia.png',
+  DAEWOO: '6077f6096e3ae999700f15ad_Daewoo.png',
+  DAIHATSU: '6077f6095e0f21739e801c4d_Daihatsu.png',
+  DODGE: '6077f60929203581043c205d_Dodge.png',
+  FIAT: '6077f609aecccf25fc3868f0_Fiat.png',
+  FORD: '6077f609ed355314a4ea8ba7_Ford.png',
+  HONDA: '6077f6094bacedfa12748b66_Honda.png',
+  HUMMER: '6077f609325eb912c5680a51_Hummer.png',
+  HYUNDAI: '6077f60969316192201b5e9a_Hyundai.png',
+  JAGUAR: '6077f609703f555667a6b6eb_Jaguar.png',
+  JEEP: '6077f6099881859ece0dc158_Jeep.png',
+  KIA: '6077f609ed35535997ea8ba8_Kia.jpg',
+  LADA: '6077f60b7735848bc7f48c50_Lada.png',
+  LANCIA: '6077f60b703f55244fa6b6ec_Lancia.png',
+  'LAND ROVER': '6077f60baecccf47553868f2_Land_Rover.png',
+  LEXUS: '6077f60b02c7ef3588ff4bed_Lexus.png',
+  MAZDA: '6077f60bac4c25e840296a07_Mazda.png',
+  'MERCEDES-BENZ': '6077f60b2cf4c1fc9aeb4a97_Mercedes-Benz.png',
+  MG: '63132f4ce66c6bff8c0bdbba_MG.png',
+  MINI: '6077f60dec0785fc99826f63_Mini.png',
+  MITSUBISHI: '6077f60df4fa193ad096cf91_Mitsubishi.png',
+  NISSAN: '6077f60c3f6057d3245ac3fd_Nissan.png',
+  OPEL: '6077f60d8ec314543c0c7030_Opel.png',
+  PEUGEOT: '6077f60da5cf01576cad4d60_Peugeot.png',
+  PORSCHE: '6077f60dec07850afc826f64_Porsche.png',
+  RENAULT: '6077f60e7c02f416a420a7ea_Renault.png',
+  ROVER: '6077f60deb33aa3e792d0d74_Rover.png',
+  SAAB: '6077f60dde273a2a845dc8c0_Saab.png',
+  SEAT: '6077f60e66bedcb79fa5a7ff_Seat.png',
+  SKODA: '6077f60e9d13c22e7326344f_Skoda.png',
+  SMART: '6077f60dacb311235e2254ff_Smart.png',
+  SUBARU: '6077f60f51e2742da00ac18a_Subaru.png',
+  SUZUKI: '6077f60f1fb9c523b6315031_Suzuki.png',
+  TOYOTA: '6077f60f163ba8861a8a41ee_Toyota.png',
+  VOLVO: '6077f60f6931617b461b5e9e_Volvo.png',
+  VW: '6077f60f66bedc404ea5a800_VW.png'
+};
+
 let fetchedYears;
 let fetchedModels;
 let fetchedModelObj;
@@ -137,7 +184,7 @@ function customDropdownValueSelected(value) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ make: this.value })
+    body: JSON.stringify({ make: value })
   })
     .then(response => {
       status = response.status;
