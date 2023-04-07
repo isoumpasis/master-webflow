@@ -186,7 +186,7 @@ function resetDropdowns(dropdownArray) {
     const inputField = document.querySelector(`#${dbId} .chosen-value`);
     const valueList = document.querySelector(`#${dbId} .value-list`);
 
-    inputField.classList.setAttribute('disabled', '');
+    inputField.setAttribute('disabled', '');
     closeDropdown(dbId);
     valueList.innerHTML = '';
   });
