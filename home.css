@@ -41,6 +41,9 @@ select::-webkit-scrollbar-thumb,
 /* .chosen-value {
   letter-spacing: 1px;
 } */
+.chosen-value[disabled] {
+  opacity: 0.7;
+}
 .chosen .chosen-value:focus,
 .chosen-value.open {
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
@@ -62,8 +65,4 @@ select::-webkit-scrollbar-thumb,
 }
 .input-container img {
   pointer-events: none;
-}
-.input-container.disabled {
-  cursor: not-allowed;
-  opacity: 0.7;
 }
