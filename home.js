@@ -180,14 +180,13 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 }
 
-function resetDropdowns(dropdowns) {
-  dropdowns.forEach(db => {
+function resetDropdowns(dropdownArray) {
+  dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
-    console.log(dbId, `#${dbId} .chosen-value`, document.querySelector(`#${dbId} .chosen-value`));
     const inputField = document.querySelector(`#${dbId} .chosen-value`);
     const valueList = document.querySelector(`#${dbId} .value-list`);
 
-    inputField.setAttribute('disabled', '');
+    inputField.classList.add('disabled');
     closeDropdown(dbId);
     valueList.innerHTML = '';
   });
