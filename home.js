@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initCustomDropdowns() {
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
+  initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
+  // initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
+  // initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'Κινητήρα' });
+
   // modelSelect.disabled = true;
   // modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
   // yearSelect.disabled = true;
@@ -99,6 +103,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   dropdownArray.forEach(item => {
     valueArray.push(item.textContent);
   });
+
+  resetDropdowns(['year', 'model', 'engine']);
 
   const closeDropdown = () => {
     dropdown.classList.remove('open');
@@ -133,7 +139,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       for (let i = 0; i < dropdownArray.length; i++) {
         dropdownArray[i].classList.remove('closed');
       }
-      customDropdownValueSelected(inputField.value);
     }
   });
 
@@ -143,7 +148,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       dropdownArray.forEach(dropdown => {
         dropdown.classList.add('closed');
       });
-      customDropdownValueSelected(inputField.value);
+      dropdownValueSelected(inputField.value, dropdownId);
     });
   });
 
@@ -175,51 +180,76 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 }
 
-function customDropdownValueSelected(value) {
-  console.log(`selected: ${value}`);
+function resetDropdowns(dropdowns) {
+  dropdowns.forEach(db => {
+    let dbId = db + 'Dropdown';
+    const inputField = document.querySelector(`#${dbId} .chosen-value`);
+    const valueList = document.querySelector(`#${dbId} .value-list`);
 
-  let status;
-  fetch(urlYears, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ make: value })
-  })
-    .then(response => {
-      status = response.status;
-      return response.json();
-    })
-    .then(data => {
-      if (status !== 200) {
-        console.log('error', status, data);
-
-        // if (data.msg === 'no models') {
-        //   yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
-        // } else {
-        //   yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
-        // }
-        return;
-      }
-      // fetchedYears = data;
-      // sessionStorage.clear(); //reset every time make changes
-      // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
-
-      console.log('data', data);
-      // populateYearSelect(fetchedYears);
-      // endLoadingSelect(yearSelect);
-    })
-    .catch(error => {
-      endLoadingSelect(yearSelect);
-      // let errorMsg;
-      // if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
-      // else errorMsg = 'Προσπαθήστε ξανά';
-      // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
-      console.error('Error Fetch:', error);
-    });
+    inputField.setAttribute('disabled', '');
+    closeDropdown(dbId);
+    valueList.innerHTML = '';
+  });
 }
 
-makeSelect.addEventListener('change', function () {
+function closeDropdown(dbId) {
+  const valueList = document.querySelector(`#${dbId} .value-list`);
+  valueList.classList.remove('open');
+}
+
+function dropdownValueSelected(value, dropdownId) {
+  if (dropdownId === 'makeDropdown') {
+    console.log('make on change', value, dropdownId);
+    // makeOnChange(value);
+  } else if (dropdownId === 'yearsDropdown') {
+    console.log('years on change', value);
+  }
+  // else if (dropdownId === 'modelDropdown') {
+  // } else if (dropdownId === 'engineDropdown') {
+  // }
+
+  // let status;
+  // fetch(urlYears, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ make: value })
+  // })
+  //   .then(response => {
+  //     status = response.status;
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     if (status !== 200) {
+  //       console.log('error', status, data);
+
+  //       // if (data.msg === 'no models') {
+  //       //   yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
+  //       // } else {
+  //       //   yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+  //       // }
+  //       return;
+  //     }
+  //     fetchedYears = data;
+  //     // sessionStorage.clear(); //reset every time make changes
+  //     // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
+
+  //     console.log('fetchedYears', fetchedYears);
+  //     populateYearSelect(fetchedYears);
+  //     // endLoadingSelect(yearSelect);
+  //   })
+  //   .catch(error => {
+  //     // endLoadingSelect(yearSelect);
+  //     // let errorMsg;
+  //     // if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
+  //     // else errorMsg = 'Προσπαθήστε ξανά';
+  //     // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
+  //     console.error('Error Fetch:', error);
+  //   });
+}
+
+function makeOnChange(value) {
   modelSelect.disabled = true;
   descriptionSelect.disabled = true;
   modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
@@ -242,7 +272,7 @@ makeSelect.addEventListener('change', function () {
   // userSelections.easyPay = {};
   // saveUserSelections();
 
-  if (!this.value) {
+  if (!value) {
     yearSelect.disabled = true;
     yearSelect.innerHTML = '<option value="">Χρονολογία</option>';
     // togglePulse('.car-pulse', true);
@@ -259,7 +289,7 @@ makeSelect.addEventListener('change', function () {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ make: this.value })
+    body: JSON.stringify({ make: value })
   })
     .then(response => {
       status = response.status;
@@ -290,7 +320,7 @@ makeSelect.addEventListener('change', function () {
       yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
       console.error('Error Fetch:', error);
     });
-});
+}
 
 function startLoadingSelect(select, triggeredFrom = null, type = null) {
   if (!triggeredFrom) select.classList.add('loading-select');

@@ -38,9 +38,9 @@ select::-webkit-scrollbar-thumb,
   -webkit-appearance: none;
 }
 
-.chosen-value {
+/* .chosen-value {
   letter-spacing: 1px;
-}
+} */
 .chosen .chosen-value:focus,
 .chosen-value.open {
   box-shadow: 0px 5px 8px 0px rgba(0, 0, 0, 0.2);
@@ -62,4 +62,7 @@ select::-webkit-scrollbar-thumb,
 }
 .input-container img {
   pointer-events: none;
+}
+.input-container[disabled] {
+  opacity: 0.7;
 }
