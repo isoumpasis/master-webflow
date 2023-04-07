@@ -183,13 +183,24 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 function resetDropdowns(dropdownArray) {
   dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
-    const inputField = document.querySelector(`#${dbId} .chosen-value`);
-    const valueList = document.querySelector(`#${dbId} .value-list`);
 
-    inputField.setAttribute('disabled', '');
+    disableDropdown(db);
     closeDropdown(dbId);
+
+    const valueList = document.querySelector(`#${dbId} .value-list`);
     valueList.innerHTML = '';
   });
+}
+
+function enableDropdown(db) {
+  const dbId = db + 'Dropdown';
+  const inputField = document.querySelector(`#${dbId} .chosen-value`);
+  inputField.removeAttribute('disabled');
+}
+function disableDropdown(db) {
+  const dbId = db + 'Dropdown';
+  const inputField = document.querySelector(`#${dbId} .chosen-value`);
+  inputField.setAttribute('disabled', '');
 }
 
 function closeDropdown(dbId) {
@@ -199,8 +210,8 @@ function closeDropdown(dbId) {
 
 function dropdownValueSelected(value, dropdownId) {
   if (dropdownId === 'makeDropdown') {
-    console.log('make on change', value, dropdownId);
-    // makeOnChange(value);
+    // console.log('make on change', value, dropdownId);
+    makeOnChange(value);
   } else if (dropdownId === 'yearsDropdown') {
     console.log('years on change', value);
   }
@@ -250,10 +261,7 @@ function dropdownValueSelected(value, dropdownId) {
 }
 
 function makeOnChange(value) {
-  modelSelect.disabled = true;
-  descriptionSelect.disabled = true;
-  modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
-  descriptionSelect.innerHTML = '<option value="">Κινητήρας</option>';
+  resetDropdowns(['model', 'engine']);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -273,15 +281,18 @@ function makeOnChange(value) {
   // saveUserSelections();
 
   if (!value) {
-    yearSelect.disabled = true;
-    yearSelect.innerHTML = '<option value="">Χρονολογία</option>';
+    resetDropdowns(['year']);
     // togglePulse('.car-pulse', true);
     // togglePulse('.summary-pulse', false);
     return;
   }
-  yearSelect.disabled = false;
-  yearSelect.innerHTML = '';
-  startLoadingSelect(yearSelect);
+
+  enableDropdown('year');
+
+  // yearSelect.disabled = false;
+  const inputField = document.querySelector(`#yearDropdown .chosen-value`);
+  inputField.placeholder = '';
+  // startLoadingSelect('year');
 
   let status;
   fetch(urlYears, {
@@ -297,27 +308,31 @@ function makeOnChange(value) {
     })
     .then(data => {
       if (status !== 200) {
-        endLoadingSelect(yearSelect);
+        // endLoadingSelect(yearSelect);
         if (data.msg === 'no models') {
-          yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
+          inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
-          yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+          inputField.placeholder = 'Υπήρξε πρόβλημα';
         }
+        disableDropdown('year');
         return;
       }
       fetchedYears = data;
       // sessionStorage.clear(); //reset every time make changes
       // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
 
-      populateYearSelect(fetchedYears);
-      endLoadingSelect(yearSelect);
+      console.log('populate year select', fetchedYears);
+      // populateYearSelect(fetchedYears);
+      inputField.placeholder = 'Επιλέξτε Χρονολογία';
+      // endLoadingSelect(yearSelect);
     })
     .catch(error => {
-      endLoadingSelect(yearSelect);
+      // endLoadingSelect(yearSelect);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
-      yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
+      // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
+      inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
     });
 }
