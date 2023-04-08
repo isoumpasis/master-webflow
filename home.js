@@ -70,13 +70,15 @@ let fetchedModels;
 let fetchedModelObj;
 let foundVehicleObj;
 
-const customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
+let customDropdowns;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
 });
 
 function initCustomDropdowns() {
+  customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
+
   document.addEventListener('click', evt => {
     console.log('click');
     customDropdowns.forEach(db => {
