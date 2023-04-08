@@ -159,8 +159,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
-    inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
-    closeDropdown();
+    console.log('blur');
+    // inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+    // closeDropdown();
   });
 
   inputImg.addEventListener('click', () => {
