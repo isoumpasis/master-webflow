@@ -250,8 +250,8 @@ function closeDropdowns() {
 function dropdownValueSelected(value, dbId) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   if (dbId === 'makeDropdown') {
-    console.log('make on change', selectedMake);
     selectedMake = value;
+    console.log('make on change', selectedMake);
     makeOnChange(value);
   } else if (dbId === 'yearsDropdown') {
     selectedYear = value;
