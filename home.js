@@ -80,7 +80,6 @@ function initCustomDropdowns() {
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
   document.addEventListener('click', evt => {
-    console.log('click');
     customDropdowns.forEach(db => {
       const valueList = db.querySelector('.value-list');
       const inputField = db.querySelector('.chosen-value');
@@ -118,22 +117,25 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   resetDropdowns(['year', 'model', 'engine']);
 
-  const closeDropdown = () => {
+  const _closeDropdown = () => {
     dropdown.classList.remove('open');
     inputImg.style.transform = 'rotate(0deg)';
   };
 
-  const openDropdown = () => {
+  const _openDropdown = () => {
     dropdown.classList.add('open');
     inputImg.style.transform = 'rotate(180deg)';
     dropdown.scrollTop = 0;
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
+    if (isMobile()) {
+      inputField.setAttribute('inputmode', 'text');
+    }
   };
 
   inputField.addEventListener('input', () => {
-    openDropdown();
+    _openDropdown();
 
     let inputValue = inputField.value.toLowerCase();
 
@@ -167,7 +169,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('focus', () => {
     inputField.placeholder = 'Αναζήτηση...';
-    openDropdown();
+    _openDropdown();
   });
 
   inputField.addEventListener('blur', () => {
@@ -177,9 +179,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputImg.addEventListener('click', () => {
     console.log('click', dropdown.classList.contains('open'));
     if (dropdown.classList.contains('open')) {
-      closeDropdown();
+      _closeDropdown();
     } else {
-      openDropdown();
+      _openDropdown();
     }
   });
 }
@@ -209,12 +211,18 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
+  if (isMobile()) {
+    document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
+  }
 }
 
 function closeDropdowns() {
   customDropdowns.forEach(db => {
     const valueList = document.querySelector(`#${db.id} .value-list`);
     valueList.classList.remove('open');
+    if (isMobile()) {
+      document.querySelector(`#${db.id} .chosen-value`).setAttribute('inputmode', 'none');
+    }
   });
 }
 
@@ -713,4 +721,8 @@ function showResults(fetchedModelObj) {
   //     suggestedContainer.classList.contains('not-convertible-form-container')
   //   );
   // }
+}
+
+function isMobile() {
+  return window.matchMedia('screen and (max-width: 768px)').matches;
 }
