@@ -170,7 +170,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
-    closeDropdown(customDropdown.id);
+    setTimeout(() => {
+      closeDropdown(customDropdown.id);
+    }, 200);
   });
 
   inputField.addEventListener('click', () => {
