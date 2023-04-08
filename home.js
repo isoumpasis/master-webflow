@@ -86,7 +86,9 @@ function initCustomDropdowns() {
       const inputField = db.querySelector('.chosen-value');
       const isDropdown = valueList.contains(evt.target);
       const isInput = inputField.contains(evt.target);
+      console.log(valueList, inputField, isDropdown, isInput);
       if (!isDropdown && !isInput) {
+        console.log('close dropdowns');
         closeDropdowns();
       }
     });
