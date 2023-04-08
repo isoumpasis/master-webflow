@@ -80,18 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
 function initCustomDropdowns() {
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
-  // document.addEventListener('click', evt => {
-  //   customDropdowns.forEach(db => {
-  //     const valueList = db.querySelector('.value-list');
-  //     const inputField = db.querySelector('.chosen-value');
-  //     const isDropdown = valueList.contains(evt.target);
-  //     const isInput = inputField.contains(evt.target);
-  //     if (!isDropdown && !isInput) {
-  //       closeDropdown(db.id);
-  //     }
-  //   });
-  // });
-
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
   initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
   // initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
@@ -164,7 +152,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
-    if (inputField.value && inputField.value !== selectedMake) {
+    if (inputField.value && inputField.value !== prevSelectedValue && prevSelectedValue) {
       inputField.value = prevSelectedValue;
     } else if (!inputField.value) {
       if (customDropdown.id === 'makeDropdown') {
