@@ -148,6 +148,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       dropdownArray.forEach(dropdown => {
         dropdown.classList.add('closed');
       });
+      console.log('inputField.value', inputField.value);
       dropdownValueSelected(inputField.value, dropdownId);
     });
   });
@@ -210,7 +211,7 @@ function closeDropdown(dbId) {
 
 function dropdownValueSelected(value, dropdownId) {
   if (dropdownId === 'makeDropdown') {
-    // console.log('make on change', value, dropdownId);
+    console.log('make on change', value, dropdownId);
     makeOnChange(value);
   } else if (dropdownId === 'yearsDropdown') {
     console.log('years on change', value);
