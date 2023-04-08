@@ -172,7 +172,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     }
   });
 
-  document.addEventListener('click', evt => {
+  document.addEventListener('mouseup', evt => {
+    console.log('mouseup');
     const isDropdown = dropdown.contains(evt.target);
     const isInput = inputField.contains(evt.target);
     if (!isDropdown && !isInput) {
