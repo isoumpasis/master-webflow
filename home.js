@@ -152,7 +152,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
-    if (inputField.value && inputField.value !== prevSelectedValue && prevSelectedValue) {
+    console.log(prevSelectedValue, inputField.value);
+    if (inputField.value && !!prevSelectedValue && inputField.value !== prevSelectedValue) {
       inputField.value = prevSelectedValue;
     } else if (!inputField.value) {
       if (customDropdown.id === 'makeDropdown') {
