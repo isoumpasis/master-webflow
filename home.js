@@ -169,10 +169,15 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     } else if (!inputField.value) {
       if (customDropdown.id === 'makeDropdown') {
         resetDropdowns(['year', 'model', 'engine']);
+        makeSelect = undefined;
       } else if (customDropdown.id === 'yearDropdown') {
         resetDropdowns(['model', 'engine']);
+        yearSelect = undefined;
       } else if (customDropdown.id === 'modelDropdown') {
         resetDropdowns(['engine']);
+        modelSelect = undefined;
+      } else if (customDropdown.id === 'egineDropdown') {
+        engineSelect = undefined;
       }
     }
     setTimeout(() => {
