@@ -167,8 +167,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('focus', () => {
-    inputField.placeholder = 'Αναζήτηση...';
-    _openDropdown();
+    // inputField.placeholder = 'Αναζήτηση...';
+    // _openDropdown();
   });
 
   inputField.addEventListener('blur', () => {
@@ -177,11 +177,13 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('click', () => {
     console.log('inputField clicked!');
+    inputField.placeholder = 'Αναζήτηση...';
     if (_isDropdownOpen()) {
       console.log('Dropdown is already open');
       inputField.setAttribute('inputmode', 'text');
     } else {
       console.log('drodown was closed before now opening!');
+      _openDropdown();
     }
   });
 
