@@ -118,10 +118,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   resetDropdowns(['year', 'model', 'engine']);
 
-  const _closeDropdown = () => {
-    dropdown.classList.remove('open');
-    inputImg.style.transform = 'rotate(0deg)';
-  };
+  // const _closeDropdown = () => {
+  //   dropdown.classList.remove('open');
+  //   inputImg.style.transform = 'rotate(0deg)';
+  // };
 
   const _openDropdown = () => {
     dropdown.classList.add('open');
@@ -162,7 +162,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       dropdownArray.forEach(dropdown => {
         dropdown.classList.add('closed');
       });
-      _closeDropdown();
+      closeDropdown(customDropdown.id);
       console.log('inputField.value', inputField.value);
       dropdownValueSelected(inputField.value, dropdownId);
     });
@@ -170,7 +170,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
-    _closeDropdown();
+    closeDropdown(customDropdown.id);
   });
 
   inputField.addEventListener('click', () => {
@@ -215,6 +215,8 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
+  const inputImg = document.querySelector(`#${dbId} .input-container img`);
+  inputImg.style.transform = 'rotate(0deg)';
   // if (isMobile()) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   // }
@@ -222,11 +224,7 @@ function closeDropdown(dbId) {
 
 function closeDropdowns() {
   customDropdowns.forEach(db => {
-    const valueList = document.querySelector(`#${db.id} .value-list`);
-    valueList.classList.remove('open');
-    // if (isMobile()) {
-    document.querySelector(`#${db.id} .chosen-value`).setAttribute('inputmode', 'none');
-    // }
+    closeDropdown(db.id);
   });
 }
 
