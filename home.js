@@ -70,16 +70,26 @@ let fetchedModels;
 let fetchedModelObj;
 let foundVehicleObj;
 
-const makeSelect = document.querySelector('#makeSelect');
-const modelSelect = document.querySelector('#modelSelect');
-const yearSelect = document.querySelector('#yearSelect');
-const descriptionSelect = document.querySelector('#descriptionSelect');
+const customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
 });
 
 function initCustomDropdowns() {
+  document.addEventListener('click', evt => {
+    console.log('click');
+    customDropdowns.forEach(db => {
+      const valueList = db.querySelector('.value-list');
+      const inputField = db.querySelector('.value-list .chosen-value');
+      const isDropdown = valueList.contains(evt.target);
+      const isInput = inputField.contains(evt.target);
+      if (!isDropdown && !isInput) {
+        closeDropdown();
+      }
+    });
+  });
+
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
   initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
   // initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
@@ -159,9 +169,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
-    console.log('blur');
-    // inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
-    // closeDropdown();
+    inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
   });
 
   inputImg.addEventListener('click', () => {
@@ -170,15 +178,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       closeDropdown();
     } else {
       openDropdown();
-    }
-  });
-
-  document.addEventListener('mouseup', evt => {
-    console.log('mouseup');
-    const isDropdown = dropdown.contains(evt.target);
-    const isInput = inputField.contains(evt.target);
-    if (!isDropdown && !isInput) {
-      closeDropdown();
     }
   });
 }
