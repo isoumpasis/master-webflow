@@ -236,15 +236,16 @@ function closeDropdowns() {
   });
 }
 
-function dropdownValueSelected(value, dropdownId) {
-  if (dropdownId === 'makeDropdown') {
-    console.log('make on change', value, dropdownId);
+function dropdownValueSelected(value, dbId) {
+  document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
+  if (dbId === 'makeDropdown') {
+    console.log('make on change', value, dbId);
     makeOnChange(value);
-  } else if (dropdownId === 'yearsDropdown') {
+  } else if (dbId === 'yearsDropdown') {
     console.log('years on change', value);
   }
-  // else if (dropdownId === 'modelDropdown') {
-  // } else if (dropdownId === 'engineDropdown') {
+  // else if (dbId === 'modelDropdown') {
+  // } else if (dbId === 'engineDropdown') {
   // }
 
   // let status;
