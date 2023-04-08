@@ -189,11 +189,11 @@ function resetDropdowns(dropdownArray) {
     let dbId = db + 'Dropdown';
 
     disableDropdown(db);
+    closeDropdown(dbId);
 
     const valueList = document.querySelector(`#${dbId} .value-list`);
     valueList.innerHTML = '';
   });
-  closeDropdowns();
 }
 
 function enableDropdown(db) {
@@ -205,6 +205,10 @@ function disableDropdown(db) {
   const dbId = db + 'Dropdown';
   const inputField = document.querySelector(`#${dbId} .chosen-value`);
   inputField.setAttribute('disabled', '');
+}
+function closeDropdown(dbId) {
+  const valueList = document.querySelector(`#${dbId} .value-list`);
+  valueList.classList.remove('open');
 }
 
 function closeDropdowns() {
