@@ -134,10 +134,12 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _isDropdownOpen = () => dropdown.classList.contains('open');
 
   inputField.addEventListener('input', () => {
-    if (isMobile() && _isDropdownOpen()) {
+    if (_isDropdownOpen()) {
+      console.log('Dropdown is open');
       inputField.setAttribute('inputmode', 'text');
     }
     if (!_isDropdownOpen()) {
+      console.log('Dropdown is closed');
       _openDropdown();
     }
 
@@ -215,18 +217,18 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
-  if (isMobile()) {
-    document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
-  }
+  // if (isMobile()) {
+  document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
+  // }
 }
 
 function closeDropdowns() {
   customDropdowns.forEach(db => {
     const valueList = document.querySelector(`#${db.id} .value-list`);
     valueList.classList.remove('open');
-    if (isMobile()) {
-      document.querySelector(`#${db.id} .chosen-value`).setAttribute('inputmode', 'none');
-    }
+    // if (isMobile()) {
+    document.querySelector(`#${db.id} .chosen-value`).setAttribute('inputmode', 'none');
+    // }
   });
 }
 
