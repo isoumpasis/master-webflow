@@ -134,14 +134,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _isDropdownOpen = () => dropdown.classList.contains('open');
 
   inputField.addEventListener('input', () => {
-    if (_isDropdownOpen()) {
-      console.log('Dropdown is open');
-      inputField.setAttribute('inputmode', 'text');
-    }
-    if (!_isDropdownOpen()) {
-      console.log('Dropdown is closed');
-      _openDropdown();
-    }
+    _openDropdown();
 
     let inputValue = inputField.value.toLowerCase();
 
@@ -182,9 +175,18 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
   });
 
+  inputField.addEventListener('click', () => {
+    console.log('inputField clicked!');
+    if (_isDropdownOpen()) {
+      console.log('Dropdown is already open');
+      inputField.setAttribute('inputmode', 'text');
+    } else {
+      console.log('drodown was closed before now opening!');
+    }
+  });
+
   inputImg.addEventListener('click', () => {
-    console.log('click', dropdown.classList.contains('open'));
-    if (dropdown.classList.contains('open')) {
+    if (_isDropdownOpen()) {
       _closeDropdown();
     } else {
       _openDropdown();
