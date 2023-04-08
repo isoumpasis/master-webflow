@@ -96,13 +96,6 @@ function initCustomDropdowns() {
   initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
   // initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
   // initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'Κινητήρα' });
-
-  // modelSelect.disabled = true;
-  // modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
-  // yearSelect.disabled = true;
-  // yearSelect.innerHTML = '<option value="">Χρονολογία</option>';
-  // descriptionSelect.disabled = true;
-  // descriptionSelect.innerHTML = '<option value="">Περιγραφή</option>';
 }
 
 function initCustomDropdown({ dropdownId, placeholderStr }) {
@@ -170,6 +163,18 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+    const prevSelectedValue = getSelectedValue(customDropdown.id);
+    if (inputField.value && inputField.value !== selectedMake) {
+      inputField.value = prevSelectedValue;
+    } else if (!inputField.value) {
+      if (customDropdown.id === 'makeDropdown') {
+        resetDropdowns(['year', 'model', 'engine']);
+      } else if (customDropdown.id === 'yearDropdown') {
+        resetDropdowns(['model', 'engine']);
+      } else if (customDropdown.id === 'modelDropdown') {
+        resetDropdowns(['engine']);
+      }
+    }
     setTimeout(() => {
       closeDropdown(customDropdown.id);
     }, 200);
@@ -190,6 +195,18 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputImg.addEventListener('click', () => {
     _openDropdown();
   });
+}
+
+function getSelectedValue(dbId) {
+  if (dbId === 'makeDropdown') {
+    return selectedMake;
+  } else if (dbId === 'yearDropdown') {
+    return selectedYear;
+  } else if (dbId === 'modelDropdown') {
+    return selectedModel;
+  } else if (dbId === 'engineDropdown') {
+    return selectedEngine;
+  }
 }
 
 function resetDropdowns(dropdownArray) {
