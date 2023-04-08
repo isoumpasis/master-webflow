@@ -88,8 +88,8 @@ function initCustomDropdowns() {
       const isInput = inputField.contains(evt.target);
       console.log(valueList, inputField, isDropdown, isInput);
       if (!isDropdown && !isInput) {
-        console.log('close dropdowns');
-        closeDropdowns();
+        console.log('close dropdown', db.id);
+        closeDropdown(db.id);
       }
     });
   });
