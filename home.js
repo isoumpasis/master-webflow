@@ -87,7 +87,7 @@ function initCustomDropdowns() {
       const isDropdown = valueList.contains(evt.target);
       const isInput = inputField.contains(evt.target);
       if (!isDropdown && !isInput) {
-        closeDropdown();
+        closeDropdowns();
       }
     });
   });
@@ -189,11 +189,11 @@ function resetDropdowns(dropdownArray) {
     let dbId = db + 'Dropdown';
 
     disableDropdown(db);
-    closeDropdown(dbId);
 
     const valueList = document.querySelector(`#${dbId} .value-list`);
     valueList.innerHTML = '';
   });
+  closeDropdowns();
 }
 
 function enableDropdown(db) {
@@ -207,9 +207,11 @@ function disableDropdown(db) {
   inputField.setAttribute('disabled', '');
 }
 
-function closeDropdown(dbId) {
-  const valueList = document.querySelector(`#${dbId} .value-list`);
-  valueList.classList.remove('open');
+function closeDropdowns() {
+  customDropdowns.forEach(db => {
+    const valueList = document.querySelector(`#${db.id} .value-list`);
+    valueList.classList.remove('open');
+  });
 }
 
 function dropdownValueSelected(value, dropdownId) {
