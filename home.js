@@ -170,6 +170,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+    _closeDropdown();
   });
 
   inputField.addEventListener('click', () => {
@@ -179,7 +180,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       console.log('Dropdown is already open');
       inputField.setAttribute('inputmode', 'text');
     } else {
-      console.log('drodown was closed before now opening!');
+      console.log('dropdown was closed before now opening!');
       _openDropdown();
     }
   });
