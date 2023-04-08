@@ -182,7 +182,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     }
     setTimeout(() => {
       closeDropdown(customDropdown.id);
-    }, 200);
+    }, 100);
   });
 
   inputField.addEventListener('click', () => {
