@@ -83,7 +83,7 @@ function initCustomDropdowns() {
     console.log('click');
     customDropdowns.forEach(db => {
       const valueList = db.querySelector('.value-list');
-      const inputField = db.querySelector('.value-list .chosen-value');
+      const inputField = db.querySelector('.chosen-value');
       const isDropdown = valueList.contains(evt.target);
       const isInput = inputField.contains(evt.target);
       if (!isDropdown && !isInput) {
