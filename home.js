@@ -129,13 +129,17 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
-    if (isMobile()) {
-      inputField.setAttribute('inputmode', 'text');
-    }
   };
 
+  const _isDropdownOpen = () => dropdown.classList.contains('open');
+
   inputField.addEventListener('input', () => {
-    _openDropdown();
+    if (isMobile() && _isDropdownOpen()) {
+      inputField.setAttribute('inputmode', 'text');
+    }
+    if (!_isDropdownOpen()) {
+      _openDropdown();
+    }
 
     let inputValue = inputField.value.toLowerCase();
 
