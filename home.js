@@ -71,6 +71,7 @@ let fetchedModelObj;
 let foundVehicleObj;
 
 let customDropdowns;
+let selectedMake, selectedYear, selectedModel, selectedEngine;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
@@ -167,11 +168,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     });
   });
 
-  inputField.addEventListener('focus', () => {
-    // inputField.placeholder = 'Αναζήτηση...';
-    // _openDropdown();
-  });
-
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
   });
@@ -189,11 +185,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputImg.addEventListener('click', () => {
-    if (_isDropdownOpen()) {
-      _closeDropdown();
-    } else {
-      _openDropdown();
-    }
+    _openDropdown();
   });
 }
 
@@ -240,10 +232,12 @@ function closeDropdowns() {
 function dropdownValueSelected(value, dbId) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   if (dbId === 'makeDropdown') {
-    console.log('make on change', value, dbId);
+    console.log('make on change', selectedMake);
+    selectedMake = value;
     makeOnChange(value);
   } else if (dbId === 'yearsDropdown') {
-    console.log('years on change', value);
+    selectedYear = value;
+    console.log('years on change', selectedYear);
   }
   // else if (dbId === 'modelDropdown') {
   // } else if (dbId === 'engineDropdown') {
