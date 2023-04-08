@@ -169,7 +169,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     } else if (!inputField.value) {
       if (customDropdown.id === 'makeDropdown') {
         resetDropdowns(['year', 'model', 'engine']);
-        selectedMake = undefined;
+        selectedMake = undefined; //
       } else if (customDropdown.id === 'yearDropdown') {
         resetDropdowns(['model', 'engine']);
         selectedYear = undefined;
