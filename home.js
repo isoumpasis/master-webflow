@@ -298,7 +298,7 @@ function dropdownValueSelected(value, dbId) {
 }
 
 function makeOnChange(value) {
-  resetDropdowns(['model', 'engine']);
+  resetDropdowns(['year', 'model', 'engine']);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -318,7 +318,7 @@ function makeOnChange(value) {
   // saveUserSelections();
 
   if (!value) {
-    resetDropdowns(['year']);
+    // resetDropdowns(['year']);
     // togglePulse('.car-pulse', true);
     // togglePulse('.summary-pulse', false);
     return;
