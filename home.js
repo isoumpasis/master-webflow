@@ -78,6 +78,8 @@ const yearDropdown = document.querySelector('#yearDropdown');
 const modelDropdown = document.querySelector('#modelDropdown');
 const engineDropdown = document.querySelector('#engineDropdown');
 
+let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
+
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
 });
@@ -95,8 +97,24 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const customDropdown = document.getElementById(dropdownId);
   const inputField = customDropdown.querySelector('.chosen-value');
   const inputImg = customDropdown.querySelector('.input-container img');
+
   const dropdown = customDropdown.querySelector('.value-list');
-  const dropdownArray = [...dropdown.querySelectorAll('li')];
+  let dropdownArray;
+  if (dropdownId === 'makeDropdown') {
+    makeDropdownLis = [...dropdown.querySelectorAll('li')];
+    dropdownArray = makeDropdownLis;
+  } else if (dropdownId === 'yearDropdown') {
+    yearDropdownLis = [...dropdown.querySelectorAll('li')];
+    dropdownArray = yearDropdownLis;
+  } else if (dropdownId === 'modelDropdown') {
+    modelDropdownLis = [...dropdown.querySelectorAll('li')];
+    dropdownArray = modelDropdownLis;
+  } else if (dropdownId === 'engineDropdown') {
+    engineDropdownLis = [...dropdown.querySelectorAll('li')];
+    dropdownArray = engineDropdownLis;
+  }
+  // const dropdownArray = [...dropdown.querySelectorAll('li')];
+
   let valueArray = [];
   dropdownArray.forEach(item => {
     valueArray.push(item.textContent);
@@ -128,11 +146,16 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     if (inputValue.length > 0) {
       let inputWords = inputValue.split(' ').filter(w => w.length > 0);
 
+      console.log('SEARCH: dropdownArray', dropdownArray);
+
       const lisToShow = dropdownArray.filter(li =>
         inputWords.some(word =>
           li.textContent.split(' ').some(liWord => liWord.toLowerCase().includes(word))
         )
       );
+
+      console.log('listToShow', lisToShow);
+
       dropdownArray.forEach(li => li.classList.add('closed'));
       lisToShow.forEach(li => li.classList.remove('closed'));
     } else {
@@ -145,16 +168,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   dropdownArray.forEach(item => {
     item.addEventListener('click', evt => {
       onDropdownItemClick(dropdownId, item);
-      // inputField.value = item.textContent;
-      // // dropdownArray.forEach(dropdown => {
-      // //   dropdown.classList.add('closed');
-      // // });
-      // // setTimeout(() => {
-      // //   closeDropdown(customDropdown.id);
-      // // }, 1000);
-      // // closeDropdown(customDropdown.id);
-      // console.log('inputField.value', inputField.value);
-      // dropdownValueSelected(inputField.value, dropdownId);
     });
   });
 
