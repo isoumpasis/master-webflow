@@ -443,10 +443,9 @@ function populateYearDropdown(fetchedYears) {
   //One option -> auto populate
   if (yearDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
+    const inputField = yearDropdown.querySelector('.chosen-value');
+    inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
-
-    // yearSelect.selectedIndex = 1;
-    // yearOnChange(yearSelect.value);
   }
 }
 
@@ -548,6 +547,8 @@ function populateModelDropdown(fetchedModels) {
   //One option -> auto populate
   if (modelDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
+    const inputField = modelDropdown.querySelector('.chosen-value');
+    inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
   }
 }
