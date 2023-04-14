@@ -295,49 +295,6 @@ function dropdownValueSelected(value, dbId) {
     console.log('years on change', selectedYear);
     yearOnChange(selectedYear);
   }
-  // else if (dbId === 'modelDropdown') {
-  // } else if (dbId === 'engineDropdown') {
-  // }
-
-  // let status;
-  // fetch(urlYears, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ make: value })
-  // })
-  //   .then(response => {
-  //     status = response.status;
-  //     return response.json();
-  //   })
-  //   .then(data => {
-  //     if (status !== 200) {
-  //       console.log('error', status, data);
-
-  //       // if (data.msg === 'no models') {
-  //       //   yearSelect.innerHTML = `<option value="">Δεν υπάρχουν μοντέλα</option>`;
-  //       // } else {
-  //       //   yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
-  //       // }
-  //       return;
-  //     }
-  //     fetchedYears = data;
-  //     // sessionStorage.clear(); //reset every time make changes
-  //     // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
-
-  //     console.log('fetchedYears', fetchedYears);
-  //     populateYearSelect(fetchedYears);
-  //     // endLoadingSelect(yearSelect);
-  //   })
-  //   .catch(error => {
-  //     // endLoadingSelect(yearSelect);
-  //     // let errorMsg;
-  //     // if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
-  //     // else errorMsg = 'Προσπαθήστε ξανά';
-  //     // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
-  //     console.error('Error Fetch:', error);
-  //   });
 }
 
 function makeOnChange(value) {
@@ -471,11 +428,13 @@ function populateYearDropdown(fetchedYears) {
   // yearSelect.disabled = false;
   // yearSelect.focus();
   //One option -> auto populate
-  if (yearLis.length === 2) {
+  if (yearDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
+
+    dropdownValueSelected(fetchedYears[0], 'yearDropdown');
+
     // yearSelect.selectedIndex = 1;
     // yearOnChange(yearSelect.value);
-    // return;
   }
 }
 
