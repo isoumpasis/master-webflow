@@ -144,16 +144,17 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   dropdownArray.forEach(item => {
     item.addEventListener('click', evt => {
-      inputField.value = item.textContent;
-      // dropdownArray.forEach(dropdown => {
-      //   dropdown.classList.add('closed');
-      // });
-      // setTimeout(() => {
-      //   closeDropdown(customDropdown.id);
-      // }, 1000);
-      // closeDropdown(customDropdown.id);
-      console.log('inputField.value', inputField.value);
-      dropdownValueSelected(inputField.value, dropdownId);
+      onDropdownItemClick(dropdownId);
+      // inputField.value = item.textContent;
+      // // dropdownArray.forEach(dropdown => {
+      // //   dropdown.classList.add('closed');
+      // // });
+      // // setTimeout(() => {
+      // //   closeDropdown(customDropdown.id);
+      // // }, 1000);
+      // // closeDropdown(customDropdown.id);
+      // console.log('inputField.value', inputField.value);
+      // dropdownValueSelected(inputField.value, dropdownId);
     });
   });
 
@@ -197,6 +198,14 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputImg.addEventListener('click', () => {
     _openDropdown();
   });
+}
+
+function onDropdownItemClick(dropdownId) {
+  const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
+  inputField.value = item.textContent;
+
+  console.log('inputField.value', inputField.value);
+  dropdownValueSelected(inputField.value, dropdownId);
 }
 
 function getSelectedValue(dbId) {
@@ -434,6 +443,13 @@ function populateYearDropdown(fetchedYears) {
   const yearLis = fetchedYears.map(year => `<li class="custom-li"><div>${year}</div></li>`);
 
   yearDropdown.querySelector('.value-list').innerHTML = yearLis.join('');
+  const dropdownArray = [...dropdown.querySelectorAll('li')];
+  dropdownArray.forEach(item => {
+    item.addEventListener('click', () => {
+      onDropdownItemClick(dropdownId);
+    });
+  });
+
   // yearSelect.disabled = false;
   // yearSelect.focus();
   //One option -> auto populate
