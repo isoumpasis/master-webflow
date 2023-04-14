@@ -378,12 +378,12 @@ function makeOnChange(value) {
     })
     .catch(error => {
       // endLoadingSelect(yearSelect);
+      resetDropdowns(['year']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
-      resetDropdowns(['year']);
     });
 }
 
@@ -521,12 +521,12 @@ function yearOnChange(value) {
     })
     .catch(error => {
       // endLoadingSelect(modelSelect);
+      resetDropdowns(['model']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
-      resetDropdowns(['model']);
     });
 }
 
@@ -618,12 +618,12 @@ function modelOnChange(value) {
     })
     .catch(error => {
       // endLoadingSelect(engineSelect);
+      resetDropdowns(['engine']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
-      resetDropdowns(['engine']);
     });
 }
 
