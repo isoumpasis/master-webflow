@@ -217,7 +217,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
 function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
-  inputField.value = item.textContent || item;
+  inputField.value = item.textContent;
 
   console.log('inputField.value', inputField.value);
   dropdownValueSelected(inputField.value, dropdownId);
@@ -656,8 +656,8 @@ function populateEngineDropdown(fetchedModelObj) {
   const dropdownArray = engineDropdownLis;
   dropdownArray.forEach(item => {
     item.addEventListener('mousedown', () => {
-      console.log('ths iiss /2@@', item.dataset.engineCode);
-      onDropdownItemClick('engineDropdown', item.dataset.engineCode);
+      console.log('ths iiss /2@@', item);
+      onDropdownItemClick('engineDropdown', item);
     });
   });
 
@@ -666,10 +666,11 @@ function populateEngineDropdown(fetchedModelObj) {
     console.log('one option -> auto populate!');
     const inputField = engineDropdown.querySelector('.chosen-value');
     inputField.value = engineCodes[0];
-    let engineCodeValue = engineCodes[0].split(' ');
-    engineCodeValue.pop();
-    engineCodeValue = engineCodeValue.join(' ');
-    dropdownValueSelected(engineCodeValue, 'engineDropdown');
+    dropdownValueSelected(engineCodes[0], 'engineDropdown');
+    // let engineCodeValue = engineCodes[0].split(' ');
+    // engineCodeValue.pop();
+    // engineCodeValue = engineCodeValue.join(' ');
+    // dropdownValueSelected(engineCodeValue, 'engineDropdown');
   }
 }
 
