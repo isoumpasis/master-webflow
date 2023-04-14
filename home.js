@@ -612,90 +612,66 @@ function modelOnChange(value) {
       fetchedModelObj = data;
 
       console.log('populate engine dropdown', fetchedModelObj);
-      // populateModelDropdown(fetchedModels);
+      populateEngineDropdown(fetchedModelObj);
       inputField.placeholder = 'Επιλέξτε Κινητήρα';
-
-      // sessionStorage.selectedVehicles = JSON.stringify(selectedVehicles);
-
-      // descriptionSelect.innerHTML = `<option value="">${
-      //   selectedVehicles.isDirect ? 'Κινητήρας' : 'Κύλινδροι'
-      // }</option>`;
-      // populateDescriptionSelect(fetchedModelObj);
       // endLoadingSelect(descriptionSelect);
     })
     .catch(error => {
-      endLoadingSelect(descriptionSelect);
-      descriptionSelect.innerHTML = '<option value="">Προσπαθήστε ξανά</option>';
+      // endLoadingSelect(engineSelect);
+      let errorMsg;
+      if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
+      else errorMsg = 'Προσπαθήστε ξανά';
+      inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
+      resetDropdowns(['engine']);
     });
 }
 
-function populateDescriptionSelect(fetchedModelObj) {
-  let optionsArray;
+function populateEngineDropdown(fetchedModelObj) {
+  let convertibleSymbol = ' ✔️';
+  let engineLis = [];
+  let engineCodes = [];
 
-  // if (fetchedModelObj.isDirect) {
-  optionsArray = ['<option value="">Επιλέξτε Κινητήρα</option>'];
-  let engineCodesOptions = [];
   fetchedModelObj.vehicles.forEach(vehicle => {
     vehicle.engineCodes.forEach(code => {
-      // let convertibleSymbol = vehicle.isConvertible
-      //   ? ' ✔️'
-      //   : vehicle.cylinders <= 4
-      //   ? ' &#9203;'
-      //   : ' &#10060;';
-      let convertibleSymbol = ' ✔️';
-      engineCodesOptions.push(code + convertibleSymbol);
+      engineCodes.push(code + convertibleSymbol);
     });
   });
-  engineCodesOptions = [...new Set(engineCodesOptions)].sort(
+  engineCodes = [...new Set(engineCodes)].sort(
     (a, b) => parseInt(a.split(' ')[0]) - parseInt(b.split(' ')[0])
   );
-  engineCodesOptions.forEach(engineCode => {
+  engineCodes.forEach(engineCode => {
     let engineCodeValue = engineCode.split(' ');
     engineCodeValue.pop();
     engineCodeValue = engineCodeValue.join(' ');
-    optionsArray.push(`<option value="${engineCodeValue}">${engineCode}</option>`);
+    engineLis.push(
+      `<li class="custom-li" data-engine-code="${engineCodeValue}"><div>${engineCode}</div></li>`
+    );
   });
-  // } else {
-  //   const filteredVehicles = fetchedModelObj.vehicles.slice();
 
-  //   if (
-  //     filteredVehicles.length === 1 ||
-  //     (haveSameConsumption(filteredVehicles, { tolerance: 0.5 }) &&
-  //       haveSameEmulators(filteredVehicles) &&
-  //       (filteredVehicles.every(veh => veh.hp <= 180) ||
-  //         filteredVehicles.every(veh => veh.hp > 180)))
-  //   ) {
-  //     optionsArray = ['<option value="">Επιλέξτε Κυλίνδρους</option>'];
-  //     let cylinders = filteredVehicles.map(veh => veh.cylinders);
-  //     cylinders = [...new Set(cylinders)].sort();
-  //     cylinders.forEach(cylinder => {
-  //       optionsArray.push(`<option value="${cylinder}">${cylinder} cyl</option>`);
-  //     });
-  //   } else {
-  //     optionsArray = ['<option value="">Επιλέξτε Ιπποδύναμη</option>'];
-  //     let hpOptions = filteredVehicles.map(veh => veh.hp);
-  //     hpOptions = [...new Set(hpOptions)].sort((a, b) => parseInt(a) - parseInt(b));
-  //     hpOptions.forEach(opt => {
-  //       optionsArray.push(`<option value="${opt}">${opt} HP</option>`);
-  //     });
-  //   }
-  // }
+  const dropdown = engineDropdown.querySelector('.value-list');
+  dropdown.innerHTML = engineLis.join('');
 
-  descriptionSelect.innerHTML = optionsArray.join('');
-  descriptionSelect.disabled = false;
-  descriptionSelect.focus();
+  engineDropdownLis = [...dropdown.querySelectorAll('li')];
+  const dropdownArray = engineDropdownLis;
+  dropdownArray.forEach(item => {
+    item.addEventListener('mousedown', () => {
+      onDropdownItemClick('engineDropdown', item);
+    });
+  });
+
   //One option -> auto populate
-  if (optionsArray.length === 2) {
-    descriptionSelect.selectedIndex = 1;
-    descriptionOnChange(descriptionSelect.value);
-    return;
+  if (engineDropdownLis.length === 1) {
+    console.log('one option -> auto populate!');
+    const inputField = engineDropdown.querySelector('.chosen-value');
+    inputField.value = engineCodes[0];
+    dropdownValueSelected(engineCodes[0], 'engineDropdown');
   }
 }
 
-descriptionSelect.addEventListener('change', e => descriptionOnChange(e.target.value));
-
-function descriptionOnChange(value) {
+function engineOnChange(value) {
+  console.log('engine on change', value);
+  return;
   // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
 
   if (!value) {
