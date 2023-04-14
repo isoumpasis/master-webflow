@@ -140,9 +140,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   dropdownArray.forEach(item => {
     item.addEventListener('click', evt => {
       inputField.value = item.textContent;
-      dropdownArray.forEach(dropdown => {
-        dropdown.classList.add('closed');
-      });
+      // dropdownArray.forEach(dropdown => {
+      //   dropdown.classList.add('closed');
+      // });
       // setTimeout(() => {
       //   closeDropdown(customDropdown.id);
       // }, 1000);
