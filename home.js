@@ -101,6 +101,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const dropdown = customDropdown.querySelector('.value-list');
   let dropdownArray = [...dropdown.querySelectorAll('li')];
 
+  if (dropdownId === 'makeDropdown') {
+    makeDropdownLis = dropdownArray;
+  }
+
   let valueArray = [];
   dropdownArray.forEach(item => {
     valueArray.push(item.textContent);
