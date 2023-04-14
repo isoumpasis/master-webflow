@@ -245,13 +245,18 @@ function resetDropdowns(dropdownArray) {
     const inputField = document.querySelector(`#${dbId} .chosen-value`);
     if (dbId === 'makeDropdown') {
       inputField.placeholder = 'Επιλέξτε Μάρκα';
+      selectedMake = null;
     } else if (dbId === 'yearDropdown') {
       inputField.placeholder = 'Χρονολογία';
+      selectedYear = null;
     } else if (dbId === 'modelDropdown') {
       inputField.placeholder = 'Μοντέλο';
+      selectedModel = null;
     } else if (dbId === 'engineDropdown') {
       inputField.placeholder = 'Κινητήρας';
+      selectedEngine = null;
     }
+    inputField.value = '';
 
     const valueList = document.querySelector(`#${dbId} .value-list`);
     valueList.innerHTML = '';
@@ -352,7 +357,6 @@ function makeOnChange(value) {
           inputField.placeholder = 'Υπήρξε πρόβλημα';
         }
         resetDropdowns(['year']);
-        // disableDropdown('year');
         return;
       }
       fetchedYears = data;
