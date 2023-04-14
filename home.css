@@ -60,7 +60,7 @@ select::-webkit-scrollbar-thumb,
   background-color: #dfdfdf;
 }
 .value-list.open::-webkit-scrollbar-thumb {
-  background-color: #aa9000;
+  background-color: #e6c300;
   border-radius: 10px;
 }
 .input-container img {
