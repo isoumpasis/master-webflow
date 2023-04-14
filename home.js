@@ -373,7 +373,6 @@ function makeOnChange(value) {
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
-      // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
       resetDropdowns(['year']);
@@ -436,7 +435,6 @@ function populateYearDropdown(fetchedYears) {
   //One option -> auto populate
   if (yearDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
-
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
 
     // yearSelect.selectedIndex = 1;
@@ -445,7 +443,7 @@ function populateYearDropdown(fetchedYears) {
 }
 
 function yearOnChange(value) {
-  resetDropdowns(['engine']);
+  resetDropdowns(['model', 'engine']);
 
   // descriptionSelect.disabled = true;
   // descriptionSelect.innerHTML = '<option>Περιγραφή</option>';
@@ -469,7 +467,7 @@ function yearOnChange(value) {
   // saveUserSelections();
 
   if (!value) {
-    resetDropdowns(['model']);
+    // resetDropdowns(['model']);
     // modelSelect.disabled = true;
     // modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
     // descriptionSelect.innerHTML = '<option value="">Κινητήρας</option>';
@@ -499,53 +497,54 @@ function yearOnChange(value) {
     .then(data => {
       if (status !== 200) {
         // endLoadingSelect(modelSelect);
+        resetDropdowns(['model']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
           inputField.placeholder = 'Υπήρξε πρόβλημα';
         }
-        disableDropdown('model');
         return;
       }
       fetchedModels = data;
 
       console.log('populate model dropdown', fetchedModels);
-      // populateModelDropdown(fetchedModels);
+      populateModelDropdown(fetchedModels);
       inputField.placeholder = 'Επιλέξτε Μοντέλο';
-
-      // populateModelSelect(fetchedModels);
       // endLoadingSelect(modelSelect);
     })
     .catch(error => {
+      // endLoadingSelect(modelSelect);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
       inputField.placeholder = errorMsg;
-      // endLoadingSelect(modelSelect);
-      // yearSelect.innerHTML = '<option value="">Προσπαθήστε ξανά</option>';
       console.error('Error Fetch:', error);
+      resetDropdowns(['model']);
     });
 }
 
-function populateModelSelect(fetchedModels) {
-  let modelOptionsArray = ['<option value="">Επιλέξτε Μοντέλο</option>'];
-  fetchedModels.forEach(model => {
-    modelOptionsArray.push(`<option value="${model}">${model}</option>`);
+function populateModelDropdown(fetchedModels) {
+  const modelLis = fetchedModels.map(model => `<li class="custom-li"><div>${model}</div></li>`);
+
+  const dropdown = modelDropdown.querySelector('.value-list');
+  dropdown.innerHTML = modelLis.join('');
+
+  modelDropdownLis = [...dropdown.querySelectorAll('li')];
+  const dropdownArray = modelDropdownLis;
+  dropdownArray.forEach(item => {
+    item.addEventListener('mousedown', () => {
+      onDropdownItemClick('modelDropdown', item);
+    });
   });
 
-  modelSelect.innerHTML = modelOptionsArray.join('');
-  modelSelect.disabled = false;
-  modelSelect.focus();
-
-  if (modelOptionsArray.length === 2) {
-    modelSelect.selectedIndex = 1;
-    modelOnChange(modelSelect.value);
-    return;
+  //One option -> auto populate
+  if (modelDropdownLis.length === 1) {
+    console.log('one option -> auto populate!');
+    dropdownValueSelected(fetchedModels[0], 'modelDropdown');
   }
 }
-
-modelSelect.addEventListener('change', e => modelOnChange(e.target.value));
 function modelOnChange(value) {
+  resetDropdowns(['engine']);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -566,22 +565,25 @@ function modelOnChange(value) {
   // saveUserSelections();
 
   if (!value) {
-    descriptionSelect.disabled = true;
-    descriptionSelect.innerHTML = '<option value="">Κινητήρας</option>';
     return;
   }
   // sessionStorage.selectedYear = value;
 
-  descriptionSelect.disabled = false;
-  descriptionSelect.innerHTML = '';
-  startLoadingSelect(descriptionSelect);
+  enableDropdown('engine');
+
+  // descriptionSelect.disabled = false;
+  // descriptionSelect.innerHTML = '';
+  // startLoadingSelect(descriptionSelect);
+  const inputField = engineDropdown.querySelector('.chosen-value');
+  inputField.placeholder = ''; //loading select
+
   let status;
   fetch(urlDescriptions, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ make: makeSelect.value, year: yearSelect.value, model: value })
+    body: JSON.stringify({ make: selectedMake, year: selectedYear, model: value })
   })
     .then(response => {
       status = response.status;
@@ -589,19 +591,28 @@ function modelOnChange(value) {
     })
     .then(data => {
       if (status !== 200) {
-        endLoadingSelect(modelSelect);
-        descriptionSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+        // endLoadingSelect(modelSelect);
+        resetDropdowns(['engine']);
+        if (data.msg === 'no models') {
+          inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
+        } else {
+          inputField.placeholder = 'Υπήρξε πρόβλημα';
+        }
         return;
       }
       fetchedModelObj = data;
+
+      console.log('populate engine dropdown', fetchedModelObj);
+      // populateModelDropdown(fetchedModels);
+      inputField.placeholder = 'Επιλέξτε Κινητήρα';
 
       // sessionStorage.selectedVehicles = JSON.stringify(selectedVehicles);
 
       // descriptionSelect.innerHTML = `<option value="">${
       //   selectedVehicles.isDirect ? 'Κινητήρας' : 'Κύλινδροι'
       // }</option>`;
-      populateDescriptionSelect(fetchedModelObj);
-      endLoadingSelect(descriptionSelect);
+      // populateDescriptionSelect(fetchedModelObj);
+      // endLoadingSelect(descriptionSelect);
     })
     .catch(error => {
       endLoadingSelect(descriptionSelect);
