@@ -431,9 +431,7 @@ function endLoadingSelect(select, triggeredFrom = null, type = null) {
 }
 
 function populateYearDropdown(fetchedYears) {
-  const yearLis = fetchedYears.map(
-    year => `<li class="custom-li center-li"><div>${year}</div></li>`
-  );
+  const yearLis = fetchedYears.map(year => `<li class="custom-li"><div>${year}</div></li>`);
 
   yearDropdown.querySelector('.value-list').innerHTML = yearLis.join('');
   // yearSelect.disabled = false;
