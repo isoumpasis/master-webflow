@@ -275,7 +275,7 @@ function dropdownValueSelected(value, dbId) {
     selectedMake = value;
     console.log('make on change', selectedMake);
     makeOnChange(selectedMake);
-  } else if (dbId === 'yearsDropdown') {
+  } else if (dbId === 'yearDropdown') {
     selectedYear = value;
     console.log('years on change', selectedYear);
     yearOnChange(selectedYear);
