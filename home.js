@@ -96,7 +96,7 @@ function initCustomDropdowns() {
 function initCustomDropdown({ dropdownId, placeholderStr }) {
   const customDropdown = document.getElementById(dropdownId);
   const inputField = customDropdown.querySelector('.chosen-value');
-  const inputImg = customDropdown.querySelector('.input-container img');
+  const inputImg = customDropdown.querySelector('.input-container .img-arrow');
 
   const dropdown = customDropdown.querySelector('.value-list');
   let dropdownArray = [...dropdown.querySelectorAll('li')];
@@ -276,7 +276,7 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
-  const inputImg = document.querySelector(`#${dbId} .input-container img`);
+  const inputImg = document.querySelector(`#${dbId} .input-container .img-arrow`);
   inputImg.style.transform = 'rotate(0deg)';
   // if (isMobile()) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
