@@ -99,21 +99,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const inputImg = customDropdown.querySelector('.input-container img');
 
   const dropdown = customDropdown.querySelector('.value-list');
-  let dropdownArray;
-  if (dropdownId === 'makeDropdown') {
-    makeDropdownLis = [...dropdown.querySelectorAll('li')];
-    dropdownArray = makeDropdownLis;
-  } else if (dropdownId === 'yearDropdown') {
-    yearDropdownLis = [...dropdown.querySelectorAll('li')];
-    dropdownArray = yearDropdownLis;
-  } else if (dropdownId === 'modelDropdown') {
-    modelDropdownLis = [...dropdown.querySelectorAll('li')];
-    dropdownArray = modelDropdownLis;
-  } else if (dropdownId === 'engineDropdown') {
-    engineDropdownLis = [...dropdown.querySelectorAll('li')];
-    dropdownArray = engineDropdownLis;
-  }
-  // const dropdownArray = [...dropdown.querySelectorAll('li')];
+  let dropdownArray = [...dropdown.querySelectorAll('li')];
 
   let valueArray = [];
   dropdownArray.forEach(item => {
@@ -140,6 +126,16 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('input', () => {
     _openDropdown();
+
+    if (dropdownId === 'makeDropdown') {
+      dropdownArray = makeDropdownLis;
+    } else if (dropdownId === 'yearDropdown') {
+      dropdownArray = yearDropdownLis;
+    } else if (dropdownId === 'modelDropdown') {
+      dropdownArray = modelDropdownLis;
+    } else if (dropdownId === 'engineDropdown') {
+      dropdownArray = engineDropdownLis;
+    }
 
     let inputValue = inputField.value.toLowerCase();
 
