@@ -502,7 +502,6 @@ function yearOnChange(value) {
     .then(data => {
       if (status !== 200) {
         // endLoadingSelect(modelSelect);
-        // yearSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
