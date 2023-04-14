@@ -144,7 +144,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   dropdownArray.forEach(item => {
     item.addEventListener('click', evt => {
-      onDropdownItemClick(dropdownId);
+      onDropdownItemClick(dropdownId, item);
       // inputField.value = item.textContent;
       // // dropdownArray.forEach(dropdown => {
       // //   dropdown.classList.add('closed');
@@ -200,7 +200,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 }
 
-function onDropdownItemClick(dropdownId) {
+function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
   inputField.value = item.textContent;
 
@@ -446,7 +446,7 @@ function populateYearDropdown(fetchedYears) {
   const dropdownArray = [...dropdown.querySelectorAll('li')];
   dropdownArray.forEach(item => {
     item.addEventListener('click', () => {
-      onDropdownItemClick(dropdownId);
+      onDropdownItemClick(dropdownId, item);
     });
   });
 
