@@ -351,12 +351,12 @@ function makeOnChange(value) {
     .then(data => {
       if (status !== 200) {
         // endLoadingSelect(yearSelect);
+        resetDropdowns(['year']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
           inputField.placeholder = 'Υπήρξε πρόβλημα';
         }
-        resetDropdowns(['year']);
         return;
       }
       fetchedYears = data;
