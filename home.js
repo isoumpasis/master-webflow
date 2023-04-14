@@ -168,7 +168,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   dropdownArray.forEach(item => {
-    item.addEventListener('onmousedown', evt => {
+    item.addEventListener('mousedown', evt => {
       onDropdownItemClick(dropdownId, item);
     });
   });
