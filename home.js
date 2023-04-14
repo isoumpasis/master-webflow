@@ -426,7 +426,7 @@ function populateYearDropdown(fetchedYears) {
   yearDropdownLis = [...dropdown.querySelectorAll('li')];
   const dropdownArray = yearDropdownLis;
   dropdownArray.forEach(item => {
-    item.addEventListener('click', () => {
+    item.addEventListener('mousedown', () => {
       onDropdownItemClick('yearDropdown', item);
     });
   });
