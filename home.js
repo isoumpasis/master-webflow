@@ -89,8 +89,8 @@ function initCustomDropdowns() {
 
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
   initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
-  // initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
-  // initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'Κινητήρα' });
+  initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
+  initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'Κινητήρα' });
 }
 
 function initCustomDropdown({ dropdownId, placeholderStr }) {
