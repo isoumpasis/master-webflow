@@ -146,9 +146,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     if (inputValue.length > 0) {
       let inputWords = inputValue.split(' ').filter(w => w.length > 0);
 
-      console.log('SEARCH: dropdownArray', dropdownArray, inputWords);
-      console.log('S: makeLis', makeDropdownLis);
-      console.log('SEH: yearLis', yearDropdownLis);
+      // console.log('SEARCH: dropdownArray', dropdownArray, inputWords);
+      // console.log('S: makeLis', makeDropdownLis);
+      // console.log('SEH: yearLis', yearDropdownLis);
 
       const lisToShow = dropdownArray.filter(li =>
         inputWords.some(word =>
@@ -156,7 +156,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
         )
       );
 
-      console.log('listToShow', lisToShow);
+      // console.log('listToShow', lisToShow);
 
       dropdownArray.forEach(li => li.classList.add('closed'));
       lisToShow.forEach(li => li.classList.remove('closed'));
@@ -168,7 +168,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   dropdownArray.forEach(item => {
-    item.addEventListener('click', evt => {
+    item.addEventListener('onmousedown', evt => {
       onDropdownItemClick(dropdownId, item);
     });
   });
