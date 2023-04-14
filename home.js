@@ -217,7 +217,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
 function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
-  inputField.value = item.textContent;
+  inputField.value = item.textContent || item;
 
   console.log('inputField.value', inputField.value);
   dropdownValueSelected(inputField.value, dropdownId);
