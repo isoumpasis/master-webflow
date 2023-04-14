@@ -439,7 +439,7 @@ function populateYearDropdown(fetchedYears) {
   });
 
   // yearSelect.disabled = false;
-  yearDropdown.querySelector('.chosen-value').focus();
+  // yearDropdown.querySelector('.chosen-value').focus();
   //One option -> auto populate
   if (yearDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
