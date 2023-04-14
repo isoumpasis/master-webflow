@@ -351,7 +351,8 @@ function makeOnChange(value) {
         } else {
           inputField.placeholder = 'Υπήρξε πρόβλημα';
         }
-        disableDropdown('year');
+        resetDropdowns(['year']);
+        // disableDropdown('year');
         return;
       }
       fetchedYears = data;
@@ -371,6 +372,7 @@ function makeOnChange(value) {
       // yearSelect.innerHTML = `<option value="">${errorMsg}</option>`;
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
+      resetDropdowns(['year']);
     });
 }
 
