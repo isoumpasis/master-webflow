@@ -442,7 +442,8 @@ function endLoadingSelect(select, triggeredFrom = null, type = null) {
 function populateYearDropdown(fetchedYears) {
   const yearLis = fetchedYears.map(year => `<li class="custom-li"><div>${year}</div></li>`);
 
-  yearDropdown.querySelector('.value-list').innerHTML = yearLis.join('');
+  const dropdown = yearDropdown.querySelector('.value-list');
+  dropdown.innerHTML = yearLis.join('');
   const dropdownArray = [...dropdown.querySelectorAll('li')];
   dropdownArray.forEach(item => {
     item.addEventListener('click', () => {
