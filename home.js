@@ -143,9 +143,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       dropdownArray.forEach(dropdown => {
         dropdown.classList.add('closed');
       });
-      setTimeout(() => {
-        closeDropdown(customDropdown.id);
-      }, 1000);
+      // setTimeout(() => {
+      //   closeDropdown(customDropdown.id);
+      // }, 1000);
       // closeDropdown(customDropdown.id);
       console.log('inputField.value', inputField.value);
       dropdownValueSelected(inputField.value, dropdownId);
