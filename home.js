@@ -342,7 +342,7 @@ function makeOnChange(value) {
   // yearSelect.disabled = false;
   const inputField = yearDropdown.querySelector('.chosen-value');
   inputField.placeholder = ''; //loading select
-  // startLoadingSelect('year');
+  startLoadingSelect(inputField);
 
   let status;
   fetch(urlYears, {
@@ -358,7 +358,7 @@ function makeOnChange(value) {
     })
     .then(data => {
       if (status !== 200) {
-        // endLoadingSelect(yearSelect);
+        endLoadingSelect(inputField);
         resetDropdowns(['year']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
@@ -374,10 +374,10 @@ function makeOnChange(value) {
       console.log('populate year dropdown', fetchedYears);
       populateYearDropdown(fetchedYears);
       inputField.placeholder = 'Επιλέξτε Χρονολογία';
-      // endLoadingSelect(yearSelect);
+      endLoadingSelect(inputField);
     })
     .catch(error => {
-      // endLoadingSelect(yearSelect);
+      endLoadingSelect(inputField);
       resetDropdowns(['year']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
@@ -387,41 +387,11 @@ function makeOnChange(value) {
     });
 }
 
-function startLoadingSelect(select, triggeredFrom = null, type = null) {
-  if (!triggeredFrom) select.classList.add('loading-select');
-  // else {
-  //   if (triggeredFrom === 'form') {
-  //     document.querySelector('#submitSummaryBtn').value = 'Ετοιμάζουμε την προσφορά σου...';
-  //   }
-  //   if (triggeredFrom === 'basket') {
-  //     if (type === 'download') {
-  //       if (isFacebookBrowser()) {
-  //         document.querySelector('.open-download-form').click();
-  //       } else {
-  //         document.querySelector('.download-summary-basket-descr').innerHTML =
-  //           'Ετοιμάζουμε την<br>προσφορά σου...';
-  //       }
-  //     } else if (type === 'email')
-  //       document.querySelector('.email-summary-basket-descr').innerHTML =
-  //         'Ετοιμάζουμε την<br>προσφορά σου...';
-  //   }
-  // }
+function startLoadingSelect(inputField) {
+  inputField.classList.add('loading-select');
 }
-function endLoadingSelect(select, triggeredFrom = null, type = null) {
-  if (!triggeredFrom) select.classList.remove('loading-select');
-  // else {
-  //   if (triggeredFrom === 'form') {
-  //     document.querySelector('#submitSummaryBtn').value =
-  //       formType === 'DOWNLOAD' ? 'Κατέβασε και εκτύπωσε!' : 'Πάρε με Email!';
-  //   }
-  //   if (triggeredFrom === 'basket') {
-  //     if (type === 'download')
-  //       document.querySelector('.download-summary-basket-descr').innerHTML =
-  //         'Κατέβασε<br>και εκτύπωσε!';
-  //     else if (type === 'email')
-  //       document.querySelector('.email-summary-basket-descr').innerHTML = 'Πάρε<br>σε email!';
-  //   }
-  // }
+function endLoadingSelect(inputField) {
+  inputField.classList.remove('loading-select');
 }
 
 function populateYearDropdown(fetchedYears) {
@@ -438,8 +408,6 @@ function populateYearDropdown(fetchedYears) {
     });
   });
 
-  // yearSelect.disabled = false;
-  // yearDropdown.querySelector('.chosen-value').focus();
   //One option -> auto populate
   if (yearDropdownLis.length === 1) {
     console.log('one option -> auto populate!');
@@ -485,9 +453,9 @@ function yearOnChange(value) {
 
   // modelSelect.disabled = false;
   // modelSelect.innerHTML = '';
-  // startLoadingSelect(modelSelect);
   const inputField = modelDropdown.querySelector('.chosen-value');
   inputField.placeholder = ''; //loading select
+  startLoadingSelect(inputField);
 
   let status;
   fetch(urlModels, {
@@ -503,7 +471,7 @@ function yearOnChange(value) {
     })
     .then(data => {
       if (status !== 200) {
-        // endLoadingSelect(modelSelect);
+        endLoadingSelect(inputField);
         resetDropdowns(['model']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
@@ -517,10 +485,10 @@ function yearOnChange(value) {
       console.log('populate model dropdown', fetchedModels);
       populateModelDropdown(fetchedModels);
       inputField.placeholder = 'Επιλέξτε Μοντέλο';
-      // endLoadingSelect(modelSelect);
+      endLoadingSelect(inputField);
     })
     .catch(error => {
-      // endLoadingSelect(modelSelect);
+      endLoadingSelect(inputField);
       resetDropdowns(['model']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
@@ -582,9 +550,9 @@ function modelOnChange(value) {
 
   // descriptionSelect.disabled = false;
   // descriptionSelect.innerHTML = '';
-  // startLoadingSelect(descriptionSelect);
   const inputField = engineDropdown.querySelector('.chosen-value');
   inputField.placeholder = ''; //loading select
+  startLoadingSelect(inputField);
 
   let status;
   fetch(urlDescriptions, {
@@ -600,7 +568,7 @@ function modelOnChange(value) {
     })
     .then(data => {
       if (status !== 200) {
-        // endLoadingSelect(modelSelect);
+        endLoadingSelect(inputField);
         resetDropdowns(['engine']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
@@ -614,10 +582,10 @@ function modelOnChange(value) {
       console.log('populate engine dropdown', fetchedModelObj);
       populateEngineDropdown(fetchedModelObj);
       inputField.placeholder = 'Επιλέξτε Κινητήρα';
-      // endLoadingSelect(descriptionSelect);
+      endLoadingSelect(inputField);
     })
     .catch(error => {
-      // endLoadingSelect(engineSelect);
+      endLoadingSelect(inputField);
       resetDropdowns(['engine']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
