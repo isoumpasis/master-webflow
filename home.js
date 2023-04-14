@@ -297,8 +297,16 @@ function dropdownValueSelected(value, dbId) {
     makeOnChange(selectedMake);
   } else if (dbId === 'yearDropdown') {
     selectedYear = value;
-    console.log('years on change', selectedYear);
+    console.log('year on change', selectedYear);
     yearOnChange(selectedYear);
+  } else if (dbId === 'modelDropdown') {
+    selectedModel = value;
+    console.log('model on change', selectedModel);
+    modelOnChange(selectedModel);
+  } else if (dbId === 'engineDropdown') {
+    selectedEngine = value;
+    console.log('engine on change', selectedEngine);
+    engineOnChange(selectedEngine);
   }
 }
 
