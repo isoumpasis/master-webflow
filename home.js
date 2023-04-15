@@ -110,7 +110,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     valueArray.push(item.textContent);
   });
 
-  resetDropdowns(['year', 'model', 'engine'], { fadeOut: false });
+  resetDropdowns(['year', 'model', 'engine']);
 
   // const _closeDropdown = () => {
   //   dropdown.classList.remove('open');
@@ -235,7 +235,7 @@ function getSelectedValue(dbId) {
   }
 }
 
-function resetDropdowns(dropdownArray, { fadeOut = true } = {}) {
+function resetDropdowns(dropdownArray) {
   dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
 
@@ -249,21 +249,21 @@ function resetDropdowns(dropdownArray, { fadeOut = true } = {}) {
     } else if (dbId === 'yearDropdown') {
       inputField.placeholder = 'Χρονολογία';
       selectedYear = null;
-      if (fadeOut) {
-        removeFadeIn(yearDropdown);
-      }
+      // if (fadeOut) {
+      //   removeFadeIn(yearDropdown);
+      // }
     } else if (dbId === 'modelDropdown') {
       inputField.placeholder = 'Μοντέλο';
       selectedModel = null;
-      if (fadeOut) {
-        removeFadeIn(modelDropdown);
-      }
+      // if (fadeOut) {
+      //   removeFadeIn(modelDropdown);
+      // }
     } else if (dbId === 'engineDropdown') {
       inputField.placeholder = 'Κινητήρας';
       selectedEngine = null;
-      if (fadeOut) {
-        removeFadeIn(engineDropdown);
-      }
+      // if (fadeOut) {
+      //   removeFadeIn(engineDropdown);
+      // }
     }
     inputField.value = '';
 
@@ -367,7 +367,7 @@ function makeOnChange(value) {
     .then(data => {
       if (status !== 200) {
         endLoadingSelect(inputField);
-        resetDropdowns(['year'], { fadeOut: false });
+        resetDropdowns(['year']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
@@ -386,7 +386,7 @@ function makeOnChange(value) {
     })
     .catch(error => {
       endLoadingSelect(inputField);
-      resetDropdowns(['year'], { fadeOut: false });
+      resetDropdowns(['year']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
