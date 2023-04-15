@@ -408,21 +408,15 @@ function endLoadingSelect(inputField) {
 
 function addFadeIn(db) {
   db.classList.add('fade-in-dropdown');
-  // db.classList.remove('fade-out-dropdown');
 }
 function removeFadeIn(db) {
   let dbs = db;
   if (!Array.isArray(db)) {
     dbs = [db];
   }
-  console.log('fade out for', dbs);
   dbs.forEach(db => {
     db.classList.remove('fade-in-dropdown');
     // db.classList.add('fade-out-dropdown');
-
-    // setTimeout(() => {
-    //   db.style.position = 'absolute';
-    // }, 1000);
   });
 }
 
