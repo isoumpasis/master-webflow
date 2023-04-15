@@ -72,7 +72,7 @@ select::-webkit-scrollbar-thumb,
   visibility: hidden;
   flex-grow: 0;
   opacity: 0;
-  transition: all 1000ms;
+  transition: all 700ms;
 }
 .fade-in-dropdown {
   position: relative;
@@ -80,10 +80,3 @@ select::-webkit-scrollbar-thumb,
   flex-grow: 1;
   opacity: 1;
 }
-
-/* .fade-out-dropdown {
-  position: absolute;
-  visibility: hidden;
-  flex-grow: 0;
-  opacity: 0;
-}  */
