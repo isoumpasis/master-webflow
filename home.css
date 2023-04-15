@@ -36,6 +36,7 @@ select::-webkit-scrollbar-thumb,
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+  transition: none;
 }
 
 /* .chosen-value {
