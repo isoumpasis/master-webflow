@@ -409,7 +409,7 @@ function addFadeIn(db) {
 }
 function removeFadeIn(db) {
   let dbs = db;
-  if (!isArray(db)) {
+  if (!Array.isArray(db)) {
     dbs = [db];
   }
   dbs.forEach(db => {
