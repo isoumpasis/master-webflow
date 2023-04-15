@@ -67,3 +67,18 @@ select::-webkit-scrollbar-thumb,
 .input-container img {
   pointer-events: none;
 }
+
+.fade-in-dropdown {
+  position: relative;
+  visibility: visible;
+  flex-grow: 1;
+  opacity: 1;
+}
+
+.engine-dropdown {
+  position: absolute;
+  visibility: hidden;
+  flex-grow: 0;
+  opacity: 0;
+  transition: all 400ms;
+}

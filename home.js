@@ -394,6 +394,13 @@ function endLoadingSelect(inputField) {
   inputField.classList.remove('loading-select');
 }
 
+function addFadeIn(db) {
+  db.classList.add('fade-in-dropdown');
+}
+function removeFadeIn(db) {
+  db.classList.remove('fade-in-dropdown');
+}
+
 function populateYearDropdown(fetchedYears) {
   const yearLis = fetchedYears.map(year => `<li class="custom-li"><div>${year}</div></li>`);
 
@@ -551,8 +558,9 @@ function modelOnChange(value) {
   // descriptionSelect.disabled = false;
   // descriptionSelect.innerHTML = '';
   const inputField = engineDropdown.querySelector('.chosen-value');
-  inputField.placeholder = ''; //loading select
+  inputField.placeholder = '';
   startLoadingSelect(inputField);
+  addFadeIn(engineDropdown);
 
   let status;
   fetch(urlDescriptions, {
@@ -569,6 +577,7 @@ function modelOnChange(value) {
     .then(data => {
       if (status !== 200) {
         endLoadingSelect(inputField);
+        removeFadeIn(engineDropdown);
         resetDropdowns(['engine']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
@@ -583,9 +592,11 @@ function modelOnChange(value) {
       populateEngineDropdown(fetchedModelObj);
       inputField.placeholder = 'Επιλέξτε Κινητήρα';
       endLoadingSelect(inputField);
+      removeFadeIn(engineDropdown);
     })
     .catch(error => {
       endLoadingSelect(inputField);
+      removeFadeIn(engineDropdown);
       resetDropdowns(['engine']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
