@@ -235,7 +235,7 @@ function getSelectedValue(dbId) {
   }
 }
 
-function resetDropdowns(dropdownArray) {
+function resetDropdowns(dropdownArray, options) {
   dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
 
@@ -249,15 +249,21 @@ function resetDropdowns(dropdownArray) {
     } else if (dbId === 'yearDropdown') {
       inputField.placeholder = 'Χρονολογία';
       selectedYear = null;
-      removeFadeIn(yearDropdown);
+      if (options.fadeOut) {
+        removeFadeIn(yearDropdown);
+      }
     } else if (dbId === 'modelDropdown') {
       inputField.placeholder = 'Μοντέλο';
       selectedModel = null;
-      removeFadeIn(modelDropdown);
+      if (options.fadeOut) {
+        removeFadeIn(modelDropdown);
+      }
     } else if (dbId === 'engineDropdown') {
       inputField.placeholder = 'Κινητήρας';
       selectedEngine = null;
-      removeFadeIn(engineDropdown);
+      if (options.fadeOut) {
+        removeFadeIn(engineDropdown);
+      }
     }
     inputField.value = '';
 
@@ -361,7 +367,7 @@ function makeOnChange(value) {
     .then(data => {
       if (status !== 200) {
         endLoadingSelect(inputField);
-        resetDropdowns(['year']);
+        resetDropdowns(['year'], { fadeOut: false });
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
         } else {
@@ -380,7 +386,7 @@ function makeOnChange(value) {
     })
     .catch(error => {
       endLoadingSelect(inputField);
-      resetDropdowns(['year']);
+      resetDropdowns(['year'], { fadeOut: false });
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
       else errorMsg = 'Προσπαθήστε ξανά';
