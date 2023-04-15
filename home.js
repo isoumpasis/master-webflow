@@ -110,7 +110,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     valueArray.push(item.textContent);
   });
 
-  resetDropdowns(['year', 'model', 'engine']);
+  resetDropdowns(['year', 'model', 'engine'], { fadeOut: false });
 
   // const _closeDropdown = () => {
   //   dropdown.classList.remove('open');
