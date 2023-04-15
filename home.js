@@ -340,12 +340,11 @@ function makeOnChange(value) {
     return;
   }
 
-  enableDropdown('year');
-
-  // yearSelect.disabled = false;
   const inputField = yearDropdown.querySelector('.chosen-value');
-  inputField.placeholder = ''; //loading select
+  inputField.placeholder = '';
   startLoadingSelect(inputField);
+  enableDropdown('year');
+  addFadeIn(yearDropdown);
 
   let status;
   fetch(urlYears, {
@@ -399,11 +398,11 @@ function endLoadingSelect(inputField) {
 
 function addFadeIn(db) {
   db.classList.add('fade-in-dropdown');
-  console.log('fade in dropdown', db.className);
+  // console.log('fade in dropdown', db.className);
 }
 function removeFadeIn(db) {
   db.classList.remove('fade-in-dropdown');
-  console.log('fade out dropdown', db.className);
+  // console.log('fade out dropdown', db.className);
 }
 
 function populateYearDropdown(fetchedYears) {
@@ -461,13 +460,13 @@ function yearOnChange(value) {
     return;
   }
 
-  enableDropdown('model');
-
   // modelSelect.disabled = false;
   // modelSelect.innerHTML = '';
   const inputField = modelDropdown.querySelector('.chosen-value');
   inputField.placeholder = ''; //loading select
   startLoadingSelect(inputField);
+  enableDropdown('model');
+  addFadeIn(modelDropdown);
 
   let status;
   fetch(urlModels, {
