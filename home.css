@@ -99,6 +99,7 @@ select::-webkit-scrollbar-thumb,
 
 .chosen-value {
   padding: 0;
+  border: none;
 }
 /*end init */
 
