@@ -324,7 +324,7 @@ function dropdownValueSelected(value, dbId) {
 
 function makeOnChange(value) {
   resetDropdowns(['year', 'model', 'engine']);
-  removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
+  removeFadeIn([modelDropdown, engineDropdown]);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -451,7 +451,7 @@ function populateYearDropdown(fetchedYears) {
 
 function yearOnChange(value) {
   resetDropdowns(['model', 'engine']);
-  removeFadeIn([modelDropdown, engineDropdown]);
+  removeFadeIn([engineDropdown]);
 
   // descriptionSelect.disabled = true;
   // descriptionSelect.innerHTML = '<option>Περιγραφή</option>';
@@ -555,7 +555,7 @@ function populateModelDropdown(fetchedModels) {
 }
 function modelOnChange(value) {
   resetDropdowns(['engine']);
-  removeFadeIn([engineDropdown]);
+  // removeFadeIn([engineDropdown]);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
