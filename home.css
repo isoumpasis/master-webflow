@@ -86,7 +86,7 @@ select::-webkit-scrollbar-thumb,
 }
 
 .fade-out-dropdown {
-  position: relative;
+  position: absolute;
   visibility: hidden;
   flex-grow: 0;
   opacity: 0;
