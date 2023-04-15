@@ -69,15 +69,16 @@ select::-webkit-scrollbar-thumb,
 .model-dropdown,
 .engine-dropdown {
   position: absolute;
-  left: 999999px;
+  left: 15px;
   visibility: hidden;
   flex-grow: 0;
   opacity: 0;
-  transition: all 700ms;
+  transition: all 400ms;
 }
 .fade-in-dropdown {
   position: relative;
   visibility: visible;
+  left: 10px;
   flex-grow: 1;
   opacity: 1;
 }
