@@ -321,6 +321,7 @@ function dropdownValueSelected(value, dbId) {
 
 function makeOnChange(value) {
   resetDropdowns(['year', 'model', 'engine']);
+  removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -407,11 +408,18 @@ function addFadeIn(db) {
   db.classList.remove('fade-out-dropdown');
 }
 function removeFadeIn(db) {
-  db.classList.remove('fade-in-dropdown');
-  db.classList.add('fade-out-dropdown');
-  // setTimeout(() => {
-  //   db.style.position = 'absolute';
-  // }, 1000);
+  let dbs = db;
+  if (!isArray(db)) {
+    dbs = [db];
+  }
+  dbs.forEach(db => {
+    db.classList.remove('fade-in-dropdown');
+    db.classList.add('fade-out-dropdown');
+
+    // setTimeout(() => {
+    //   db.style.position = 'absolute';
+    // }, 1000);
+  });
 }
 
 function populateYearDropdown(fetchedYears) {
@@ -439,6 +447,7 @@ function populateYearDropdown(fetchedYears) {
 
 function yearOnChange(value) {
   resetDropdowns(['model', 'engine']);
+  removeFadeIn([modelDropdown, engineDropdown]);
 
   // descriptionSelect.disabled = true;
   // descriptionSelect.innerHTML = '<option>Περιγραφή</option>';
@@ -542,6 +551,7 @@ function populateModelDropdown(fetchedModels) {
 }
 function modelOnChange(value) {
   resetDropdowns(['engine']);
+  removeFadeIn([engineDropdown]);
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
