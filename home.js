@@ -404,11 +404,14 @@ function endLoadingSelect(inputField) {
 
 function addFadeIn(db) {
   db.classList.add('fade-in-dropdown');
-  // console.log('fade in dropdown', db.className);
+  db.classList.remove('fade-out-dropdown');
 }
 function removeFadeIn(db) {
   db.classList.remove('fade-in-dropdown');
-  // console.log('fade out dropdown', db.className);
+  db.classList.add('fade-out-dropdown');
+  setTimeout(() => {
+    db.style.position = 'absolute';
+  }, 1000);
 }
 
 function populateYearDropdown(fetchedYears) {
