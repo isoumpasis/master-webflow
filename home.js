@@ -249,12 +249,15 @@ function resetDropdowns(dropdownArray) {
     } else if (dbId === 'yearDropdown') {
       inputField.placeholder = 'Χρονολογία';
       selectedYear = null;
+      removeFadeIn(yearDropdown);
     } else if (dbId === 'modelDropdown') {
       inputField.placeholder = 'Μοντέλο';
       selectedModel = null;
+      removeFadeIn(modelDropdown);
     } else if (dbId === 'engineDropdown') {
       inputField.placeholder = 'Κινητήρας';
       selectedEngine = null;
+      removeFadeIn(engineDropdown);
     }
     inputField.value = '';
 
@@ -555,13 +558,12 @@ function modelOnChange(value) {
   }
   // sessionStorage.selectedYear = value;
 
-  enableDropdown('engine');
-
   // descriptionSelect.disabled = false;
   // descriptionSelect.innerHTML = '';
   const inputField = engineDropdown.querySelector('.chosen-value');
   inputField.placeholder = '';
   startLoadingSelect(inputField);
+  enableDropdown('engine');
   addFadeIn(engineDropdown);
 
   let status;
@@ -579,7 +581,7 @@ function modelOnChange(value) {
     .then(data => {
       if (status !== 200) {
         endLoadingSelect(inputField);
-        removeFadeIn(engineDropdown);
+        // removeFadeIn(engineDropdown);
         resetDropdowns(['engine']);
         if (data.msg === 'no models') {
           inputField.placeholder = 'Δε βρέθηκαν μοντέλα';
@@ -594,11 +596,11 @@ function modelOnChange(value) {
       populateEngineDropdown(fetchedModelObj);
       inputField.placeholder = 'Επιλέξτε Κινητήρα';
       endLoadingSelect(inputField);
-      removeFadeIn(engineDropdown);
+      // removeFadeIn(engineDropdown);
     })
     .catch(error => {
       endLoadingSelect(inputField);
-      removeFadeIn(engineDropdown);
+      // removeFadeIn(engineDropdown);
       resetDropdowns(['engine']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
