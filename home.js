@@ -396,9 +396,11 @@ function endLoadingSelect(inputField) {
 
 function addFadeIn(db) {
   db.classList.add('fade-in-dropdown');
+  console.log('fade in dropdown', db.className);
 }
 function removeFadeIn(db) {
   db.classList.remove('fade-in-dropdown');
+  console.log('fade out dropdown', db.className);
 }
 
 function populateYearDropdown(fetchedYears) {
