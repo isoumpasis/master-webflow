@@ -408,7 +408,7 @@ function endLoadingSelect(inputField) {
 
 function addFadeIn(db) {
   db.classList.add('fade-in-dropdown');
-  db.classList.remove('fade-out-dropdown');
+  // db.classList.remove('fade-out-dropdown');
 }
 function removeFadeIn(db) {
   let dbs = db;
@@ -418,7 +418,7 @@ function removeFadeIn(db) {
   console.log('fade out for', dbs);
   dbs.forEach(db => {
     db.classList.remove('fade-in-dropdown');
-    db.classList.add('fade-out-dropdown');
+    // db.classList.add('fade-out-dropdown');
 
     // setTimeout(() => {
     //   db.style.position = 'absolute';
