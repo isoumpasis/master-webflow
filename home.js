@@ -420,9 +420,9 @@ function removeFadeIn(db) {
     db.classList.remove('fade-in-dropdown');
     db.classList.add('fade-out-dropdown');
 
-    // setTimeout(() => {
-    //   db.style.position = 'absolute';
-    // }, 1000);
+    setTimeout(() => {
+      db.style.position = 'absolute';
+    }, 1000);
   });
 }
 
