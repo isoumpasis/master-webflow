@@ -69,6 +69,7 @@ select::-webkit-scrollbar-thumb,
 .model-dropdown,
 .engine-dropdown {
   position: absolute;
+  left: 999999px;
   visibility: hidden;
   flex-grow: 0;
   opacity: 0;
