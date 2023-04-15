@@ -68,6 +68,8 @@ select::-webkit-scrollbar-thumb,
   pointer-events: none;
 }
 
+.year-dropdown,
+.model-dropdown,
 .engine-dropdown {
   position: absolute;
   visibility: hidden;
