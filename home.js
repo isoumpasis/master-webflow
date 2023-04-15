@@ -412,6 +412,7 @@ function removeFadeIn(db) {
   if (!Array.isArray(db)) {
     dbs = [db];
   }
+  console.log('fade out for', dbs);
   dbs.forEach(db => {
     db.classList.remove('fade-in-dropdown');
     db.classList.add('fade-out-dropdown');
