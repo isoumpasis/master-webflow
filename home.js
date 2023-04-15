@@ -235,7 +235,7 @@ function getSelectedValue(dbId) {
   }
 }
 
-function resetDropdowns(dropdownArray, options) {
+function resetDropdowns(dropdownArray, options = {}) {
   dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
 
