@@ -73,12 +73,12 @@ select::-webkit-scrollbar-thumb,
   visibility: hidden;
   flex-grow: 0;
   opacity: 0;
-  transition: all 400ms;
+  transition: all 3000ms;
 }
 .fade-in-dropdown {
   position: relative;
   visibility: visible;
-  left: 10px;
+  left: 0px;
   flex-grow: 1;
   opacity: 1;
 }
