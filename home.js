@@ -235,7 +235,7 @@ function getSelectedValue(dbId) {
   }
 }
 
-function resetDropdowns(dropdownArray, options = {}) {
+function resetDropdowns(dropdownArray, { fadeOut = true } = {}) {
   dropdownArray.forEach(db => {
     let dbId = db + 'Dropdown';
 
@@ -249,19 +249,19 @@ function resetDropdowns(dropdownArray, options = {}) {
     } else if (dbId === 'yearDropdown') {
       inputField.placeholder = 'Χρονολογία';
       selectedYear = null;
-      if (options.fadeOut) {
+      if (fadeOut) {
         removeFadeIn(yearDropdown);
       }
     } else if (dbId === 'modelDropdown') {
       inputField.placeholder = 'Μοντέλο';
       selectedModel = null;
-      if (options.fadeOut) {
+      if (fadeOut) {
         removeFadeIn(modelDropdown);
       }
     } else if (dbId === 'engineDropdown') {
       inputField.placeholder = 'Κινητήρας';
       selectedEngine = null;
-      if (options.fadeOut) {
+      if (fadeOut) {
         removeFadeIn(engineDropdown);
       }
     }
