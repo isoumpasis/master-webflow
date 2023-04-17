@@ -64,6 +64,9 @@ select::-webkit-scrollbar-thumb,
 .input-container img {
   pointer-events: none;
 }
+.value-list {
+  overflow-x: hidden;
+}
 
 .year-dropdown,
 .model-dropdown,
