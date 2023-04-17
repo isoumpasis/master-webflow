@@ -441,8 +441,6 @@ function populateYearDropdown(fetchedYears) {
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
   }
-
-  yearDropdown.querySelector('.chosen-value').focus();
 }
 
 function yearOnChange(value) {
@@ -548,8 +546,6 @@ function populateModelDropdown(fetchedModels) {
     inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
   }
-
-  modelDropdown.querySelector('.chosen-value').focus();
 }
 function modelOnChange(value) {
   resetDropdowns(['engine']);
@@ -675,8 +671,6 @@ function populateEngineDropdown(fetchedModelObj) {
     // engineCodeValue = engineCodeValue.join(' ');
     // dropdownValueSelected(engineCodeValue, 'engineDropdown');
   }
-
-  engineDropdown.querySelector('.chosen-value').focus();
 }
 
 function engineOnChange(value) {
