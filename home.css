@@ -65,7 +65,7 @@ select::-webkit-scrollbar-thumb,
   pointer-events: none;
 }
 .value-list.open {
-  overflow-x: none;
+  overflow-x: hidden;
 }
 
 .year-dropdown,
