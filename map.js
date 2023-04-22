@@ -31,7 +31,7 @@ const searchZoom = 14;
 const gpsZoom = 11,
   gpsZoomMobile = 10;
 foundMarkerZoom = 14;
-const maxZoomClusterer = 10;
+const maxZoomClusterer = 11;
 let markers = [],
   clusterer;
 
@@ -281,6 +281,9 @@ async function initMap() {
     console.log('current zoom', currentZoom); //
     if (currentZoom > maxZoomClusterer) return;
     //! DEBUG grid algo (set grid size)
+    clusterer.algorithm.gridSize = isMobile()
+      ? gridSizesDependedOnZoomMobile[currentZoom]
+      : gridSizesDependedOnZoom[currentZoom];
     // gridAlgo.gridSize = isMobile()
     //   ? gridSizesDependedOnZoomMobile[currentZoom]
     //   : gridSizesDependedOnZoom[currentZoom];
