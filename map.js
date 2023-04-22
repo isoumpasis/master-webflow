@@ -278,7 +278,7 @@ async function initMap() {
 
   map.addListener('zoom_changed', () => {
     let currentZoom = map.getZoom();
-    console.log('current zoom', currentZoom); //
+    // console.log('current zoom', currentZoom);
     if (currentZoom > maxZoomClusterer) return;
     clusterer.algorithm.gridSize = isMobile()
       ? gridSizesDependedOnZoomMobile[currentZoom]
