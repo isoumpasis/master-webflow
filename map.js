@@ -156,17 +156,19 @@ async function initMap() {
   });
 
   //! DEBUG algorithm for good market clustering
-  clusterAlgo = new markerClusterer.SuperClusterAlgorithm({
-    maxZoom: maxZoomClusterer,
-    radius: 70
-    // gridSize: isMobile()
-    //   ? gridSizesDependedOnZoomMobile[startZoom]
-    //   : gridSizesDependedOnZoom[startZoom], //default=60,
-    // averageCenter: true,
-    // zoomOnClick: false,
-    // //minimumClusterSize: 3,
-    // ignoreHidden: true
+  clusterAlgo = new markerClusterer.GridAlgorithm({
+    gridSize: isMobile()
+      ? gridSizesDependedOnZoomMobile[startZoom]
+      : gridSizesDependedOnZoom[startZoom] //default=60,
   });
+  // clusterAlgo = new markerClusterer.SuperClusterAlgorithm({
+  //   maxZoom: maxZoomClusterer,
+  //   radius: 70
+  //   // averageCenter: true,
+  //   // zoomOnClick: false,
+  //   // //minimumClusterSize: 3,
+  //   // ignoreHidden: true
+  // });
   clusterer = new markerClusterer.MarkerClusterer({
     markers,
     map,
@@ -275,7 +277,7 @@ async function initMap() {
 
   map.addListener('zoom_changed', () => {
     let currentZoom = map.getZoom();
-    //console.log('current zoom', currentZoom);
+    console.log('current zoom', currentZoom);
     if (currentZoom > maxZoomClusterer) return;
     //! DEBUG grid algo (set grid size)
     // gridAlgo.gridSize = isMobile()
@@ -284,21 +286,21 @@ async function initMap() {
   });
 
   //! DEBUG uncomment cluster hover
-  google.maps.event.addListener(clusterer, 'mouseover', cluster => {
-    infoWindow.close();
-    if (selectedMarker) {
-      selectedMarker.setAnimation(null);
-    }
-    selectedMarker = null;
-    let label = cluster.clusterIcon_.div_.querySelector('span');
-    label.classList.add('cluster-hover');
-    cluster.clusterIcon_.div_.classList.add('grow');
-  });
-  google.maps.event.addListener(clusterer, 'mouseout', cluster => {
-    let label = cluster.clusterIcon_.div_.querySelector('span');
-    label.classList.remove('cluster-hover');
-    cluster.clusterIcon_.div_.classList.add('grow');
-  });
+  // google.maps.event.addListener(clusterer, 'mouseover', cluster => {
+  //   infoWindow.close();
+  //   if (selectedMarker) {
+  //     selectedMarker.setAnimation(null);
+  //   }
+  //   selectedMarker = null;
+  //   let label = cluster.clusterIcon_.div_.querySelector('span');
+  //   label.classList.add('cluster-hover');
+  //   cluster.clusterIcon_.div_.classList.add('grow');
+  // });
+  // google.maps.event.addListener(clusterer, 'mouseout', cluster => {
+  //   let label = cluster.clusterIcon_.div_.querySelector('span');
+  //   label.classList.remove('cluster-hover');
+  //   cluster.clusterIcon_.div_.classList.add('grow');
+  // });
 
   infoWindow.addListener('closeclick', () => {
     if (selectedMarker) {
