@@ -188,7 +188,17 @@ async function initMap() {
         });
       }
     },
-    algorithm: clusterAlgo
+    algorithm: clusterAlgo,
+    onClusterClick: (e, clusterer, map) => {
+      console.log(e, clusterer, map, 'cluster clicked');
+      infoWindow.close();
+      if (selectedMarker) {
+        selectedMarker.setAnimation(null);
+      }
+      selectedMarker = null;
+      map.setZoom(zoomLevelsDependedOnZoom[map.getZoom()]);
+      map.setCenter(cluster.getCenter());
+    }
   });
   // clusterer = new MarkerClusterer(map, markers, {
   //   styles: [
@@ -924,7 +934,8 @@ function filterMarkers() {
     }
   }
 
-  markerClusterer.repaint();
+  //! DEBUG repaint() is not a fn
+  // clusterer.repaint();
 
   infoWindow.close();
   if (selectedMarker) selectedMarker.setAnimation(null);
