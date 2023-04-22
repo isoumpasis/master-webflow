@@ -1,12 +1,3 @@
-/* @font-face {
-	font-family: lovato;
-	src: url('/static/fonts/PFHighwaySansPro-Regular.woff2');
-}
-@font-face {
-	font-family: lovatoBold;
-	src: url('/static/fonts/PFHighwaySansPro-Bold.woff2');
-} */
-
 body {
   font-family: Pfhighwaysanspro, sans-serif;
   font-weight: 400;
