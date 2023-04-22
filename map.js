@@ -159,7 +159,7 @@ async function initMap() {
   clusterAlgo = new markerClusterer.GridAlgorithm({
     gridSize: isMobile()
       ? gridSizesDependedOnZoomMobile[startZoom]
-      : gridSizesDependedOnZoom[startZoom], //default=60,
+      : gridSizesDependedOnZoom[startZoom],
     maxZoom: maxZoomClusterer,
     maxDistance: 10000
   });
