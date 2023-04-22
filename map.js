@@ -155,7 +155,6 @@ async function initMap() {
     });
   });
 
-  //! DEBUG algorithm for good market clustering
   clusterAlgo = new markerClusterer.GridAlgorithm({
     gridSize: isMobile()
       ? gridSizesDependedOnZoomMobile[startZoom]
@@ -281,13 +280,9 @@ async function initMap() {
     let currentZoom = map.getZoom();
     console.log('current zoom', currentZoom); //
     if (currentZoom > maxZoomClusterer) return;
-    //! DEBUG grid algo (set grid size)
     clusterer.algorithm.gridSize = isMobile()
       ? gridSizesDependedOnZoomMobile[currentZoom]
       : gridSizesDependedOnZoom[currentZoom];
-    // gridAlgo.gridSize = isMobile()
-    //   ? gridSizesDependedOnZoomMobile[currentZoom]
-    //   : gridSizesDependedOnZoom[currentZoom];
   });
 
   //! DEBUG uncomment cluster hover
