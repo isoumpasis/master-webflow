@@ -197,7 +197,8 @@ async function initMap() {
       }
       selectedMarker = null;
       map.setZoom(zoomLevelsDependedOnZoom[map.getZoom()]);
-      map.setCenter(cluster.getCenter());
+      // map.setCenter(cluster.getCenter());
+      map.setCenter(e.latLng);
     }
   });
   // clusterer = new MarkerClusterer(map, markers, {
@@ -965,6 +966,7 @@ async function urlParamsConfig() {
     try {
       const res = await geocoderSolution(gps);
       map.setZoom(isMobile() ? gpsZoomMobile : gpsZoom);
+      console.log(res, res.location);
       map.setCenter(res.location);
     } catch (e) {
       console.log('error on params geocoding', e);
