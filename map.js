@@ -160,7 +160,8 @@ async function initMap() {
     gridSize: isMobile()
       ? gridSizesDependedOnZoomMobile[startZoom]
       : gridSizesDependedOnZoom[startZoom], //default=60,
-    maxZoom: maxZoomClusterer
+    maxZoom: maxZoomClusterer,
+    maxDistance: 10000
   });
   // clusterAlgo = new markerClusterer.SuperClusterAlgorithm({
   //   maxZoom: maxZoomClusterer,
