@@ -1,5 +1,6 @@
-// let serverUrl = 'https://lovatohellas.herokuapp.com/';
-let serverUrl = 'http://localhost:1968/';
+let serverUrl = 'https://masterdirect.herokuapp.com/';
+// let serverUrl = 'http://localhost:1968/';
+
 const baseUrl = location.origin;
 const mapUrl = '/stores';
 const urlYears = serverUrl + 'vehicleDB/get/years';
