@@ -679,10 +679,14 @@ function engineOnChange(value) {
 
   console.log(selectedHP, selectedEngineCode);
 
-  foundVehicleObj = fetchedModelObj.filter(
+  const foundVehicles = fetchedModelObj.filter(
     model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
   );
-  console.log(foundVehicleObj);
+  console.log('found vehciels', foundVehicles);
+
+  foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
+
+  console.log('foundVehicleOBj', foundVehicleObj);
 
   return;
   // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
@@ -711,6 +715,14 @@ function engineOnChange(value) {
   // calcResult(false);
 
   // saveUserSelections();
+}
+
+function runConsumptionRace(vehicles) {
+  const consumptionObjs = [];
+  vehicles.forEach(veh => {
+    consumptionObjs.push({ conSum: veh.consumption.reduce((prev, curr) => prev + curr, 0), veh });
+  });
+  return consumptionObjs.sort((a, b) => b.conSum - a.conSum);
 }
 
 function showResults(fetchedModelObj) {
