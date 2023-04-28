@@ -177,7 +177,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
-    console.log(prevSelectedValue, inputField.value);
+    // console.log(prevSelectedValue, inputField.value);
     if (inputField.value && inputField.value !== prevSelectedValue) {
       inputField.value = prevSelectedValue ? prevSelectedValue : '';
     } else if (!inputField.value) {
@@ -637,11 +637,6 @@ function populateEngineDropdown(fetchedModelObj) {
       engineCodes.push(`${vehicle.hp} HP - ${code} ${convertibleSymbol}`);
     });
   });
-  // fetchedModelObj.vehicles.forEach(vehicle => {
-  //   vehicle.engineCodes.forEach(code => {
-  //     engineCodes.push(code + convertibleSymbol);
-  //   });
-  // });
 
   engineCodes = [...new Set(engineCodes)].sort(
     (a, b) => parseInt(a.split(' ')[0]) - parseInt(b.split(' ')[0])
@@ -663,7 +658,6 @@ function populateEngineDropdown(fetchedModelObj) {
   const dropdownArray = engineDropdownLis;
   dropdownArray.forEach(item => {
     item.addEventListener('mousedown', () => {
-      console.log('ths iiss@', item);
       onDropdownItemClick('engineDropdown', item);
     });
   });
