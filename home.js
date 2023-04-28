@@ -672,7 +672,12 @@ function populateEngineDropdown(fetchedModelObj) {
 }
 
 function engineOnChange(value) {
-  console.log('engine on change', value);
+  const selectedHP = parseInt(value.split(' ')[0]);
+  let selectedEngineCode = value.split(' - ')[1].split(' ');
+  selectedEngineCode.pop();
+
+  console.log(selectedHP, selectedEngineCode);
+
   return;
   // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
 
