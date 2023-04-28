@@ -675,8 +675,14 @@ function engineOnChange(value) {
   const selectedHP = parseInt(value.split(' ')[0]);
   let selectedEngineCode = value.split(' - ')[1].split(' ');
   selectedEngineCode.pop();
+  selectedEngineCode.join(' ');
 
   console.log(selectedHP, selectedEngineCode);
+
+  foundVehicleObj = fetchedModelObj.filter(
+    model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
+  );
+  console.log(foundVehicleObj);
 
   return;
   // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
