@@ -5,7 +5,7 @@ const baseUrl = location.origin;
 const mapUrl = '/stores';
 const urlYears = serverUrl + 'vehicleDB/get/years';
 const urlModels = serverUrl + 'vehicleDB/get/models';
-const urlDescriptions = serverUrl + 'vehicleDB/get/descriptions';
+const urlEngineCodes = serverUrl + 'vehicleDB/get/descriptions';
 const urlFuelPrices = serverUrl + 'fuelPrices';
 let downloadSummaryUrl = serverUrl + 'summaries/download/system';
 // const downloadSummaryUrl = 'http://localhost:1917/summaries/download/system';
@@ -584,7 +584,7 @@ function modelOnChange(value) {
   addFadeIn(engineDropdown);
 
   let status;
-  fetch(urlDescriptions, {
+  fetch(urlEngineCodes, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -628,18 +628,25 @@ function modelOnChange(value) {
 }
 
 function populateEngineDropdown(fetchedModelObj) {
-  let convertibleSymbol = ' ✔️';
+  let convertibleSymbol = '✔️';
   let engineLis = [];
   let engineCodes = [];
 
-  fetchedModelObj.vehicles.forEach(vehicle => {
+  fetchedModelObj.forEach(vehicle => {
     vehicle.engineCodes.forEach(code => {
-      engineCodes.push(code + convertibleSymbol);
+      engineCodes.push(`${vehicle.hp} HP - ${code} ${convertibleSymbol}`);
     });
   });
+  // fetchedModelObj.vehicles.forEach(vehicle => {
+  //   vehicle.engineCodes.forEach(code => {
+  //     engineCodes.push(code + convertibleSymbol);
+  //   });
+  // });
+
   engineCodes = [...new Set(engineCodes)].sort(
     (a, b) => parseInt(a.split(' ')[0]) - parseInt(b.split(' ')[0])
   );
+
   engineCodes.forEach(engineCode => {
     let engineCodeValue = engineCode.split(' ');
     engineCodeValue.pop();
@@ -656,7 +663,7 @@ function populateEngineDropdown(fetchedModelObj) {
   const dropdownArray = engineDropdownLis;
   dropdownArray.forEach(item => {
     item.addEventListener('mousedown', () => {
-      console.log('ths iiss /2@@', item);
+      console.log('ths iiss@', item);
       onDropdownItemClick('engineDropdown', item);
     });
   });
@@ -667,10 +674,6 @@ function populateEngineDropdown(fetchedModelObj) {
     const inputField = engineDropdown.querySelector('.chosen-value');
     inputField.value = engineCodes[0];
     dropdownValueSelected(engineCodes[0], 'engineDropdown');
-    // let engineCodeValue = engineCodes[0].split(' ');
-    // engineCodeValue.pop();
-    // engineCodeValue = engineCodeValue.join(' ');
-    // dropdownValueSelected(engineCodeValue, 'engineDropdown');
   }
 }
 
