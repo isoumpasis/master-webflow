@@ -675,7 +675,7 @@ function engineOnChange(value) {
   const selectedHP = parseInt(value.split(' ')[0]);
   let selectedEngineCode = value.split(' - ')[1].split(' ');
   selectedEngineCode.pop();
-  selectedEngineCode.join(' ');
+  selectedEngineCode = selectedEngineCode.join(' ');
 
   console.log(selectedHP, selectedEngineCode);
 
