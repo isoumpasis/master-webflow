@@ -202,18 +202,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     }, 100);
   });
 
-  inputField.addEventListener('mouseover', () => {
-    // console.log('inputField clicked!');
-    inputField.placeholder = 'Αναζήτηση...';
-    if (_isDropdownOpen()) {
-      // console.log('Dropdown is already open');
-      inputField.setAttribute('inputmode', 'text');
-    } else {
-      // console.log('dropdown was closed before now opening!');
-      _openDropdown();
-    }
-  });
-  // inputField.addEventListener('click', () => {
+  // inputField.addEventListener('mouseover', () => {
   //   // console.log('inputField clicked!');
   //   inputField.placeholder = 'Αναζήτηση...';
   //   if (_isDropdownOpen()) {
@@ -224,13 +213,24 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //     _openDropdown();
   //   }
   // });
-
-  inputImg.addEventListener('mouseover', () => {
-    _openDropdown();
+  inputField.addEventListener('click', () => {
+    // console.log('inputField clicked!');
+    inputField.placeholder = 'Αναζήτηση...';
+    if (_isDropdownOpen()) {
+      // console.log('Dropdown is already open');
+      inputField.setAttribute('inputmode', 'text');
+    } else {
+      // console.log('dropdown was closed before now opening!');
+      _openDropdown();
+    }
   });
-  // inputImg.addEventListener('click', () => {
+
+  // inputImg.addEventListener('mouseover', () => {
   //   _openDropdown();
   // });
+  inputImg.addEventListener('click', () => {
+    _openDropdown();
+  });
 }
 
 function onDropdownItemClick(dropdownId, item) {
