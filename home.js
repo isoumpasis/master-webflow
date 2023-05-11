@@ -174,7 +174,34 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     });
   });
 
-  inputField.addEventListener('blur', () => {
+  // inputField.addEventListener('blur', () => {
+  //   inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+  //   const prevSelectedValue = getSelectedValue(customDropdown.id);
+  //   // console.log(prevSelectedValue, inputField.value);
+  //   if (inputField.value && inputField.value !== prevSelectedValue) {
+  //     inputField.value = prevSelectedValue ? prevSelectedValue : '';
+  //   } else if (!inputField.value) {
+  //     if (customDropdown.id === 'makeDropdown') {
+  //       resetDropdowns(['year', 'model', 'engine']);
+  //       selectedMake = undefined;
+  //       removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
+  //     } else if (customDropdown.id === 'yearDropdown') {
+  //       resetDropdowns(['model', 'engine']);
+  //       selectedYear = undefined;
+  //       removeFadeIn([modelDropdown, engineDropdown]);
+  //     } else if (customDropdown.id === 'modelDropdown') {
+  //       resetDropdowns(['engine']);
+  //       selectedModel = undefined;
+  //       removeFadeIn([engineDropdown]);
+  //     } else if (customDropdown.id === 'egineDropdown') {
+  //       selectedEngine = undefined;
+  //     }
+  //   }
+  //   setTimeout(() => {
+  //     closeDropdown(customDropdown.id);
+  //   }, 100);
+  // });
+  inputField.addEventListener('mouseout', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
@@ -202,7 +229,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     }, 100);
   });
 
-  inputField.addEventListener('click', () => {
+  inputField.addEventListener('mouseover', () => {
     // console.log('inputField clicked!');
     inputField.placeholder = 'Αναζήτηση...';
     if (_isDropdownOpen()) {
@@ -213,10 +240,24 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       _openDropdown();
     }
   });
+  // inputField.addEventListener('click', () => {
+  //   // console.log('inputField clicked!');
+  //   inputField.placeholder = 'Αναζήτηση...';
+  //   if (_isDropdownOpen()) {
+  //     // console.log('Dropdown is already open');
+  //     inputField.setAttribute('inputmode', 'text');
+  //   } else {
+  //     // console.log('dropdown was closed before now opening!');
+  //     _openDropdown();
+  //   }
+  // });
 
-  inputImg.addEventListener('click', () => {
+  inputImg.addEventListener('mouseover', () => {
     _openDropdown();
   });
+  // inputImg.addEventListener('click', () => {
+  //   _openDropdown();
+  // });
 }
 
 function onDropdownItemClick(dropdownId, item) {
