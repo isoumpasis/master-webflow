@@ -174,34 +174,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     });
   });
 
-  // inputField.addEventListener('blur', () => {
-  //   inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
-  //   const prevSelectedValue = getSelectedValue(customDropdown.id);
-  //   // console.log(prevSelectedValue, inputField.value);
-  //   if (inputField.value && inputField.value !== prevSelectedValue) {
-  //     inputField.value = prevSelectedValue ? prevSelectedValue : '';
-  //   } else if (!inputField.value) {
-  //     if (customDropdown.id === 'makeDropdown') {
-  //       resetDropdowns(['year', 'model', 'engine']);
-  //       selectedMake = undefined;
-  //       removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
-  //     } else if (customDropdown.id === 'yearDropdown') {
-  //       resetDropdowns(['model', 'engine']);
-  //       selectedYear = undefined;
-  //       removeFadeIn([modelDropdown, engineDropdown]);
-  //     } else if (customDropdown.id === 'modelDropdown') {
-  //       resetDropdowns(['engine']);
-  //       selectedModel = undefined;
-  //       removeFadeIn([engineDropdown]);
-  //     } else if (customDropdown.id === 'egineDropdown') {
-  //       selectedEngine = undefined;
-  //     }
-  //   }
-  //   setTimeout(() => {
-  //     closeDropdown(customDropdown.id);
-  //   }, 100);
-  // });
-  inputField.addEventListener('mouseout', () => {
+  inputField.addEventListener('blur', () => {
     inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
