@@ -690,7 +690,7 @@ function engineOnChange(value) {
 
   document.querySelector('#testSuggest').style.display = 'block';
   document.querySelector('#testSuggest').textContent = foundVehicleObj.master;
-  return;
+  return; //
 
   if (!value) {
     // showGuarantee(false);
