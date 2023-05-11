@@ -11,17 +11,17 @@ select::-webkit-scrollbar,
 }
 select::-webkit-scrollbar-thumb,
 .easy-pay-scroll::-webkit-scrollbar-thumb {
-  background-color: #aa9000; /*#e6c300;*/
+  background-color: #d4af37;
   border-radius: 10px;
 }
 .calc-scroll::-webkit-scrollbar-track {
   border-radius: 10px;
-  background-color: #aa9000;
+  background-color: #d4af37;
 }
 .calc-scroll::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
-  background-color: #aa9000;
+  background-color: #d4af37;
 }
 .calc-scroll::-webkit-scrollbar-thumb {
   background-color: #dfdfdf; /*#00679c5d;*/
@@ -58,7 +58,7 @@ select::-webkit-scrollbar-thumb,
   background-color: #dfdfdf;
 }
 .value-list.open::-webkit-scrollbar-thumb {
-  background-color: #aa9000;
+  background-color: #d4af37;
   border-radius: 10px;
 }
 .input-container img {
