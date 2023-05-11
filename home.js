@@ -688,8 +688,9 @@ function engineOnChange(value) {
 
   console.log('foundVehicleOBj', foundVehicleObj);
 
+  document.querySelector('#testSuggest').style.display = 'block';
+  document.querySelector('#testSuggest').textContent = foundVehicleObj.master;
   return;
-  // suggestedContainers.forEach(cont => (cont.style.display = 'none'));
 
   if (!value) {
     // showGuarantee(false);
