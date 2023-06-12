@@ -16,7 +16,6 @@ const numPlaceUrl = serverUrl + 'map/pins/numPlace';
 const closestUrl = serverUrl + 'map/pins/closest';
 const urlContactForm = serverUrl + 'contact/';
 const easyPayFileUploaderUrl = serverUrl + 'summaries/easyPay';
-// const baseDateUrl = serverUrl + 'lottery/base-date';
 const urlNotConvForm = serverUrl + 'notConvertible';
 
 const makeImgPrefix = 'https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/';
@@ -88,10 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
 function initCustomDropdowns() {
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
-  initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'Μάρκα' });
-  initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'Χρονολογία' });
-  initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'Μοντέλο' });
-  initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'Κινητήρα' });
+  initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'ΜΑΡΚΑ' });
+  initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'ΧΡΟΝΟΛΟΓΙΑ' });
+  initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'ΜΟΝΤΕΛΟ' });
+  initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'ΚΙΝΗΤΗΡΑ' });
 }
 
 function initCustomDropdown({ dropdownId, placeholderStr }) {
@@ -175,7 +174,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
-    inputField.placeholder = 'Επιλέξτε ' + placeholderStr;
+    inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
     if (inputField.value && inputField.value !== prevSelectedValue) {
@@ -262,22 +261,22 @@ function resetDropdowns(dropdownArray) {
 
     const inputField = document.querySelector(`#${dbId} .chosen-value`);
     if (dbId === 'makeDropdown') {
-      inputField.placeholder = 'Επιλέξτε Μάρκα';
+      inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΜΑΡΚΑ';
       selectedMake = null;
     } else if (dbId === 'yearDropdown') {
-      inputField.placeholder = 'Χρονολογία';
+      inputField.placeholder = 'ΧΡΟΝΟΛΟΓΙΑ';
       selectedYear = null;
       // if (fadeOut) {
       //   removeFadeIn(yearDropdown);
       // }
     } else if (dbId === 'modelDropdown') {
-      inputField.placeholder = 'Μοντέλο';
+      inputField.placeholder = 'ΜΟΝΤΕΛΟ';
       selectedModel = null;
       // if (fadeOut) {
       //   removeFadeIn(modelDropdown);
       // }
     } else if (dbId === 'engineDropdown') {
-      inputField.placeholder = 'Κινητήρας';
+      inputField.placeholder = 'ΚΙΝΗΤΗΡΑΣ';
       selectedEngine = null;
       // if (fadeOut) {
       //   removeFadeIn(engineDropdown);
@@ -400,7 +399,7 @@ function makeOnChange(value) {
 
       console.log('populate year dropdown', fetchedYears);
       populateYearDropdown(fetchedYears);
-      inputField.placeholder = 'Επιλέξτε Χρονολογία';
+      inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΧΡΟΝΟΛΟΓΙΑ';
       endLoadingSelect(inputField);
     })
     .catch(error => {
@@ -487,7 +486,7 @@ function yearOnChange(value) {
     // resetDropdowns(['model']);
     // modelSelect.disabled = true;
     // modelSelect.innerHTML = '<option value="">Μοντέλο</option>';
-    // descriptionSelect.innerHTML = '<option value="">Κινητήρας</option>';
+    // descriptionSelect.innerHTML = '<option value="">ΚΙΝΗΤΗΡΑΣ</option>';
     return;
   }
 
@@ -526,7 +525,7 @@ function yearOnChange(value) {
 
       console.log('populate model dropdown', fetchedModels);
       populateModelDropdown(fetchedModels);
-      inputField.placeholder = 'Επιλέξτε Μοντέλο';
+      inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΜΟΝΤΕΛΟ';
       endLoadingSelect(inputField);
     })
     .catch(error => {
@@ -625,7 +624,7 @@ function modelOnChange(value) {
 
       console.log('populate engine dropdown', fetchedModelObj);
       populateEngineDropdown(fetchedModelObj);
-      inputField.placeholder = 'Επιλέξτε Κινητήρα';
+      inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΚΙΝΗΤΗΡΑ';
       endLoadingSelect(inputField);
       // removeFadeIn(engineDropdown);
     })
@@ -635,7 +634,7 @@ function modelOnChange(value) {
       resetDropdowns(['engine']);
       let errorMsg;
       if (status === 429) errorMsg = 'Πολλές κλήσεις, προσπαθήστε αργότερα....';
-      else errorMsg = 'Προσπαθήστε ξανά';
+      else errorMsg = 'Προσπαθήστε αργότερα';
       inputField.placeholder = errorMsg;
       console.error('Error Fetch:', error);
     });
