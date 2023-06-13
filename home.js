@@ -330,7 +330,9 @@ function dropdownValueSelected(value, dbId) {
     console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
   } else if (dbId === 'engineDropdown') {
-    selectedEngine = value;
+    let words = values.split(' ');
+    words.pop();
+    selectedEngine = words.join(' ');
     console.log('engine on change', selectedEngine);
     engineOnChange(selectedEngine);
   }
@@ -686,9 +688,7 @@ function populateEngineDropdown(fetchedModelObj) {
 
 function engineOnChange(value) {
   const selectedHP = parseInt(value.split(' ')[0]);
-  let selectedEngineCode = value.split(' - ')[1].split(' ');
-  selectedEngineCode.pop();
-  selectedEngineCode = selectedEngineCode.join(' ');
+  let selectedEngineCode = value.split(' - ')[1];
 
   console.log(selectedHP, selectedEngineCode);
 
@@ -741,6 +741,9 @@ function runConsumptionRace(vehicles) {
 
 function showResults(fetchedModelObj) {
   console.log('RESULTS!!!', fetchedModelObj);
+
+  configureCalculatorAfterSuggestion();
+
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -814,4 +817,54 @@ function showResults(fetchedModelObj) {
 
 function isMobile() {
   return window.matchMedia('screen and (max-width: 768px)').matches;
+}
+
+function configureCalculatorAfterSuggestion() {
+  // document.querySelector('#calcTitle').textContent =
+  //   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
+
+  document.querySelector('#makeImg').src = makeImgPrefix + makeImgDict[selectedMake];
+  document.querySelector(
+    '#modelName'
+  ).textContent = `${selectedModel} (${selectedYear}) ${selectedEngine}`;
+
+  document.querySelector('#carResultContainer').style.display = 'block';
+
+  // document.querySelector(
+  //   '#inConsumption .text-span'
+  // ).innerHTML = `(${foundVehicleObj.consumption[0]}L/100km)`;
+  // document.querySelector(
+  //   '#outConsumption .text-span'
+  // ).innerHTML = `(${foundVehicleObj.consumption[1]}L/100km)`;
+  // document.querySelector(
+  //   '#combinedConsumption .text-span'
+  // ).innerHTML = `(${foundVehicleObj.consumption[2]}L/100km)`;
+
+  // const consumptionRadios = document.querySelectorAll('.radio-button.w-radio');
+
+  // consumptionRadios[0].dataset.cons = foundVehicleObj.consumption[0];
+  // consumptionRadios[1].dataset.cons = foundVehicleObj.consumption[1];
+  // consumptionRadios[2].dataset.cons = foundVehicleObj.consumption[2];
+
+  // document.querySelector('#calcContainerVehicle').style.display = 'block';
+  // document.querySelector('#calcContainerNoVehicle').style.display = 'none';
+
+  // sliders[1].value = foundVehicleObj.consumption[getDriveOftenIndex()];
+  // outputs[1].value = sliders[1].value;
+  // calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
+
+  // [...document.querySelectorAll('.in-consumption')].map(
+  //   el => (el.textContent = foundVehicleObj.consumption[0])
+  // );
+  // [...document.querySelectorAll('.out-consumption')].map(
+  //   el => (el.textContent = foundVehicleObj.consumption[1])
+  // );
+  // [...document.querySelectorAll('.combined-consumption')].map(
+  //   el => (el.textContent = foundVehicleObj.consumption[2])
+  // );
+
+  // document.querySelector(
+  //   '#consumptionModelNameCalc'
+  // ).textContent = `${makeSelect.value} ${modelSelect.value} (${yearSelect.value})`;
+  // document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
 }
