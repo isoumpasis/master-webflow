@@ -829,7 +829,7 @@ function configureCalculatorAfterSuggestion() {
     '#modelName'
   ).textContent = `${selectedModel} (${selectedYear}) ${selectedEngine}`;
 
-  document.querySelector('#carResultContainer').style.display = 'block';
+  document.querySelector('#carResultContainer').style.display = 'flex';
 
   // document.querySelector(
   //   '#inConsumption .text-span'
