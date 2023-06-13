@@ -330,7 +330,7 @@ function dropdownValueSelected(value, dbId) {
     console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
   } else if (dbId === 'engineDropdown') {
-    let words = values.split(' ');
+    let words = value.split(' ');
     words.pop();
     selectedEngine = words.join(' ');
     console.log('engine on change', selectedEngine);
