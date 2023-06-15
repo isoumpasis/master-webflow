@@ -78,11 +78,30 @@ const yearDropdown = document.querySelector('#yearDropdown');
 const modelDropdown = document.querySelector('#modelDropdown');
 const engineDropdown = document.querySelector('#engineDropdown');
 
+const filesGalleryFullScreenContainer = document.querySelector('.files-gallery');
+
 let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
+  initFilesGallery();
 });
+
+function initFilesGallery() {
+  const cardMainFile = document.querySelector('.main-image');
+
+  cardMainFile.addEventListener('click', () => {
+    filesGalleryFullScreenContainer.style.display = 'block';
+  });
+
+  const cardSideFiles = [...document.querySelectorAll('.side-image')];
+
+  cardSideFiles.forEach(file =>
+    file.addEventListener('click', () => {
+      filesGalleryFullScreenContainer.style.display = 'block';
+    })
+  );
+}
 
 function initCustomDropdowns() {
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
@@ -873,10 +892,10 @@ function configureCalculatorAfterSuggestion() {
 }
 
 function configureSuggestedContainer() {
-  configureImageGallery();
+  configureFilesGallery();
 }
 
-function configureImageGallery() {
+function configureFilesGallery() {
   // get array of files with urls
   const files = [
     {
