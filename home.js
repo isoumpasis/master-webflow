@@ -155,6 +155,16 @@ function initFilesGallery() {
   document.querySelector('.close-gallery').addEventListener('click', () => {
     document.querySelector('body').style.overflow = 'auto';
   });
+
+  const galleryMainFile = document.querySelector('.gallery-main-image');
+  galleryMainFile.removeAttribute('srcset');
+  galleryMainFile.removeAttribute('sizes');
+
+  const gallerySideFiles = [...document.querySelectorAll('.gallery-side-image img')];
+  gallerySideFiles.forEach(file => {
+    file.removeAttribute('srcset');
+    file.removeAttribute('sizes');
+  });
 }
 
 function initCustomDropdowns() {
