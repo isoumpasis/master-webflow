@@ -987,12 +987,12 @@ function configureFilesGallery() {
 }
 
 function removeAllFilesFromGallery(galleryFileList) {
-  const sideFiles = [...galleryFileList.querySelectorAll('.flex-div')];
+  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
   sideFiles.forEach(f => (f.style.display = 'none'));
 }
 
 function setFilesToSideGallery(galleryFileList) {
-  const sideFiles = [...galleryFileList.querySelectorAll('.flex-div')];
+  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
 
   files.forEach((file, index) => {
     sideFiles[index].style.display = 'block';
