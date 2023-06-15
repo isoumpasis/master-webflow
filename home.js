@@ -976,8 +976,9 @@ function configureFilesGallery() {
 
   //set files to files gallery
   const galleryFileList = document.querySelector('.gallery-files-flex');
-  removeAllFilesFromGallery(galleryFileList);
-  setFilesToSideGallery(galleryFileList);
+  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
+  removeAllFilesFromGallery(sideFiles);
+  setFilesToSideGallery(sideFiles);
 
   // open close modal (with filesIndex on click)
 
@@ -986,14 +987,11 @@ function configureFilesGallery() {
   // change files with small file clicks
 }
 
-function removeAllFilesFromGallery(galleryFileList) {
-  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
+function removeAllFilesFromGallery(sideFiles) {
   sideFiles.forEach(f => (f.style.display = 'none'));
 }
 
-function setFilesToSideGallery(galleryFileList) {
-  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
-
+function setFilesToSideGallery(sideFiles) {
   files.forEach((file, index) => {
     sideFiles[index].style.display = 'block';
     const sideFile = sideFiles[index].querySelector('img');
