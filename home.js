@@ -146,7 +146,7 @@ function initFilesGallery() {
     })
   );
 
-  const cardSideFiles = [...document.querySelector('.side-image img')];
+  const cardSideFiles = [...document.querySelectorAll('.side-image img')];
   cardSideFiles.forEach(file => {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
