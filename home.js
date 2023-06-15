@@ -104,7 +104,7 @@ function initFilesGallery() {
     })
   );
 
-  document.querySelector('.close-gallery').addEventListener(e => {
+  document.querySelector('.close-gallery').addEventListener('click', () => {
     document.querySelector('body').style.overflow = 'auto';
   });
 }
