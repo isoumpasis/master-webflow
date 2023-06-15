@@ -92,6 +92,7 @@ function initFilesGallery() {
 
   cardMainFile.addEventListener('click', () => {
     filesGalleryFullScreenContainer.style.display = 'block';
+    document.querySelector('body').style.overflow = 'hidden';
   });
 
   const cardSideFiles = [...document.querySelectorAll('.side-image')];
@@ -99,8 +100,13 @@ function initFilesGallery() {
   cardSideFiles.forEach(file =>
     file.addEventListener('click', () => {
       filesGalleryFullScreenContainer.style.display = 'block';
+      document.querySelector('body').style.overflow = 'hidden';
     })
   );
+
+  document.querySelector('.close-gallery').addEventListener(e => {
+    document.querySelector('body').style.overflow = 'auto';
+  });
 }
 
 function initCustomDropdowns() {
