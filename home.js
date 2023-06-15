@@ -82,6 +82,44 @@ const filesGalleryFullScreenContainer = document.querySelector('.files-gallery')
 
 let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
+const files = [
+  {
+    size: 338794,
+    name: 'samples/people/smiling-man',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777100/samples/people/smiling-man.jpg',
+    fileType: 'image',
+    duration: null
+  },
+  {
+    size: 581238,
+    name: 'samples/people/boy-snow-hoodie',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/boy-snow-hoodie.jpg',
+    fileType: 'image',
+    duration: null
+  },
+  {
+    size: 695548,
+    name: 'samples/people/jazz',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/jazz.jpg',
+    fileType: 'image',
+    duration: null
+  },
+  {
+    duration: null,
+    fileType: 'image',
+    name: '1_sbseyz',
+    size: 122590,
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685778209/1_sbseyz.jpg'
+  },
+  {
+    size: 1130015,
+    name: 'samples/people/bicycle',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
+    fileType: 'image',
+    duration: null
+  }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
   initFilesGallery();
@@ -903,43 +941,6 @@ function configureSuggestedContainer() {
 
 function configureFilesGallery() {
   // get array of files with urls
-  const files = [
-    {
-      size: 338794,
-      name: 'samples/people/smiling-man',
-      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777100/samples/people/smiling-man.jpg',
-      fileType: 'image',
-      duration: null
-    },
-    {
-      size: 581238,
-      name: 'samples/people/boy-snow-hoodie',
-      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/boy-snow-hoodie.jpg',
-      fileType: 'image',
-      duration: null
-    },
-    {
-      size: 695548,
-      name: 'samples/people/jazz',
-      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/jazz.jpg',
-      fileType: 'image',
-      duration: null
-    },
-    {
-      duration: null,
-      fileType: 'image',
-      name: '1_sbseyz',
-      size: 122590,
-      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685778209/1_sbseyz.jpg'
-    },
-    {
-      size: 1130015,
-      name: 'samples/people/bicycle',
-      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
-      fileType: 'image',
-      duration: null
-    }
-  ];
 
   // set files to card
   const mainCardFile = document.querySelector('.main-image img');
@@ -955,11 +956,29 @@ function configureFilesGallery() {
     img.removeAttribute('sizes');
   });
 
-  // set click event listeners on card files
+  //set files to files gallery
+  const galleryFileList = document.querySelector('.gallery-files-flex');
+  removeAllFilesFromGallery(galleryFileList);
+  setFilesToSideGallery(galleryFileList);
 
   // open close modal (with filesIndex on click)
 
   // change files with arrows
 
   // change files with small file clicks
+}
+
+function removeAllFilesFromGallery(galleryFileList) {
+  const sideFiles = [...galleryFileList.querySelectorAll('.flex-div')];
+  sideFiles.forEach(f => (f.style.display = 'none'));
+}
+
+function setFilesToSideGallery(galleryFileList) {
+  const sideFiles = [...galleryFileList.querySelectorAll('.flex-div')];
+
+  files.forEach((file, index) => {
+    sideFiles[index].style.display = 'block';
+    sideFiles[index].querySelector('img').src = file.src;
+    sideFiles[index].querySelector('img').alt = file.name;
+  });
 }
