@@ -91,6 +91,13 @@ const files = [
     duration: null
   },
   {
+    size: 338794,
+    name: 'samples/people/smiling-man',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777100/samples/people/smiling-man.jpg',
+    fileType: 'image',
+    duration: null
+  },
+  {
     size: 581238,
     name: 'samples/people/boy-snow-hoodie',
     url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/boy-snow-hoodie.jpg',
