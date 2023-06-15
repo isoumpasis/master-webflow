@@ -745,6 +745,8 @@ function showResults(fetchedModelObj) {
 
   configureCalculatorAfterSuggestion();
 
+  configureSuggestedContainer();
+
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -868,4 +870,65 @@ function configureCalculatorAfterSuggestion() {
   //   '#consumptionModelNameCalc'
   // ).textContent = `${makeSelect.value} ${modelSelect.value} (${yearSelect.value})`;
   // document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+}
+
+function configureSuggestedContainer() {
+  configureImageGallery();
+}
+
+function configureImageGallery() {
+  // get array of files with urls
+  const files = [
+    {
+      size: 338794,
+      name: 'samples/people/smiling-man',
+      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777100/samples/people/smiling-man.jpg',
+      fileType: 'image',
+      duration: null
+    },
+    {
+      size: 581238,
+      name: 'samples/people/boy-snow-hoodie',
+      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/boy-snow-hoodie.jpg',
+      fileType: 'image',
+      duration: null
+    },
+    {
+      size: 695548,
+      name: 'samples/people/jazz',
+      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777103/samples/people/jazz.jpg',
+      fileType: 'image',
+      duration: null
+    },
+    {
+      duration: null,
+      fileType: 'image',
+      name: '1_sbseyz',
+      size: 122590,
+      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685778209/1_sbseyz.jpg'
+    },
+    {
+      size: 1130015,
+      name: 'samples/people/bicycle',
+      url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
+      fileType: 'image',
+      duration: null
+    }
+  ];
+
+  // set files to card
+  const mainCardFile = document.querySelector('.main-image img');
+  const secondaryCardFilesContainer = document.querySelector('.gallery-flex');
+
+  mainCardFile.src = files[0].url;
+  mainCardFile.removeAttribute('srcset');
+  mainCardFile.removeAttribute('sizes');
+
+  // set click event listeners on card files
+
+  // open close modal (with filesIndex on click)
+
+  // change files with arrows
+
+  // change files with small file clicks
 }
