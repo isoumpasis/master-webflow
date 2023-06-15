@@ -918,11 +918,17 @@ function configureImageGallery() {
 
   // set files to card
   const mainCardFile = document.querySelector('.main-image img');
-  const secondaryCardFilesContainer = document.querySelector('.gallery-flex');
+  const sideCardFiles = [...document.querySelectorAll('.side-image img')];
 
   mainCardFile.src = files[0].url;
   mainCardFile.removeAttribute('srcset');
   mainCardFile.removeAttribute('sizes');
+
+  sideCardFiles.forEach((img, index) => {
+    img.src = files[index + 1].url;
+    img.removeAttribute('srcset');
+    img.removeAttribute('sizes');
+  });
 
   // set click event listeners on card files
 
