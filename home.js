@@ -126,21 +126,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initFilesGallery() {
-  const cardMainFile = document.querySelector('.main-image');
+  const cardMainFileContainer = document.querySelector('.main-image');
 
-  cardMainFile.addEventListener('click', () => {
+  cardMainFileContainer.addEventListener('click', () => {
     filesGalleryFullScreenContainer.style.display = 'block';
     document.querySelector('body').style.overflow = 'hidden';
   });
 
-  const cardSideFiles = [...document.querySelectorAll('.side-image')];
+  const cardMainFile = document.querySelector('.main-image img');
+  cardMainFile.removeAttribute('srcset');
+  cardMainFile.removeAttribute('sizes');
 
-  cardSideFiles.forEach(file =>
+  const cardSideFileContainers = [...document.querySelectorAll('.side-image')];
+
+  cardSideFileContainers.forEach(file =>
     file.addEventListener('click', () => {
       filesGalleryFullScreenContainer.style.display = 'block';
       document.querySelector('body').style.overflow = 'hidden';
     })
   );
+
+  const cardSideFiles = [...document.querySelector('.side-image img')];
+  cardSideFiles.forEach(file => {
+    file.removeAttribute('srcset');
+    file.removeAttribute('sizes');
+  });
 
   document.querySelector('.close-gallery').addEventListener('click', () => {
     document.querySelector('body').style.overflow = 'auto';
@@ -947,13 +957,11 @@ function configureFilesGallery() {
   const sideCardFiles = [...document.querySelectorAll('.side-image img')];
 
   mainCardFile.src = files[0].url;
-  mainCardFile.removeAttribute('srcset');
-  mainCardFile.removeAttribute('sizes');
+  mainCardFile.alt = files[0].name;
 
-  sideCardFiles.forEach((img, index) => {
-    img.src = files[index + 1].url;
-    img.removeAttribute('srcset');
-    img.removeAttribute('sizes');
+  sideCardFiles.forEach((file, index) => {
+    file.src = files[index + 1].url;
+    file.alt = files[index + 1].name;
   });
 
   //set files to files gallery
@@ -978,7 +986,8 @@ function setFilesToSideGallery(galleryFileList) {
 
   files.forEach((file, index) => {
     sideFiles[index].style.display = 'block';
-    sideFiles[index].querySelector('img').src = file.src;
-    sideFiles[index].querySelector('img').alt = file.name;
+    const sideFile = sideFiles[index].querySelector('img');
+    sideFile.src = file.url;
+    sideFile.alt = file.name;
   });
 }
