@@ -79,6 +79,7 @@ const modelDropdown = document.querySelector('#modelDropdown');
 const engineDropdown = document.querySelector('#engineDropdown');
 
 const filesGalleryFullScreenContainer = document.querySelector('.files-gallery');
+let galleryMainFileSelectedIndex = 0;
 
 let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
@@ -186,6 +187,26 @@ function initFilesGallery() {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
   });
+
+  const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-image')];
+
+  gallerySideFileContainers.forEach((sideFile, index) => {
+    sideFile.addEventListener('click', () => {
+      selectMainGalleryFile(sideFile.querySelector('img'), index);
+    });
+  });
+}
+
+function selectMainGalleryFile(img, index) {
+  const galleryMainFile = document.querySelector('.gallery-main-file');
+  galleryMainFile.src = img.src;
+  galleryMainFile.alt = img.alt;
+  galleryMainFileSelectedIndex = index;
+
+  console.log(img, files[index], galleryMainFileSelectedIndex);
+
+  // galleryMainFile.src = files[index].url;
+  // galleryMainFile.alt = files[index].name;
 }
 
 function initCustomDropdowns() {
@@ -1000,6 +1021,7 @@ function configureFilesGallery() {
   const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
+  selectMainGalleryFile(sideFiles[0].querySelector('img'), 0);
 
   // open close modal (with filesIndex on click)
 
