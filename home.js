@@ -215,13 +215,19 @@ function closeGallery() {
 }
 
 function selectMainGalleryFile(index) {
-  const galleryMainFile = document.querySelector('.gallery-main-file');
-  // galleryMainFile.src = img.src;
-  // galleryMainFile.alt = img.alt;
   galleryMainFileSelectedIndex = index;
-
+  const galleryMainFile = document.querySelector('.gallery-main-file');
   galleryMainFile.src = files[index].url;
   galleryMainFile.alt = files[index].name;
+
+  const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-file')];
+  gallerySideFileContainers.forEach((container, containerIndex) => {
+    if (index === containerIndex) {
+      container.classList.add('selected');
+    } else {
+      container.classList.remove('selected');
+    }
+  });
 
   console.log(galleryMainFileSelectedIndex);
 }
