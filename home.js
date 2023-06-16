@@ -149,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initFilesGallery() {
   const cardMainFileContainer = document.querySelector('.main-image');
-
   cardMainFileContainer.addEventListener('click', () => {
     openGallery();
   });
@@ -159,10 +158,9 @@ function initFilesGallery() {
   cardMainFile.removeAttribute('sizes');
 
   const cardSideFileContainers = [...document.querySelectorAll('.side-image')];
-
-  cardSideFileContainers.forEach(file =>
+  cardSideFileContainers.forEach((file, index) =>
     file.addEventListener('click', () => {
-      openGallery();
+      openGallery(index);
     })
   );
 
@@ -1030,7 +1028,6 @@ function configureFilesGallery() {
   const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-file')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
-  // selectMainGalleryFile(0);
 
   // open close modal (with filesIndex on click)
 
