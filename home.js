@@ -178,17 +178,17 @@ function initFilesGallery() {
     document.querySelector('body').style.overflow = 'auto';
   });
 
-  const galleryMainFile = document.querySelector('.gallery-main-image');
+  const galleryMainFile = document.querySelector('.gallery-main-file');
   galleryMainFile.removeAttribute('srcset');
   galleryMainFile.removeAttribute('sizes');
 
-  const gallerySideFiles = [...document.querySelectorAll('.gallery-side-image img')];
+  const gallerySideFiles = [...document.querySelectorAll('.gallery-side-file img')];
   gallerySideFiles.forEach(file => {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
   });
 
-  const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-image')];
+  const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-file')];
 
   gallerySideFileContainers.forEach((sideFile, index) => {
     sideFile.addEventListener('click', () => {
@@ -1018,7 +1018,7 @@ function configureFilesGallery() {
 
   //set files to files gallery
   const galleryFileList = document.querySelector('.gallery-files-flex');
-  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-image')];
+  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-file')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
   selectMainGalleryFile(sideFiles[0].querySelector('img'), 0);
