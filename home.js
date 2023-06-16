@@ -176,6 +176,9 @@ function initGalleryFiles() {
   document.querySelector('.gallery-wrap').addEventListener('click', () => {
     closeGallery();
   });
+  document.querySelector('.close-gallery').addEventListener('click', () => {
+    closeGallery();
+  });
 
   const galleryMainFile = document.querySelector('.gallery-main-file');
   galleryMainFile.removeAttribute('srcset');
