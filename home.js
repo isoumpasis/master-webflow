@@ -175,7 +175,7 @@ function initFilesGallery() {
   });
 
   document.querySelector('.close-gallery').addEventListener('click', () => {
-    document.querySelector('body').style.overflow = 'auto';
+    closeGallery();
   });
 
   const galleryMainFile = document.querySelector('.gallery-main-file');
@@ -195,6 +195,11 @@ function initFilesGallery() {
       selectMainGalleryFile(sideFile.querySelector('img'), index);
     });
   });
+}
+
+function closeGallery() {
+  document.querySelector('.files-gallery').style.display = 'block';
+  document.querySelector('body').style.overflow = 'auto';
 }
 
 function selectMainGalleryFile(img, index) {
