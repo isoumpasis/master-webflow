@@ -198,7 +198,7 @@ function initFilesGallery() {
 }
 
 function closeGallery() {
-  document.querySelector('.files-gallery').style.display = 'block';
+  document.querySelector('.files-gallery').style.display = 'none';
   document.querySelector('body').style.overflow = 'auto';
 }
 
