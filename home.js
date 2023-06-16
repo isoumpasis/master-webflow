@@ -144,10 +144,11 @@ const files = [
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
-  initFilesGallery();
+  initCardFiles();
+  initGalleryFiles();
 });
 
-function initFilesGallery() {
+function initCardFiles() {
   const cardMainFileContainer = document.querySelector('.main-image');
   cardMainFileContainer.addEventListener('click', () => {
     openGallery();
@@ -169,14 +170,20 @@ function initFilesGallery() {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
   });
+}
 
-  document.querySelector('.close-gallery').addEventListener('click', () => {
+function initGalleryFiles() {
+  document.querySelector('.gallery-wrap').addEventListener('click', () => {
     closeGallery();
   });
 
   const galleryMainFile = document.querySelector('.gallery-main-file');
   galleryMainFile.removeAttribute('srcset');
   galleryMainFile.removeAttribute('sizes');
+  galleryMainFile.addEventListener('click', e => e.stopPropagation());
+
+  const galleryFilesContainer = document.querySelector('.gallery-files-container');
+  galleryFilesContainer.addEventListener('click', e => e.stopPropagation());
 
   const gallerySideFiles = [...document.querySelectorAll('.gallery-side-file img')];
   gallerySideFiles.forEach(file => {
@@ -210,10 +217,10 @@ function selectMainGalleryFile(index) {
   // galleryMainFile.alt = img.alt;
   galleryMainFileSelectedIndex = index;
 
-  console.log(files[index], galleryMainFileSelectedIndex);
-
   galleryMainFile.src = files[index].url;
   galleryMainFile.alt = files[index].name;
+
+  console.log(galleryMainFileSelectedIndex);
 }
 
 function initCustomDropdowns() {
