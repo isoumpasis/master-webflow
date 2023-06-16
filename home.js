@@ -151,8 +151,7 @@ function initFilesGallery() {
   const cardMainFileContainer = document.querySelector('.main-image');
 
   cardMainFileContainer.addEventListener('click', () => {
-    filesGalleryFullScreenContainer.style.display = 'block';
-    document.querySelector('body').style.overflow = 'hidden';
+    openGallery();
   });
 
   const cardMainFile = document.querySelector('.main-image img');
@@ -163,8 +162,7 @@ function initFilesGallery() {
 
   cardSideFileContainers.forEach(file =>
     file.addEventListener('click', () => {
-      filesGalleryFullScreenContainer.style.display = 'block';
-      document.querySelector('body').style.overflow = 'hidden';
+      openGallery();
     })
   );
 
@@ -192,26 +190,32 @@ function initFilesGallery() {
 
   gallerySideFileContainers.forEach((sideFile, index) => {
     sideFile.addEventListener('click', () => {
-      selectMainGalleryFile(sideFile.querySelector('img'), index);
+      selectMainGalleryFile(index);
     });
   });
 }
 
+function openGallery(selectedIndex = 0) {
+  filesGalleryFullScreenContainer.style.display = 'block';
+  document.querySelector('body').style.overflow = 'hidden';
+  selectMainGalleryFile(selectedIndex);
+}
+
 function closeGallery() {
-  document.querySelector('.files-gallery').style.display = 'none';
+  filesGalleryFullScreenContainer.style.display = 'none';
   document.querySelector('body').style.overflow = 'auto';
 }
 
-function selectMainGalleryFile(img, index) {
+function selectMainGalleryFile(index) {
   const galleryMainFile = document.querySelector('.gallery-main-file');
-  galleryMainFile.src = img.src;
-  galleryMainFile.alt = img.alt;
+  // galleryMainFile.src = img.src;
+  // galleryMainFile.alt = img.alt;
   galleryMainFileSelectedIndex = index;
 
-  console.log(img, files[index], galleryMainFileSelectedIndex);
+  console.log(files[index], galleryMainFileSelectedIndex);
 
-  // galleryMainFile.src = files[index].url;
-  // galleryMainFile.alt = files[index].name;
+  galleryMainFile.src = files[index].url;
+  galleryMainFile.alt = files[index].name;
 }
 
 function initCustomDropdowns() {
@@ -1026,7 +1030,7 @@ function configureFilesGallery() {
   const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-file')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
-  selectMainGalleryFile(sideFiles[0].querySelector('img'), 0);
+  // selectMainGalleryFile(0);
 
   // open close modal (with filesIndex on click)
 
