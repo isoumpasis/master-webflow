@@ -124,6 +124,20 @@ const files = [
     url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
     fileType: 'image',
     duration: null
+  },
+  {
+    size: 1130015,
+    name: 'samples/people/bicycle',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
+    fileType: 'image',
+    duration: null
+  },
+  {
+    size: 1130015,
+    name: 'samples/people/bicycle',
+    url: 'https://res.cloudinary.com/master-direct/image/upload/v1685777105/samples/people/bicycle.jpg',
+    fileType: 'image',
+    duration: null
   }
 ];
 
