@@ -1031,8 +1031,7 @@ function configureFilesGallery() {
   });
 
   //set files to files gallery
-  const galleryFileList = document.querySelector('.gallery-files-flex');
-  const sideFiles = [...galleryFileList.querySelectorAll('.gallery-side-file')];
+  const sideFiles = [...document.querySelectorAll('.gallery-side-file')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
 
