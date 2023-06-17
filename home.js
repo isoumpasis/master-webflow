@@ -201,6 +201,19 @@ function initGalleryFiles() {
       selectMainGalleryFile(index);
     });
   });
+
+  document.querySelector('.gallery-wrap').addEventListener('keydown', e => {
+    console.log(e.key);
+    if (e.key === 'Escape') {
+      closeGallery();
+    }
+    if (e.key === 'ArrowLeft') {
+      selectMainGalleryFile(galleryMainFileSelectedIndex - 1);
+    }
+    if (e.key === 'ArrowRight') {
+      selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
+    }
+  });
 }
 
 function openGallery(selectedIndex = 0) {
@@ -215,6 +228,13 @@ function closeGallery() {
 }
 
 function selectMainGalleryFile(index) {
+  if (index >= files.length) {
+    index = 0;
+  }
+  if (index < 0) {
+    index = files.length - 1;
+  }
+
   galleryMainFileSelectedIndex = index;
   const galleryMainFile = document.querySelector('.gallery-main-file');
   galleryMainFile.src = files[index].url;
@@ -1025,7 +1045,7 @@ function configureSuggestedContainer() {
 }
 
 function configureFilesGallery() {
-  // get array of files with urls
+  // get array of files with urls from car
 
   // set files to card
   const mainCardFile = document.querySelector('.main-image img');
@@ -1044,11 +1064,9 @@ function configureFilesGallery() {
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
 
-  // open close modal (with filesIndex on click)
-
   // change files with arrows
 
-  // change files with small file clicks
+  // init arrows html full height
 }
 
 function removeAllFilesFromGallery(sideFiles) {
