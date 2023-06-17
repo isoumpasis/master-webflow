@@ -86,3 +86,8 @@ select::-webkit-scrollbar-thumb,
   flex-grow: 1;
   opacity: 1;
 }
+
+.left-file-container:hover .left-arrow-container,
+.right-file-container:hover .right-arrow-container {
+  transform: scale(1.3);
+}
