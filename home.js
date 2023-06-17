@@ -202,7 +202,7 @@ function initGalleryFiles() {
     });
   });
 
-  document.querySelector('.gallery-wrap').addEventListener('keydown', e => {
+  filesGalleryFullScreenContainer.addEventListener('keydown', e => {
     console.log(e.key);
     if (e.key === 'Escape') {
       closeGallery();
@@ -218,8 +218,8 @@ function initGalleryFiles() {
 
 function openGallery(selectedIndex = 0) {
   filesGalleryFullScreenContainer.style.display = 'block';
+  filesGalleryFullScreenContainer.focus();
   document.querySelector('body').style.overflow = 'hidden';
-  document.querySelector('.gallery-wrap').focus();
   selectMainGalleryFile(selectedIndex);
 }
 
