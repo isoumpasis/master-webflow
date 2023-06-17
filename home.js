@@ -202,6 +202,16 @@ function initGalleryFiles() {
     });
   });
 
+  document.querySelector('.left-file-container').addEventListener('click', e => {
+    e.stopPropagation();
+    selectMainGalleryFile(galleryMainFileSelectedIndex - 1);
+  });
+
+  document.querySelector('.right-file-container').addEventListener('click', e => {
+    e.stopPropagation();
+    selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
+  });
+
   filesGalleryFullScreenContainer.addEventListener('keydown', e => {
     console.log(e.key);
     if (e.key === 'Escape') {
@@ -249,8 +259,6 @@ function selectMainGalleryFile(index) {
       container.classList.remove('selected');
     }
   });
-
-  console.log(galleryMainFileSelectedIndex);
 }
 
 function initCustomDropdowns() {
