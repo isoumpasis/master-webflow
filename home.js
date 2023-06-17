@@ -219,6 +219,7 @@ function initGalleryFiles() {
 function openGallery(selectedIndex = 0) {
   filesGalleryFullScreenContainer.style.display = 'block';
   document.querySelector('body').style.overflow = 'hidden';
+  document.querySelector('.gallery-wrap').focus();
   selectMainGalleryFile(selectedIndex);
 }
 
