@@ -89,5 +89,5 @@ select::-webkit-scrollbar-thumb,
 
 .left-file-container:hover .left-arrow-container,
 .right-file-container:hover .right-arrow-container {
-  transform: scale(1.3);
+  transform: scale(1.1);
 }
