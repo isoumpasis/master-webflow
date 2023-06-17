@@ -1064,8 +1064,7 @@ function configureFilesGallery() {
   const sideFiles = [...document.querySelectorAll('.gallery-side-file')];
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
-
-  // change files with arrows
+  selectMainGalleryFile(0);
 
   // init arrows html full height
 }
