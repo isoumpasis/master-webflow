@@ -1073,8 +1073,6 @@ function configureFilesGallery() {
   removeAllFilesFromGallery(sideFiles);
   setFilesToSideGallery(sideFiles);
   selectMainGalleryFile(0);
-
-  // init arrows html full height
 }
 
 function removeAllFilesFromGallery(sideFiles) {
