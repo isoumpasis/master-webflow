@@ -162,14 +162,18 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initCardFiles() {
-  const cardMainFileContainer = document.querySelector('.main-image');
-  cardMainFileContainer.addEventListener('click', () => {
-    openGallery();
-  });
+  const cardMainFileContainers = [...document.querySelectorAll('.main-image')];
+  cardMainFileContainers.forEach(c =>
+    c.addEventListener('click', () => {
+      openGallery();
+    })
+  );
 
-  const cardMainFile = document.querySelector('.main-image .lightbox-image');
-  cardMainFile.removeAttribute('srcset');
-  cardMainFile.removeAttribute('sizes');
+  const cardMainFiles = [...document.querySelectorAll('.main-image .lightbox-image')];
+  cardMainFiles.forEach(cardMainFile => {
+    cardMainFile.removeAttribute('srcset');
+    cardMainFile.removeAttribute('sizes');
+  });
 
   const cardSideFileContainers = [...document.querySelectorAll('.side-image')];
   cardSideFileContainers.forEach((file, index) =>
