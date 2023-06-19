@@ -65,6 +65,16 @@ const makeImgDict = {
   VW: '6077f60f66bedc404ea5a800_VW.png'
 };
 
+const SystemDict = {
+  systems: {
+    SR: 'SR',
+    AR: 'AR',
+    PIEZO_BMW: 'PR BMW',
+    PIEZO_MERCEDES: 'PR',
+    SR_ALFA_ROMEO: 'SR EMU'
+  }
+};
+
 let fetchedYears;
 let fetchedModels;
 let fetchedModelObj;
