@@ -226,7 +226,6 @@ function initGalleryFiles() {
   });
 
   filesGalleryFullScreenContainer.addEventListener('keydown', e => {
-    console.log(e.key);
     if (e.key === 'Escape') {
       closeGallery();
     }
@@ -1107,6 +1106,7 @@ function configureFilesGallery() {
 
   // set files to card
   const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
+  console.log('mainCardFile', mainCardFile);
   const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
 
   mainCardFile.src = files[0].url;
