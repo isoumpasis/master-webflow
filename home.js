@@ -1074,6 +1074,7 @@ function configureSuggestedContainer() {
 
 function showCarResultContainer() {
   document.querySelector('#makeImg').src = makeImgPrefix + makeImgDict[selectedMake];
+  document.querySelector('#makeImg').alt = selectedMake;
   document.querySelector(
     '#modelName'
   ).textContent = `${selectedModel} (${selectedYear}) ${selectedEngine}`;
