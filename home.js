@@ -167,7 +167,7 @@ function initCardFiles() {
     openGallery();
   });
 
-  const cardMainFile = document.querySelector('.main-image img');
+  const cardMainFile = document.querySelector('.main-image .lightbox-image');
   cardMainFile.removeAttribute('srcset');
   cardMainFile.removeAttribute('sizes');
 
@@ -178,7 +178,7 @@ function initCardFiles() {
     })
   );
 
-  const cardSideFiles = [...document.querySelectorAll('.side-image img')];
+  const cardSideFiles = [...document.querySelectorAll('.side-image .lightbox-image')];
   cardSideFiles.forEach(file => {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
@@ -1106,8 +1106,8 @@ function configureFilesGallery() {
   // get array of files with urls from car
 
   // set files to card
-  const mainCardFile = activeContainer.querySelector('.main-image img');
-  const sideCardFiles = [...activeContainer.querySelectorAll('.side-image img')];
+  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
+  const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
 
   mainCardFile.src = files[0].url;
   mainCardFile.alt = files[0].name;
