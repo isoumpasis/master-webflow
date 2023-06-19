@@ -83,6 +83,9 @@ let galleryMainFileSelectedIndex = 0;
 
 let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
+const suggestedContainers = document.querySelectorAll('.suggested-container');
+let activeContainer;
+
 const files = [
   {
     size: 338794,
@@ -259,6 +262,17 @@ function selectMainGalleryFile(index) {
       container.classList.remove('selected');
     }
   });
+}
+
+function getActiveContainer() {
+  return [...suggestedContainers].filter(
+    container => container.style.display !== 'none' && container.style.display
+  )[0];
+}
+
+function hideSuggestedContainers() {
+  suggestedContainers.forEach(c => (c.style.display = 'none'));
+  document.querySelector('#carResultContainer').style.display = 'none';
 }
 
 function initCustomDropdowns() {
@@ -464,6 +478,7 @@ function resetDropdowns(dropdownArray) {
     const valueList = document.querySelector(`#${dbId} .value-list`);
     valueList.innerHTML = '';
   });
+  hideSuggestedContainers();
 }
 
 function enableDropdown(db) {
@@ -883,27 +898,27 @@ function engineOnChange(value) {
   showResults(fetchedModelObj);
   return; //
 
-  if (!value) {
-    // showGuarantee(false);
-    // resetCalc();
-    // resetEasyPay();
-    // step2Triggered = false;
-    //
-    // calcResult(false);
-    // updateBasketSection({ resetNoVehicle: true });
-    // resetProgressSteps();
-    // togglePulse('.summary-pulse', false);
-    // resetNotConvForm();
-    //
-    // userSelections.vehicle = {};
-    // delete userSelections.calculator.driveOftenIndex;
-    // userSelections.easyPay = {};
-    // saveUserSelections();
+  // if (!value) {
+  // showGuarantee(false);
+  // resetCalc();
+  // resetEasyPay();
+  // step2Triggered = false;
+  //
+  // calcResult(false);
+  // updateBasketSection({ resetNoVehicle: true });
+  // resetProgressSteps();
+  // togglePulse('.summary-pulse', false);
+  // resetNotConvForm();
+  //
+  // userSelections.vehicle = {};
+  // delete userSelections.calculator.driveOftenIndex;
+  // userSelections.easyPay = {};
+  // saveUserSelections();
 
-    return;
-  }
+  // return;
+  // }
 
-  showResults(fetchedModelObj);
+  // showResults(fetchedModelObj);
   // calcResult(false);
 
   // saveUserSelections();
@@ -920,10 +935,9 @@ function runConsumptionRace(vehicles) {
 function showResults(fetchedModelObj) {
   console.log('RESULTS!!!', fetchedModelObj);
 
-  configureCalculatorAfterSuggestion();
-
   configureSuggestedContainer();
 
+  // configureCalculatorAfterSuggestion();
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -999,66 +1013,90 @@ function isMobile() {
   return window.matchMedia('screen and (max-width: 768px)').matches;
 }
 
-function configureCalculatorAfterSuggestion() {
-  // document.querySelector('#calcTitle').textContent =
-  //   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
+// function configureCalculatorAfterSuggestion() {
+// document.querySelector('#calcTitle').textContent =
+//   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
 
+// document.querySelector(
+//   '#inConsumption .text-span'
+// ).innerHTML = `(${foundVehicleObj.consumption[0]}L/100km)`;
+// document.querySelector(
+//   '#outConsumption .text-span'
+// ).innerHTML = `(${foundVehicleObj.consumption[1]}L/100km)`;
+// document.querySelector(
+//   '#combinedConsumption .text-span'
+// ).innerHTML = `(${foundVehicleObj.consumption[2]}L/100km)`;
+
+// const consumptionRadios = document.querySelectorAll('.radio-button.w-radio');
+
+// consumptionRadios[0].dataset.cons = foundVehicleObj.consumption[0];
+// consumptionRadios[1].dataset.cons = foundVehicleObj.consumption[1];
+// consumptionRadios[2].dataset.cons = foundVehicleObj.consumption[2];
+
+// document.querySelector('#calcContainerVehicle').style.display = 'block';
+// document.querySelector('#calcContainerNoVehicle').style.display = 'none';
+
+// sliders[1].value = foundVehicleObj.consumption[getDriveOftenIndex()];
+// outputs[1].value = sliders[1].value;
+// calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
+
+// [...document.querySelectorAll('.in-consumption')].map(
+//   el => (el.textContent = foundVehicleObj.consumption[0])
+// );
+// [...document.querySelectorAll('.out-consumption')].map(
+//   el => (el.textContent = foundVehicleObj.consumption[1])
+// );
+// [...document.querySelectorAll('.combined-consumption')].map(
+//   el => (el.textContent = foundVehicleObj.consumption[2])
+// );
+
+// document.querySelector(
+//   '#consumptionModelNameCalc'
+// ).textContent = `${makeSelect.value} ${modelSelect.value} (${yearSelect.value})`;
+// document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+// }
+
+function configureSuggestedContainer() {
+  showCarResultContainer();
+  showSuggestedContainer();
+  configureFilesGallery();
+}
+
+function showCarResultContainer() {
   document.querySelector('#makeImg').src = makeImgPrefix + makeImgDict[selectedMake];
   document.querySelector(
     '#modelName'
   ).textContent = `${selectedModel} (${selectedYear}) ${selectedEngine}`;
 
   document.querySelector('#carResultContainer').style.display = 'flex';
-
-  // document.querySelector(
-  //   '#inConsumption .text-span'
-  // ).innerHTML = `(${foundVehicleObj.consumption[0]}L/100km)`;
-  // document.querySelector(
-  //   '#outConsumption .text-span'
-  // ).innerHTML = `(${foundVehicleObj.consumption[1]}L/100km)`;
-  // document.querySelector(
-  //   '#combinedConsumption .text-span'
-  // ).innerHTML = `(${foundVehicleObj.consumption[2]}L/100km)`;
-
-  // const consumptionRadios = document.querySelectorAll('.radio-button.w-radio');
-
-  // consumptionRadios[0].dataset.cons = foundVehicleObj.consumption[0];
-  // consumptionRadios[1].dataset.cons = foundVehicleObj.consumption[1];
-  // consumptionRadios[2].dataset.cons = foundVehicleObj.consumption[2];
-
-  // document.querySelector('#calcContainerVehicle').style.display = 'block';
-  // document.querySelector('#calcContainerNoVehicle').style.display = 'none';
-
-  // sliders[1].value = foundVehicleObj.consumption[getDriveOftenIndex()];
-  // outputs[1].value = sliders[1].value;
-  // calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
-
-  // [...document.querySelectorAll('.in-consumption')].map(
-  //   el => (el.textContent = foundVehicleObj.consumption[0])
-  // );
-  // [...document.querySelectorAll('.out-consumption')].map(
-  //   el => (el.textContent = foundVehicleObj.consumption[1])
-  // );
-  // [...document.querySelectorAll('.combined-consumption')].map(
-  //   el => (el.textContent = foundVehicleObj.consumption[2])
-  // );
-
-  // document.querySelector(
-  //   '#consumptionModelNameCalc'
-  // ).textContent = `${makeSelect.value} ${modelSelect.value} (${yearSelect.value})`;
-  // document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
 }
 
-function configureSuggestedContainer() {
-  configureFilesGallery();
+function showSuggestedContainer() {
+  const system = foundVehicleObj.master;
+  let foundContainer;
+
+  if (system === SystemDict.systems.SR) {
+    foundContainer = document.querySelector('.sr-container');
+  } else if (system === SystemDict.systems.AR) {
+    foundContainer = document.querySelector('.ar-container');
+  } else if (system === SystemDict.systems.PIEZO_BMW) {
+    foundContainer = document.querySelector('.piezo-bmw-container');
+  } else if (system === SystemDict.systems.PIEZO_MERCEDES) {
+    foundContainer = document.querySelector('.piezo-mercedes-container');
+  } else if (system === SystemDict.systems.SR_ALFA_ROMEO) {
+    foundContainer = document.querySelector('.sr-alfa-romeo-container');
+  }
+
+  foundContainer.style.display = 'block';
+  activeContainer = foundContainer;
 }
 
 function configureFilesGallery() {
   // get array of files with urls from car
 
   // set files to card
-  const mainCardFile = document.querySelector('.main-image img');
-  const sideCardFiles = [...document.querySelectorAll('.side-image img')];
+  const mainCardFile = activeContainer.querySelector('.main-image img');
+  const sideCardFiles = [...activeContainer.querySelectorAll('.side-image img')];
 
   mainCardFile.src = files[0].url;
   mainCardFile.alt = files[0].name;
