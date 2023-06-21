@@ -178,7 +178,7 @@ function initCardFiles() {
   const cardSideFileContainers = [...document.querySelectorAll('.side-image')];
   cardSideFileContainers.forEach((file, index) =>
     file.addEventListener('click', () => {
-      openGallery(index + 1);
+      openGallery((index + 1) % 4);
     })
   );
 
