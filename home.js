@@ -175,12 +175,14 @@ function initCardFiles() {
     cardMainFile.removeAttribute('sizes');
   });
 
-  const cardSideFileContainers = [...document.querySelectorAll('.side-image')];
-  cardSideFileContainers.forEach((file, index) =>
-    file.addEventListener('click', () => {
-      openGallery((index + 1) % 4);
-    })
-  );
+  suggestedContainers.forEach(container => {
+    const cardSideFileContainers = [...container.querySelectorAll('.side-image')];
+    cardSideFileContainers.forEach((file, index) =>
+      file.addEventListener('click', () => {
+        openGallery(index + 1);
+      })
+    );
+  });
 
   const cardSideFiles = [...document.querySelectorAll('.side-image .lightbox-image')];
   cardSideFiles.forEach(file => {
