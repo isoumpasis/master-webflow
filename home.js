@@ -901,8 +901,6 @@ function engineOnChange(value) {
 
   console.log('foundVehicleOBj', foundVehicleObj);
 
-  document.querySelector('#testSuggest').style.display = 'block';
-  document.querySelector('#testSuggest').textContent = foundVehicleObj.master;
   showResults(fetchedModelObj);
   return; //
 
