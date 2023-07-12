@@ -69,9 +69,9 @@ const SystemDict = {
   systems: {
     SR: 'SR',
     AR: 'AR',
-    PIEZO_BMW: 'PR BMW',
-    PIEZO_MERCEDES: 'PR',
-    SR_ALFA_ROMEO: 'SR EMU'
+    PIEZO_BMW: 'PIEZO BMW',
+    PIEZO_MERCEDES: 'PIEZO MERCEDES',
+    SR_ALFA_ROMEO: 'SR ALFA ROMEO'
   }
 };
 
