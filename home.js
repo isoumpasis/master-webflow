@@ -258,12 +258,13 @@ function selectMainGalleryFile(index) {
   }
 
   const fileType = foundVehicleObj.files[index].fileType;
-
   galleryMainFileSelectedIndex = index;
 
   const galleryMainImage = document.querySelector('.gallery-main-image');
   const galleryMainVideoEmbed = document.querySelector('.gallery-main-video');
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
+
+  galleryMainVideo.pause();
 
   if (fileType === 'video') {
     galleryMainImage.style.display = 'none';
