@@ -1117,7 +1117,7 @@ function configureFilesGallery() {
         side.style.display = 'none';
       }
     });
-  } else if (foundVehicleObj.files.length <= 2) {
+  } else if (foundVehicleObj.files.length === 2) {
     sideFiles.forEach((side, i) => {
       side.style.display = 'block';
       side.style.width = '0%';
@@ -1125,6 +1125,12 @@ function configureFilesGallery() {
       if (i >= 1) {
         side.style.display = 'none';
       }
+    });
+  } else if (foundVehicleObj.files.length === 1) {
+    sideFiles.forEach((side, i) => {
+      side.style.display = 'none';
+      side.style.width = '0%';
+      mainFile.style.height = '100%';
     });
   }
 
