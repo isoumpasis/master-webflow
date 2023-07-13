@@ -192,10 +192,10 @@ function initGalleryFiles() {
     closeGallery();
   });
 
-  const galleryMainFile = document.querySelector('.gallery-main-file');
-  galleryMainFile.removeAttribute('srcset');
-  galleryMainFile.removeAttribute('sizes');
-  galleryMainFile.addEventListener('click', e => e.stopPropagation());
+  const galleryMainImage = document.querySelector('.gallery-main-image');
+  galleryMainImage.removeAttribute('srcset');
+  galleryMainImage.removeAttribute('sizes');
+  galleryMainImage.addEventListener('click', e => e.stopPropagation());
 
   const galleryFilesContainer = document.querySelector('.gallery-files-container');
   galleryFilesContainer.addEventListener('click', e => e.stopPropagation());
