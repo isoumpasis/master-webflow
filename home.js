@@ -267,7 +267,7 @@ function selectMainGalleryFile(index) {
 
   if (fileType === 'video') {
     galleryMainImage.style.display = 'none';
-    galleryMainVideo.src = file.url;
+    galleryMainVideo.src = foundVehicleObj.files[index].url;
     galleryMainVideo.controls = true;
     galleryMainVideo.style.display = 'block';
     galleryMainVideoEmbed.style.display = 'block';
