@@ -1099,39 +1099,52 @@ function showSuggestedContainer() {
 }
 
 function configureFilesGallery() {
-  // get array of files with urls from car
-
-  // set files to card
-  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
-  const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
-
-  mainCardFile.src = foundVehicleObj.files[0].url;
-  mainCardFile.alt = foundVehicleObj.files[0].name;
-
-  sideCardFiles.forEach((file, index) => {
-    file.src = foundVehicleObj.files[index + 1].url;
-    file.alt = foundVehicleObj.files[index + 1].name;
-  });
-
   //card files appearance depending on files length
   const sideFiles = [...activeContainer.querySelectorAll('.side-image')];
   const mainFile = activeContainer.querySelector('.main-image .lightbox-image');
   if (foundVehicleObj.files.length >= 4) {
     sideFiles.forEach(side => {
+      side.style.display = 'block';
       side.style.width = '33%';
       mainFile.style.height = '230px';
     });
   } else if (foundVehicleObj.files.length === 3) {
-    sideFiles.forEach(side => {
+    sideFiles.forEach((side, i) => {
+      side.style.display = 'block';
       side.style.width = '50%';
       mainFile.style.height = '230px';
+      if (i === 2) {
+        side.style.display = 'none';
+      }
     });
   } else if (foundVehicleObj.files.length <= 2) {
-    sideFiles.forEach(side => {
+    sideFiles.forEach((side, i) => {
+      side.style.display = 'block';
       side.style.width = '0%';
       mainFile.style.height = '100%';
+      if (i === 1) {
+        side.style.display = 'none';
+      }
     });
   }
+
+  // set files to card
+  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
+  mainCardFile.src = foundVehicleObj.files[0].url;
+  mainCardFile.alt = foundVehicleObj.files[0].name;
+
+  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
+  // sideCardFiles.forEach((file, index) => {
+  //   file.src = foundVehicleObj.files[index + 1].url;
+  //   file.alt = foundVehicleObj.files[index + 1].name;
+  // });
+  sideFiles.forEach((side, index) => {
+    if (side.style.display === 'block') {
+      const file = side.querySelector('.lightbox-image');
+      file.src = foundVehicleObj.files[index + 1].url;
+      file.alt = foundVehicleObj.files[index + 1].name;
+    }
+  });
 
   //set files to files gallery
   const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
