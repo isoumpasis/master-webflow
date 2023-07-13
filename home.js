@@ -250,17 +250,17 @@ function closeGallery() {
 }
 
 function selectMainGalleryFile(index) {
-  if (index >= files.length) {
+  if (index >= foundVehicleObj.files.length) {
     index = 0;
   }
   if (index < 0) {
-    index = files.length - 1;
+    index = foundVehicleObj.files.length - 1;
   }
 
   galleryMainFileSelectedIndex = index;
   const galleryMainFile = document.querySelector('.gallery-main-file');
-  galleryMainFile.src = files[index].url;
-  galleryMainFile.alt = files[index].name;
+  galleryMainFile.src = foundVehicleObj.files[index].url;
+  galleryMainFile.alt = foundVehicleObj.files[index].name;
 
   const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-file')];
   gallerySideFileContainers.forEach((container, containerIndex) => {
@@ -1103,15 +1103,14 @@ function configureFilesGallery() {
 
   // set files to card
   const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
-  console.log('mainCardFile', mainCardFile);
   const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
 
-  mainCardFile.src = files[0].url;
-  mainCardFile.alt = files[0].name;
+  mainCardFile.src = foundVehicleObj.files[0].url;
+  mainCardFile.alt = foundVehicleObj.files[0].name;
 
   sideCardFiles.forEach((file, index) => {
-    file.src = files[index + 1].url;
-    file.alt = files[index + 1].name;
+    file.src = foundVehicleObj.files[index + 1].url;
+    file.alt = foundVehicleObj.files[index + 1].name;
   });
 
   //set files to files gallery
@@ -1126,7 +1125,7 @@ function removeAllFilesFromGallery(sideFiles) {
 }
 
 function setFilesToSideGallery(sideFiles) {
-  files.forEach((file, index) => {
+  foundVehicleObj.files.forEach((file, index) => {
     sideFiles[index].style.display = 'block';
     const sideFile = sideFiles[index].querySelector('img');
     sideFile.src = file.url;
