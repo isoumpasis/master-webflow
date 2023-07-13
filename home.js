@@ -1212,32 +1212,13 @@ function setFilesToSideGallery(sideGalleryFiles) {
       video.src = file.url;
       video.controls = false;
       video.style.display = 'block';
+      sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'block';
     } else {
       video.style.display = 'none';
+      sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'none';
       image.src = file.url;
       image.alt = file.name;
       image.style.display = 'block';
     }
   });
-}
-
-function addFileToLightbox(file, box, boxType) {
-  const boxImage = box.querySelector('.lightbox-image');
-  const boxVideo = box.querySelector('.lightbox-video');
-
-  if (file.fileType === 'video') {
-    const video = boxVideo.querySelector('video');
-    boxImage.style.display = 'none';
-    video.src = file.url;
-    video.controls = true;
-    boxVideo.style.display = 'block';
-    if (boxType === 'side') {
-      video.controls = false;
-    }
-  } else {
-    boxVideo.style.display = 'none';
-    boxImage.src = file.url;
-    boxImage.alt = file.name;
-    boxImage.style.display = 'block';
-  }
 }
