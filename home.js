@@ -1114,7 +1114,7 @@ function configureFilesGallery() {
 
   sideFiles.forEach((side, index) => {
     if (side.style.display === 'block') {
-      addFileToLightbox(foundVehicleObj.files[index + 1], side);
+      addFileToLightbox(foundVehicleObj.files[index + 1], side, 'side');
       // const file = side.querySelector('.lightbox-image');
       // file.src = foundVehicleObj.files[index + 1].url;
       // file.alt = foundVehicleObj.files[index + 1].name;
