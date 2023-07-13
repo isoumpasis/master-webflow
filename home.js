@@ -1113,21 +1113,41 @@ function configureFilesGallery() {
     file.alt = foundVehicleObj.files[index + 1].name;
   });
 
+  //card files appearance depending on files length
+  const sideFiles = [...activeContainer.querySelectorAll('.side-image')];
+  const mainFile = activeContainer.querySelector('.main-image .lightbox-image');
+  if (foundVehicleObj.files.length >= 4) {
+    sideFiles.forEach(side => {
+      side.style.width = '33%';
+      mainFile.style.height = '230px';
+    });
+  } else if (foundVehicleObj.files.length === 3) {
+    sideFiles.forEach(side => {
+      side.style.width = '50%';
+      mainFile.style.height = '230px';
+    });
+  } else if (foundVehicleObj.files.length <= 2) {
+    sideFiles.forEach(side => {
+      side.style.width = '0%';
+      mainFile.style.height = '100%';
+    });
+  }
+
   //set files to files gallery
-  const sideFiles = [...document.querySelectorAll('.gallery-side-file')];
-  removeAllFilesFromGallery(sideFiles);
-  setFilesToSideGallery(sideFiles);
+  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
+  removeAllFilesFromGallery(sideGalleryFiles);
+  setFilesToSideGallery(sideGalleryFiles);
   selectMainGalleryFile(0);
 }
 
-function removeAllFilesFromGallery(sideFiles) {
-  sideFiles.forEach(f => (f.style.display = 'none'));
+function removeAllFilesFromGallery(sideGalleryFiles) {
+  sideGalleryFiles.forEach(f => (f.style.display = 'none'));
 }
 
-function setFilesToSideGallery(sideFiles) {
+function setFilesToSideGallery(sideGalleryFiles) {
   foundVehicleObj.files.forEach((file, index) => {
-    sideFiles[index].style.display = 'block';
-    const sideFile = sideFiles[index].querySelector('img');
+    sideGalleryFiles[index].style.display = 'block';
+    const sideFile = sideGalleryFiles[index].querySelector('img');
     sideFile.src = file.url;
     sideFile.alt = file.name;
   });
