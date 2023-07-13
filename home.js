@@ -565,6 +565,7 @@ function makeOnChange(value) {
     // togglePulse('.summary-pulse', false);
     return;
   }
+  if (value === 'VOLKSWAGEN') value = 'VW';
 
   const inputField = yearDropdown.querySelector('.chosen-value');
   inputField.placeholder = '';
