@@ -1203,8 +1203,41 @@ function removeAllFilesFromGallery(sideGalleryFiles) {
 function setFilesToSideGallery(sideGalleryFiles) {
   foundVehicleObj.files.forEach((file, index) => {
     sideGalleryFiles[index].style.display = 'block';
-    const sideFile = sideGalleryFiles[index].querySelector('img');
-    sideFile.src = file.url;
-    sideFile.alt = file.name;
+
+    const image = sideGalleryFiles[index].querySelector('img');
+    const video = sideGalleryFiles[index].querySelector('video');
+
+    if (file.fileType === 'video') {
+      image.style.display = 'none';
+      video.src = file.url;
+      video.controls = false;
+      video.style.display = 'block';
+    } else {
+      video.style.display = 'none';
+      image.src = file.url;
+      image.alt = file.name;
+      image.style.display = 'block';
+    }
   });
+}
+
+function addFileToLightbox(file, box, boxType) {
+  const boxImage = box.querySelector('.lightbox-image');
+  const boxVideo = box.querySelector('.lightbox-video');
+
+  if (file.fileType === 'video') {
+    const video = boxVideo.querySelector('video');
+    boxImage.style.display = 'none';
+    video.src = file.url;
+    video.controls = true;
+    boxVideo.style.display = 'block';
+    if (boxType === 'side') {
+      video.controls = false;
+    }
+  } else {
+    boxVideo.style.display = 'none';
+    boxImage.src = file.url;
+    boxImage.alt = file.name;
+    boxImage.style.display = 'block';
+  }
 }
