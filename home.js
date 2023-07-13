@@ -155,21 +155,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initCardFiles() {
-  const cardMainFileContainers = [...document.querySelectorAll('.main-image')];
+  const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
   cardMainFileContainers.forEach(c =>
     c.addEventListener('click', () => {
       openGallery();
     })
   );
 
-  const cardMainFiles = [...document.querySelectorAll('.main-image .lightbox-image')];
+  const cardMainFiles = [...document.querySelectorAll('.main-file .lightbox-image')];
   cardMainFiles.forEach(cardMainFile => {
     cardMainFile.removeAttribute('srcset');
     cardMainFile.removeAttribute('sizes');
   });
 
   suggestedContainers.forEach(container => {
-    const cardSideFileContainers = [...container.querySelectorAll('.side-image')];
+    const cardSideFileContainers = [...container.querySelectorAll('.side-file')];
     cardSideFileContainers.forEach((file, index) =>
       file.addEventListener('click', () => {
         openGallery(index + 1);
@@ -177,7 +177,7 @@ function initCardFiles() {
     );
   });
 
-  const cardSideFiles = [...document.querySelectorAll('.side-image .lightbox-image')];
+  const cardSideFiles = [...document.querySelectorAll('.side-file .lightbox-image')];
   cardSideFiles.forEach(file => {
     file.removeAttribute('srcset');
     file.removeAttribute('sizes');
@@ -1103,15 +1103,16 @@ function showSuggestedContainer() {
 
 function configureFilesGallery() {
   //card files appearance depending on files length
-  const sideFiles = [...activeContainer.querySelectorAll('.side-image')];
+  const sideFiles = [...activeContainer.querySelectorAll('.side-file')];
   setCardFilesAppearance(sideFiles);
 
   // set files to card
-  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
-  mainCardFile.src = foundVehicleObj.files[0].url;
-  mainCardFile.alt = foundVehicleObj.files[0].name;
+  const mainCardFile = activeContainer.querySelector('.main-file');
+  addFileToLightbox(foundVehicleObj.files[0], mainCardFile);
+  // mainCardFile.src = foundVehicleObj.files[0].url;
+  // mainCardFile.alt = foundVehicleObj.files[0].name;
 
-  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
+  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-file .lightbox-image')];
   // sideCardFiles.forEach((file, index) => {
   //   file.src = foundVehicleObj.files[index + 1].url;
   //   file.alt = foundVehicleObj.files[index + 1].name;
@@ -1131,8 +1132,26 @@ function configureFilesGallery() {
   selectMainGalleryFile(0);
 }
 
+function addFileToLightbox(file, box) {
+  const boxImage = box.querySelector('.lightbox-image');
+  const boxVideo = box.querySelector('.lightbox-video');
+
+  if (file.fileType === 'video') {
+    boxImage.style.display = 'none';
+    boxVideo.src = file.url;
+    boxVideo.title = file.name;
+    boxVideo.style.display = 'block';
+    // boxVideo.autoplay = true;
+  } else {
+    boxVideo.style.display = 'none';
+    boxImage.src = file.url;
+    boxImage.alt = file.name;
+    boxImage.style.display = 'block';
+  }
+}
+
 function setCardFilesAppearance(sideFiles) {
-  const mainFile = activeContainer.querySelector('.main-image');
+  const mainFile = activeContainer.querySelector('.main-file');
   const moreFilesContainer = activeContainer.querySelector('.more-files-container');
   moreFilesContainer.style.display = 'none';
   if (foundVehicleObj.files.length > 4) {
