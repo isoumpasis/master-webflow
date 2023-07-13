@@ -264,18 +264,18 @@ function selectMainGalleryFile(index) {
   const galleryMainVideoEmbed = document.querySelector('.gallery-main-video');
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
 
-  galleryMainVideo.pause();
+  galleryMainVideo.pause(); //pause prev if there
 
   if (fileType === 'video') {
     galleryMainImage.style.display = 'none';
     galleryMainVideo.src = foundVehicleObj.files[index].url;
     galleryMainVideo.controls = true;
     galleryMainVideo.style.display = 'block';
+    galleryMainVideo.play();
     galleryMainVideoEmbed.style.display = 'block';
   } else {
     galleryMainVideo.style.display = 'none';
     galleryMainVideoEmbed.style.display = 'none';
-
     galleryMainImage.src = foundVehicleObj.files[index].url;
     galleryMainImage.alt = foundVehicleObj.files[index].name;
     galleryMainImage.style.display = 'block';
