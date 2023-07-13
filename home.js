@@ -1101,7 +1101,7 @@ function showSuggestedContainer() {
 function configureFilesGallery() {
   //card files appearance depending on files length
   const sideFiles = [...activeContainer.querySelectorAll('.side-image')];
-  const mainFile = activeContainer.querySelector('.main-image .lightbox-image');
+  const mainFile = activeContainer.querySelector('.main-image');
   if (foundVehicleObj.files.length >= 4) {
     sideFiles.forEach(side => {
       side.style.display = 'block';
@@ -1122,7 +1122,7 @@ function configureFilesGallery() {
       side.style.display = 'block';
       side.style.width = '0%';
       mainFile.style.height = '100%';
-      if (i === 1) {
+      if (i >= 1) {
         side.style.display = 'none';
       }
     });
