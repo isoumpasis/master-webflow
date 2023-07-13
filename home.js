@@ -1112,16 +1112,12 @@ function configureFilesGallery() {
   // mainCardFile.src = foundVehicleObj.files[0].url;
   // mainCardFile.alt = foundVehicleObj.files[0].name;
 
-  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-file .lightbox-image')];
-  // sideCardFiles.forEach((file, index) => {
-  //   file.src = foundVehicleObj.files[index + 1].url;
-  //   file.alt = foundVehicleObj.files[index + 1].name;
-  // });
   sideFiles.forEach((side, index) => {
     if (side.style.display === 'block') {
-      const file = side.querySelector('.lightbox-image');
-      file.src = foundVehicleObj.files[index + 1].url;
-      file.alt = foundVehicleObj.files[index + 1].name;
+      addFileToLightbox(foundVehicleObj.files[index + 1], side);
+      // const file = side.querySelector('.lightbox-image');
+      // file.src = foundVehicleObj.files[index + 1].url;
+      // file.alt = foundVehicleObj.files[index + 1].name;
     }
   });
 
@@ -1139,7 +1135,6 @@ function addFileToLightbox(file, box) {
   if (file.fileType === 'video') {
     boxImage.style.display = 'none';
     boxVideo.querySelector('video').src = file.url;
-    // boxVideo.title = file.name;
     boxVideo.style.display = 'block';
   } else {
     boxVideo.style.display = 'none';
