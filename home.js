@@ -435,7 +435,7 @@ function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
   inputField.value = item.textContent;
 
-  console.log('inputField.value', inputField.value);
+  // console.log('inputField.value', inputField.value);
   dropdownValueSelected(inputField.value, dropdownId);
 }
 
@@ -519,21 +519,21 @@ function dropdownValueSelected(value, dbId) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   if (dbId === 'makeDropdown') {
     selectedMake = value;
-    console.log('make on change', selectedMake);
+    // console.log('make on change', selectedMake);
     makeOnChange(selectedMake);
   } else if (dbId === 'yearDropdown') {
     selectedYear = value;
-    console.log('year on change', selectedYear);
+    // console.log('year on change', selectedYear);
     yearOnChange(selectedYear);
   } else if (dbId === 'modelDropdown') {
     selectedModel = value;
-    console.log('model on change', selectedModel);
+    // console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
   } else if (dbId === 'engineDropdown') {
     let words = value.split(' ');
     words.pop();
     selectedEngine = words.join(' ');
-    console.log('engine on change', selectedEngine);
+    // console.log('engine on change', selectedEngine);
     engineOnChange(selectedEngine);
   }
 }
@@ -599,7 +599,7 @@ function makeOnChange(value) {
       // sessionStorage.clear(); //reset every time make changes
       // sessionStorage.fetchedYears = JSON.stringify(fetchedYears);
 
-      console.log('populate year dropdown', fetchedYears);
+      // console.log('populate year dropdown', fetchedYears);
       populateYearDropdown(fetchedYears);
       inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΧΡΟΝΟΛΟΓΙΑ';
       endLoadingSelect(inputField);
@@ -652,7 +652,7 @@ function populateYearDropdown(fetchedYears) {
 
   //One option -> auto populate
   if (yearDropdownLis.length === 1) {
-    console.log('one option -> auto populate!');
+    // console.log('one option -> auto populate!');
     const inputField = yearDropdown.querySelector('.chosen-value');
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
@@ -725,7 +725,7 @@ function yearOnChange(value) {
       }
       fetchedModels = data;
 
-      console.log('populate model dropdown', fetchedModels);
+      // console.log('populate model dropdown', fetchedModels);
       populateModelDropdown(fetchedModels);
       inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΜΟΝΤΕΛΟ';
       endLoadingSelect(inputField);
@@ -757,7 +757,7 @@ function populateModelDropdown(fetchedModels) {
 
   //One option -> auto populate
   if (modelDropdownLis.length === 1) {
-    console.log('one option -> auto populate!');
+    // console.log('one option -> auto populate!');
     const inputField = modelDropdown.querySelector('.chosen-value');
     inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
@@ -824,7 +824,7 @@ function modelOnChange(value) {
       }
       fetchedModelObj = data;
 
-      console.log('populate engine dropdown', fetchedModelObj);
+      // console.log('populate engine dropdown', fetchedModelObj);
       populateEngineDropdown(fetchedModelObj);
       inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ΚΙΝΗΤΗΡΑ';
       endLoadingSelect(inputField);
@@ -879,7 +879,7 @@ function populateEngineDropdown(fetchedModelObj) {
 
   //One option -> auto populate
   if (engineDropdownLis.length === 1) {
-    console.log('one option -> auto populate!');
+    // console.log('one option -> auto populate!');
     const inputField = engineDropdown.querySelector('.chosen-value');
     inputField.value = engineCodes[0];
     dropdownValueSelected(engineCodes[0], 'engineDropdown');
@@ -890,12 +890,12 @@ function engineOnChange(value) {
   const selectedHP = parseInt(value.split(' ')[0]);
   let selectedEngineCode = value.split(' - ')[1];
 
-  console.log(selectedHP, selectedEngineCode);
+  // console.log(selectedHP, selectedEngineCode);
 
   const foundVehicles = fetchedModelObj.filter(
     model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
   );
-  console.log('found vehciels', foundVehicles);
+  // console.log('found vehciels', foundVehicles);
 
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
 
@@ -939,8 +939,6 @@ function runConsumptionRace(vehicles) {
 }
 
 function showResults(fetchedModelObj) {
-  console.log('RESULTS!!!', fetchedModelObj);
-
   configureSuggestedContainer();
 
   // configureCalculatorAfterSuggestion();
@@ -1065,7 +1063,11 @@ function isMobile() {
 function configureSuggestedContainer() {
   showCarResultContainer();
   showSuggestedContainer();
-  configureFilesGallery();
+  if (foundVehicleObj.files.length) {
+    configureFilesGallery();
+  } else {
+    console.log('vehicle with no files!');
+  }
 }
 
 function showCarResultContainer() {
@@ -1101,8 +1103,48 @@ function showSuggestedContainer() {
 function configureFilesGallery() {
   //card files appearance depending on files length
   const sideFiles = [...activeContainer.querySelectorAll('.side-image')];
+  setCardFilesAppearance(sideFiles);
+
+  // set files to card
+  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
+  mainCardFile.src = foundVehicleObj.files[0].url;
+  mainCardFile.alt = foundVehicleObj.files[0].name;
+
+  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
+  // sideCardFiles.forEach((file, index) => {
+  //   file.src = foundVehicleObj.files[index + 1].url;
+  //   file.alt = foundVehicleObj.files[index + 1].name;
+  // });
+  sideFiles.forEach((side, index) => {
+    if (side.style.display === 'block') {
+      const file = side.querySelector('.lightbox-image');
+      file.src = foundVehicleObj.files[index + 1].url;
+      file.alt = foundVehicleObj.files[index + 1].name;
+    }
+  });
+
+  //set files to files gallery
+  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
+  removeAllFilesFromGallery(sideGalleryFiles);
+  setFilesToSideGallery(sideGalleryFiles);
+  selectMainGalleryFile(0);
+}
+
+function setCardFilesAppearance(sideFiles) {
   const mainFile = activeContainer.querySelector('.main-image');
-  if (foundVehicleObj.files.length >= 4) {
+  const moreFilesContainer = activeContainer.querySelector('.more-files-container');
+  moreFilesContainer.style.display = 'none';
+  if (foundVehicleObj.files.length > 4) {
+    sideFiles.forEach(side => {
+      side.style.display = 'block';
+      side.style.width = '33%';
+      mainFile.style.height = '230px';
+    });
+    moreFilesContainer.style.display = 'flex';
+    moreFilesContainer.querySelector('.more-files-number').textContent = `+${
+      foundVehicleObj.files.length - 4
+    }`;
+  } else if (foundVehicleObj.files.length === 4) {
     sideFiles.forEach(side => {
       side.style.display = 'block';
       side.style.width = '33%';
@@ -1133,30 +1175,6 @@ function configureFilesGallery() {
       mainFile.style.height = '100%';
     });
   }
-
-  // set files to card
-  const mainCardFile = activeContainer.querySelector('.main-image .lightbox-image');
-  mainCardFile.src = foundVehicleObj.files[0].url;
-  mainCardFile.alt = foundVehicleObj.files[0].name;
-
-  // const sideCardFiles = [...activeContainer.querySelectorAll('.side-image .lightbox-image')];
-  // sideCardFiles.forEach((file, index) => {
-  //   file.src = foundVehicleObj.files[index + 1].url;
-  //   file.alt = foundVehicleObj.files[index + 1].name;
-  // });
-  sideFiles.forEach((side, index) => {
-    if (side.style.display === 'block') {
-      const file = side.querySelector('.lightbox-image');
-      file.src = foundVehicleObj.files[index + 1].url;
-      file.alt = foundVehicleObj.files[index + 1].name;
-    }
-  });
-
-  //set files to files gallery
-  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
-  removeAllFilesFromGallery(sideGalleryFiles);
-  setFilesToSideGallery(sideGalleryFiles);
-  selectMainGalleryFile(0);
 }
 
 function removeAllFilesFromGallery(sideGalleryFiles) {
