@@ -1138,10 +1138,9 @@ function addFileToLightbox(file, box) {
 
   if (file.fileType === 'video') {
     boxImage.style.display = 'none';
-    boxVideo.src = file.url;
-    boxVideo.title = file.name;
+    boxVideo.querySelector('video').src = file.url;
+    // boxVideo.title = file.name;
     boxVideo.style.display = 'block';
-    // boxVideo.autoplay = true;
   } else {
     boxVideo.style.display = 'none';
     boxImage.src = file.url;
