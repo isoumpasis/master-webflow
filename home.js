@@ -518,7 +518,7 @@ function closeDropdowns() {
 function dropdownValueSelected(value, dbId) {
   document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   if (dbId === 'makeDropdown') {
-    selectedMake = value;
+    selectedMake = value === 'VOLKSWAGEN' ? 'VW' : value;
     // console.log('make on change', selectedMake);
     makeOnChange(selectedMake);
   } else if (dbId === 'yearDropdown') {
