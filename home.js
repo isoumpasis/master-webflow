@@ -1128,14 +1128,19 @@ function configureFilesGallery() {
   selectMainGalleryFile(0);
 }
 
-function addFileToLightbox(file, box) {
+function addFileToLightbox(file, box, boxType) {
   const boxImage = box.querySelector('.lightbox-image');
   const boxVideo = box.querySelector('.lightbox-video');
 
   if (file.fileType === 'video') {
+    const video = boxVideo.querySelector('video');
     boxImage.style.display = 'none';
-    boxVideo.querySelector('video').src = file.url;
+    video.src = file.url;
+    video.controls = true;
     boxVideo.style.display = 'block';
+    if (boxType === 'side') {
+      video.controls = false;
+    }
   } else {
     boxVideo.style.display = 'none';
     boxImage.src = file.url;
