@@ -257,10 +257,28 @@ function selectMainGalleryFile(index) {
     index = foundVehicleObj.files.length - 1;
   }
 
+  const fileType = foundVehicleObj.files[index].fileType;
+
   galleryMainFileSelectedIndex = index;
-  const galleryMainFile = document.querySelector('.gallery-main-file');
-  galleryMainFile.src = foundVehicleObj.files[index].url;
-  galleryMainFile.alt = foundVehicleObj.files[index].name;
+
+  const galleryMainImage = document.querySelector('.gallery-main-image');
+  const galleryMainVideoEmbed = document.querySelector('.gallery-main-video');
+  const galleryMainVideo = document.querySelector('.gallery-main-video video');
+
+  if (fileType === 'video') {
+    galleryMainImage.style.display = 'none';
+    galleryMainVideo.src = file.url;
+    galleryMainVideo.controls = true;
+    galleryMainVideo.style.display = 'block';
+    galleryMainVideoEmbed.style.display = 'block';
+  } else {
+    galleryMainVideo.style.display = 'none';
+    galleryMainVideoEmbed.style.display = 'none';
+
+    galleryMainImage.src = foundVehicleObj.files[index].url;
+    galleryMainImage.alt = foundVehicleObj.files[index].name;
+    galleryMainImage.style.display = 'block';
+  }
 
   const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-file')];
   gallerySideFileContainers.forEach((container, containerIndex) => {
