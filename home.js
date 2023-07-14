@@ -271,7 +271,10 @@ function selectMainGalleryFile(index) {
     galleryMainVideo.src = foundVehicleObj.files[index].url;
     galleryMainVideo.controls = true;
     galleryMainVideo.style.display = 'block';
-    galleryMainVideo.play();
+
+    if (filesGalleryFullScreenContainer.style.display === 'block') {
+      galleryMainVideo.play(); //only if gallery is open
+    }
     galleryMainVideoEmbed.style.display = 'block';
   } else {
     galleryMainVideo.style.display = 'none';
