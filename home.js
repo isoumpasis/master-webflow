@@ -247,6 +247,8 @@ function openGallery(selectedIndex = 0) {
 function closeGallery() {
   filesGalleryFullScreenContainer.style.display = 'none';
   document.querySelector('body').style.overflow = 'auto';
+  const galleryMainVideo = document.querySelector('.gallery-main-video video');
+  galleryMainVideo.pause();
 }
 
 function selectMainGalleryFile(index) {
