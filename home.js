@@ -255,7 +255,11 @@ function getActiveContainer() {
 }
 
 function hideSuggestedContainers() {
-  suggestedContainers.forEach(c => (c.style.display = 'none'));
+  suggestedContainers.forEach(c => {
+    c.querySelector('.overlay-wrapper').style.height = '0px';
+    c.querySelector('[data-w-tab="Tab 1"]').click();
+    c.style.display = 'none';
+  });
   document.querySelector('#carResultContainer').style.display = 'none';
 }
 
