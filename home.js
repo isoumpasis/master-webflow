@@ -74,6 +74,12 @@ const SystemDict = {
     SR_ALFA_ROMEO: 'SR ALFA ROMEO'
   }
 };
+const InfoDict = {
+  filling: {
+    Πορτάκι: 'Στο πορτάκι της βενζίνης',
+    Προφυλακτήρα: 'Στον προφυλακτήρα'
+  }
+};
 
 let fetchedYears;
 let fetchedModels;
@@ -258,7 +264,6 @@ function hideSuggestedContainers() {
   suggestedContainers.forEach(c => {
     c.querySelector('.overlay-wrapper').style.height = '0px';
     c.querySelector('[data-w-tab="Tab 1"]').click();
-    console.log(c);
     c.style.display = 'none';
   });
   document.querySelector('#carResultContainer').style.display = 'none';
@@ -1050,6 +1055,7 @@ function configureSuggestedContainer() {
   } else {
     console.log('vehicle with no files!');
   }
+  configureVehicleInformation();
 }
 
 function showCarResultContainer() {
@@ -1202,4 +1208,23 @@ function setFilesToSideGallery(sideGalleryFiles) {
       image.style.display = 'block';
     }
   });
+}
+
+/* Vehicle Info */
+function configureVehicleInformation() {
+  if (foundVehicleObj?.info?.tank) {
+    activeContainer.querySelector('.car-info-text.tank').textContent = foundVehicleObj.info.tank;
+  }
+  if (foundVehicleObj?.info?.filling) {
+    activeContainer.querySelector('.car-info-text.filling').textContent =
+      InfoDict.filling[foundVehicleObj.info.filling];
+  }
+  if (foundVehicleObj.info?.comments?.length) {
+    foundVehicleObj.info?.comments.forEach(comment => {
+      const commentEl = document.createElement('div');
+      commentEl.className.add('car-info-extra');
+      commentEl.textContent = comment;
+      activeContainer.querySelector('.extra-info').appendChild(commentEl);
+    });
+  }
 }
