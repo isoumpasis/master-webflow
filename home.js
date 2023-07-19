@@ -1220,10 +1220,8 @@ function configureVehicleInformation() {
       InfoDict.filling[foundVehicleObj.info.filling];
   }
   if (foundVehicleObj.info?.comments?.length) {
+    [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => comment.remove());
     foundVehicleObj.info?.comments.forEach(comment => {
-      [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => {
-        comment.remove();
-      });
       const commentEl = document.createElement('div');
       commentEl.classList.add('car-info-extra');
       commentEl.textContent = comment;
