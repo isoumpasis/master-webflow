@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
   initCardFiles();
   initGalleryFiles();
+  suggestedContainers.forEach(cont => (cont.style.display = 'block'));
 });
 
 function initCardFiles() {
