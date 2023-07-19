@@ -1222,7 +1222,7 @@ function configureVehicleInformation() {
   if (foundVehicleObj.info?.comments?.length) {
     foundVehicleObj.info?.comments.forEach(comment => {
       const commentEl = document.createElement('div');
-      commentEl.className.add('car-info-extra');
+      commentEl.classList.add('car-info-extra');
       commentEl.textContent = comment;
       activeContainer.querySelector('.extra-info').appendChild(commentEl);
     });
