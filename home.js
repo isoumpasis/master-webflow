@@ -1220,20 +1220,40 @@ function setFilesToSideGallery(sideGalleryFiles) {
 
 /* Vehicle Info */
 function configureVehicleInformation() {
+  if (
+    foundVehicleObj?.info?.tank ||
+    foundVehicleObj?.info?.filling ||
+    foundVehicleObj?.info?.comments?.length
+  ) {
+    activeContainer.querySelector('.info-tab').style.display = 'block';
+  } else {
+    console.log('no info at all');
+    activeContainer.querySelector('.info-tab').style.display = 'none';
+  }
+
   if (foundVehicleObj?.info?.tank) {
-    activeContainer.querySelector('.car-info-text.tank').textContent = foundVehicleObj.info.tank;
+    activeContainer.querySelector('.info-tank-container').style.display = 'flex';
+    activeContainer.querySelector('.tank-txt').textContent = foundVehicleObj.info.tank;
     const foundVehicleTankType = foundVehicleObj.info.tank.includes('ΕΣΩΤΕΡΙΚΗ')
       ? 'INT'
       : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
       ? 'EX'
       : 'CYL';
     activeContainer.querySelector('.tank-img').src = TankDict.url[foundVehicleTankType];
+  } else {
+    activeContainer.querySelector('.info-tank-container').style.display = 'none';
   }
+
   if (foundVehicleObj?.info?.filling) {
-    activeContainer.querySelector('.car-info-text.filling').textContent =
+    activeContainer.querySelector('.info-filling-container').style.display = 'flex';
+    activeContainer.querySelector('.filling-txt').textContent =
       InfoDict.filling[foundVehicleObj.info.filling];
+  } else {
+    activeContainer.querySelector('.info-filling-container').style.display = 'none';
   }
+
   if (foundVehicleObj.info?.comments?.length) {
+    activeContainer.querySelector('.info-extra-container').style.display = 'flex';
     [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => comment.remove());
     foundVehicleObj.info?.comments.forEach(comment => {
       const commentEl = document.createElement('div');
@@ -1241,5 +1261,7 @@ function configureVehicleInformation() {
       commentEl.textContent = comment;
       activeContainer.querySelector('.extra-info').appendChild(commentEl);
     });
+  } else {
+    activeContainer.querySelector('.info-extra-container').style.display = 'none';
   }
 }
