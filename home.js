@@ -1227,7 +1227,6 @@ function configureVehicleInformation() {
   ) {
     activeContainer.querySelector('.info-tab').style.display = 'block';
   } else {
-    console.log('no info at all');
     activeContainer.querySelector('.info-tab').style.display = 'none';
   }
 
