@@ -1227,7 +1227,7 @@ function configureVehicleInformation() {
       : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
       ? 'EX'
       : 'CYL';
-    activeContainer.querySelector('.tank-img').src = TankDict.url.foundVehicleTankType;
+    activeContainer.querySelector('.tank-img').src = TankDict.url[foundVehicleTankType];
   }
   if (foundVehicleObj?.info?.filling) {
     activeContainer.querySelector('.car-info-text.filling').textContent =
