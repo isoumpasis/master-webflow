@@ -48,7 +48,7 @@ select::-webkit-scrollbar-thumb,
   outline: 0;
   color: #000;
 }
-.value-list.open::-webkit-scrollbar {
+/* .value-list.open::-webkit-scrollbar {
   width: 10px;
   border-radius: 10px;
   background-color: #dfdfdf;
@@ -60,7 +60,7 @@ select::-webkit-scrollbar-thumb,
 .value-list.open::-webkit-scrollbar-thumb {
   background-color: #d4af37;
   border-radius: 10px;
-}
+} */
 .input-container img {
   pointer-events: none;
 }

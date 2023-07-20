@@ -81,6 +81,14 @@ const InfoDict = {
   }
 };
 
+const TankDict = {
+  url: {
+    INT: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64b924d7d09c0bcebaab2229_gogas%20lpg%20tank%20internal.png',
+    EX: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64b924d718e86e08f5f41c57_gogas%20lpg%20tank%20external.png',
+    CYL: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64b924d7c7c1af97720ab5a4_gogas%20lpg%20tank%20cylindrical.png'
+  }
+};
+
 let fetchedYears;
 let fetchedModels;
 let fetchedModelObj;
@@ -1214,6 +1222,12 @@ function setFilesToSideGallery(sideGalleryFiles) {
 function configureVehicleInformation() {
   if (foundVehicleObj?.info?.tank) {
     activeContainer.querySelector('.car-info-text.tank').textContent = foundVehicleObj.info.tank;
+    const foundVehicleTankType = foundVehicleObj.info.tank.includes('ΕΣΩΤΕΡΙΚΗ')
+      ? 'INT'
+      : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
+      ? 'EX'
+      : 'CYL';
+    activeContainer.querySelector('.tank-img').src = TankDict.url.foundVehicleTankType;
   }
   if (foundVehicleObj?.info?.filling) {
     activeContainer.querySelector('.car-info-text.filling').textContent =
