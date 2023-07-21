@@ -1208,9 +1208,11 @@ function setFilesToSideGallery(sideGalleryFiles) {
       video.controls = false;
       video.style.display = 'block';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'block';
+      sideGalleryFiles[index].querySelector('.video-overlay').style.display = 'block';
     } else {
       video.style.display = 'none';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'none';
+      sideGalleryFiles[index].querySelector('.video-overlay').style.display = 'none';
       image.src = file.url;
       image.alt = file.name;
       image.style.display = 'block';
