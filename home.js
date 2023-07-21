@@ -209,9 +209,10 @@ function openGallery(selectedIndex = 0) {
   document.querySelector('body').style.overflow = 'hidden';
 
   selectMainGalleryFile(selectedIndex);
-  const cardMainVideo = activeContainer.querySelector('.main-file video');
-  console.log('open gallery', cardMainVideo);
-  cardMainVideo.pause(); //pause if there
+  // const cardMainVideo = activeContainer.querySelector('.main-file video');
+  // console.log('open gallery', cardMainVideo);
+  // cardMainVideo.pause(); //pause if there
+  //DEBUG
 }
 
 function closeGallery() {
@@ -326,6 +327,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _isDropdownOpen = () => dropdown.classList.contains('open');
 
   inputField.addEventListener('input', () => {
+    console.log('input field input', inputField);
     _openDropdown();
 
     if (dropdownId === 'makeDropdown') {
@@ -371,6 +373,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
+    console.log('input field blur', inputField);
     inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
@@ -410,7 +413,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //   }
   // });
   inputField.addEventListener('click', () => {
-    // console.log('inputField clicked!');
+    console.log('inputField clicked!', inputField);
     inputField.placeholder = 'Αναζήτηση...';
     if (_isDropdownOpen()) {
       // console.log('Dropdown is already open');
