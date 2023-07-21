@@ -207,6 +207,10 @@ function openGallery(selectedIndex = 0) {
   filesGalleryFullScreenContainer.style.display = 'block';
   filesGalleryFullScreenContainer.focus();
   document.querySelector('body').style.overflow = 'hidden';
+
+  const cardMainVideo = activeContainer.querySelector('.main-file video');
+  cardMainVideo.pause(); //pause if there
+
   selectMainGalleryFile(selectedIndex);
 }
 
