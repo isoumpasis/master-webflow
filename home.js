@@ -208,11 +208,10 @@ function openGallery(selectedIndex = 0) {
   filesGalleryFullScreenContainer.focus();
   document.querySelector('body').style.overflow = 'hidden';
 
+  selectMainGalleryFile(selectedIndex);
   const cardMainVideo = activeContainer.querySelector('.main-file video');
   console.log('open gallery', cardMainVideo);
   cardMainVideo.pause(); //pause if there
-
-  selectMainGalleryFile(selectedIndex);
 }
 
 function closeGallery() {
