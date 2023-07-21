@@ -415,7 +415,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   inputField.addEventListener('click', () => {
     console.log('inputField clicked!', inputField);
     inputField.placeholder = 'Αναζήτηση...';
-    inputField.select();
+    inputField.setSelectionRange(0, inputField.value.length);
     if (_isDropdownOpen()) {
       // console.log('Dropdown is already open');
       inputField.setAttribute('inputmode', 'text');
