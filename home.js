@@ -298,6 +298,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   const dropdown = customDropdown.querySelector('.value-list');
   let dropdownArray = [...dropdown.querySelectorAll('li')];
+  let selectedLi = null;
+  let focusedLi = null;
 
   if (dropdownId === 'makeDropdown') {
     makeDropdownLis = dropdownArray;
@@ -322,12 +324,19 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
+    _setFocusedLi();
+  };
+
+  const _setFocusedLi = () => {
+    dropdownArray.forEach(li => li.classList.remove('focused-li'));
+    focusedLi = dropdownArray[0];
+    focusedLi.classList.add('focused-li');
   };
 
   const _isDropdownOpen = () => dropdown.classList.contains('open');
 
   inputField.addEventListener('input', () => {
-    console.log('input field input', inputField);
+    console.log('input field input');
     _openDropdown();
 
     if (dropdownId === 'makeDropdown') {
@@ -373,7 +382,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
-    console.log('input field blur', inputField);
+    console.log('input field blur');
     inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
@@ -411,7 +420,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //   }
   // });
   inputField.addEventListener('click', () => {
-    console.log('inputField clicked!', inputField);
+    console.log('clicked!');
     inputField.placeholder = 'Αναζήτηση...';
     inputField.setSelectionRange(0, inputField.value.length);
 
