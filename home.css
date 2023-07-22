@@ -49,12 +49,10 @@ select::-webkit-scrollbar-thumb,
   color: #000;
 }
 #vehicleSelectionForm input::-moz-selection {
-  color: red;
-  background: yellow;
+  background: #d4af37;
 }
 #vehicleSelectionForm input::selection {
-  color: red;
-  background: yellow;
+  background: #d4af37;
 }
 
 .input-container img {
