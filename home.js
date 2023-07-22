@@ -454,7 +454,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 }
 
-const setFocusedLi = dropdownId => {
+function setFocusedLi(dropdownId) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
   const dropdown = document.querySelector(`#${dropdownId} .value-list`);
 
@@ -462,7 +462,7 @@ const setFocusedLi = dropdownId => {
     li => !li.classList.contains('closed')
   );
 
-  const focusedLi = DropdownFocusedLisDict[dropdownId];
+  let focusedLi = DropdownFocusedLisDict[dropdownId];
 
   currentLis.forEach(li => li.classList.remove('focused-li'));
   if (!inputField.value.length) {
@@ -481,7 +481,7 @@ const setFocusedLi = dropdownId => {
     dropdown.scrollTop = focusedLi.offsetTop - 170;
   }
   console.log('focused li', focusedLi.textContent);
-};
+}
 
 function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
