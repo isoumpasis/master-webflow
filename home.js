@@ -726,6 +726,7 @@ const openDropdown = dropdownType => {
     dropdown.classList.remove('closed');
   });
   dropdownType.querySelector('input').focus();
+  setFocusedLi(dropdownType);
 };
 
 function yearOnChange(value) {
