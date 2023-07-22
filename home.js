@@ -503,8 +503,7 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
   // document.querySelector(`#${dropdownId} .value-list`).scrollTop = nextFocusedLi.offsetTop - 320;
   DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
 
-  // nextFocusedLi.scrollIntoViewIfNeeded(false);
-  nextFocusedLi.scrollIntoView(true);
+  nextFocusedLi.scrollIntoViewIfNeeded(false);
 }
 function setPrevFocusedLi(currentFocusedLi, dropdownId) {
   let prevFocusedLi = currentFocusedLi.previousElementSibling;
@@ -519,8 +518,7 @@ function setPrevFocusedLi(currentFocusedLi, dropdownId) {
   // document.querySelector(`#${dropdownId} .value-list`).scrollTop = prevFocusedLi.offsetTop - 30;
   DropdownFocusedLisDict[dropdownId] = prevFocusedLi;
 
-  // prevFocusedLi.scrollIntoViewIfNeeded(false);
-  prevFocusedLi.scrollIntoView({ block: 'end', inline: 'nearest', behaviour: 'smooth' });
+  prevFocusedLi.scrollIntoViewIfNeeded(false);
 }
 
 function onDropdownItemClick(dropdownId, item) {
