@@ -513,7 +513,7 @@ function setPrevFocusedLi(currentFocusedLi, dropdownId) {
 
   console.log('new current', prevFocusedLi);
   prevFocusedLi.classList.add('focused-li');
-  document.querySelector(`#${dropdownId} .value-list`).scrollTop = nextFocusedLi.offsetTop - 80;
+  document.querySelector(`#${dropdownId} .value-list`).scrollTop = prevFocusedLi.offsetTop - 80;
   DropdownFocusedLisDict[dropdownId] = prevFocusedLi;
 }
 
