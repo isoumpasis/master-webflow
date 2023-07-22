@@ -343,7 +343,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     }
     focusedLi.classList.add('focused-li');
     // focusedLi.scrollIntoView({ block: 'center' });
-    focusedLi.scrollIntoView(false);
+    // focusedLi.scrollIntoView(false);
+    dropdown.scrollTop = focusedLi.offsetTop;
     console.log(focusedLi);
   };
 
