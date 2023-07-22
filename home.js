@@ -382,10 +382,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('keydown', e => {
+    const focusedLi = DropdownFocusedLisDict[dropdownId];
     console.log('key pressed', dropdownId, 'focusedli', focusedLi);
     if (!_isDropdownOpen()) return;
     if (e.key === 'Enter') {
-      console.log('Enter key pressed', dropdownId, 'focusedli', focusedLi);
       if (focusedLi) {
         onDropdownItemClick(dropdownId, focusedLi);
         setTimeout(() => {
