@@ -342,7 +342,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       }
     }
     focusedLi.classList.add('focused-li');
-    focusedLi.scrollIntoView(true);
+    focusedLi.scrollIntoView();
     console.log(focusedLi);
   };
 
