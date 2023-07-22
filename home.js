@@ -383,7 +383,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   inputField.addEventListener('keydown', e => {
     const focusedLi = DropdownFocusedLisDict[dropdownId];
-    console.log('key pressed', dropdownId, 'focusedli', focusedLi);
     if (!_isDropdownOpen()) return;
     if (e.key === 'Enter') {
       if (focusedLi) {
@@ -502,6 +501,7 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
   console.log('new current', nextFocusedLi);
   nextFocusedLi.classList.add('focused-li');
   DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
+  document.querySelector(`#${dropdownId} value-list`).scrollTop = nextFocusedLi.offsetTop - 170;
 }
 function setPrevFocusedLi(currentFocusedLi, dropdownId) {
   let prevFocusedLi = currentFocusedLi.previousElementSibling;
