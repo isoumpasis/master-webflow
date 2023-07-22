@@ -497,6 +497,7 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
   do {
     currentFocusedLi = currentFocusedLi.nextElementSibling;
   } while (currentFocusedLi.nextElementSibling.classList.contains('closed'));
+  currentFocusedLi = currentFocusedLi.nextElementSibling;
 
   console.log('current', currentFocusedLi);
   currentFocusedLi.classList.add('focused-li');
