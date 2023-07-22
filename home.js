@@ -701,6 +701,7 @@ function populateYearDropdown(fetchedYears) {
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
   }
+  yearDropdown.querySelector('input').focus();
 }
 
 function yearOnChange(value) {
