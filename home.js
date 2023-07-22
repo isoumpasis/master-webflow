@@ -344,7 +344,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     focusedLi.classList.add('focused-li');
     // focusedLi.scrollIntoView({ block: 'center' });
     // focusedLi.scrollIntoView(false);
-    dropdown.scrollTop = focusedLi.offsetTop;
+    dropdown.scrollTop = focusedLi.offsetTop - 170;
     console.log(focusedLi);
   };
 
