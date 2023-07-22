@@ -393,6 +393,12 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
         }, 100);
       }
     }
+    if (e.key === 'ArrowDown') {
+      setNextFocusedLi(focusedLi);
+    }
+    if (e.key === 'ArrowUp') {
+      setPrevFocusedLi(focusedLi);
+    }
   });
 
   inputField.addEventListener('blur', () => {
@@ -483,6 +489,13 @@ function setFocusedLi(dropdownId) {
   }
   console.log('focused li', focusedLi?.textContent);
   DropdownFocusedLisDict[dropdownId] = focusedLi;
+}
+
+function setNextFocusedLi(currentFocusedLi) {
+  console.log(currentFocusedLi);
+}
+function setPrevFocusedLi(currentFocusedLi) {
+  console.log(currentFocusedLi);
 }
 
 function onDropdownItemClick(dropdownId, item) {
