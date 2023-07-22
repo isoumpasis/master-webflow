@@ -334,10 +334,11 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       focusedLi = currentLis[0];
     } else {
       const liContents = currentLis.map(li => li.textContent);
-      const index = liContents.indexOf(inputField.value);
+      const index = liContents.indexOf(inputField.value.toUpperCase());
       if (index === -1) {
         focusedLi = currentLis[0];
       } else {
+        console.log('found for ', inputField.value.toUpperCase());
         focusedLi = currentLis[index];
       }
     }
