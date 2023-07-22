@@ -701,7 +701,6 @@ function populateYearDropdown(fetchedYears) {
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
   }
-  yearDropdown.querySelector('input').focus();
   openDropdown(yearDropdown);
 }
 
@@ -715,6 +714,7 @@ const openDropdown = dropdownType => {
   dropdownArray.forEach(dropdown => {
     dropdown.classList.remove('closed');
   });
+  dropdownType.querySelector('input').focus();
 };
 
 function yearOnChange(value) {
@@ -820,6 +820,7 @@ function populateModelDropdown(fetchedModels) {
     inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
   }
+  openDropdown(modelDropdown);
 }
 function modelOnChange(value) {
   resetDropdowns(['engine']);
@@ -942,6 +943,7 @@ function populateEngineDropdown(fetchedModelObj) {
     inputField.value = engineCodes[0];
     dropdownValueSelected(engineCodes[0], 'engineDropdown');
   }
+  openDropdown(engineDropdown);
 }
 
 function engineOnChange(value) {
