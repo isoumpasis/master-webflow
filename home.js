@@ -331,6 +331,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     const currentLis = [...document.querySelectorAll(`#${dropdownId} .value-list li`)].filter(
       li => !li.classList.contains('closed')
     );
+
+    console.log('currentlis', currentLis);
     currentLis.forEach(li => li.classList.remove('focused-li'));
     if (!inputField.value.length) {
       focusedLi = currentLis[0];
