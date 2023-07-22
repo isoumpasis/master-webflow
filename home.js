@@ -405,7 +405,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //   // console.log('inputField clicked!');
   //   inputField.placeholder = 'Αναζήτηση...';
   //   if (_isDropdownOpen()) {
-  //     // console.log('Dropdown is already open');
   //     inputField.setAttribute('inputmode', 'text');
   //   } else {
   //     _openDropdown();
