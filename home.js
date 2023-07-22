@@ -332,7 +332,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       li => !li.classList.contains('closed')
     );
 
-    console.log('currentlis', currentLis);
     currentLis.forEach(li => li.classList.remove('focused-li'));
     if (!inputField.value.length) {
       focusedLi = currentLis[0];
@@ -347,10 +346,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       }
     }
     focusedLi.classList.add('focused-li');
-    // focusedLi.scrollIntoView({ block: 'center' });
-    // focusedLi.scrollIntoView(false);
     dropdown.scrollTop = focusedLi.offsetTop - 170;
-    console.log(focusedLi);
+    console.log('focused li', focusedLi);
   };
 
   const _isDropdownOpen = () => dropdown.classList.contains('open');
@@ -400,6 +397,14 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     item.addEventListener('mousedown', evt => {
       onDropdownItemClick(dropdownId, item);
     });
+  });
+
+  dropdown.addEventListener('keydown', e => {
+    if (!_isDropdownOpen()) return;
+    if (e.key === 'Enter') {
+      console.log('Enter key pressed', dropdownId, 'focusedli', focusedLi);
+      onDropdownItemClick(dropdownId, focusedLi);
+    }
   });
 
   inputField.addEventListener('blur', () => {
