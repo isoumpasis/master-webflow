@@ -96,6 +96,14 @@ let foundVehicleObj;
 
 let customDropdowns;
 let selectedMake, selectedYear, selectedModel, selectedEngine;
+let focusedMakeLi, focusedYearLi, focusedModelLi, focusedEngineLi;
+
+const DropdownFocusedLisDict = {
+  makeDropdown: focusedMakeLi,
+  yearDropdown: focusedYearLi,
+  modelDropdown: focusedModelLi,
+  engineDropdown: focusedEngineLi
+};
 
 const makeDropdown = document.querySelector('#makeDropdown');
 const yearDropdown = document.querySelector('#yearDropdown');
@@ -298,8 +306,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   const dropdown = customDropdown.querySelector('.value-list');
   let dropdownArray = [...dropdown.querySelectorAll('li')];
-  let selectedLi = null;
-  let focusedLi = null;
 
   if (dropdownId === 'makeDropdown') {
     makeDropdownLis = dropdownArray;
@@ -324,32 +330,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
-    // _setFocusedLi();
-  };
-
-  const _setFocusedLi = () => {
-    const currentLis = [...document.querySelectorAll(`#${dropdownId} .value-list li`)].filter(
-      li => !li.classList.contains('closed')
-    );
-
-    currentLis.forEach(li => li.classList.remove('focused-li'));
-    if (!inputField.value.length) {
-      focusedLi = currentLis[0];
-    } else {
-      const liContents = currentLis.map(li => li.textContent);
-      const index = liContents.indexOf(inputField.value.toUpperCase());
-      if (index === -1) {
-        focusedLi = currentLis[0];
-      } else {
-        console.log('found for ', inputField.value.toUpperCase());
-        focusedLi = currentLis[index];
-      }
-    }
-    if (focusedLi) {
-      focusedLi.classList.add('focused-li');
-      dropdown.scrollTop = focusedLi.offsetTop - 170;
-    }
-    console.log('focused li', focusedLi);
   };
 
   const _isDropdownOpen = () => dropdown.classList.contains('open');
@@ -392,11 +372,11 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
         dropdownArray[i].classList.remove('closed');
       }
     }
-    _setFocusedLi();
+    setFocusedLi(dropdownId);
   });
 
   dropdownArray.forEach(item => {
-    item.addEventListener('mousedown', evt => {
+    item.addEventListener('mousedown', async evt => {
       onDropdownItemClick(dropdownId, item);
     });
   });
@@ -464,15 +444,44 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     } else {
       // console.log('dropdown was closed before now opening!');
       _openDropdown();
-      _setFocusedLi();
+      setFocusedLi(dropdownId);
     }
   });
 
   inputImg.addEventListener('click', () => {
     _openDropdown();
-    _setFocusedLi();
+    setFocusedLi(dropdownId);
   });
 }
+
+const setFocusedLi = dropdownId => {
+  const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
+  const dropdown = document.querySelector(`#${dropdownId} .value-list`);
+
+  const currentLis = [...document.querySelectorAll(`#${dropdownId} .value-list li`)].filter(
+    li => !li.classList.contains('closed')
+  );
+
+  const focusedLi = DropdownFocusedLisDict[dropdownId];
+
+  currentLis.forEach(li => li.classList.remove('focused-li'));
+  if (!inputField.value.length) {
+    focusedLi = currentLis[0];
+  } else {
+    const liContents = currentLis.map(li => li.textContent);
+    const index = liContents.indexOf(inputField.value.toUpperCase());
+    if (index === -1) {
+      focusedLi = currentLis[0];
+    } else {
+      focusedLi = currentLis[index];
+    }
+  }
+  if (focusedLi) {
+    focusedLi.classList.add('focused-li');
+    dropdown.scrollTop = focusedLi.offsetTop - 170;
+  }
+  console.log('focused li', focusedLi.textContent);
+};
 
 function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
