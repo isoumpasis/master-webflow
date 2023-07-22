@@ -320,7 +320,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _openDropdown = () => {
     dropdown.classList.add('open');
     inputImg.style.transform = 'rotate(180deg)';
-    dropdown.scrollTop = 0;
+    // dropdown.scrollTop = 0;
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
@@ -342,6 +342,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       }
     }
     focusedLi.classList.add('focused-li');
+    focusedLi.scrollIntoView(false);
     console.log(focusedLi);
   };
 
