@@ -328,9 +328,11 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   };
 
   const _setFocusedLi = () => {
-    dropdownArray.forEach(li => li.classList.remove('focused-li'));
-    focusedLi = dropdownArray[0];
+    const currentLis = [...document.querySelectorAll(`#${dropdownId} .value-list li`)];
+    currentLis.forEach(li => li.classList.remove('focused-li'));
+    focusedLi = currentLis[0];
     focusedLi.classList.add('focused-li');
+    console.log(focusedLi);
   };
 
   const _isDropdownOpen = () => dropdown.classList.contains('open');
