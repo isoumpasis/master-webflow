@@ -406,7 +406,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     if (!_isDropdownOpen()) return;
     if (e.key === 'Enter') {
       console.log('Enter key pressed', dropdownId, 'focusedli', focusedLi);
-      onDropdownItemClick(dropdownId, focusedLi);
+      if (focusedLi) {
+        onDropdownItemClick(dropdownId, focusedLi);
+      }
     }
   });
 
