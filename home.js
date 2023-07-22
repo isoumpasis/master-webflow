@@ -345,8 +345,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
         focusedLi = currentLis[index];
       }
     }
-    focusedLi.classList.add('focused-li');
-    dropdown.scrollTop = focusedLi.offsetTop - 170;
+    if (focusedLi) {
+      focusedLi.classList.add('focused-li');
+      dropdown.scrollTop = focusedLi.offsetTop - 170;
+    }
     console.log('focused li', focusedLi);
   };
 
