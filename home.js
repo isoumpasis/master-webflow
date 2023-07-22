@@ -702,7 +702,20 @@ function populateYearDropdown(fetchedYears) {
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
   }
   yearDropdown.querySelector('input').focus();
+  openDropdown(yearDropdown);
 }
+
+const openDropdown = dropdownType => {
+  const dropdown = dropdownType.querySelector('.value-list');
+  const inputImg = dropdownType.querySelector('.input-container .img-arrow');
+  const dropdownArray = [...dropdown.querySelectorAll('li')];
+
+  dropdown.classList.add('open');
+  inputImg.style.transform = 'rotate(180deg)';
+  dropdownArray.forEach(dropdown => {
+    dropdown.classList.remove('closed');
+  });
+};
 
 function yearOnChange(value) {
   resetDropdowns(['model', 'engine']);
