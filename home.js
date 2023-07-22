@@ -408,6 +408,9 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       console.log('Enter key pressed', dropdownId, 'focusedli', focusedLi);
       if (focusedLi) {
         onDropdownItemClick(dropdownId, focusedLi);
+        setTimeout(() => {
+          closeDropdown(dropdownId);
+        }, 100);
       }
     }
   });
