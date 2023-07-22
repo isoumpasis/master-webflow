@@ -408,7 +408,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //     // console.log('Dropdown is already open');
   //     inputField.setAttribute('inputmode', 'text');
   //   } else {
-  //     // console.log('dropdown was closed before now opening!');
   //     _openDropdown();
   //   }
   // });
