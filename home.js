@@ -400,6 +400,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   dropdown.addEventListener('keydown', e => {
+    console.log('key pressed', dropdownId, 'focusedli', focusedLi);
     if (!_isDropdownOpen()) return;
     if (e.key === 'Enter') {
       console.log('Enter key pressed', dropdownId, 'focusedli', focusedLi);
