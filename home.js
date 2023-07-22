@@ -399,7 +399,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     });
   });
 
-  dropdown.addEventListener('keydown', e => {
+  inputField.addEventListener('keydown', e => {
     console.log('key pressed', dropdownId, 'focusedli', focusedLi);
     if (!_isDropdownOpen()) return;
     if (e.key === 'Enter') {
