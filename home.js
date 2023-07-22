@@ -504,7 +504,16 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
   DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
 }
 function setPrevFocusedLi(currentFocusedLi) {
-  console.log(currentFocusedLi);
+  let prevFocusedLi = currentFocusedLi.previousElementSibling;
+  while (prevFocusedLi && prevFocusedLi.classList.contains('closed')) {
+    prevFocusedLi = prevFocusedLi.previousElementSibling;
+  }
+  if (!prevFocusedLi) return;
+  currentFocusedLi.classList.remove('focused-li');
+
+  console.log('new current', prevFocusedLi);
+  prevFocusedLi.classList.add('focused-li');
+  DropdownFocusedLisDict[dropdownId] = prevFocusedLi;
 }
 
 function onDropdownItemClick(dropdownId, item) {
