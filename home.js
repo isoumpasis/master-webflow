@@ -394,10 +394,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       }
     }
     if (e.key === 'ArrowDown') {
-      setNextFocusedLi(focusedLi);
+      setNextFocusedLi(focusedLi, dropdownId);
     }
     if (e.key === 'ArrowUp') {
-      setPrevFocusedLi(focusedLi);
+      setPrevFocusedLi(focusedLi, dropdownId);
     }
   });
 
@@ -491,8 +491,12 @@ function setFocusedLi(dropdownId) {
   DropdownFocusedLisDict[dropdownId] = focusedLi;
 }
 
-function setNextFocusedLi(currentFocusedLi) {
-  console.log(currentFocusedLi);
+function setNextFocusedLi(currentFocusedLi, dropdownId) {
+  console.log(currentFocusedLi, currentFocusedLi.nextElementSibling);
+  currentFocusedLi.classList.remove('focused-li');
+  currentFocusedLi = currentFocusedLi.nextElementSibling;
+  currentFocusedLi.classList.add('focused-li');
+  DropdownFocusedLisDict[dropdownId] = currentFocusedLi;
 }
 function setPrevFocusedLi(currentFocusedLi) {
   console.log(currentFocusedLi);
