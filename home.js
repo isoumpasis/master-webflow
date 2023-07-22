@@ -324,7 +324,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     dropdownArray.forEach(dropdown => {
       dropdown.classList.remove('closed');
     });
-    _setFocusedLi();
+    // _setFocusedLi();
   };
 
   const _setFocusedLi = () => {
@@ -393,6 +393,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
         dropdownArray[i].classList.remove('closed');
       }
     }
+    _setFocusedLi();
   });
 
   dropdownArray.forEach(item => {
@@ -450,14 +451,13 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     } else {
       // console.log('dropdown was closed before now opening!');
       _openDropdown();
+      _setFocusedLi();
     }
   });
 
-  // inputImg.addEventListener('mouseover', () => {
-  //   _openDropdown();
-  // });
   inputImg.addEventListener('click', () => {
     _openDropdown();
+    _setFocusedLi();
   });
 }
 
