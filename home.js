@@ -481,7 +481,7 @@ function setFocusedLi(dropdownId) {
     focusedLi.classList.add('focused-li');
     dropdown.scrollTop = focusedLi.offsetTop - 170;
   }
-  console.log('focused li', focusedLi.textContent);
+  console.log('focused li', focusedLi?.textContent);
   DropdownFocusedLisDict[dropdownId] = focusedLi;
 }
 
