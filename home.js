@@ -500,8 +500,8 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
 
   console.log('new current', nextFocusedLi);
   nextFocusedLi.classList.add('focused-li');
-  DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
   document.querySelector(`#${dropdownId} .value-list`).scrollTop = nextFocusedLi.offsetTop - 320;
+  DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
 }
 function setPrevFocusedLi(currentFocusedLi, dropdownId) {
   let prevFocusedLi = currentFocusedLi.previousElementSibling;
@@ -513,6 +513,7 @@ function setPrevFocusedLi(currentFocusedLi, dropdownId) {
 
   console.log('new current', prevFocusedLi);
   prevFocusedLi.classList.add('focused-li');
+  document.querySelector(`#${dropdownId} .value-list`).scrollTop = nextFocusedLi.offsetTop - 80;
   DropdownFocusedLisDict[dropdownId] = prevFocusedLi;
 }
 
