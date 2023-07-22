@@ -330,7 +330,17 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _setFocusedLi = () => {
     const currentLis = [...document.querySelectorAll(`#${dropdownId} .value-list li`)];
     currentLis.forEach(li => li.classList.remove('focused-li'));
-    focusedLi = currentLis[0];
+    if (!inputField.value.length) {
+      focusedLi = currentLis[0];
+    } else {
+      const liContents = currentLis.map(li => li.textContent);
+      const index = liContents.indexOf(inputField.value);
+      if (index === -1) {
+        focusedLi = currentLis[0];
+      } else {
+        focusedLi = currentLis[index];
+      }
+    }
     focusedLi.classList.add('focused-li');
     console.log(focusedLi);
   };
