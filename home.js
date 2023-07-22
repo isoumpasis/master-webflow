@@ -492,16 +492,16 @@ function setFocusedLi(dropdownId) {
 }
 
 function setNextFocusedLi(currentFocusedLi, dropdownId) {
-  // console.log(currentFocusedLi, currentFocusedLi.nextElementSibling);
   currentFocusedLi.classList.remove('focused-li');
+  let nextFocusedLi;
   do {
-    currentFocusedLi = currentFocusedLi.nextElementSibling;
-  } while (currentFocusedLi.classList.contains('closed'));
-  // currentFocusedLi = currentFocusedLi.nextElementSibling;
+    nextFocusedLi = currentFocusedLi.nextElementSibling;
+    if (!nextFocusedLi) return;
+  } while (nextFocusedLi.classList.contains('closed'));
 
-  console.log('current', currentFocusedLi);
-  currentFocusedLi.classList.add('focused-li');
-  DropdownFocusedLisDict[dropdownId] = currentFocusedLi;
+  console.log('new current', nextFocusedLi);
+  nextFocusedLi.classList.add('focused-li');
+  DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
 }
 function setPrevFocusedLi(currentFocusedLi) {
   console.log(currentFocusedLi);
