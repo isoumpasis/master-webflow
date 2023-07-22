@@ -462,7 +462,7 @@ function setFocusedLi(dropdownId) {
     li => !li.classList.contains('closed')
   );
 
-  let focusedLi = DropdownFocusedLisDict[dropdownId];
+  let focusedLi;
 
   currentLis.forEach(li => li.classList.remove('focused-li'));
   if (!inputField.value.length) {
@@ -476,11 +476,13 @@ function setFocusedLi(dropdownId) {
       focusedLi = currentLis[index];
     }
   }
+
   if (focusedLi) {
     focusedLi.classList.add('focused-li');
     dropdown.scrollTop = focusedLi.offsetTop - 170;
   }
   console.log('focused li', focusedLi.textContent);
+  DropdownFocusedLisDict[dropdownId] = focusedLi;
 }
 
 function onDropdownItemClick(dropdownId, item) {
