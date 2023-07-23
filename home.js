@@ -357,8 +357,13 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       // console.log('S: makeLis', makeDropdownLis);
       // console.log('SEH: yearLis', yearDropdownLis);
 
+      // const lisToShow = dropdownArray.filter(li =>
+      //   inputWords.some(word =>
+      //     li.textContent.split(' ').some(liWord => liWord.toLowerCase().includes(word))
+      //   )
+      // );
       const lisToShow = dropdownArray.filter(li =>
-        inputWords.some(word =>
+        inputWords.every(word =>
           li.textContent.split(' ').some(liWord => liWord.toLowerCase().includes(word))
         )
       );
@@ -368,9 +373,10 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
       dropdownArray.forEach(li => li.classList.add('closed'));
       lisToShow.forEach(li => li.classList.remove('closed'));
     } else {
-      for (let i = 0; i < dropdownArray.length; i++) {
-        dropdownArray[i].classList.remove('closed');
-      }
+      dropdownArray.forEach(li => li.classList.remove('closed'));
+      // for (let i = 0; i < dropdownArray.length; i++) {
+      //   dropdownArray[i].classList.remove('closed');
+      // }
     }
     setFocusedLi(dropdownId);
   });
@@ -627,9 +633,6 @@ function dropdownValueSelected(value, dbId) {
     // console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
   } else if (dbId === 'engineDropdown') {
-    // let words = value.split(' ');
-    // words.pop();
-    // selectedEngine = words.join(' ');
     selectedEngine = value;
     // console.log('engine on change', selectedEngine);
     engineOnChange(selectedEngine);
@@ -958,13 +961,11 @@ function modelOnChange(value) {
 }
 
 function populateEngineDropdown(fetchedModelObj) {
-  // let convertibleSymbol = '✔️';
   let engineLis = [];
   let engineCodes = [];
 
   fetchedModelObj.forEach(vehicle => {
     vehicle.engineCodes.forEach(code => {
-      // engineCodes.push(`${vehicle.hp} HP - ${code} ${convertibleSymbol}`);
       engineCodes.push(`${vehicle.hp} HP - ${code}`);
     });
   });
@@ -974,12 +975,6 @@ function populateEngineDropdown(fetchedModelObj) {
   );
 
   engineCodes.forEach(engineCode => {
-    // let engineCodeValue = engineCode.split(' ');
-    // engineCodeValue.pop();
-    // engineCodeValue = engineCodeValue.join(' ');
-    // engineLis.push(
-    //   `<li class="custom-li" data-engine-code="${engineCodeValue}"><div>${engineCode}</div></li>`
-    // );
     engineLis.push(`<li class="custom-li"><div>${engineCode}</div></li>`);
   });
 
