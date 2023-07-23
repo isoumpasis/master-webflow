@@ -83,6 +83,7 @@ select::-webkit-scrollbar-thumb,
 
 .focused-li {
   background-color: #dbdbdb;
+  font-weight: bold;
 }
 
 .left-file-container:hover .left-arrow-container,
