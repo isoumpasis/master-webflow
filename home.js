@@ -627,9 +627,10 @@ function dropdownValueSelected(value, dbId) {
     // console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
   } else if (dbId === 'engineDropdown') {
-    let words = value.split(' ');
-    words.pop();
-    selectedEngine = words.join(' ');
+    // let words = value.split(' ');
+    // words.pop();
+    // selectedEngine = words.join(' ');
+    selectedEngine = value;
     // console.log('engine on change', selectedEngine);
     engineOnChange(selectedEngine);
   }
@@ -957,13 +958,14 @@ function modelOnChange(value) {
 }
 
 function populateEngineDropdown(fetchedModelObj) {
-  let convertibleSymbol = '✔️';
+  // let convertibleSymbol = '✔️';
   let engineLis = [];
   let engineCodes = [];
 
   fetchedModelObj.forEach(vehicle => {
     vehicle.engineCodes.forEach(code => {
-      engineCodes.push(`${vehicle.hp} HP - ${code} ${convertibleSymbol}`);
+      // engineCodes.push(`${vehicle.hp} HP - ${code} ${convertibleSymbol}`);
+      engineCodes.push(`${vehicle.hp} HP - ${code}`);
     });
   });
 
@@ -972,12 +974,13 @@ function populateEngineDropdown(fetchedModelObj) {
   );
 
   engineCodes.forEach(engineCode => {
-    let engineCodeValue = engineCode.split(' ');
-    engineCodeValue.pop();
-    engineCodeValue = engineCodeValue.join(' ');
-    engineLis.push(
-      `<li class="custom-li" data-engine-code="${engineCodeValue}"><div>${engineCode}</div></li>`
-    );
+    // let engineCodeValue = engineCode.split(' ');
+    // engineCodeValue.pop();
+    // engineCodeValue = engineCodeValue.join(' ');
+    // engineLis.push(
+    //   `<li class="custom-li" data-engine-code="${engineCodeValue}"><div>${engineCode}</div></li>`
+    // );
+    engineLis.push(`<li class="custom-li"><div>${engineCode}</div></li>`);
   });
 
   const dropdown = engineDropdown.querySelector('.value-list');
