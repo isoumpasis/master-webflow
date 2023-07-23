@@ -82,7 +82,8 @@ select::-webkit-scrollbar-thumb,
 }
 
 .focused-li {
-  background-color: #dbdbdb;
+  /* background-color: #dbdbdb; */
+  background-color: #dfddcf;
   font-weight: bold;
 }
 
