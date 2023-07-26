@@ -111,6 +111,8 @@ input[type='range']::-webkit-slider-thumb {
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 input[type='range']::-moz-range-thumb {
   height: 24px;
@@ -125,6 +127,8 @@ input[type='range']::-moz-range-thumb {
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 input[type='range']::-ms-thumb {
   height: 24px;
@@ -138,6 +142,8 @@ input[type='range']::-ms-thumb {
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
+  -webkit-filter: invert(1);
+  filter: invert(1);
 }
 
 input[type='range']::-webkit-slider-thumb:hover {
