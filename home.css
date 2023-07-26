@@ -169,10 +169,10 @@ input[type='range']::-ms-thumb:hover {
 
 .cover {
   position: absolute;
-  height: 11px;
+  height: 15px;
   right: 0px;
-  bottom: 5px;
-  background: #a7a7a7;
+  bottom: 10px;
+  background: #bebebe;
   border-radius: 25px;
   z-index: 0;
   width: 76%;
