@@ -104,7 +104,7 @@ input[type='range']::-webkit-slider-thumb {
   width: 24px;
   border-radius: 50%;
   background: #000
-    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
+    /* url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png') */
     no-repeat center;
   cursor: grab;
   -webkit-appearance: none;
@@ -117,7 +117,7 @@ input[type='range']::-moz-range-thumb {
   width: 24px;
   border-radius: 50%;
   background: #000
-    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
+    /* url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png') */
     no-repeat center;
   border: none;
   cursor: grab;
@@ -131,7 +131,7 @@ input[type='range']::-ms-thumb {
   width: 24px;
   border-radius: 50%;
   background: #000
-    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
+    /* url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png') */
     no-repeat center;
   cursor: grab;
   -webkit-appearance: none;
