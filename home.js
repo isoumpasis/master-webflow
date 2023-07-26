@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
   initCardFiles();
   initGalleryFiles();
-  suggestedContainers.forEach(cont => (cont.style.display = 'block'));
+  initCalc();
 });
 
 function initCardFiles() {
@@ -335,7 +335,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   const _isDropdownOpen = () => dropdown.classList.contains('open');
 
   inputField.addEventListener('input', () => {
-    console.log('input field input');
     _openDropdown();
 
     if (dropdownId === 'makeDropdown') {
@@ -407,7 +406,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   });
 
   inputField.addEventListener('blur', () => {
-    console.log('input field blur');
     inputField.placeholder = 'ΕΠΙΛΕΞΤΕ ' + placeholderStr;
     const prevSelectedValue = getSelectedValue(customDropdown.id);
     // console.log(prevSelectedValue, inputField.value);
@@ -445,7 +443,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
   //   }
   // });
   inputField.addEventListener('click', () => {
-    console.log('clicked!');
     inputField.placeholder = 'Αναζήτηση...';
     inputField.setSelectionRange(0, inputField.value.length);
 
@@ -492,7 +489,6 @@ function setFocusedLi(dropdownId) {
     focusedLi.classList.add('focused-li');
     dropdown.scrollTop = focusedLi.offsetTop - 170;
   }
-  console.log('focused li', focusedLi?.textContent);
   DropdownFocusedLisDict[dropdownId] = focusedLi;
 }
 
@@ -504,7 +500,6 @@ function setNextFocusedLi(currentFocusedLi, dropdownId) {
   if (!nextFocusedLi) return;
   currentFocusedLi.classList.remove('focused-li');
 
-  console.log('new current', nextFocusedLi);
   nextFocusedLi.classList.add('focused-li');
 
   DropdownFocusedLisDict[dropdownId] = nextFocusedLi;
@@ -523,7 +518,6 @@ function setPrevFocusedLi(currentFocusedLi, dropdownId) {
   if (!prevFocusedLi) return;
   currentFocusedLi.classList.remove('focused-li');
 
-  console.log('new current', prevFocusedLi);
   prevFocusedLi.classList.add('focused-li');
   DropdownFocusedLisDict[dropdownId] = prevFocusedLi;
 
@@ -1384,3 +1378,135 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-extra-container').style.display = 'none';
   }
 }
+
+/*Calculator */
+const calcSliders = document.querySelectorAll('.range-slider-calc');
+const outputs = document.querySelectorAll('.calc-output');
+const lpgResult = document.querySelector('#lpgResult');
+const lpgResultLabel = document.querySelector('#lpgResultLabel');
+const lpgPercentageEl = document.querySelector('#lpgPercentage');
+const petrolCost = document.querySelector('.cost-petrol');
+const lpgCost = document.querySelector('.cost-lpg');
+// const perMonthCheckbox = document.querySelector('#perMonthCheckbox');
+const costLabels = document.querySelectorAll('.cost-label');
+let fuelPrices;
+const calcCovers = document.querySelectorAll('.calc-cover');
+
+function initCalc() {
+  calcSliders.forEach((slider, i) => {
+    outputs[i].value = slider.value;
+    calcCovers[i].style.width = calcCoverWidth(slider) + '%';
+
+    slider.addEventListener('input', () => {
+      outputs[i].value = slider.value;
+      calcCovers[i].style.width = calcCoverWidth(slider) + '%';
+      calcResult();
+    });
+    outputs[i].addEventListener('input', function () {
+      slider.value = this.value;
+      calcCovers[i].style.width = calcCoverWidth(slider) + '%';
+      calcResult();
+    });
+  });
+
+  // perMonthCheckbox.addEventListener('change', function () {
+  //   calcResult();
+  // });
+}
+
+const lpgConsumption = 1.15;
+let lpgGain, lpgExpenses, petrolExpenses;
+
+function calcResult(allowedToTrigger = true) {
+  let petrolCostPerMonth, lpgCostPerMonth;
+
+  const ltPer100Km = parseFloat(document.querySelector('.lt-100km').value);
+  const kmPerYear = parseInt(document.querySelector('.km-year').value);
+  const petrolPrice = parseFloat(document.querySelector('.petrol-price').value);
+  const lpgPrice = parseFloat(document.querySelector('.lpg-price').value);
+
+  petrolCostPerMonth = (ltPer100Km * kmPerYear * petrolPrice) / (100 * 12); // €/month
+
+  lpgCostPerMonth = (ltPer100Km * lpgConsumption * kmPerYear * lpgPrice) / (100 * 12);
+
+  const lpgPercentageValue = (100 * (petrolCostPerMonth - lpgCostPerMonth)) / petrolCostPerMonth;
+
+  // if (!perMonthCheckbox.checked) {
+  costLabels.forEach(label => (label.textContent = 'Ετήσια Έξοδα:'));
+  lpgResultLabel.textContent = 'Ετήσιο όφελος';
+
+  petrolExpenses = +(petrolCostPerMonth * 12).toFixed(1);
+  lpgExpenses = +(lpgCostPerMonth * 12).toFixed(1);
+
+  petrolCost.textContent = petrolExpenses.toFixed(1) + '€';
+  lpgCost.textContent = lpgExpenses.toFixed(1) + '€';
+
+  lpgGain = +((petrolCostPerMonth - lpgCostPerMonth) * 12).toFixed(2);
+
+  lpgResult.textContent = lpgGain.toFixed(2) + '€';
+  lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
+
+  // userSelections.calculator.perMonthCheckbox = false;
+  // } else {
+  // costLabels.forEach(label => (label.textContent = 'Μηνιαία Έξοδα:'));
+  // lpgResultLabel.textContent = 'Μηνιαίο όφελος';
+  // cngResultLabel.textContent = 'Μηνιαίο όφελος';
+
+  // petrolExpenses = +petrolCostPerMonth.toFixed(1);
+  // lpgExpenses = +lpgCostPerMonth.toFixed(1);
+  // cngExpenses = +cngCostPerMonth.toFixed(1);
+
+  // petrolCost.textContent = petrolExpenses.toFixed(1) + '€';
+  // lpgCost.textContent = lpgExpenses.toFixed(1) + '€';
+  // cngCost.textContent = cngExpenses.toFixed(1) + '€';
+
+  // lpgGain = +(petrolCostPerMonth - lpgCostPerMonth).toFixed(2);
+
+  // lpgResult.textContent = lpgGain.toFixed(2) + '€';
+  // lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
+
+  // cngGain = +(petrolCostPerMonth - cngCostPerMonth).toFixed(2);
+
+  // cngResult.textContent = cngGain.toFixed(2) + '€';
+  // cngPercentageEl.textContent = cngPercentageValue.toFixed(1) + '%';
+
+  // petrolExpenses = +(petrolExpenses * 12).toFixed(1);
+  // lpgExpenses = +(lpgExpenses * 12).toFixed(1);
+  // cngExpenses = +(cngExpenses * 12).toFixed(1);
+  // lpgGain = +(lpgGain * 12).toFixed(1);
+  // cngGain = +(cngGain * 12).toFixed(1);
+
+  // userSelections.calculator.perMonthCheckbox = true;
+  // }
+
+  // configureEasyPayMonthlyGain();
+
+  // userSelections.calculator.kmPerYearValue = kmPerYear;
+  // userSelections.calculator.trueConsumption = ltPer100Km;
+  // userSelections.calculator.gain =
+  //   userSelections.selectedFuel === 'lpg' ? lpgResult.textContent : cngResult.textContent;
+  // userSelections.calculator.percentage =
+  //   userSelections.selectedFuel === 'lpg'
+  //     ? lpgPercentageEl.textContent
+  //     : cngPercentageEl.textContent;
+  // updateBasketSection({ calculator: true, easyPayMonthlyGain: true, prokatavoliDoseis: true });
+
+  // if (allowedToTrigger && step2Triggered && !step3Triggered) {
+  //   trigger_calculator_step_3({ triggered_via: 'click' });
+  // }
+
+  // calcResultHypothesis({ years: 5 });
+  // showHintActiveTime = 0;
+  // hintJustClosed = false;
+}
+
+function calcCoverWidth(slider) {
+  const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
+  let offset;
+
+  offset = sliderMaxMin > 0.2 ? 0 : 1.5;
+
+  return sliderMaxMin * 100 + offset;
+}
+
+/* Calculator END */
