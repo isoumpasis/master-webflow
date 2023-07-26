@@ -101,6 +101,38 @@ input[type='range']::-ms-thumb {
   transform-origin: center;
   transition: transform 200ms ease-in-out;
 }
+
+input[type='range']::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff
+    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+    no-repeat;
+  border: none;
+  cursor: grab;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  transform-origin: center;
+  transition: transform 200ms ease-in-out;
+}
+
+input[type='range']::-ms-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff
+    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+    no-repeat;
+  border: none;
+  cursor: grab;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  transform-origin: center;
+  transition: transform 200ms ease-in-out;
+}
 input[type='range']::-webkit-slider-thumb:hover,
 input[type='range']::-moz-range-thumb:hover,
 input[type='range']::-ms-thumb:hover {
