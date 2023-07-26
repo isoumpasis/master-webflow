@@ -66,7 +66,7 @@
 /*Sliders */
 input[type='range'] {
   -webkit-appearance: none;
-  appearance: none;
+  /* appearance: none; */
   width: 100%;
   height: 10px;
   border-radius: 20px;
@@ -96,39 +96,7 @@ input[type='range']::-ms-thumb {
   border: none;
   cursor: grab;
   -webkit-appearance: none;
-  appearance: none;
-  margin-top: -8px;
-  transform-origin: center;
-  transition: transform 200ms ease-in-out;
-}
-
-input[type='range']::-moz-range-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
-    no-repeat;
-  border: none;
-  cursor: grab;
-  -webkit-appearance: none;
-  appearance: none;
-  margin-top: -8px;
-  transform-origin: center;
-  transition: transform 200ms ease-in-out;
-}
-
-input[type='range']::-ms-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
-    no-repeat;
-  border: none;
-  cursor: grab;
-  -webkit-appearance: none;
-  appearance: none;
+  /* appearance: none; */
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
@@ -148,7 +116,7 @@ input[type='range']::-ms-thumb:hover {
 }
 .range-slider-calc::-moz-progress-bar {
   -webkit-appearance: none;
-  appearance: none;
+  /* appearance: none; */
   height: 5px;
   width: 100%;
   background: linear-gradient(90deg, #e5e5e5 50%, #e5e5e5 50%);
@@ -159,7 +127,7 @@ input[type='range']::-ms-thumb:hover {
   height: 11px;
   right: 0px;
   bottom: 5px;
-  background: #005dbc; /*#1146bd;*/
+  background: #a7a7a7;
   border-radius: 25px;
   z-index: 0;
   width: 76%;
