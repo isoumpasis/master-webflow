@@ -123,6 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardFiles();
   initGalleryFiles();
   initCalc();
+  calcResult();
 });
 
 function initCardFiles() {
