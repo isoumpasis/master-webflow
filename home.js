@@ -1443,7 +1443,7 @@ function calcResult(allowedToTrigger = true) {
 
   lpgGain = +((petrolCostPerMonth - lpgCostPerMonth) * 12).toFixed(2);
 
-  lpgResult.textContent = lpgGain.toFixed(2) + '€';
+  lpgResult.textContent = lpgGain.toFixed(1) + '€';
   lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
 
   // userSelections.calculator.perMonthCheckbox = false;
