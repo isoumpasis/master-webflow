@@ -84,25 +84,10 @@ input[type='range']::-ms-track {
   border-radius: 25px;
   z-index: 1;
 }
+
 input[type='range']::-webkit-slider-thumb,
 input[type='range']::-moz-range-thumb,
 input[type='range']::-ms-thumb {
-  height: 24px;
-  width: 24px;
-  border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
-    no-repeat;
-  border: none;
-  cursor: grab;
-  -webkit-appearance: none;
-  /* appearance: none; */
-  margin-top: -8px;
-  transform-origin: center;
-  transition: transform 200ms ease-in-out;
-}
-
-input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
   border: 1px solid #000000;
   height: 36px;
@@ -113,6 +98,22 @@ input[type='range']::-webkit-slider-thumb {
   margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
 }
+/* input[type='range']::-webkit-slider-thumb,
+input[type='range']::-moz-range-thumb,
+input[type='range']::-ms-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff
+    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+    no-repeat;
+  border: none;
+  cursor: grab;
+  margin-top: -8px;
+  transform-origin: center;
+  transition: transform 200ms ease-in-out;
+} */
 input[type='range']::-webkit-slider-thumb:hover,
 input[type='range']::-moz-range-thumb:hover,
 input[type='range']::-ms-thumb:hover {
