@@ -103,23 +103,21 @@ input[type='range']::-webkit-slider-thumb {
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+  background: #000
+    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
     no-repeat;
   cursor: grab;
   -webkit-appearance: none;
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
-  -webkit-filter: invert(1);
-  filter: invert(1);
 }
 input[type='range']::-moz-range-thumb {
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+  background: #000
+    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
     no-repeat;
   border: none;
   cursor: grab;
@@ -127,23 +125,19 @@ input[type='range']::-moz-range-thumb {
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
-  -webkit-filter: invert(1);
-  filter: invert(1);
 }
 input[type='range']::-ms-thumb {
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  background: #fff
-    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+  background: #000
+    url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png')
     no-repeat;
   cursor: grab;
   -webkit-appearance: none;
   margin-top: -8px;
   transform-origin: center;
   transition: transform 200ms ease-in-out;
-  -webkit-filter: invert(1);
-  filter: invert(1);
 }
 
 input[type='range']::-webkit-slider-thumb:hover {
