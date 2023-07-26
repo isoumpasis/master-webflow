@@ -1,34 +1,4 @@
-select::-webkit-scrollbar-track,
-.easy-pay-scroll::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #dfdfdf;
-}
-select::-webkit-scrollbar,
-.easy-pay-scroll::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
-  background-color: #dfdfdf;
-}
-select::-webkit-scrollbar-thumb,
-.easy-pay-scroll::-webkit-scrollbar-thumb {
-  background-color: #d4af37;
-  border-radius: 10px;
-}
-.calc-scroll::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #d4af37;
-}
-.calc-scroll::-webkit-scrollbar {
-  width: 10px;
-  border-radius: 10px;
-  background-color: #d4af37;
-}
-.calc-scroll::-webkit-scrollbar-thumb {
-  background-color: #dfdfdf; /*#00679c5d;*/
-  border-radius: 10px;
-}
 .loading-select {
-  -webkit-appearance: none;
   background: #ffffff
     url(https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6439d21c4eaafcea3ea03cb3_Infinity-1s-200px%20%281%29.svg)
     no-repeat center center;
@@ -36,6 +6,7 @@ select::-webkit-scrollbar-thumb,
   appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   transition: none;
 }
 
@@ -82,7 +53,6 @@ select::-webkit-scrollbar-thumb,
 }
 
 .focused-li {
-  /* background-color: #dbdbdb; */
   background-color: #dfddcf;
   font-weight: bold;
 }
@@ -91,4 +61,75 @@ select::-webkit-scrollbar-thumb,
 .right-file-container:hover .right-arrow-container {
   transform: scale(1.05);
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*Sliders */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 20px;
+}
+input[type='range']:focus {
+  outline: none;
+}
+input[type='range']::-webkit-slider-runnable-track,
+input[type='range']::-moz-range-track,
+input[type='range']::-ms-track {
+  width: 100%;
+  height: 5px;
+  cursor: pointer;
+  /* animate: 0.2s; */
+  border-radius: 25px;
+  z-index: 1;
+}
+input[type='range']::-webkit-slider-thumb,
+input[type='range']::-moz-range-thumb,
+input[type='range']::-ms-thumb {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+  background: #fff
+    url('https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/6229e58af4bfd184665fa57d_resize_24x24.png')
+    no-repeat;
+  border: none;
+  cursor: grab;
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -8px;
+  transform-origin: center;
+  transition: transform 200ms ease-in-out;
+}
+input[type='range']::-webkit-slider-thumb:hover,
+input[type='range']::-moz-range-thumb:hover,
+input[type='range']::-ms-thumb:hover {
+  transform: scale(1.175);
+}
+
+.range-slider-calc {
+  background: #d4af37;
+  background: -moz-linear-gradient(90deg, #d4af37 0%, #f7da00 100%);
+  background: -webkit-linear-gradient(90deg, #d4af37 0%, #f7da00 100%);
+  background: linear-gradient(90deg, #d4af37 0%, #f7da00 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d4af37",endColorstr="#f7da00",GradientType=1);
+}
+.range-slider-calc::-moz-progress-bar {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  width: 100%;
+  background: linear-gradient(90deg, #e5e5e5 50%, #e5e5e5 50%);
+}
+
+.cover {
+  position: absolute;
+  height: 11px;
+  right: 0px;
+  bottom: 5px;
+  background: #005dbc; /*#1146bd;*/
+  border-radius: 25px;
+  z-index: 0;
+  width: 76%;
+  float: right;
 }
