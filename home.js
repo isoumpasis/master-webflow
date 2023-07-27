@@ -1391,7 +1391,8 @@ const lpgCost = document.querySelector('.cost-lpg');
 const perMonthCheckbox = document.querySelector('#perMonthCheckbox');
 const perMonthSquare = document.querySelector('#perMonthSquare');
 const costLabels = document.querySelectorAll('.cost-label');
-let fuelPrices;
+let fuelPrices,
+  isPerMonthChecked = false;
 const calcCovers = document.querySelectorAll('.calc-cover');
 
 function initCalc() {
@@ -1415,6 +1416,7 @@ function initCalc() {
   });
 
   perMonthCheckbox.addEventListener('click', function () {
+    isPerMonthChecked = perMonthSquare.style.display === 'block';
     calcResult();
   });
 }
@@ -1436,7 +1438,7 @@ function calcResult() {
 
   const lpgPercentageValue = (100 * (petrolCostPerMonth - lpgCostPerMonth)) / petrolCostPerMonth;
 
-  if (perMonthSquare.style.display === 'block') {
+  if (!isPerMonthChecked) {
     costLabels.forEach(label => (label.textContent = 'Ετήσια Έξοδα:'));
     lpgResultLabel.textContent = 'Ετήσιο όφελος';
 
