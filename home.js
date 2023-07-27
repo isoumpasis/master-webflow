@@ -1399,6 +1399,7 @@ function initCalcOptions() {
   document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
   document.querySelector('#consumptionMakeNameCalc').textContent = 'αυτοκίνητό σας ';
   document.querySelector('#consumptionMakeNameCalc').classList.remove('calc-info-style');
+  document.querySelector('#consumptionMoreInfo').style.display = 'none';
 }
 
 function selectConsumptionRadioIndex(index) {
@@ -1532,6 +1533,8 @@ function configureCalculatorAfterSuggestion() {
     '#consumptionMakeNameCalc'
   ).textContent = `καταναλώνει το ${selectedMake} ${selectedModel} σας`;
   document.querySelector('#consumptionMakeNameCalc').classList.add('calc-info-style');
+
+  document.querySelector('#consumptionMoreInfo').style.display = 'flex';
 
   calcResult();
 }
