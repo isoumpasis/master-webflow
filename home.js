@@ -533,7 +533,6 @@ function onDropdownItemClick(dropdownId, item) {
   const inputField = document.querySelector(`#${dropdownId} .chosen-value`);
   inputField.value = item.textContent;
 
-  // console.log('inputField.value', inputField.value);
   dropdownValueSelected(inputField.value, dropdownId);
 }
 
@@ -637,6 +636,7 @@ function dropdownValueSelected(value, dbId) {
 function makeOnChange(value) {
   resetDropdowns(['year', 'model', 'engine']);
   removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
+  resetCalc();
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -774,6 +774,7 @@ const openDropdown = dropdownType => {
 function yearOnChange(value) {
   resetDropdowns(['model', 'engine']);
   removeFadeIn([modelDropdown, engineDropdown]);
+  resetCalc();
 
   // descriptionSelect.disabled = true;
   // descriptionSelect.innerHTML = '<option>Περιγραφή</option>';
@@ -879,6 +880,7 @@ function populateModelDropdown(fetchedModels) {
 function modelOnChange(value) {
   resetDropdowns(['engine']);
   removeFadeIn([engineDropdown]);
+  resetCalc();
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -1003,34 +1005,34 @@ function engineOnChange(value) {
   const foundVehicles = fetchedModelObj.filter(
     model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
   );
-  // console.log('found vehciels', foundVehicles);
+  // console.log('found vehicles', foundVehicles);
 
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
 
   console.log('foundVehicleOBj', foundVehicleObj);
 
   showResults(fetchedModelObj);
-  return; //
+  // return; //
 
-  // if (!value) {
-  // showGuarantee(false);
-  // resetCalc();
-  // resetEasyPay();
-  // step2Triggered = false;
-  //
-  // calcResult(false);
-  // updateBasketSection({ resetNoVehicle: true });
-  // resetProgressSteps();
-  // togglePulse('.summary-pulse', false);
-  // resetNotConvForm();
-  //
-  // userSelections.vehicle = {};
-  // delete userSelections.calculator.driveOftenIndex;
-  // userSelections.easyPay = {};
-  // saveUserSelections();
+  if (!value) {
+    // showGuarantee(false);
+    resetCalc();
+    // resetEasyPay();
+    // step2Triggered = false;
 
-  // return;
-  // }
+    // calcResult(false);
+    // updateBasketSection({ resetNoVehicle: true });
+    // resetProgressSteps();
+    // togglePulse('.summary-pulse', false);
+    // resetNotConvForm();
+
+    // userSelections.vehicle = {};
+    // delete userSelections.calculator.driveOftenIndex;
+    // userSelections.easyPay = {};
+    // saveUserSelections();
+
+    return;
+  }
 
   // showResults(fetchedModelObj);
   // calcResult(false);
@@ -1049,7 +1051,7 @@ function runConsumptionRace(vehicles) {
 function showResults(fetchedModelObj) {
   configureSuggestedContainer();
 
-  // configureCalculatorAfterSuggestion();
+  configureCalculatorAfterSuggestion();
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -1124,49 +1126,6 @@ function showResults(fetchedModelObj) {
 function isMobile() {
   return window.matchMedia('screen and (max-width: 768px)').matches;
 }
-
-// function configureCalculatorAfterSuggestion() {
-// document.querySelector('#calcTitle').textContent =
-//   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
-
-// document.querySelector(
-//   '#inConsumption .text-span'
-// ).innerHTML = `(${foundVehicleObj.consumption[0]}L/100km)`;
-// document.querySelector(
-//   '#outConsumption .text-span'
-// ).innerHTML = `(${foundVehicleObj.consumption[1]}L/100km)`;
-// document.querySelector(
-//   '#combinedConsumption .text-span'
-// ).innerHTML = `(${foundVehicleObj.consumption[2]}L/100km)`;
-
-// const consumptionRadios = document.querySelectorAll('.radio-button.w-radio');
-
-// consumptionRadios[0].dataset.cons = foundVehicleObj.consumption[0];
-// consumptionRadios[1].dataset.cons = foundVehicleObj.consumption[1];
-// consumptionRadios[2].dataset.cons = foundVehicleObj.consumption[2];
-
-// document.querySelector('#calcContainerVehicle').style.display = 'block';
-// document.querySelector('#calcContainerNoVehicle').style.display = 'none';
-
-// sliders[1].value = foundVehicleObj.consumption[getDriveOftenIndex()];
-// calcOutputs[1].value = sliders[1].value;
-// calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
-
-// [...document.querySelectorAll('.in-consumption')].map(
-//   el => (el.textContent = foundVehicleObj.consumption[0])
-// );
-// [...document.querySelectorAll('.out-consumption')].map(
-//   el => (el.textContent = foundVehicleObj.consumption[1])
-// );
-// [...document.querySelectorAll('.combined-consumption')].map(
-//   el => (el.textContent = foundVehicleObj.consumption[2])
-// );
-
-// document.querySelector(
-//   '#consumptionModelNameCalc'
-// ).textContent = `${makeSelect.value} ${modelSelect.value} (${yearSelect.value})`;
-// document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
-// }
 
 function configureSuggestedContainer() {
   showCarResultContainer();
@@ -1433,14 +1392,12 @@ function initCalc() {
   document.querySelector('.consumption-wrapper').style.display = 'none';
 }
 
-function getCheckedConsumptionRadio() {
-  let checkedRadio = null;
-  document.querySelectorAll('.consumption-label input[type=radio]').forEach((radio, i) => {
-    if (radio.checked) {
-      checkedRadio = radio;
-    }
+function getConsumptionRadioIndex() {
+  let index = 2;
+  [...document.querySelectorAll('.consumption-label input')].forEach((el, i) => {
+    if (el.checked) index = i;
   });
-  return checkedRadio;
+  return index;
 }
 
 const lpgConsumption = 1.15;
@@ -1529,3 +1486,45 @@ function calcCoverWidth(slider) {
 }
 
 /* Calculator END */
+
+function configureCalculatorAfterSuggestion() {
+  // document.querySelector('#calcTitle').textContent =
+  //   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
+
+  document.querySelector('.in-consumption-value').textContent = foundVehicleObj.consumption[0];
+  document.querySelector('.out-consumption-value').textContent = foundVehicleObj.consumption[1];
+  document.querySelector('.combined-consumption-value').textContent =
+    foundVehicleObj.consumption[2];
+
+  // document.querySelector('#calcContainerVehicle').style.display = 'block';
+  // document.querySelector('#calcContainerNoVehicle').style.display = 'none';
+
+  calcSliders[1].value = foundVehicleObj.consumption[getConsumptionRadioIndex()];
+  calcOutputs[1].value = calcSliders[1].value;
+  calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
+
+  //   document.querySelector(
+  //     '#consumptionModelNameCalc'
+  //   ).textContent = `${modelSelect.value} (${yearSelect.value})`;
+  //   document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+}
+
+function resetCalc() {
+  // document.querySelector('#calcTitle').innerHTML =
+  'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
+
+  // document.querySelector('#consumptionModelNameCalc').textContent = 'αυτοκίνητό σας';
+  // document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
+
+  // document.querySelector('#calcContainerVehicle').style.display = 'none';
+  // document.querySelector('#calcContainerNoVehicle').style.display = 'flex';
+
+  sliders[1].value = 8;
+  outputs[1].value = 8;
+  calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
+
+  // if (!getActiveContainer()) {
+  //   document.querySelector('#vehicle').style.paddingBottom = '6%';
+  //   document.querySelector('#calculator').style.paddingTop = '6%';
+  // }
+}
