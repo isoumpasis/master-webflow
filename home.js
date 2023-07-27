@@ -1503,7 +1503,7 @@ function configureCalculatorAfterSuggestion() {
   calcOutputs[1].value = calcSliders[1].value;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
-  document.querySelector('.consumption-wrapper').style.display = 'block';
+  document.querySelector('.consumption-wrapper').style.display = 'flex';
 
   //   document.querySelector(
   //     '#consumptionModelNameCalc'
