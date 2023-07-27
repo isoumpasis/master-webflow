@@ -1391,14 +1391,7 @@ function initCalc() {
   selectConsumptionRadioIndex(2);
   document.querySelector('.consumption-wrapper').style.display = 'none';
 
-  initCalcOptions();
-}
-
-function initCalcOptions() {
-  document.querySelector('#consumptionHeaderTextCalc').textContent =
-    'Πόσα λίτρα καταναλώνετε στα 100 χλμ;';
-  document.querySelector('#consumptionMoreInfoTextCalc').textContent = 'αυτοκινήτου';
-  document.querySelector('#consumptionMoreInfo').style.display = 'none';
+  resetCalc();
 }
 
 function selectConsumptionRadioIndex(index) {
@@ -1560,15 +1553,18 @@ function resetCalc() {
   // document.querySelector('#calcTitle').innerHTML =
   // 'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
 
-  initCalcOptions();
+  document.querySelector('#consumptionHeaderTextCalc').textContent =
+    'Πόσα λίτρα καταναλώνετε στα 100 χλμ;';
+  document.querySelector('#consumptionMoreInfoTextCalc').textContent = 'αυτοκινήτου';
+  document.querySelector('#consumptionMoreInfo').style.display = 'none';
+  document.querySelector('.amortization-wrapper').style.display = 'none';
+  document.querySelector('.amortization-add-car').style.display = 'block';
 
   calcSliders[1].value = 8;
   calcOutputs[1].value = 8;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
   document.querySelector('.consumption-wrapper').style.display = 'none';
-  document.querySelector('.amortization-wrapper').style.display = 'none';
-  document.querySelector('.amortization-add-car').style.display = 'block';
 
   // if (!getActiveContainer()) {
   //   document.querySelector('#vehicle').style.paddingBottom = '6%';
