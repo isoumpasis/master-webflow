@@ -1509,19 +1509,20 @@ function configureCalculatorAfterSuggestion() {
   document.querySelector('.combined-consumption-value').textContent =
     foundVehicleObj.consumption[2];
 
-  // document.querySelector('#calcContainerVehicle').style.display = 'block';
-  // document.querySelector('#calcContainerNoVehicle').style.display = 'none';
-
   calcSliders[1].value = foundVehicleObj.consumption[getConsumptionRadioIndex()];
   calcOutputs[1].value = calcSliders[1].value;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
   document.querySelector('.consumption-wrapper').style.display = 'flex';
 
-  //   document.querySelector(
-  //     '#consumptionModelNameCalc'
-  //   ).textContent = `${modelSelect.value} (${yearSelect.value})`;
-  //   document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+  document.querySelector(
+    '#consumptionModelNameCalc'
+  ).textContent = `καταναλώνει το ${selectedMake} ${selectedModel} σας`;
+  document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+  document.querySelector(
+    '#consumptionMakeNameCalc'
+  ).textContent = `καταναλώνει το ${selectedMake} ${selectedModel} σας`;
+  document.querySelector('#consumptionMakeNameCalc').classList.add('calc-info-style');
 
   calcResult();
 }
@@ -1530,11 +1531,10 @@ function resetCalc() {
   // document.querySelector('#calcTitle').innerHTML =
   // 'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
 
-  // document.querySelector('#consumptionModelNameCalc').textContent = 'αυτοκίνητό σας';
-  // document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
-
-  // document.querySelector('#calcContainerVehicle').style.display = 'none';
-  // document.querySelector('#calcContainerNoVehicle').style.display = 'flex';
+  document.querySelector('#consumptionModelNameCalc').textContent = 'καταναλώνετε';
+  document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
+  document.querySelector('#consumptionMakeNameCalc').textContent = 'αυτοκίνητό σας';
+  document.querySelector('#consumptionMakeNameCalc').classList.remove('calc-info-style');
 
   calcSliders[1].value = 8;
   calcOutputs[1].value = 8;
