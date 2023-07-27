@@ -1436,7 +1436,7 @@ function calcResult() {
 
   const lpgPercentageValue = (100 * (petrolCostPerMonth - lpgCostPerMonth)) / petrolCostPerMonth;
 
-  if (perMonthSquare.style.display !== 'block') {
+  if (perMonthSquare.style.display === 'block') {
     costLabels.forEach(label => (label.textContent = 'Ετήσια Έξοδα:'));
     lpgResultLabel.textContent = 'Ετήσιο όφελος';
 
