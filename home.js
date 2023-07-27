@@ -1382,19 +1382,32 @@ function initCalc() {
   document.querySelectorAll('.consumption-label').forEach(label => {
     label.addEventListener('click', () => {
       const value = +label.querySelector('.consumption-value').textContent;
-
       calcSliders[1].value = value;
       calcOutputs[1].value = value;
       calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
       calcResult();
     });
   });
+  selectConsumptionRadioIndex(2);
   document.querySelector('.consumption-wrapper').style.display = 'none';
+}
+
+function selectConsumptionRadioIndex(index) {
+  document
+    .querySelectorAll('.consumption-label input')
+    .forEach((radio, i) => (radio.checked = i === index));
+  document
+    .querySelectorAll('.consumption-radio-input')
+    .forEach((radio, i) =>
+      i === index
+        ? radio.classList.add('w--redirected-checked')
+        : radio.classList.remove('w--redirected-checked')
+    );
 }
 
 function getConsumptionRadioIndex() {
   let index = 2;
-  [...document.querySelectorAll('.consumption-label input')].forEach((el, i) => {
+  document.querySelectorAll('.consumption-label input').forEach((el, i) => {
     if (el.checked) index = i;
   });
   return index;
