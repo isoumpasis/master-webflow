@@ -1149,7 +1149,7 @@ function isMobile() {
 // document.querySelector('#calcContainerNoVehicle').style.display = 'none';
 
 // sliders[1].value = foundVehicleObj.consumption[getDriveOftenIndex()];
-// outputs[1].value = sliders[1].value;
+// calcOutputs[1].value = sliders[1].value;
 // calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
 
 // [...document.querySelectorAll('.in-consumption')].map(
@@ -1382,7 +1382,7 @@ function configureVehicleInformation() {
 
 /*Calculator */
 const calcSliders = document.querySelectorAll('.range-slider-calc');
-const outputs = document.querySelectorAll('.calc-output');
+const calcOutputs = document.querySelectorAll('.calc-output');
 const lpgResult = document.querySelector('#lpgResult');
 const lpgResultLabel = document.querySelector('#lpgResultLabel');
 const lpgPercentageEl = document.querySelector('#lpgPercentage');
@@ -1400,15 +1400,15 @@ function initCalc() {
   form.setAttribute('novalidate', true);
   form.addEventListener('submit', e => e.preventDefault());
   calcSliders.forEach((slider, i) => {
-    outputs[i].value = slider.value;
+    calcOutputs[i].value = slider.value;
     calcCovers[i].style.width = calcCoverWidth(slider) + '%';
 
     slider.addEventListener('input', () => {
-      outputs[i].value = slider.value;
+      calcOutputs[i].value = slider.value;
       calcCovers[i].style.width = calcCoverWidth(slider) + '%';
       calcResult();
     });
-    outputs[i].addEventListener('input', function () {
+    calcOutputs[i].addEventListener('input', function () {
       slider.value = this.value;
       calcCovers[i].style.width = calcCoverWidth(slider) + '%';
       calcResult();
@@ -1419,7 +1419,28 @@ function initCalc() {
     isPerMonthChecked = perMonthSquare.style.display !== 'block';
     calcResult();
   });
+
+  [...document.querySelectorAll('.consumption-label')].forEach(label => {
+    label.addEventListener('click', () => {
+      const value = +label.querySelector('.consumption-value').textContent;
+
+      calcSliders[1].value = value;
+      calcOutputs[1].value = value;
+      calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
+      calcResult();
+    });
+  });
 }
+
+// function getDriveOftenRadioIndex() {
+//   let index;
+//   document.querySelectorAll('.radio-button.w-radio input').forEach((radio, i) => {
+//     if (radio.checked) {
+//       index = i;
+//     }
+//   });
+//   return index;
+// }
 
 const lpgConsumption = 1.15;
 let lpgGain, lpgExpenses, petrolExpenses;
