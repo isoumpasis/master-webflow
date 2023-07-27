@@ -1416,7 +1416,7 @@ function initCalc() {
   });
 
   perMonthCheckbox.addEventListener('click', function () {
-    isPerMonthChecked = perMonthSquare.style.display === 'block';
+    isPerMonthChecked = perMonthSquare.style.display !== 'block';
     calcResult();
   });
 }
