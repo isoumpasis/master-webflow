@@ -1539,7 +1539,7 @@ function configureCalculatorAfterSuggestion() {
 
   document.querySelector(
     '#consumptionMoreInfoTextCalc'
-  ).textContent = `${selectedMake} ${selectedModel} σας`;
+  ).textContent = `${selectedMake} ${selectedModel} `;
 
   document.querySelector('#consumptionMoreInfo').style.display = 'flex';
 
