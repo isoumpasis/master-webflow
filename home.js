@@ -1422,7 +1422,7 @@ function initCalc() {
 const lpgConsumption = 1.15;
 let lpgGain, lpgExpenses, petrolExpenses;
 
-function calcResult(allowedToTrigger = true) {
+function calcResult() {
   let petrolCostPerMonth, lpgCostPerMonth;
 
   const ltPer100Km = parseFloat(document.querySelector('.lt-100km').value);
@@ -1436,7 +1436,7 @@ function calcResult(allowedToTrigger = true) {
 
   const lpgPercentageValue = (100 * (petrolCostPerMonth - lpgCostPerMonth)) / petrolCostPerMonth;
 
-  if (!perMonthSquare.style.display === 'block') {
+  if (perMonthSquare.style.display !== 'block') {
     costLabels.forEach(label => (label.textContent = 'Ετήσια Έξοδα:'));
     lpgResultLabel.textContent = 'Ετήσιο όφελος';
 
