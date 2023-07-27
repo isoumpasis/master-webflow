@@ -1527,11 +1527,11 @@ function configureCalculatorAfterSuggestion() {
 
   document.querySelector(
     '#consumptionModelNameCalc'
-  ).textContent = `καταναλώνει το ${selectedMake} ${selectedModel} σας`;
+  ).textContent = `καταναλώνει το ${selectedMake} σας`;
   document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
   document.querySelector(
     '#consumptionMakeNameCalc'
-  ).textContent = `καταναλώνει το ${selectedMake} ${selectedModel} σας`;
+  ).textContent = `${selectedMake} ${selectedModel} σας`;
   document.querySelector('#consumptionMakeNameCalc').classList.add('calc-info-style');
 
   document.querySelector('#consumptionMoreInfo').style.display = 'flex';
