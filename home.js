@@ -1503,6 +1503,8 @@ function configureCalculatorAfterSuggestion() {
   calcOutputs[1].value = calcSliders[1].value;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
+  document.querySelector('.consumption-wrapper').style.display = 'block';
+
   //   document.querySelector(
   //     '#consumptionModelNameCalc'
   //   ).textContent = `${modelSelect.value} (${yearSelect.value})`;
@@ -1522,6 +1524,8 @@ function resetCalc() {
   calcSliders[1].value = 8;
   calcOutputs[1].value = 8;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
+
+  document.querySelector('.consumption-wrapper').style.display = 'none';
 
   // if (!getActiveContainer()) {
   //   document.querySelector('#vehicle').style.paddingBottom = '6%';
