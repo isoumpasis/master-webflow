@@ -1397,7 +1397,7 @@ function selectConsumptionRadioIndex(index) {
     .querySelectorAll('.consumption-label input')
     .forEach((radio, i) => (radio.checked = i === index));
   document
-    .querySelectorAll('.consumption-radio-input')
+    .querySelectorAll('.radio-button.w-radio-input')
     .forEach((radio, i) =>
       i === index
         ? radio.classList.add('w--redirected-checked')
