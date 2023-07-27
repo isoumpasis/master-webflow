@@ -1420,7 +1420,7 @@ function initCalc() {
     calcResult();
   });
 
-  [...document.querySelectorAll('.consumption-label')].forEach(label => {
+  document.querySelectorAll('.consumption-label').forEach(label => {
     label.addEventListener('click', () => {
       const value = +label.querySelector('.consumption-value').textContent;
 
@@ -1432,15 +1432,15 @@ function initCalc() {
   });
 }
 
-// function getDriveOftenRadioIndex() {
-//   let index;
-//   document.querySelectorAll('.radio-button.w-radio input').forEach((radio, i) => {
-//     if (radio.checked) {
-//       index = i;
-//     }
-//   });
-//   return index;
-// }
+function getCheckedConsumptionRadio() {
+  let checkedRadio = null;
+  document.querySelectorAll('.consumption-label input[type=radio]').forEach((radio, i) => {
+    if (radio.checked) {
+      checkedRadio = radio;
+    }
+  });
+  return checkedRadio;
+}
 
 const lpgConsumption = 1.15;
 let lpgGain, lpgExpenses, petrolExpenses;
