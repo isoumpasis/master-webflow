@@ -1390,6 +1390,13 @@ function initCalc() {
   });
   selectConsumptionRadioIndex(2);
   document.querySelector('.consumption-wrapper').style.display = 'none';
+
+  initCalcOptions();
+}
+
+function initCalcOptions() {
+  document.querySelector('#consumptionModelNameCalc').textContent = 'αυτοκίνητό σας';
+  document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
 }
 
 function selectConsumptionRadioIndex(index) {
