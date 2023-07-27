@@ -1395,10 +1395,9 @@ function initCalc() {
 }
 
 function initCalcOptions() {
-  document.querySelector('#consumptionModelNameCalc').textContent = 'καταναλώνετε ';
-  document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
-  document.querySelector('#consumptionMakeNameCalc').textContent = 'αυτοκίνητό σας ';
-  document.querySelector('#consumptionMakeNameCalc').classList.remove('calc-info-style');
+  document.querySelector('#consumptionHeaderTextCalc').textContent =
+    'Πόσα λίτρα καταναλώνετε στα 100 χλμ;';
+  document.querySelector('#consumptionMoreInfoTextCalc').textContent = 'αυτοκινήτου';
   document.querySelector('#consumptionMoreInfo').style.display = 'none';
 }
 
@@ -1526,13 +1525,12 @@ function configureCalculatorAfterSuggestion() {
   document.querySelector('.consumption-wrapper').style.display = 'flex';
 
   document.querySelector(
-    '#consumptionModelNameCalc'
-  ).textContent = `καταναλώνει το ${selectedMake} σας`;
-  document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+    '#consumptionHeaderTextCalc'
+  ).textContent = `Πόσα λίτρα καταναλώνει το ${selectedMake} σας στα 100 χλμ;`;
+
   document.querySelector(
-    '#consumptionMakeNameCalc'
+    '#consumptionMoreInfoTextCalc'
   ).textContent = `${selectedMake} ${selectedModel} σας`;
-  document.querySelector('#consumptionMakeNameCalc').classList.add('calc-info-style');
 
   document.querySelector('#consumptionMoreInfo').style.display = 'flex';
 
