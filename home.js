@@ -1459,6 +1459,7 @@ function calcResult() {
     lpgResult.textContent = lpgGain.toFixed(1) + '€';
     lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
 
+    // configureAmortization(lpgGain);
     // userSelections.calculator.perMonthCheckbox = false;
   } else {
     costLabels.forEach(
@@ -1484,6 +1485,7 @@ function calcResult() {
     lpgExpenses = +(lpgExpenses * 12).toFixed(1);
     lpgGain = +(lpgGain * 12).toFixed(1);
 
+    // configureAmortization(lpgGain);
     // userSelections.calculator.perMonthCheckbox = true;
   }
 
@@ -1507,6 +1509,10 @@ function calcResult() {
   // showHintActiveTime = 0;
   // hintJustClosed = false;
 }
+
+// function configureAmortization(isMonthlylpgGain) {
+
+// }
 
 function calcCoverWidth(slider) {
   const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
@@ -1544,6 +1550,9 @@ function configureCalculatorAfterSuggestion() {
 
   document.querySelector('#consumptionMoreInfo').style.display = 'flex';
 
+  document.querySelector('.amortization-wrapper').style.display = 'flex';
+  document.querySelector('.amortization-add-car').style.display = 'none';
+
   calcResult();
 }
 
@@ -1558,6 +1567,8 @@ function resetCalc() {
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
   document.querySelector('.consumption-wrapper').style.display = 'none';
+  document.querySelector('.amortization-wrapper').style.display = 'none';
+  document.querySelector('.amortization-add-car').style.display = 'block';
 
   // if (!getActiveContainer()) {
   //   document.querySelector('#vehicle').style.paddingBottom = '6%';
