@@ -1511,7 +1511,7 @@ function configureCalculatorAfterSuggestion() {
 
 function resetCalc() {
   // document.querySelector('#calcTitle').innerHTML =
-  'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
+  // 'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
 
   // document.querySelector('#consumptionModelNameCalc').textContent = 'αυτοκίνητό σας';
   // document.querySelector('#consumptionModelNameCalc').classList.remove('calc-info-style');
@@ -1519,9 +1519,9 @@ function resetCalc() {
   // document.querySelector('#calcContainerVehicle').style.display = 'none';
   // document.querySelector('#calcContainerNoVehicle').style.display = 'flex';
 
-  sliders[1].value = 8;
-  outputs[1].value = 8;
-  calcCovers[1].style.width = calcCoverWidth(sliders[1]) + '%';
+  calcSliders[1].value = 8;
+  calcOutputs[1].value = 8;
+  calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
   // if (!getActiveContainer()) {
   //   document.querySelector('#vehicle').style.paddingBottom = '6%';
