@@ -1440,7 +1440,12 @@ function calcResult() {
   const lpgPercentageValue = (100 * (petrolCostPerMonth - lpgCostPerMonth)) / petrolCostPerMonth;
 
   if (!isPerMonthChecked) {
-    costLabels.forEach(label => (label.textContent = 'Ετήσια Έξοδα:'));
+    costLabels.forEach(
+      label =>
+        (label.textContent = `Ετήσια Έξοδα ${
+          label.classList.contains('petrol') ? 'Βενζίνης' : 'LPG'
+        }:`)
+    );
     lpgResultLabel.textContent = 'Ετήσιο όφελος';
 
     petrolExpenses = +(petrolCostPerMonth * 12).toFixed(1);
@@ -1456,7 +1461,12 @@ function calcResult() {
 
     // userSelections.calculator.perMonthCheckbox = false;
   } else {
-    costLabels.forEach(label => (label.textContent = 'Μηνιαία Έξοδα:'));
+    costLabels.forEach(
+      label =>
+        (label.textContent = `Μηνιαία Έξοδα ${
+          label.classList.contains('petrol') ? 'Βενζίνης' : 'LPG'
+        }:`)
+    );
     lpgResultLabel.textContent = 'Μηνιαίο όφελος';
 
     petrolExpenses = +petrolCostPerMonth.toFixed(1);
