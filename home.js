@@ -1430,6 +1430,7 @@ function initCalc() {
       calcResult();
     });
   });
+  document.querySelector('.consumption-wrapper').style.display = 'none';
 }
 
 function getCheckedConsumptionRadio() {
