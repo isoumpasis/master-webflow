@@ -1509,6 +1509,8 @@ function configureCalculatorAfterSuggestion() {
   //     '#consumptionModelNameCalc'
   //   ).textContent = `${modelSelect.value} (${yearSelect.value})`;
   //   document.querySelector('#consumptionModelNameCalc').classList.add('calc-info-style');
+
+  calcResult();
 }
 
 function resetCalc() {
