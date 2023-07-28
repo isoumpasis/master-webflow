@@ -1590,7 +1590,8 @@ function resetCalc() {
   // }
 }
 
-function getSystemNamePrice(activeContainer = getActiveContainer()) {
+function getSystemNamePrice(suggestedContainer) {
+  if (!suggestedContainer) suggestedContainer = activeContainer;
   const name = SystemDict.systems[activeContainer.id];
 
   const priceNoVAT = activeContainer.querySelector('.price').textContent.split('€')[0];
