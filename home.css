@@ -185,5 +185,5 @@ input[type='range']::-ms-thumb:hover {
 }
 
 .fuel-prices-select option:hover {
-  background: #dfddcf;
+  background-color: #dfddcf !important;
 }
