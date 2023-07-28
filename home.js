@@ -1454,7 +1454,9 @@ function calcResult() {
     lpgResult.textContent = lpgGain.toFixed(1) + '€';
     lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
 
-    configureAmortizationInMonths((lpgGain / 12).toFixed(1));
+    if (activeContainer) {
+      configureAmortizationInMonths((lpgGain / 12).toFixed(1));
+    }
     // userSelections.calculator.perMonthCheckbox = false;
   } else {
     costLabels.forEach(
@@ -1472,7 +1474,9 @@ function calcResult() {
     lpgCost.textContent = lpgExpenses.toFixed(1) + '€';
 
     lpgGain = +(petrolCostPerMonth - lpgCostPerMonth).toFixed(2);
-    configureAmortizationInMonths(lpgGain);
+    if (activeContainer) {
+      configureAmortizationInMonths(lpgGain);
+    }
 
     lpgResult.textContent = lpgGain.toFixed(1) + '€';
     lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
