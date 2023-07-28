@@ -89,6 +89,8 @@ const TankDict = {
   }
 };
 
+const VAT = 1.24;
+
 let fetchedYears;
 let fetchedModels;
 let fetchedModelObj;
@@ -1452,7 +1454,7 @@ function calcResult() {
     lpgResult.textContent = lpgGain.toFixed(1) + '€';
     lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
 
-    // configureAmortization(lpgGain);
+    configureAmortizationInMonths((lpgGain / 12).toFixed(1));
     // userSelections.calculator.perMonthCheckbox = false;
   } else {
     costLabels.forEach(
@@ -1470,6 +1472,7 @@ function calcResult() {
     lpgCost.textContent = lpgExpenses.toFixed(1) + '€';
 
     lpgGain = +(petrolCostPerMonth - lpgCostPerMonth).toFixed(2);
+    configureAmortizationInMonths(lpgGain);
 
     lpgResult.textContent = lpgGain.toFixed(1) + '€';
     lpgPercentageEl.textContent = lpgPercentageValue.toFixed(1) + '%';
@@ -1478,7 +1481,6 @@ function calcResult() {
     lpgExpenses = +(lpgExpenses * 12).toFixed(1);
     lpgGain = +(lpgGain * 12).toFixed(1);
 
-    // configureAmortization(lpgGain);
     // userSelections.calculator.perMonthCheckbox = true;
   }
 
@@ -1503,9 +1505,21 @@ function calcResult() {
   // hintJustClosed = false;
 }
 
-// function configureAmortization(isMonthlylpgGain) {
+function configureAmortizationInMonths(lpgMonthlyGain) {
+  const { priceWithVAT } = getSystemNamePrice();
 
-// }
+  // 1200 = lpgGain(ετήσιο)
+  // 100 = lpgGain (month)
+  // 1500 = priceWithVAT
+  // priceWithVAT / lpgMonthlyGain
+
+  console.log('lpgMonthlyGain', lpgMonthlyGain, 'priceWithVAT', priceWithVAT);
+
+  const amortizationInMonths = priceWithVAT / lpgMonthlyGain;
+  console.log('amortizationInMonths', amortizationInMonths);
+
+  document.querySelector('.amortization-months').textContent = amortizationInMonths;
+}
 
 function calcCoverWidth(slider) {
   const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
@@ -1570,4 +1584,13 @@ function resetCalc() {
   //   document.querySelector('#vehicle').style.paddingBottom = '6%';
   //   document.querySelector('#calculator').style.paddingTop = '6%';
   // }
+}
+
+function getSystemNamePrice(activeContainer = getActiveContainer()) {
+  const name = SystemDict.systems[activeContainer.id];
+
+  const priceNoVAT = activeContainer.querySelector('.price').textContent.split('€')[0];
+
+  const priceWithVAT = priceNoVAT * VAT;
+  return { name, priceNoVAT, priceWithVAT };
 }
