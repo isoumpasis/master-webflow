@@ -1511,18 +1511,14 @@ function calcResult() {
 
 function configureAmortizationInMonths(lpgMonthlyGain) {
   const { priceWithVAT } = getSystemNamePrice();
-
-  // 1200 = lpgGain(ετήσιο)
-  // 100 = lpgGain (month)
-  // 1500 = priceWithVAT
-  // priceWithVAT / lpgMonthlyGain
-
-  console.log('lpgMonthlyGain', lpgMonthlyGain, 'priceWithVAT', priceWithVAT);
-
   const amortizationInMonths = Math.floor(priceWithVAT / lpgMonthlyGain);
-  console.log('amortizationInMonths', amortizationInMonths);
 
   document.querySelector('.amortization-months').textContent = amortizationInMonths;
+  if (amortizationInMonths === 1) {
+    document.querySelector('.amortization-wrapper .result-text-block').textContent = 'μήνα';
+  } else {
+    document.querySelector('.amortization-wrapper .result-text-block').textContent = 'μήνες';
+  }
 }
 
 function calcCoverWidth(slider) {
