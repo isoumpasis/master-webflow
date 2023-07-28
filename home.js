@@ -1390,7 +1390,7 @@ function initCalc() {
       calcResult();
     });
   });
-  selectConsumptionRadioIndex(2);
+  selectConsumptionRadioIndex(0);
   document.querySelector('.consumption-wrapper').style.display = 'none';
 
   resetCalc();
