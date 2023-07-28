@@ -1,5 +1,5 @@
-let serverUrl = 'https://masterdirect.herokuapp.com/';
-// let serverUrl = 'http://localhost:1968/';
+// let serverUrl = 'https://masterdirect.herokuapp.com/';
+let serverUrl = 'http://localhost:1968/';
 
 const baseUrl = location.origin;
 const mapUrl = '/stores';
@@ -119,6 +119,8 @@ let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
 const suggestedContainers = document.querySelectorAll('.suggested-container');
 let activeContainer;
+
+const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
@@ -1393,7 +1395,147 @@ function initCalc() {
   selectConsumptionRadioIndex(0);
   document.querySelector('.consumption-wrapper').style.display = 'none';
 
+  initFuelPrices();
+
   resetCalc();
+}
+
+function initFuelPrices() {
+  fuelPricesSelect.addEventListener('change', e => {
+    locationOnChange(e.target.value);
+    // fuelPricesSelectVehicle.value = e.target.value;
+    // modifyFuelPriceSliders(e.target.value, { save: true });
+    // [...document.querySelectorAll('.place-calc-descr')].map(
+    //   el =>
+    //     (el.textContent =
+    //       fuelPricesSelectVehicle.options[fuelPricesSelectVehicle.selectedIndex].textContent)
+    // );
+
+    // storesLocationSelect.value = e.target.value;
+    // locationOnChange(storesLocationSelect.value);
+  });
+  fetch(urlFuelPrices, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      data.pop(); //removes m.o.
+      fuelPrices = data;
+      const newValue = 'ΑΤΤΙΚΗΣ';
+      // userSelections.fuelPrices = {
+      //   prices: fuelPrices
+      // };
+      locationOnChange(newValue);
+    })
+    .catch(e => console.error('Error on FuelPrices Fetch:', e));
+}
+
+function setPlaceSelect(placeValue) {
+  fuelPricesSelect.value = placeValue;
+  document
+    .querySelectorAll('.place-fuel-text')
+    .forEach(
+      el => (el.textContent = fuelPricesSelect.options[fuelPricesSelect.selectedIndex].textContent)
+    );
+  // storesLocationSelect.value = placeValue;
+}
+
+function modifyFuelPriceSliders(value) {
+  const locationObj = fuelPrices.find(obj => obj.place.indexOf(value) !== -1);
+  if (!locationObj) return;
+
+  sliders[2].value = locationObj.petrol;
+  outputs[2].value = locationObj.petrol;
+  calcCovers[2].style.width = calcCoverWidth(sliders[2]) + '%';
+  sliders[3].value = locationObj.lpg;
+  outputs[3].value = locationObj.lpg;
+  calcCovers[3].style.width = calcCoverWidth(sliders[3]) + '%';
+  calcResult();
+  // if (save) {
+  //   userSelections.calculator.fuelPricesSelectedIndex = fuelPricesSelectVehicle.selectedIndex;
+  //   userSelections.location = {
+  //     index: fuelPricesSelectVehicle.selectedIndex,
+  //     place: fuelPricesSelectVehicle.value
+  //     // place: fuelPricesSelectVehicle.options[fuelPricesSelectVehicle.selectedIndex].textContent
+  //   };
+  //   saveUserSelections();
+  // }
+}
+
+function locationOnChange(value) {
+  setPlaceSelect(value);
+  modifyFuelPriceSliders(value);
+
+  // storesLocationSelect.value = value;
+  // document.querySelector('.searching-place-text-location').textContent =
+  //   storesLocationSelect.options[storesLocationSelect.selectedIndex].innerHTML;
+  // resetLocationContainer();
+
+  // if (
+  //   userSelections.location &&
+  //   userSelections.location.numPlaces &&
+  //   (userSelections.location.numPlaces.places || userSelections.location.numPlaces.places === 0) &&
+  //   userSelections.location.place === value &&
+  //   userSelections.location.place === userSelections.location.numPlaces.place
+  // ) {
+  //   fetchedPinsLength = userSelections.location.numPlaces.places;
+  //   populateLocationContainerResults(fetchedPinsLength);
+  //   return;
+  // }
+
+  // fetch(numPlaceUrl, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ place: value, lovatoServices: ['lovatoSystems'] })
+  // })
+  //   .then(response => {
+  //     status = response.status;
+  //     return response.json();
+  //   })
+  //   .then(data => {
+  //     if (status != 200) {
+  //       //DEBUG
+  //       // start loading in pins result
+  //       // endLoadingSelect(dimensionSelect);
+  //       // litresSelect.innerHTML = `<option value="">Προσπαθήστε ξανά ${data.msg}</option>`;
+  //       console.error(status);
+  //       return;
+  //     }
+  //     fetchedPinsLength = data;
+  //     populateLocationContainerResults(fetchedPinsLength);
+  //     if (userSelections.location && userSelections.location.numPlaces) {
+  //       userSelections.location.numPlaces = {
+  //         place: storesLocationSelect.value,
+  //         places: fetchedPinsLength
+  //         // expDate:
+  //         //   !userSelections.location.numPlaces || isExpired(userSelections.location.numPlaces.expDate)
+  //         //     ? setExpDate(numPlacesCacheTime)
+  //         //     : userSelections.location.numPlaces.expDate
+  //       };
+  //       userSelections.location.place = storesLocationSelect.value;
+  //     } else {
+  //       userSelections.location = {
+  //         numPlaces: {
+  //           place: storesLocationSelect.value,
+  //           places: fetchedPinsLength
+  //         },
+  //         place: storesLocationSelect.value
+  //       };
+  //     }
+  //     saveUserSelections();
+  //   })
+  //   .catch(error => {
+  //     //endLoadingSelect(dimensionSelect);
+  //     //litresSelect.innerHTML = '<option value="">Προσπαθήστε ξανά</option>';
+  //     console.error('Pins Error Fetch:', error);
+  //   });
+
+  // showResults();
 }
 
 function selectConsumptionRadioIndex(index) {
@@ -1513,7 +1655,6 @@ function configureAmortizationInMonths(lpgMonthlyGain) {
   const { priceWithVAT } = getSystemNamePrice();
 
   let amortizationInMonths = Math.round(priceWithVAT / lpgMonthlyGain);
-  // let amortizationInMonths = Math.floor(priceWithVAT / lpgMonthlyGain);
 
   if (lpgMonthlyGain > priceWithVAT) {
     amortizationInMonths = 0;
@@ -1529,10 +1670,7 @@ function configureAmortizationInMonths(lpgMonthlyGain) {
 
 function calcCoverWidth(slider) {
   const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
-  let offset;
-
-  offset = sliderMaxMin > 0.2 ? 0 : 1.5;
-
+  const offset = sliderMaxMin > 0.2 ? 0 : 1.5;
   return sliderMaxMin * 100 + offset;
 }
 

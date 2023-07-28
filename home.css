@@ -183,7 +183,3 @@ input[type='range']::-ms-thumb:hover {
   width: 76%;
   float: right;
 }
-
-.fuel-prices-select option:hover {
-  background-color: #dfddcf !important;
-}
