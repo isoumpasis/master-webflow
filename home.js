@@ -1512,8 +1512,12 @@ function calcResult() {
 function configureAmortizationInMonths(lpgMonthlyGain) {
   const { priceWithVAT } = getSystemNamePrice();
 
-  const amortizationInMonths = Math.round(priceWithVAT / lpgMonthlyGain);
-  // const amortizationInMonths = Math.floor(priceWithVAT / lpgMonthlyGain);
+  let amortizationInMonths = Math.round(priceWithVAT / lpgMonthlyGain);
+  // let amortizationInMonths = Math.floor(priceWithVAT / lpgMonthlyGain);
+
+  if (lpgMonthlyGain > priceWithVAT) {
+    amortizationInMonths = 0;
+  }
 
   document.querySelector('.amortization-months').textContent = amortizationInMonths;
   if (amortizationInMonths === 1) {
