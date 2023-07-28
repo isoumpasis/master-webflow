@@ -1447,12 +1447,12 @@ function modifyFuelPriceSliders(value) {
   const locationObj = fuelPrices.find(obj => obj.place.indexOf(value) !== -1);
   if (!locationObj) return;
 
-  sliders[2].value = locationObj.petrol;
-  outputs[2].value = locationObj.petrol;
-  calcCovers[2].style.width = calcCoverWidth(sliders[2]) + '%';
-  sliders[3].value = locationObj.lpg;
-  outputs[3].value = locationObj.lpg;
-  calcCovers[3].style.width = calcCoverWidth(sliders[3]) + '%';
+  calcSliders[2].value = locationObj.petrol;
+  calcOutputs[2].value = locationObj.petrol;
+  calcCovers[2].style.width = calcCoverWidth(calcSliders[2]) + '%';
+  calcSliders[3].value = locationObj.lpg;
+  calcOutputs[3].value = locationObj.lpg;
+  calcCovers[3].style.width = calcCoverWidth(calcSliders[3]) + '%';
   calcResult();
   // if (save) {
   //   userSelections.calculator.fuelPricesSelectedIndex = fuelPricesSelectVehicle.selectedIndex;
