@@ -223,6 +223,10 @@ function openGallery(selectedIndex = 0) {
   document.querySelector('body').style.overflow = 'hidden';
 
   selectMainGalleryFile(selectedIndex);
+
+  //Pause if there is main video on card
+  const cardMainVideo = activeContainer.querySelector('.main-file video');
+  cardMainVideo?.pause();
 }
 
 function closeGallery() {
@@ -275,10 +279,6 @@ function selectMainGalleryFile(index) {
       container.classList.remove('selected');
     }
   });
-
-  //Pause if there is main video on card
-  const cardMainVideo = activeContainer.querySelector('.main-file video');
-  cardMainVideo?.pause();
 }
 
 function getActiveContainer() {
