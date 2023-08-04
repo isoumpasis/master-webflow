@@ -135,7 +135,7 @@ function initCardFiles() {
   cardMainFileContainers.forEach(c =>
     c.addEventListener('click', e => {
       e.stopPropagation();
-      e.preventDefault();
+      // e.preventDefault();
       openGallery();
     })
   );
