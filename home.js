@@ -222,9 +222,9 @@ function openGallery(selectedIndex = 0) {
   document.querySelector('body').style.overflow = 'hidden';
 
   selectMainGalleryFile(selectedIndex);
-  // const cardMainVideo = activeContainer.querySelector('.main-file video');
-  // console.log('open gallery', cardMainVideo);
-  // cardMainVideo.pause(); //pause if there
+  const cardMainVideo = activeContainer.querySelector('.main-file video');
+  console.log('open gallery', cardMainVideo);
+  cardMainVideo.pause(); //pause if there
   //DEBUG
 }
 
