@@ -134,7 +134,6 @@ function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
   cardMainFileContainers.forEach(c =>
     c.addEventListener('click', e => {
-      // e.stopPropagation();
       e.preventDefault();
       openGallery();
     })
@@ -224,10 +223,6 @@ function openGallery(selectedIndex = 0) {
   document.querySelector('body').style.overflow = 'hidden';
 
   selectMainGalleryFile(selectedIndex);
-  const cardMainVideo = activeContainer.querySelector('.main-file video');
-  console.log('open gallery', cardMainVideo);
-  cardMainVideo.pause(); //pause if there
-  //DEBUG
 }
 
 function closeGallery() {
@@ -280,6 +275,10 @@ function selectMainGalleryFile(index) {
       container.classList.remove('selected');
     }
   });
+
+  //Pause if there is main video on card
+  const cardMainVideo = activeContainer.querySelector('.main-file video');
+  cardMainVideo?.pause();
 }
 
 function getActiveContainer() {
