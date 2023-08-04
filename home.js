@@ -133,7 +133,9 @@ document.addEventListener('DOMContentLoaded', () => {
 function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
   cardMainFileContainers.forEach(c =>
-    c.addEventListener('click', () => {
+    c.addEventListener('click', e => {
+      e.stopPropagation();
+      e.preventDefault();
       openGallery();
     })
   );
