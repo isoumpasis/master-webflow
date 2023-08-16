@@ -255,7 +255,7 @@ function selectMainGalleryFile(index) {
 
   if (fileType === 'video') {
     galleryMainImage.style.display = 'none';
-    galleryMainVideo.src = foundVehicleObj.files[index].url;
+    galleryMainVideo.src = optimizeFileUrl(foundVehicleObj.files[index].url);
     galleryMainVideo.controls = true;
     galleryMainVideo.style.display = 'block';
 
@@ -266,7 +266,7 @@ function selectMainGalleryFile(index) {
   } else {
     galleryMainVideo.style.display = 'none';
     galleryMainVideoEmbed.style.display = 'none';
-    galleryMainImage.src = foundVehicleObj.files[index].url;
+    galleryMainImage.src = optimizeFileUrl(foundVehicleObj.files[index].url);
     galleryMainImage.alt = foundVehicleObj.files[index].name;
     galleryMainImage.style.display = 'block';
   }
@@ -1180,16 +1180,11 @@ function configureFilesGallery() {
 
   // set files to card
   const mainCardFile = activeContainer.querySelector('.main-file');
-  addFileToLightbox(foundVehicleObj.files[0], mainCardFile);
-  // mainCardFile.src = foundVehicleObj.files[0].url;
-  // mainCardFile.alt = foundVehicleObj.files[0].name;
+  addFileToLightbox(foundVehicleObj.files[0], mainCardFile, 'main');
 
   sideFiles.forEach((side, index) => {
     if (side.style.display === 'block') {
       addFileToLightbox(foundVehicleObj.files[index + 1], side, 'side');
-      // const file = side.querySelector('.lightbox-image');
-      // file.src = foundVehicleObj.files[index + 1].url;
-      // file.alt = foundVehicleObj.files[index + 1].name;
     }
   });
 
@@ -1207,7 +1202,10 @@ function addFileToLightbox(file, box, boxType) {
   if (file.fileType === 'video') {
     const video = boxVideo.querySelector('video');
     boxImage.style.display = 'none';
-    video.src = file.url;
+    video.src = optimizeFileUrl(
+      file.url,
+      boxType === 'main' ? optimizationsVideoMain : optimizationsVideoSide
+    );
     video.controls = true;
     boxVideo.style.display = 'block';
     if (boxType === 'side') {
@@ -1215,10 +1213,36 @@ function addFileToLightbox(file, box, boxType) {
     }
   } else {
     boxVideo.style.display = 'none';
-    boxImage.src = file.url;
+    boxImage.src = optimizeFileUrl(
+      file.url,
+      boxType === 'main' ? optimizationsImgMain : optimizationsImgSide
+    );
     boxImage.alt = file.name;
     boxImage.style.display = 'block';
   }
+}
+
+const optimizationsGeneral = ['q_auto', 'f_auto'];
+const optimizationsImgMain = ['h_800'];
+const optimizationsImgSide = ['h_300'];
+const optimizationsImgGallerySide = ['h_200'];
+const optimizationsVideoMain = ['h_700'];
+const optimizationsVideoSide = ['h_200'];
+const optimizationsVideoGallerySide = ['h_200'];
+
+function optimizeFileUrl(url, optimizationArray = []) {
+  const splitted = url.split('/upload/');
+  const generalTransformationsStr = optimizationsGeneral.join(',');
+  const transformationsStr = optimizationArray.join(',');
+  if (transformationsStr.length) {
+    splitted[1] = `${transformationsStr}/${generalTransformationsStr}/${splitted[1]}`;
+  } else {
+    splitted[1] = `${generalTransformationsStr}/${splitted[1]}`;
+  }
+  const optimizedUrl = splitted.join('/upload/');
+  console.log('url:', url);
+  console.log('optimizedUrl:', optimizedUrl);
+  return optimizedUrl;
 }
 
 function setCardFilesAppearance(sideFiles) {
@@ -1281,7 +1305,7 @@ function setFilesToSideGallery(sideGalleryFiles) {
 
     if (file.fileType === 'video') {
       image.style.display = 'none';
-      video.src = file.url;
+      video.src = optimizeFileUrl(file.url, optimizationsVideoGallerySide);
       video.controls = false;
       video.style.display = 'block';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'block';
@@ -1290,7 +1314,7 @@ function setFilesToSideGallery(sideGalleryFiles) {
       video.style.display = 'none';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'none';
       sideGalleryFiles[index].querySelector('.video-overlay').style.display = 'none';
-      image.src = file.url;
+      image.src = optimizeFileUrl(file.url, optimizationsImgGallerySide);
       image.alt = file.name;
       image.style.display = 'block';
     }
