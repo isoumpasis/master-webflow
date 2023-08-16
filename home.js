@@ -1223,12 +1223,12 @@ function addFileToLightbox(file, box, boxType) {
 }
 
 const optimizationsGeneral = ['q_auto', 'f_auto'];
-const optimizationsImgMain = ['h_800'];
-const optimizationsImgSide = ['h_400'];
-const optimizationsImgGallerySide = ['h_200'];
 const optimizationsVideoMain = ['h_700'];
+const optimizationsImgMain = ['h_800'];
 const optimizationsVideoSide = ['h_400'];
-const optimizationsVideoGallerySide = ['h_200'];
+const optimizationsImgSide = ['h_400'];
+const optimizationsVideoGallerySide = ['h_100'];
+const optimizationsImgGallerySide = ['h_100'];
 
 function optimizeFileUrl(url, optimizationArray = []) {
   const splitted = url.split('/upload/');
