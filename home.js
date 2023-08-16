@@ -1224,10 +1224,10 @@ function addFileToLightbox(file, box, boxType) {
 
 const optimizationsGeneral = ['q_auto', 'f_auto'];
 const optimizationsImgMain = ['h_800'];
-const optimizationsImgSide = ['h_300'];
+const optimizationsImgSide = ['h_400'];
 const optimizationsImgGallerySide = ['h_200'];
 const optimizationsVideoMain = ['h_700'];
-const optimizationsVideoSide = ['h_200'];
+const optimizationsVideoSide = ['h_400'];
 const optimizationsVideoGallerySide = ['h_200'];
 
 function optimizeFileUrl(url, optimizationArray = []) {
