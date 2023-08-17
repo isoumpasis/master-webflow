@@ -1804,7 +1804,7 @@ function getSystemNamePrice(suggestedContainer) {
   if (!suggestedContainer) suggestedContainer = activeContainer;
   const name = SystemDict.systems[activeContainer.id];
 
-  const priceNoVAT = activeContainer.querySelector('.price').textContent.split('€')[0];
+  const priceNoVAT = +activeContainer.querySelector('.price').textContent.split('€')[0];
 
   const priceWithVAT = priceNoVAT * VAT;
   return { name, priceNoVAT, priceWithVAT };
