@@ -89,6 +89,12 @@ const TankDict = {
   }
 };
 
+const EmulatorsDict = {
+  f: {
+    price: 85
+  }
+};
+
 const VAT = 1.24;
 
 let fetchedYears;
@@ -117,6 +123,8 @@ let galleryMainFileSelectedIndex = 0;
 
 let makeDropdownLis, yearDropdownLis, modelDropdownLis, engineDropdownLis;
 
+let isEmulatorFChecked = false;
+
 const suggestedContainers = document.querySelectorAll('.suggested-container');
 let activeContainer;
 
@@ -126,9 +134,39 @@ document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
   initCardFiles();
   initGalleryFiles();
+  initEmulators();
   initCalc();
   calcResult();
 });
+
+function initEmulators() {
+  suggestedContainers.forEach(container => {
+    container.querySelector('.emulator-f-price-txt').textContent = `(+${EmulatorsDict.f.price}€)`;
+
+    const emulatorFCheckbox = container.querySelector('.emulator-f-checkbox');
+    const emulatorFSquare = container.querySelector('.emulator-f-square');
+
+    emulatorFCheckbox.addEventListener('click', function () {
+      isEmulatorFChecked = emulatorFSquare.style.display !== 'block';
+      adjustPriceAfterEmulatorChange();
+    });
+  });
+}
+
+function adjustPriceAfterEmulatorChange() {
+  if (isEmulatorFChecked) {
+    addToContainerPrice(EmulatorsDict.f.price);
+  } else {
+    addToContainerPrice(-EmulatorsDict.f.price);
+  }
+}
+
+function addToContainerPrice(amount) {
+  const currStrPriceNoVAT = activeContainer.querySelector('.price').textContent;
+  const currPriceNoVAT = +currStrPriceNoVAT.split('€')[0];
+  const newPriceNoVAT = currPriceNoVAT + amount;
+  activeContainer.querySelector('.price').textContent = `${newPriceNoVAT}€`;
+}
 
 function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
