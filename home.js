@@ -1420,11 +1420,9 @@ function configureVehicleInformation() {
 }
 
 function unCheckFEmulator() {
-  if (isEmulatorFChecked) {
-    activeContainer.querySelector('.emulator-f-square').style.display = 'none';
-    isEmulatorFChecked = false;
-    adjustPriceAfterEmulatorChange();
-  }
+  activeContainer.querySelector('.emulator-f-square').style.display = 'none';
+  isEmulatorFChecked = false;
+  adjustPriceAfterEmulatorChange();
 }
 
 /*Calculator */
