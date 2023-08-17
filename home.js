@@ -159,7 +159,6 @@ function adjustPriceAfterEmulatorChange() {
   } else {
     addToContainerPrice(-EmulatorsDict.f.price);
   }
-
   calcResult();
 }
 
@@ -1375,6 +1374,7 @@ function configureVehicleInformation() {
   if (foundVehicleObj?.emulators?.length) {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'flex';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'block';
+    initFEmulator();
   } else {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'none';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'none';
@@ -1417,6 +1417,11 @@ function configureVehicleInformation() {
   } else {
     activeContainer.querySelector('.info-extra-container').style.display = 'none';
   }
+}
+
+function initFEmulator() {
+  isEmulatorFChecked = false;
+  adjustPriceAfterEmulatorChange();
 }
 
 /*Calculator */
