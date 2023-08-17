@@ -159,13 +159,13 @@ function adjustPriceAfterEmulatorChange() {
   } else {
     addToContainerPrice(-EmulatorsDict.f.price);
   }
+
+  calcResult();
 }
 
 function addToContainerPrice(amount) {
-  const currStrPriceNoVAT = activeContainer.querySelector('.price').textContent;
-  const currPriceNoVAT = +currStrPriceNoVAT.split('€')[0];
-  const newPriceNoVAT = currPriceNoVAT + amount;
-  activeContainer.querySelector('.price').textContent = `${newPriceNoVAT}€`;
+  const { priceNoVAT } = getSystemNamePrice();
+  activeContainer.querySelector('.price').textContent = `${priceNoVAT + amount}€`;
 }
 
 function initCardFiles() {
