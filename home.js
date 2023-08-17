@@ -1278,8 +1278,8 @@ function optimizeFileUrl(url, optimizationArray = []) {
     splitted[1] = `${generalTransformationsStr}/${splitted[1]}`;
   }
   const optimizedUrl = splitted.join('/upload/');
-  console.log('url:', url);
-  console.log('optimizedUrl:', optimizedUrl);
+  // console.log('url:', url);
+  // console.log('optimizedUrl:', optimizedUrl);
   return optimizedUrl;
 }
 
