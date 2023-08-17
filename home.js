@@ -1420,9 +1420,12 @@ function configureVehicleInformation() {
 }
 
 function unCheckFEmulator() {
-  activeContainer.querySelector('.emulator-f-square').style.display = 'none';
-  isEmulatorFChecked = false;
-  adjustPriceAfterEmulatorChange();
+  const emulatorFSquare = activeContainer.querySelector('.emulator-f-square');
+  if (emulatorFSquare.style.display === 'block') {
+    activeContainer.querySelector('.emulator-f-square').style.display = 'none';
+    isEmulatorFChecked = false;
+    adjustPriceAfterEmulatorChange();
+  }
 }
 
 /*Calculator */
