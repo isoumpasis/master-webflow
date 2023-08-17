@@ -1373,36 +1373,36 @@ function configureVehicleInformation() {
   }
 
   if (foundVehicleObj?.emulators?.length) {
-    activeContainer.querySelector('.info-emulator-f-container')?.style?.display = 'flex';
+    activeContainer.querySelector('.info-emulator-f-container').style.display = 'flex';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'block';
   } else {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'none';
-    activeContainer.querySelector('.info-emulator-f-container + .divider')?.style?.display = 'none';
+    activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'none';
   }
 
   if (foundVehicleObj?.info?.tank) {
     activeContainer.querySelector('.info-tank-container').style.display = 'flex';
-    activeContainer.querySelector('.info-tank-container + .divider')?.style?.display = 'block';
+    activeContainer.querySelector('.info-tank-container + .divider').style.display = 'block';
     activeContainer.querySelector('.tank-txt').textContent = foundVehicleObj.info.tank;
     const foundVehicleTankType = foundVehicleObj.info.tank.includes('ΕΣΩΤΕΡΙΚΗ')
-    ? 'INT'
-    : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
-    ? 'EX'
-    : 'CYL';
+      ? 'INT'
+      : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
+      ? 'EX'
+      : 'CYL';
     activeContainer.querySelector('.tank-img').src = TankDict.url[foundVehicleTankType];
   } else {
     activeContainer.querySelector('.info-tank-container').style.display = 'none';
-    activeContainer.querySelector('.info-tank-container + .divider')?.style?.display = 'none';
+    activeContainer.querySelector('.info-tank-container + .divider').style.display = 'none';
   }
 
   if (foundVehicleObj?.info?.filling) {
     activeContainer.querySelector('.info-filling-container').style.display = 'flex';
-    activeContainer.querySelector('.info-filling-container + .divider')?.style?.display = 'block';
+    activeContainer.querySelector('.info-filling-container + .divider').style.display = 'block';
     activeContainer.querySelector('.filling-txt').textContent =
-    InfoDict.filling[foundVehicleObj.info.filling];
+      InfoDict.filling[foundVehicleObj.info.filling];
   } else {
     activeContainer.querySelector('.info-filling-container').style.display = 'none';
-    activeContainer.querySelector('.info-filling-container + .divider')?.style?.display = 'none';
+    activeContainer.querySelector('.info-filling-container + .divider').style.display = 'none';
   }
 
   if (foundVehicleObj.info?.comments?.length) {
