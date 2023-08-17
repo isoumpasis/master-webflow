@@ -1374,7 +1374,7 @@ function configureVehicleInformation() {
   if (foundVehicleObj?.emulators?.length) {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'flex';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'block';
-    initFEmulator();
+    unCheckFEmulator();
   } else {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'none';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'none';
@@ -1419,8 +1419,9 @@ function configureVehicleInformation() {
   }
 }
 
-function initFEmulator() {
+function unCheckFEmulator() {
   if (isEmulatorFChecked) {
+    activeContainer.querySelector('.emulator-f-square').style.display = 'none';
     isEmulatorFChecked = false;
     adjustPriceAfterEmulatorChange();
   }
