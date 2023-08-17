@@ -1422,9 +1422,9 @@ function configureVehicleInformation() {
 function unCheckFEmulator() {
   const emulatorFSquare = activeContainer.querySelector('.emulator-f-square');
   if (emulatorFSquare.style.display === 'block') {
-    activeContainer.querySelector('.emulator-f-square').style.display = 'none';
-    isEmulatorFChecked = false;
-    adjustPriceAfterEmulatorChange();
+    activeContainer.querySelector('.emulator-f-checkbox').click();
+    // isEmulatorFChecked = false;
+    // adjustPriceAfterEmulatorChange();
   }
 }
 
