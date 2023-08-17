@@ -1420,8 +1420,10 @@ function configureVehicleInformation() {
 }
 
 function initFEmulator() {
-  isEmulatorFChecked = false;
-  adjustPriceAfterEmulatorChange();
+  if (isEmulatorFChecked) {
+    isEmulatorFChecked = false;
+    adjustPriceAfterEmulatorChange();
+  }
 }
 
 /*Calculator */
