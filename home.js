@@ -1043,6 +1043,7 @@ function engineOnChange(value) {
   let selectedEngineCode = value.split(' - ')[1];
 
   // console.log(selectedHP, selectedEngineCode);
+  hideSuggestedContainers();
 
   const foundVehicles = fetchedModelObj.filter(
     model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
