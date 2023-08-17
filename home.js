@@ -328,6 +328,7 @@ function hideSuggestedContainers() {
   suggestedContainers.forEach(c => {
     c.querySelector('.overlay-wrapper').style.height = '0px';
     c.querySelector('[data-w-tab="Tab 1"]').click();
+    unCheckFEmulator(c);
     c.style.display = 'none';
   });
   document.querySelector('#carResultContainer').style.display = 'none';
@@ -1375,7 +1376,6 @@ function configureVehicleInformation() {
   if (foundVehicleObj?.emulators?.length) {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'flex';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'block';
-    unCheckFEmulator();
   } else {
     activeContainer.querySelector('.info-emulator-f-container').style.display = 'none';
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'none';
@@ -1420,12 +1420,10 @@ function configureVehicleInformation() {
   }
 }
 
-function unCheckFEmulator() {
-  const emulatorFSquare = activeContainer.querySelector('.emulator-f-square');
+function unCheckFEmulator(suggestedContainer) {
+  const emulatorFSquare = suggestedContainer.querySelector('.emulator-f-square');
   if (emulatorFSquare.style.display === 'block') {
-    activeContainer.querySelector('.emulator-f-checkbox').click();
-    // isEmulatorFChecked = false;
-    // adjustPriceAfterEmulatorChange();
+    suggestedContainer.querySelector('.emulator-f-checkbox').click();
   }
 }
 
