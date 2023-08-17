@@ -76,7 +76,7 @@ const SystemDict = {
 };
 const InfoDict = {
   filling: {
-    Πορτάκι: 'Στο πορτάκι της βενζίνης',
+    Πορτάκι: 'Στο χώρο πλήρωσης της βενζίνης (πορτάκι)',
     Προφυλακτήρα: 'Στον προφυλακτήρα'
   }
 };
@@ -1324,6 +1324,7 @@ function setFilesToSideGallery(sideGalleryFiles) {
 /* Vehicle Info */
 function configureVehicleInformation() {
   if (
+    foundVehicleObj?.emulators?.length ||
     foundVehicleObj?.info?.tank ||
     foundVehicleObj?.info?.filling ||
     foundVehicleObj?.info?.comments?.length
@@ -1331,6 +1332,12 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-tab').style.display = 'block';
   } else {
     activeContainer.querySelector('.info-tab').style.display = 'none';
+  }
+
+  if (foundVehicleObj?.emulators?.length) {
+    activeContainer.querySelector('.info-emulator-f-container').style.display = 'flex';
+  } else {
+    activeContainer.querySelector('.info-emulator-f-container').style.display = 'none';
   }
 
   if (foundVehicleObj?.info?.tank) {
