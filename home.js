@@ -1043,20 +1043,16 @@ function engineOnChange(value) {
   const selectedHP = parseInt(value.split(' ')[0]);
   let selectedEngineCode = value.split(' - ')[1];
 
-  // console.log(selectedHP, selectedEngineCode);
   hideSuggestedContainers();
 
   const foundVehicles = fetchedModelObj.filter(
     model => model.hp === selectedHP && model.engineCodes.includes(selectedEngineCode)
   );
-  // console.log('found vehicles', foundVehicles);
 
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
-
   console.log('foundVehicleOBj', foundVehicleObj);
 
   showResults(fetchedModelObj);
-  // return; //
 
   if (!value) {
     // showGuarantee(false);
