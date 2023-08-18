@@ -68,7 +68,8 @@ const makeImgDict = {
 const SystemDict = {
   systems: {
     SR: { name: 'SR', priceNoVAT: 1260 },
-    AR: { name: 'AR', priceNoVAT: 1350 },
+    // AR: { name: 'AR', priceNoVAT: 1350 },
+    AR: { name: 'AR', priceNoVAT: 1000 },
     PIEZO_BMW: { name: 'PIEZO BMW', priceNoVAT: 1260 },
     PIEZO_MERCEDES: { name: 'PIEZO MERCEDES', priceNoVAT: 1330 },
     SR_ALFA_ROMEO: { name: 'SR ALFA ROMEO', priceNoVAT: 1290 }
