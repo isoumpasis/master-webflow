@@ -1392,7 +1392,7 @@ function configureVehicleInformation() {
   activeContainer.querySelector('.info-double-uhpii-container').style.display = 'none';
   activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display = 'none';
   if (foundVehicleObj?.reducer) {
-    if (foundVehicleObj.reducer === ReducesDict.UHPII.name) {
+    if (foundVehicleObj.reducer === ReducerDict.UHPII.name) {
       activeContainer.querySelector('.info-uhpii-container').style.display = 'flex';
       activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'block';
       adjustPriceAfterReducerChange(ReducerDict.UHPII.price);
