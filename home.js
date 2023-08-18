@@ -1179,11 +1179,10 @@ function showResults(fetchedModelObj) {
   //     suggestedContainer.classList.contains('not-convertible-form-container')
   //   );
   // }
-  // setTimeout(
-  //   () => document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' }),
-  //   200
-  // );
-  document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' });
+  setTimeout(
+    () => document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' }),
+    100
+  );
 }
 
 function isMobile() {
