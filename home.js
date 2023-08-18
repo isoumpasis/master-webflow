@@ -94,6 +94,10 @@ const EmulatorsDict = {
     price: 85
   }
 };
+const ReducersDict = {
+  UHPII: 'UHPII',
+  DOUBLE_UHPII: 'DOUBLE-UHPII'
+};
 
 const VAT = 1.24;
 
@@ -1367,6 +1371,21 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-tab').style.display = 'block';
   } else {
     activeContainer.querySelector('.info-tab').style.display = 'none';
+  }
+
+  activeContainer.querySelector('.info-uhpii-container').style.display = 'none';
+  activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'none';
+  activeContainer.querySelector('.info-double-uhpii-container').style.display = 'none';
+  activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display = 'none';
+  if (foundVehicleObj?.reducer) {
+    if (foundVehicleObj.reducer === ReducersDict.UHPII) {
+      activeContainer.querySelector('.info-uhpii-container').style.display = 'flex';
+      activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'block';
+    } else if (foundVehicleObj.reducer === ReducersDict.DOUBLE_UHPII) {
+      activeContainer.querySelector('.info-double-uhpii-container').style.display = 'flex';
+      activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display =
+        'block';
+    }
   }
 
   if (foundVehicleObj?.emulators?.length) {
