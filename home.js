@@ -67,11 +67,11 @@ const makeImgDict = {
 
 const SystemDict = {
   systems: {
-    SR: 'SR',
-    AR: 'AR',
-    PIEZO_BMW: 'PIEZO BMW',
-    PIEZO_MERCEDES: 'PIEZO MERCEDES',
-    SR_ALFA_ROMEO: 'SR ALFA ROMEO'
+    SR: { name: 'SR', priceNoVAT: 1260 },
+    AR: { name: 'AR', priceNoVAT: 1350 },
+    PIEZO_BMW: { name: 'PIEZO BMW', priceNoVAT: 1260 },
+    PIEZO_MERCEDES: { name: 'PIEZO MERCEDES', priceNoVAT: 1330 },
+    SR_ALFA_ROMEO: { name: 'SR ALFA ROMEO', priceNoVAT: 1290 }
   }
 };
 const InfoDict = {
@@ -89,14 +89,14 @@ const TankDict = {
   }
 };
 
-const EmulatorsDict = {
+const EmulatorDict = {
   f: {
     price: 85
   }
 };
-const ReducersDict = {
-  UHPII: 'UHPII',
-  DOUBLE_UHPII: 'DOUBLE-UHPII'
+const ReducerDict = {
+  UHPII: { name: 'UHPII', price: 90 },
+  DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 }
 };
 
 const VAT = 1.24;
@@ -136,6 +136,7 @@ const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
   initCustomDropdowns();
+  initSystemPrices();
   initCardFiles();
   initGalleryFiles();
   initEmulators();
@@ -143,9 +144,13 @@ document.addEventListener('DOMContentLoaded', () => {
   calcResult();
 });
 
+function initSystemPrices() {
+  suggestedContainers.forEach(resetContainerPrice);
+}
+
 function initEmulators() {
   suggestedContainers.forEach(container => {
-    container.querySelector('.emulator-f-price-txt').textContent = `(+${EmulatorsDict.f.price}€)`;
+    container.querySelector('.emulator-f-price-txt').textContent = `(+${EmulatorDict.f.price}€)`;
 
     const emulatorFCheckbox = container.querySelector('.emulator-f-checkbox');
     const emulatorFSquare = container.querySelector('.emulator-f-square');
@@ -159,10 +164,14 @@ function initEmulators() {
 
 function adjustPriceAfterEmulatorChange() {
   if (isEmulatorFChecked) {
-    addToContainerPrice(EmulatorsDict.f.price);
+    addToContainerPrice(EmulatorDict.f.price);
   } else {
-    addToContainerPrice(-EmulatorsDict.f.price);
+    addToContainerPrice(-EmulatorDict.f.price);
   }
+  calcResult();
+}
+function adjustPriceAfterReducerChange(amount) {
+  addToContainerPrice(amount);
   calcResult();
 }
 
@@ -333,9 +342,14 @@ function hideSuggestedContainers() {
     c.querySelector('.overlay-wrapper').style.height = '0px';
     c.querySelector('[data-w-tab="Tab 1"]').click();
     unCheckFEmulator(c);
+    resetContainerPrice(c);
     c.style.display = 'none';
   });
   document.querySelector('#carResultContainer').style.display = 'none';
+}
+
+function resetContainerPrice(container) {
+  container.querySelector('.price').textContent = `${SystemDict.systems[container.id].priceNoVAT}€`;
 }
 
 function initCustomDropdowns() {
@@ -1196,15 +1210,15 @@ function showSuggestedContainer() {
   const system = foundVehicleObj.master;
   let foundContainer;
 
-  if (system === SystemDict.systems.SR) {
+  if (system === SystemDict.systems.SR.name) {
     foundContainer = document.querySelector('.sr-container');
-  } else if (system === SystemDict.systems.AR) {
+  } else if (system === SystemDict.systems.AR.name) {
     foundContainer = document.querySelector('.ar-container');
-  } else if (system === SystemDict.systems.PIEZO_BMW) {
+  } else if (system === SystemDict.systems.PIEZO_BMW.name) {
     foundContainer = document.querySelector('.piezo-bmw-container');
-  } else if (system === SystemDict.systems.PIEZO_MERCEDES) {
+  } else if (system === SystemDict.systems.PIEZO_MERCEDES.name) {
     foundContainer = document.querySelector('.piezo-mercedes-container');
-  } else if (system === SystemDict.systems.SR_ALFA_ROMEO) {
+  } else if (system === SystemDict.systems.SR_ALFA_ROMEO.name) {
     foundContainer = document.querySelector('.sr-alfa-romeo-container');
   }
 
@@ -1378,13 +1392,15 @@ function configureVehicleInformation() {
   activeContainer.querySelector('.info-double-uhpii-container').style.display = 'none';
   activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display = 'none';
   if (foundVehicleObj?.reducer) {
-    if (foundVehicleObj.reducer === ReducersDict.UHPII) {
+    if (foundVehicleObj.reducer === ReducesDict.UHPII.name) {
       activeContainer.querySelector('.info-uhpii-container').style.display = 'flex';
       activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'block';
-    } else if (foundVehicleObj.reducer === ReducersDict.DOUBLE_UHPII) {
+      adjustPriceAfterReducerChange(ReducerDict.UHPII.price);
+    } else if (foundVehicleObj.reducer === ReducerDict.DOUBLE_UHPII.name) {
       activeContainer.querySelector('.info-double-uhpii-container').style.display = 'flex';
       activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display =
         'block';
+      adjustPriceAfterReducerChange(ReducerDict.DOUBLE_UHPII.price);
     }
   }
 
@@ -1831,7 +1847,7 @@ function resetCalc() {
 
 function getSystemNamePrice(suggestedContainer) {
   if (!suggestedContainer) suggestedContainer = activeContainer;
-  const name = SystemDict.systems[activeContainer.id];
+  const name = SystemDict.systems[activeContainer.id].name;
 
   const priceNoVAT = +activeContainer.querySelector('.price').textContent.split('€')[0];
 
