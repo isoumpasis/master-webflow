@@ -1178,7 +1178,7 @@ function showResults(fetchedModelObj) {
   //   trigger_not_convertible(
   //     suggestedContainer.classList.contains('not-convertible-form-container')
   //   );
-  // }
+  // }//
   setTimeout(
     () => document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' }),
     100
