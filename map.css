@@ -2,9 +2,6 @@ body {
   font-family: Pfhighwaysanspro, sans-serif;
   font-weight: 400;
 }
-body.body {
-  overflow-x: hidden;
-}
 
 .body-map[body-attr] {
   overflow-x: hidden;
