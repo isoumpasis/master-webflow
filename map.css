@@ -1,6 +1,7 @@
 body {
   font-family: Pfhighwaysanspro, sans-serif;
   font-weight: 400;
+  overflow-x: hidden;
 }
 
 .body-map[body-attr] {
