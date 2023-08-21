@@ -195,6 +195,11 @@ function initTestimonials() {
       el.remove();
     }
   });
+  document
+    .querySelectorAll(
+      '.comments-slider .left-arrow, .comments-slider .right-arrow, .comments-slider .slide-nav'
+    )
+    .forEach(el => (el.style.display = 'none'));
   document.querySelector('#testimonialsSection').style.display = 'none';
 }
 
@@ -1848,6 +1853,13 @@ function configureTestimonialsAfterSuggestion() {
     createTestimonialInSlider(t, index !== 0);
   });
   updateWebflowSlider();
+
+  if (foundVehicleObj.testimonials.length > 1) {
+    document
+      .querySelectorAll('.comments-slider .left-arrow, .comments-slider .right-arrow')
+      .forEach(el => (el.style.display = 'flex'));
+    document.querySelector('.comments-slider .slide-nav').style.display = 'block';
+  }
 
   document.querySelector('#testimonialsSection').style.display = 'block';
 }
