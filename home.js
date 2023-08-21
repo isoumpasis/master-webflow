@@ -1847,7 +1847,10 @@ function createTestimonialInSlider(testimonial, push = true) {
   newSlide.querySelector('.comment-author').textContent = testimonial.author;
   newSlide.querySelector('.comment-category').textContent = testimonial.category;
   newSlide.querySelector('.comment-text').textContent = testimonial.text;
-  newSlide.querySelector('.comment-date').textContent = testimonial.date;
+  const testimonialDate = new Date(testimonial.date);
+  newSlide.querySelector('.comment-date').textContent = `${
+    MonthsDict[testimonialDate.getMonth()]
+  } ${testimonialDate.getFullYear()}`;
 }
 
 function updateWebflowSlider() {
