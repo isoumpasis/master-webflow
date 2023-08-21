@@ -210,5 +210,5 @@ input[type='range']::-ms-thumb:hover {
   transform: translateX(-5px) translateY(-5px);
 }
 .comments-slider .comment-container:hover .quote-icon-right {
-  transform: translateX(5px) translateY(5px);
+  transform: translateX(5px) translateY(5px) rotate(-180deg);
 }
