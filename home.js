@@ -1845,7 +1845,7 @@ function createAndPushTestimonialInSlider(testimonial) {
   newSlide.querySelector('.comment-text').textContent = testimonial.text;
   newSlide.querySelector('.comment-date').textContent = testimonial.date;
 
-  document.getElementById('.comments-slider .w-slider-mask').appendChild(newSlide);
+  document.querySelector('.comments-slider .w-slider-mask').appendChild(newSlide);
 }
 
 function updateWebflowSlider() {
