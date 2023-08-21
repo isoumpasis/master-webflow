@@ -1803,14 +1803,14 @@ function calcCoverWidth(slider) {
 /* Calculator END */
 
 function configureTestimonialsAfterSuggestion() {
-  if (!foundVehicleObj?.testimonials?.length) {
-    console.log('no testimonials');
-    return;
-  }
   document.querySelector('#testimonialMakeImg').src =
     makeImgPrefix + makeImgDict[foundVehicleObj.make];
   document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
   document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
+  if (!foundVehicleObj?.testimonials?.length) {
+    console.log('no testimonials');
+    return;
+  }
 }
 
 function configureCalculatorAfterSuggestion() {
