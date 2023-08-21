@@ -195,3 +195,23 @@ input[type='range']::-ms-thumb:hover {
 .highlight {
   pointer-events: none;
 }
+
+/*Testimonials CSS */
+.comments-slider .comment-container {
+  transition: transform 200ms;
+}
+.comments-slider .quote-icon {
+  transition: transform 200ms;
+}
+.comments-slider .comment-container:hover {
+  transform: scale(1.01);
+  transform: translateY(-5px);
+}
+.comments-slider .comment-container:hover .quote-icon-left {
+  transform: translateX(-5px);
+  transform: translateY(-5px);
+}
+.comments-slider .comment-container:hover .quote-icon-right {
+  transform: translateX(5px);
+  transform: translateY(5px);
+}
