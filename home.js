@@ -270,7 +270,7 @@ function initGalleryFiles() {
 function openGallery(selectedIndex = 0) {
   filesGalleryFullScreenContainer.style.display = 'block';
   filesGalleryFullScreenContainer.focus();
-  document.querySelector('body').style.overflow = 'hidden';
+  document.querySelector('body').style.overflowY = 'hidden';
 
   selectMainGalleryFile(selectedIndex);
 
@@ -281,7 +281,7 @@ function openGallery(selectedIndex = 0) {
 
 function closeGallery() {
   filesGalleryFullScreenContainer.style.display = 'none';
-  document.querySelector('body').style.overflow = 'auto';
+  document.querySelector('body').style.overflowY = 'auto';
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
   galleryMainVideo.pause();
 }
