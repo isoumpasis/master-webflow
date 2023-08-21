@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardFiles();
   initGalleryFiles();
   initEmulators();
+  initTestimonials();
   initCalc();
   calcResult();
 });
@@ -160,6 +161,10 @@ function initEmulators() {
       adjustPriceAfterEmulatorChange();
     });
   });
+}
+
+function initTestimonials() {
+  console.log('init testimonials');
 }
 
 function adjustPriceAfterEmulatorChange() {
@@ -1109,6 +1114,8 @@ function runConsumptionRace(vehicles) {
 function showResults(fetchedModelObj) {
   configureSuggestedContainer();
 
+  configureTestimonialsAfterSuggestion();
+
   configureCalculatorAfterSuggestion();
   // const years = yearSelect.value;
 
@@ -1794,6 +1801,17 @@ function calcCoverWidth(slider) {
 }
 
 /* Calculator END */
+
+function configureTestimonialsAfterSuggestion() {
+  if (!foundVehicleObj?.testimonials?.length) {
+    console.log('no testimonials');
+    return;
+  }
+  document.querySelector('#testimonialMakeImg').src =
+    makeImgPrefix + makeImgDict[foundVehicleObj.make];
+  document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
+  document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
+}
 
 function configureCalculatorAfterSuggestion() {
   // document.querySelector('#calcTitle').textContent =
