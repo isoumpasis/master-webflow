@@ -204,14 +204,11 @@ input[type='range']::-ms-thumb:hover {
   transition: transform 200ms;
 }
 .comments-slider .comment-container:hover {
-  transform: scale(1.01);
-  transform: translateY(-5px);
+  transform: scale(1.01) translateY(-5px);
 }
 .comments-slider .comment-container:hover .quote-icon-left {
-  transform: translateX(-5px);
-  transform: translateY(-5px);
+  transform: translateX(-5px) translateY(-5px);
 }
 .comments-slider .comment-container:hover .quote-icon-right {
-  transform: translateX(5px);
-  transform: translateY(5px);
+  transform: translateX(5px) translateY(5px);
 }
