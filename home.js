@@ -1829,23 +1829,25 @@ function configureTestimonialsAfterSuggestion() {
   document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
   document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
 
-  foundVehicleObj?.testimonials.forEach(t => {
-    createAndPushTestimonialInSlider(t);
+  foundVehicleObj?.testimonials.forEach((t, index) => {
+    createTestimonialInSlider(t, index !== 0);
   });
   updateWebflowSlider();
 
   document.querySelector('#testimonialsSection').style.display = 'block';
 }
 
-function createAndPushTestimonialInSlider(testimonial) {
-  const newSlide = document.querySelector('.comments-slider .w-slide').cloneNode(true);
+function createTestimonialInSlider(testimonial, push = true) {
+  let newSlide = document.querySelector('.comments-slider .w-slide');
+  if (push) {
+    newSlide = newSlide.cloneNode(true);
+    document.querySelector('.comments-slider .w-slider-mask').appendChild(newSlide);
+  }
 
   newSlide.querySelector('.comment-author').textContent = testimonial.author;
   newSlide.querySelector('.comment-category').textContent = testimonial.category;
   newSlide.querySelector('.comment-text').textContent = testimonial.text;
   newSlide.querySelector('.comment-date').textContent = testimonial.date;
-
-  document.querySelector('.comments-slider .w-slider-mask').appendChild(newSlide);
 }
 
 function updateWebflowSlider() {
