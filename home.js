@@ -174,6 +174,13 @@ function initEmulators() {
 
 function initTestimonials() {
   console.log('init testimonials');
+  //remove all but the first
+  document.querySelectorAll('.comments-slider .w-slide').forEach((el, index) => {
+    if (index !== 0) {
+      el.remove();
+    }
+  });
+  document.querySelector('#testimonialsSection').style.display = 'none';
 }
 
 function adjustPriceAfterEmulatorChange() {
@@ -1812,14 +1819,38 @@ function calcCoverWidth(slider) {
 /* Calculator END */
 
 function configureTestimonialsAfterSuggestion() {
-  document.querySelector('#testimonialMakeImg').src =
-    makeImgPrefix + makeImgDict[foundVehicleObj.make];
-  document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
-  document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
+  initTestimonials();
   if (!foundVehicleObj?.testimonials?.length) {
     console.log('no testimonials');
     return;
   }
+  document.querySelector('#testimonialMakeImg').src =
+    makeImgPrefix + makeImgDict[foundVehicleObj.make];
+  document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
+  document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
+
+  foundVehicleObj?.testimonials.forEach(t => {
+    createAndPushTestimonialInSlider(t);
+  });
+  updateWebflowSlider();
+
+  document.querySelector('#testimonialsSection').style.display = 'block';
+}
+
+function createAndPushTestimonialInSlider(testimonial) {
+  const newSlide = document.querySelector('.comments-slider .w-slide').cloneNode(true);
+
+  newSlide.querySelector('.comment-author').textContent = testimonial.author;
+  newSlide.querySelector('.comment-category').textContent = testimonial.category;
+  newSlide.querySelector('.comment-text').textContent = testimonial.text;
+  newSlide.querySelector('.comment-date').textContent = testimonial.date;
+
+  document.getElementById('.comments-slider .w-slider-mask').appendChild(newSlide);
+}
+
+function updateWebflowSlider() {
+  Webflow.require('slider').redraw();
+  Webflow.require('slider').ready();
 }
 
 function configureCalculatorAfterSuggestion() {
