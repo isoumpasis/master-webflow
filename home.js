@@ -1434,6 +1434,21 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-tab').style.display = 'none';
   }
 
+  if (foundVehicleObj.info?.comments?.length) {
+    activeContainer.querySelector('.info-extra-container').style.display = 'flex';
+    activeContainer.querySelector('.info-extra-container + .divider').style.display = 'block';
+    [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => comment.remove());
+    foundVehicleObj.info?.comments.forEach(comment => {
+      const commentEl = document.createElement('div');
+      commentEl.classList.add('car-info-extra');
+      commentEl.textContent = comment;
+      activeContainer.querySelector('.extra-info').appendChild(commentEl);
+    });
+  } else {
+    activeContainer.querySelector('.info-extra-container').style.display = 'none';
+    activeContainer.querySelector('.info-extra-container + .divider').style.display = 'none';
+  }
+
   activeContainer.querySelector('.info-uhpii-container').style.display = 'none';
   activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'none';
   activeContainer.querySelector('.info-double-uhpii-container').style.display = 'none';
@@ -1476,25 +1491,12 @@ function configureVehicleInformation() {
 
   if (foundVehicleObj?.info?.filling) {
     activeContainer.querySelector('.info-filling-container').style.display = 'flex';
-    activeContainer.querySelector('.info-filling-container + .divider').style.display = 'block';
+    // activeContainer.querySelector('.info-filling-container + .divider').style.display = 'block';
     activeContainer.querySelector('.filling-txt').textContent =
       InfoDict.filling[foundVehicleObj.info.filling];
   } else {
     activeContainer.querySelector('.info-filling-container').style.display = 'none';
-    activeContainer.querySelector('.info-filling-container + .divider').style.display = 'none';
-  }
-
-  if (foundVehicleObj.info?.comments?.length) {
-    activeContainer.querySelector('.info-extra-container').style.display = 'flex';
-    [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => comment.remove());
-    foundVehicleObj.info?.comments.forEach(comment => {
-      const commentEl = document.createElement('div');
-      commentEl.classList.add('car-info-extra');
-      commentEl.textContent = comment;
-      activeContainer.querySelector('.extra-info').appendChild(commentEl);
-    });
-  } else {
-    activeContainer.querySelector('.info-extra-container').style.display = 'none';
+    // activeContainer.querySelector('.info-filling-container + .divider').style.display = 'none';
   }
 }
 
