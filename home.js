@@ -180,7 +180,7 @@ function initEmulators() {
       document.querySelector('body').style.overflowY = 'hidden';
     });
   });
-  document.querySelectorAll('.emulator-f-info-content .close-div, .popup-bg').forEach(el =>
+  document.querySelectorAll('.popup .close-div, .popup-bg').forEach(el =>
     el.addEventListener('click', function () {
       document.querySelector('body').style.overflowY = 'auto';
     })
