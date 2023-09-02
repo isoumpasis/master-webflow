@@ -157,9 +157,16 @@ document.addEventListener('DOMContentLoaded', () => {
   initEmulators();
   initPopups();
   initTestimonials();
+  preventDefaultForms();
   initCalc();
   calcResult();
 });
+
+function preventDefaultForms() {
+  document
+    .querySelectorAll('form')
+    .forEach(form => form.addEventListener('submit', e => e.preventDefault()));
+}
 
 function initSystemPrices() {
   suggestedContainers.forEach(resetContainerPrice);
@@ -1540,7 +1547,7 @@ const calcCovers = document.querySelectorAll('.calc-cover');
 function initCalc() {
   const form = document.querySelector('#calcSection form');
   form.setAttribute('novalidate', true);
-  form.addEventListener('submit', e => e.preventDefault());
+  // form.addEventListener('submit', e => e.preventDefault());
   calcSliders.forEach((slider, i) => {
     calcOutputs[i].value = slider.value;
     calcCovers[i].style.width = calcCoverWidth(slider) + '%';
