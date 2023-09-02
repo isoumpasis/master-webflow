@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardFiles();
   initGalleryFiles();
   initEmulators();
+  initPopups();
   initTestimonials();
   initCalc();
   calcResult();
@@ -176,10 +177,24 @@ function initEmulators() {
       adjustPriceAfterEmulatorChange();
     });
 
-    container.querySelector('.text-span-trigger').addEventListener('click', function () {
-      document.querySelector('body').style.overflowY = 'hidden';
-    });
+    // container.querySelector('.view-more-emulator-f-trigger').addEventListener('click', function () {
+    //   document.querySelector('body').style.overflowY = 'hidden';
+    // });
   });
+  // document.querySelectorAll('.popup .close-div, .popup-bg').forEach(el =>
+  //   el.addEventListener('click', function () {
+  //     document.querySelector('body').style.overflowY = 'auto';
+  //   })
+  // );
+}
+
+function initPopups() {
+  document.querySelectorAll('.popup-trigger').forEach(el =>
+    el.addEventListener('click', function () {
+      document.querySelector('body').style.overflowY = 'hidden';
+    })
+  );
+
   document.querySelectorAll('.popup .close-div, .popup-bg').forEach(el =>
     el.addEventListener('click', function () {
       document.querySelector('body').style.overflowY = 'auto';
