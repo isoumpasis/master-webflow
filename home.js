@@ -1547,7 +1547,6 @@ const calcCovers = document.querySelectorAll('.calc-cover');
 function initCalc() {
   const form = document.querySelector('#calcSection form');
   form.setAttribute('novalidate', true);
-  // form.addEventListener('submit', e => e.preventDefault());
   calcSliders.forEach((slider, i) => {
     calcOutputs[i].value = slider.value;
     calcCovers[i].style.width = calcCoverWidth(slider) + '%';
