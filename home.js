@@ -1375,7 +1375,7 @@ function setCardFilesAppearance(sideFiles) {
     sideFiles.forEach(side => {
       side.style.display = 'block';
       side.style.width = '33%';
-      mainFile.style.height = '280px'; //'230px';
+      mainFile.style.height = '290px'; //'230px';
     });
     moreFilesContainer.style.display = 'flex';
     moreFilesContainer.querySelector('.more-files-number').textContent = `+${
@@ -1385,13 +1385,13 @@ function setCardFilesAppearance(sideFiles) {
     sideFiles.forEach(side => {
       side.style.display = 'block';
       side.style.width = '33%';
-      mainFile.style.height = '280px'; //'230px';
+      mainFile.style.height = '290px'; //'230px';
     });
   } else if (foundVehicleObj.files.length === 3) {
     sideFiles.forEach((side, i) => {
       side.style.display = 'block';
       side.style.width = '50%';
-      mainFile.style.height = '280px'; //'230px';
+      mainFile.style.height = '290px'; //'230px';
       if (i === 2) {
         side.style.display = 'none';
       }
