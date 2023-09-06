@@ -1255,7 +1255,6 @@ function isMobile() {
 }
 
 function configureSuggestedContainer() {
-  showCarResultContainer();
   showSuggestedContainer();
   if (foundVehicleObj.files.length) {
     configureFilesGallery();
@@ -1263,6 +1262,7 @@ function configureSuggestedContainer() {
     console.log('vehicle with no files!');
   }
   configureVehicleInformation();
+  showCarResultContainer();
 }
 
 function showCarResultContainer() {
