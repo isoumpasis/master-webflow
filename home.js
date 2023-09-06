@@ -1272,6 +1272,11 @@ function showCarResultContainer() {
     '#modelName'
   ).textContent = `${selectedModel} (${selectedYear}) ${selectedEngine}`;
 
+  document.querySelector('.suggested-text-system').textContent =
+    SystemDict.systems[activeContainer.id].name;
+  document.querySelector('.suggested-text-consumption').textContent =
+    SystemDict.systems[activeContainer.id].name === 'SR ALFA ROMEO' ? '5%' : '1,5-2%';
+
   document.querySelector('#carResultContainer').style.display = 'flex';
 }
 
