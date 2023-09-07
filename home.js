@@ -1259,6 +1259,7 @@ function configureSuggestedContainer() {
 
   configureFilesGallery();
   configureVehicleInformation();
+  configureSuggestedContainerTabs();
 
   showCarResultContainer();
 }
@@ -1530,6 +1531,21 @@ function configureVehicleInformation() {
   } else {
     activeContainer.querySelector('.info-filling-container').style.display = 'none';
     // activeContainer.querySelector('.info-filling-container + .divider').style.display = 'none';
+  }
+}
+
+function configureSuggestedContainerTabs() {
+  const mediaDisplay = activeContainer.querySelector('.media-tab').style.display;
+  const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
+  if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
+    console.log('no media no info ??');
+  } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
+    console.log('media no info');
+  } else if (mediaDisplay !== 'block' && infoDisplay === 'block') {
+    console.log('no media info');
+    activeContainer.querySelector('.info-tab').click();
+  } else if (mediaDisplay === 'block' && infoDisplay === 'block') {
+    console.log('media info');
   }
 }
 
