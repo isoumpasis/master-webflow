@@ -1537,8 +1537,10 @@ function configureVehicleInformation() {
 function configureSuggestedContainerTabs() {
   const mediaDisplay = activeContainer.querySelector('.media-tab').style.display;
   const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
+  resetLearnMore();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
-    console.log('no media no info ??');
+    console.log('no media no info');
+    showLearnMoreAtRight();
   } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
     console.log('media no info');
   } else if (mediaDisplay !== 'block' && infoDisplay === 'block') {
@@ -1547,6 +1549,18 @@ function configureSuggestedContainerTabs() {
   } else if (mediaDisplay === 'block' && infoDisplay === 'block') {
     console.log('media info');
   }
+}
+
+function showLearnMoreAtRight() {
+  activeContainer.querySelector('.info-button').style.display = 'none';
+  activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
+  activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'none';
+}
+
+function resetLearnMore() {
+  activeContainer.querySelector('.info-button').style.display = 'block';
+  activeContainer.querySelector('.overlay-wrapper').classList.remove('learn-more-at-right');
+  activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'block';
 }
 
 function unCheckFEmulator(suggestedContainer) {

@@ -210,3 +210,9 @@ input[type='range']::-ms-thumb:hover {
   transform: translateX(5px) translateY(5px) rotate(-180deg);
 }
 /* End of Testimonail CSS */
+
+.learn-more-at-right {
+  left: 50%;
+  width: 50%;
+  height: auto;
+}
