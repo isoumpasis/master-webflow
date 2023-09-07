@@ -1454,7 +1454,8 @@ function configureVehicleInformation() {
     foundVehicleObj?.emulators?.length ||
     foundVehicleObj?.info?.tank ||
     foundVehicleObj?.info?.filling ||
-    foundVehicleObj?.info?.comments?.length
+    foundVehicleObj?.info?.comments?.length ||
+    foundVehicleObj?.reducer
   ) {
     activeContainer.querySelector('.info-tab').style.display = 'block';
   } else {
