@@ -1256,12 +1256,10 @@ function isMobile() {
 
 function configureSuggestedContainer() {
   showSuggestedContainer();
-  if (foundVehicleObj.files.length) {
-    configureFilesGallery();
-  } else {
-    console.log('vehicle with no files!');
-  }
+
+  configureFilesGallery();
   configureVehicleInformation();
+
   showCarResultContainer();
 }
 
@@ -1301,6 +1299,13 @@ function showSuggestedContainer() {
 }
 
 function configureFilesGallery() {
+  if (!foundVehicleObj?.files?.length) {
+    console.log('vehicle no files');
+    activeContainer.querySelector('.media-tab').style.display = 'none';
+    return;
+  }
+  activeContainer.querySelector('.media-tab').style.display = 'block';
+
   //card files appearance depending on files length
   const sideFiles = [...activeContainer.querySelectorAll('.side-file')];
   setCardFilesAppearance(sideFiles);
