@@ -1561,6 +1561,7 @@ function resetLearnMore() {
   activeContainer.querySelector('.info-button').style.display = 'inline-block';
   activeContainer.querySelector('.overlay-wrapper').classList.remove('learn-more-at-right');
   activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'block';
+  activeContainer.querySelector('.overlay-wrapper').scrollTop = 0;
 }
 
 function unCheckFEmulator(suggestedContainer) {
