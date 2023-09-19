@@ -167,8 +167,19 @@ function initEasyPay() {
   document.querySelector('#priceWithVATOutput').textContent = '1560€';
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
+
+  document.querySelector('.easypay-no-credit').addEventListener('click', () => {
+    handleEasyPayNoCreditOnClick();
+  });
+  document.querySelector('.easypay-credit').addEventListener('click', () => {
+    handleEasyPayCreditOnClick();
+  });
+  document.querySelector('.easypay-cash').addEventListener('click', () => {
+    handleEasyPayCashOnClick();
+  });
+
   selectEasyPayRadioIndex(0);
-  console.log('getEasyPayradioindex', getEasyPayRadioIndex());
+  handleEasyPayNoCreditOnClick();
 }
 
 function selectEasyPayRadioIndex(index) {
@@ -2042,4 +2053,16 @@ function getSystemNamePrice(suggestedContainer) {
 
   const priceWithVAT = priceNoVAT * VAT;
   return { name, priceNoVAT, priceWithVAT };
+}
+
+/* EasyPay */
+
+function handleEasyPayNoCreditOnClick() {
+  console.log('easy pay no credit');
+}
+function handleEasyPayCreditOnClick() {
+  console.log('easy pay credit');
+}
+function handleEasyPayCashOnClick() {
+  console.log('easy pay cash');
 }
