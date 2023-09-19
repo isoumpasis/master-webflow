@@ -167,6 +167,7 @@ function initEasyPay() {
   document.querySelector('#priceWithVATOutput').textContent = '1560€';
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
+  document.querySelector('#noCreditRadio').classList.add('w--redirected-checked');
 }
 
 function preventDefaultForms() {
