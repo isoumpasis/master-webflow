@@ -160,7 +160,15 @@ document.addEventListener('DOMContentLoaded', () => {
   preventDefaultForms();
   initCalc();
   calcResult();
+  initEasyPay();
 });
+
+function initEasyPay() {
+  document.querySelector('#priceWithVATOutput').style.display = 'none';
+  document.querySelector('#priceWithVATInput').style.display = 'block';
+  document.querySelector('.easypay-logo-system').style.display = 'none';
+  document.querySelector('.easypay-add-car').style.display = 'block';
+}
 
 function preventDefaultForms() {
   document
