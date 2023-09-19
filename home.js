@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initEasyPay() {
-  document.querySelector('#priceWithVATOutput').style.display = 'none';
-  document.querySelector('#priceWithVATInput').style.display = 'block';
+  const priceOutput = document.querySelector('#priceWithVATOutput');
+  priceOutput.textContent = '1560€';
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 }
