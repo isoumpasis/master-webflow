@@ -167,7 +167,29 @@ function initEasyPay() {
   document.querySelector('#priceWithVATOutput').textContent = '1560€';
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
-  document.querySelector('#noCreditRadio').classList.add('w--redirected-checked');
+  selectEasyPayRadioIndex(0);
+  console.log('getEasyPayradioindex', getEasyPayRadioIndex());
+}
+
+function selectEasyPayRadioIndex(index) {
+  document
+    .querySelectorAll('.easypay-label input')
+    .forEach((radio, i) => (radio.checked = i === index));
+  document
+    .querySelectorAll('.easypay-radio-btn.w-radio-input')
+    .forEach((radio, i) =>
+      i === index
+        ? radio.classList.add('w--redirected-checked')
+        : radio.classList.remove('w--redirected-checked')
+    );
+}
+
+function getEasyPayRadioIndex() {
+  let index = 2;
+  document.querySelectorAll('.easypay-label input').forEach((el, i) => {
+    if (el.checked) index = i;
+  });
+  return index;
 }
 
 function preventDefaultForms() {
@@ -1778,7 +1800,7 @@ function selectConsumptionRadioIndex(index) {
     .querySelectorAll('.consumption-label input')
     .forEach((radio, i) => (radio.checked = i === index));
   document
-    .querySelectorAll('.radio-button.w-radio-input')
+    .querySelectorAll('.consumption-radio-btn.w-radio-input')
     .forEach((radio, i) =>
       i === index
         ? radio.classList.add('w--redirected-checked')
