@@ -169,6 +169,7 @@ function initEasyPay() {
   document.querySelector('.easypay-add-car').style.display = 'block';
 
   document.querySelector('.easypay-no-credit').addEventListener('click', () => {
+    console.log('no credit');
     handleEasyPayNoCreditOnClick();
   });
   document.querySelector('.easypay-credit').addEventListener('click', () => {
