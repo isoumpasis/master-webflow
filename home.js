@@ -168,7 +168,7 @@ function initEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
-  console.log('init easy pay');
+  initSliders();
 
   document.querySelector('.easypay-no-credit').addEventListener('click', e => {
     e.preventDefault();
@@ -183,6 +183,25 @@ function initEasyPay() {
     handleEasyPayCashOnClick();
   });
   handleEasyPayNoCreditOnClick();
+}
+
+function initSliders() {
+  prokatavoliSlider.addEventListener('input', e => prokatavoliSliderOnChange(e.target.value));
+  doseisSlider.addEventListener('input', e => doseisSliderOnChange(e.target.value));
+
+  outputProkatavoli.addEventListener('change', function () {
+    if (+this.value > +prokatavoliSlider.max) this.value = prokatavoliSlider.max;
+    if (+this.value < +prokatavoliSlider.min) this.value = prokatavoliSlider.min;
+    if (+this.value) this.value = Math.round(+this.value);
+    prokatavoliSliderOnChange(this.value);
+  });
+
+  outputDoseis.addEventListener('change', function () {
+    if (+this.value > +doseisSlider.max) this.value = doseisSlider.max;
+    if (+this.value < +doseisSlider.min) this.value = doseisSlider.min;
+    if (+this.value) this.value = Math.round(+this.value);
+    doseisSliderOnChange(this.value);
+  });
 }
 
 function preventDefaultForms() {
@@ -2038,6 +2057,10 @@ function getSystemNamePrice(suggestedContainer) {
 }
 
 /* EasyPay */
+const prokatavoliSlider = document.querySelector('#prokatavoliSlider');
+const doseisSlider = document.querySelector('#doseisSlider');
+const outputProkatavoli = document.querySelector('#outputProkatavoli');
+const outputDoseis = document.querySelector('#outputDoseis');
 
 function handleEasyPayNoCreditOnClick() {
   if (getEasyPayRadioIndex() === 0) return;
