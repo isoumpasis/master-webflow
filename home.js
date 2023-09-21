@@ -2064,7 +2064,7 @@ function selectEasyPayRadioIndex(index) {
         : radio.classList.remove('w--redirected-checked')
     );
   document
-    .querySelectorAll('.easypay-radio-btn .radio-button-label')
+    .querySelectorAll('.easypay-label .radio-button-label')
     .forEach((label, i) =>
       i === index ? (label.style.fontWeight = 'bold') : (label.style.fontWeight = 'normal')
     );
