@@ -171,13 +171,16 @@ function initEasyPay() {
   console.log('init easy pay');
 
   document.querySelector('.easypay-no-credit').addEventListener('click', e => {
+    e.stopPropagation();
     console.log('no credit', e);
-    handleEasyPayNoCreditOnClick(e);
+    handleEasyPayNoCreditOnClick();
   });
-  document.querySelector('.easypay-credit').addEventListener('click', () => {
+  document.querySelector('.easypay-credit').addEventListener('click', e => {
+    e.stopPropagation();
     handleEasyPayCreditOnClick();
   });
-  document.querySelector('.easypay-cash').addEventListener('click', () => {
+  document.querySelector('.easypay-cash').addEventListener('click', e => {
+    e.stopPropagation();
     handleEasyPayCashOnClick();
   });
 
@@ -2060,8 +2063,7 @@ function getSystemNamePrice(suggestedContainer) {
 
 /* EasyPay */
 
-function handleEasyPayNoCreditOnClick(e) {
-  console.log(e);
+function handleEasyPayNoCreditOnClick() {
   console.log('easy pay no credit');
 }
 function handleEasyPayCreditOnClick() {
