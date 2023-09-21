@@ -182,7 +182,7 @@ input[type='range']::-ms-thumb:hover {
 .cover {
   position: absolute;
   height: 15px;
-  right: 0px;
+  right: -2px;
   bottom: 10px;
   background: #bebebe;
   border-radius: 25px;
