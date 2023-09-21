@@ -171,17 +171,15 @@ function initEasyPay() {
   console.log('init easy pay');
 
   document.querySelector('.easypay-no-credit').addEventListener('click', e => {
-    e.stopPropagation();
     e.preventDefault();
-    console.log('no credit', e);
     handleEasyPayNoCreditOnClick();
   });
   document.querySelector('.easypay-credit').addEventListener('click', e => {
-    e.stopPropagation();
+    e.preventDefault();
     handleEasyPayCreditOnClick();
   });
   document.querySelector('.easypay-cash').addEventListener('click', e => {
-    e.stopPropagation();
+    e.preventDefault();
     handleEasyPayCashOnClick();
   });
 
