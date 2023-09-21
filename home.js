@@ -185,27 +185,6 @@ function initEasyPay() {
   handleEasyPayNoCreditOnClick();
 }
 
-function selectEasyPayRadioIndex(index) {
-  document
-    .querySelectorAll('.easypay-label input')
-    .forEach((radio, i) => (radio.checked = i === index));
-  document
-    .querySelectorAll('.easypay-radio-btn.w-radio-input')
-    .forEach((radio, i) =>
-      i === index
-        ? radio.classList.add('w--redirected-checked')
-        : radio.classList.remove('w--redirected-checked')
-    );
-}
-
-function getEasyPayRadioIndex() {
-  let index = 2;
-  document.querySelectorAll('.easypay-label input').forEach((el, i) => {
-    if (el.checked) index = i;
-  });
-  return index;
-}
-
 function preventDefaultForms() {
   document
     .querySelectorAll('form')
@@ -2071,4 +2050,30 @@ function handleEasyPayCreditOnClick() {
 function handleEasyPayCashOnClick() {
   console.log('easy pay cash');
   selectEasyPayRadioIndex(2);
+}
+
+function selectEasyPayRadioIndex(index) {
+  document
+    .querySelectorAll('.easypay-label input')
+    .forEach((radio, i) => (radio.checked = i === index));
+  document
+    .querySelectorAll('.easypay-radio-btn.w-radio-input')
+    .forEach((radio, i) =>
+      i === index
+        ? radio.classList.add('w--redirected-checked')
+        : radio.classList.remove('w--redirected-checked')
+    );
+  document
+    .querySelectorAll('.easypay-radio-btn .radio-button-label')
+    .forEach((label, i) =>
+      i === index ? (label.style.fontWeight = 'bold') : (label.style.fontWeight = 'normal')
+    );
+}
+
+function getEasyPayRadioIndex() {
+  let index = 2;
+  document.querySelectorAll('.easypay-label input').forEach((el, i) => {
+    if (el.checked) index = i;
+  });
+  return index;
 }
