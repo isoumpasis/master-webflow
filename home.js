@@ -182,8 +182,6 @@ function initEasyPay() {
     e.preventDefault();
     handleEasyPayCashOnClick();
   });
-
-  selectEasyPayRadioIndex(0);
   handleEasyPayNoCreditOnClick();
 }
 
@@ -2064,10 +2062,13 @@ function getSystemNamePrice(suggestedContainer) {
 
 function handleEasyPayNoCreditOnClick() {
   console.log('easy pay no credit');
+  selectEasyPayRadioIndex(0);
 }
 function handleEasyPayCreditOnClick() {
   console.log('easy pay credit');
+  selectEasyPayRadioIndex(1);
 }
 function handleEasyPayCashOnClick() {
   console.log('easy pay cash');
+  selectEasyPayRadioIndex(2);
 }
