@@ -2040,14 +2040,17 @@ function getSystemNamePrice(suggestedContainer) {
 /* EasyPay */
 
 function handleEasyPayNoCreditOnClick() {
+  if (getEasyPayRadioIndex() === 0) return;
   console.log('easy pay no credit');
   selectEasyPayRadioIndex(0);
 }
 function handleEasyPayCreditOnClick() {
+  if (getEasyPayRadioIndex() === 1) return;
   console.log('easy pay credit');
   selectEasyPayRadioIndex(1);
 }
 function handleEasyPayCashOnClick() {
+  if (getEasyPayRadioIndex() === 2) return;
   console.log('easy pay cash');
   selectEasyPayRadioIndex(2);
 }
