@@ -170,9 +170,9 @@ function initEasyPay() {
 
   console.log('init easy pay');
 
-  document.querySelector('.easypay-no-credit').addEventListener('click', () => {
-    console.log('no credit');
-    handleEasyPayNoCreditOnClick();
+  document.querySelector('.easypay-no-credit').addEventListener('click', e => {
+    console.log('no credit', e);
+    handleEasyPayNoCreditOnClick(e);
   });
   document.querySelector('.easypay-credit').addEventListener('click', () => {
     handleEasyPayCreditOnClick();
@@ -2060,7 +2060,8 @@ function getSystemNamePrice(suggestedContainer) {
 
 /* EasyPay */
 
-function handleEasyPayNoCreditOnClick() {
+function handleEasyPayNoCreditOnClick(e) {
+  console.log(e);
   console.log('easy pay no credit');
 }
 function handleEasyPayCreditOnClick() {
