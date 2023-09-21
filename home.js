@@ -168,6 +168,8 @@ function initEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
+  console.log('init easy pay');
+
   document.querySelector('.easypay-no-credit').addEventListener('click', () => {
     console.log('no credit');
     handleEasyPayNoCreditOnClick();
