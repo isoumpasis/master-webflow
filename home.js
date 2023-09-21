@@ -172,6 +172,7 @@ function initEasyPay() {
 
   document.querySelector('.easypay-no-credit').addEventListener('click', e => {
     e.stopPropagation();
+    e.preventDefault();
     console.log('no credit', e);
     handleEasyPayNoCreditOnClick();
   });
