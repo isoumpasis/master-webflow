@@ -2057,8 +2057,8 @@ function getSystemNamePrice(suggestedContainer) {
 }
 
 /* EasyPay */
-const prokatavoliSlider = document.querySelector('#prokatavoliSlider');
-const doseisSlider = document.querySelector('#doseisSlider');
+const prokatavoliSlider = document.querySelector('.prokatavoli-slider');
+const doseisSlider = document.querySelector('.doseis-slider');
 const outputProkatavoli = document.querySelector('#outputProkatavoli');
 const outputDoseis = document.querySelector('#outputDoseis');
 
