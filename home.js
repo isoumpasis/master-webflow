@@ -2081,6 +2081,7 @@ function handleEasyPayNoCreditOnClick() {
   if (getEasyPayRadioIndex() === 0) return;
   console.log('easy pay no credit');
   selectEasyPayRadioIndex(0);
+  prokatavoliSliderOnChange(0);
 }
 function handleEasyPayCreditOnClick() {
   if (getEasyPayRadioIndex() === 1) return;
