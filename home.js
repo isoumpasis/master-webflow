@@ -2049,7 +2049,6 @@ function resetCalc() {
 function getSystemNamePrice(suggestedContainer) {
   if (!suggestedContainer) suggestedContainer = getActiveContainer();
 
-  console.log(suggestedContainer);
   if (!suggestedContainer) {
     return { name: '', priceNoVAT: 1258, priceWithVAT: 1560 };
   }
@@ -2142,3 +2141,17 @@ function doseisChangeMinMaxLabelsWeight() {
   minDoseisSliderText.style.fontWeight =
     doseisSlider.value === doseisSlider.min ? 'bold' : 'normal';
 }
+
+minProkatavoliSliderText.addEventListener('click', e =>
+  prokatavoliSliderOnChange(prokatavoliSlider.min)
+);
+maxProkatavoliSliderText.addEventListener('click', e =>
+  prokatavoliSliderOnChange(prokatavoliSlider.max)
+);
+
+// minDoseisSliderText.addEventListener('click', e =>
+//   doseisSliderOnChange(doseisSlider.min)
+// );
+// maxDoseisSliderText.addEventListener('click', e =>
+//   doseisSliderOnChange(doseisSlider.max)
+// );
