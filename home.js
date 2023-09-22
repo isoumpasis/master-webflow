@@ -2061,6 +2061,12 @@ const prokatavoliSlider = document.querySelector('.prokatavoli-slider');
 const doseisSlider = document.querySelector('.doseis-slider');
 const outputProkatavoli = document.querySelector('#outputProkatavoli');
 const outputDoseis = document.querySelector('#outputDoseis');
+const minProkatavoliSliderText = document.querySelector('.min-prokatavoli-slider-text');
+const maxProkatavoliSliderText = document.querySelector('.max-prokatavoli-slider-text');
+const minDoseisSliderText = document.querySelector('.min-doseis-slider-text');
+const maxDoseisSliderText = document.querySelector('.max-doseis-slider-text');
+const prokatavoliCover = document.querySelector('.prokatavoli-cover');
+const doseisCover = document.querySelector('.doseis-cover');
 
 function handleEasyPayNoCreditOnClick() {
   if (getEasyPayRadioIndex() === 0) return;
@@ -2102,4 +2108,31 @@ function getEasyPayRadioIndex() {
     if (el.checked) index = i;
   });
   return index;
+}
+
+function prokatavoliSliderOnChange(value) {
+  const { priceWithVAT } = getSystemNamePrice();
+  const floorPrice = Math.floor(priceWithVAT / 10) * 10;
+  prokatavoliSlider.max = floorPrice - 500;
+  maxProkatavoliSliderText.textContent = floorPrice - 500 + '€';
+
+  prokatavoliSlider.value = value;
+  outputProkatavoli.value = prokatavoliSlider.value;
+  prokatavoliCover.style.width = calcCoverWidth(prokatavoliSlider) + '%';
+  prokatavoliChangeMinMaxLabelsWeight();
+  // configureMaxDoseisSlider();
+}
+
+function prokatavoliChangeMinMaxLabelsWeight() {
+  maxProkatavoliSliderText.style.fontWeight =
+    prokatavoliSlider.value === prokatavoliSlider.max ? 'bold' : 'normal';
+  minProkatavoliSliderText.style.fontWeight =
+    prokatavoliSlider.value === prokatavoliSlider.min ? 'bold' : 'normal';
+}
+
+function doseisChangeMinMaxLabelsWeight() {
+  maxDoseisSliderText.style.fontWeight =
+    doseisSlider.value === doseisSlider.max ? 'bold' : 'normal';
+  minDoseisSliderText.style.fontWeight =
+    doseisSlider.value === doseisSlider.min ? 'bold' : 'normal';
 }
