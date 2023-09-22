@@ -2047,7 +2047,12 @@ function resetCalc() {
 }
 
 function getSystemNamePrice(suggestedContainer) {
-  if (!suggestedContainer) suggestedContainer = activeContainer;
+  if (!suggestedContainer) suggestedContainer = getActiveContainer();
+
+  if (!suggestedContainer) {
+    return { name: '', priceNoVAT: 1258, priceWithVAT: 1560 };
+  }
+
   const name = SystemDict.systems[activeContainer.id].name;
 
   const priceNoVAT = +activeContainer.querySelector('.price').textContent.split('€')[0];
