@@ -2049,6 +2049,7 @@ function resetCalc() {
 function getSystemNamePrice(suggestedContainer) {
   if (!suggestedContainer) suggestedContainer = getActiveContainer();
 
+  console.log(suggestedContainer);
   if (!suggestedContainer) {
     return { name: '', priceNoVAT: 1258, priceWithVAT: 1560 };
   }
