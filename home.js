@@ -2087,11 +2087,14 @@ function handleEasyPayCreditOnClick() {
   if (getEasyPayRadioIndex() === 1) return;
   console.log('easy pay credit');
   selectEasyPayRadioIndex(1);
+  prokatavoliSliderOnChange(200);
 }
 function handleEasyPayCashOnClick() {
   if (getEasyPayRadioIndex() === 2) return;
   console.log('easy pay cash');
   selectEasyPayRadioIndex(2);
+  // hideProkatavoli();
+  // hideDoseis();
 }
 
 function selectEasyPayRadioIndex(index) {
