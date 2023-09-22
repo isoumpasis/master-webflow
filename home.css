@@ -110,9 +110,7 @@ input[type='range']::-webkit-slider-thumb {
   height: 25px;
   width: 25px;
   border-radius: 50%;
-  background: #000
-    /* url('https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64c0d84eaa076fe8dee119a5_expand-arrows.png') */
-    no-repeat center;
+  background: #000 no-repeat center;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
 
   cursor: grab;
