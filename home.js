@@ -1901,29 +1901,9 @@ function calcResult() {
     petrolExpenses = +(petrolExpenses * 12).toFixed(1);
     lpgExpenses = +(lpgExpenses * 12).toFixed(1);
     lpgGain = +(lpgGain * 12).toFixed(1);
-
-    // userSelections.calculator.perMonthCheckbox = true;
   }
 
-  // configureEasyPayMonthlyGain();
-
-  // userSelections.calculator.kmPerYearValue = kmPerYear;
-  // userSelections.calculator.trueConsumption = ltPer100Km;
-  // userSelections.calculator.gain =
-  //   userSelections.selectedFuel === 'lpg' ? lpgResult.textContent : cngResult.textContent;
-  // userSelections.calculator.percentage =
-  //   userSelections.selectedFuel === 'lpg'
-  //     ? lpgPercentageEl.textContent
-  //     : cngPercentageEl.textContent;
-  // updateBasketSection({ calculator: true, easyPayMonthlyGain: true, prokatavoliDoseis: true });
-
-  // if (allowedToTrigger && step2Triggered && !step3Triggered) {
-  //   trigger_calculator_step_3({ triggered_via: 'click' });
-  // }
-
-  // calcResultHypothesis({ years: 5 });
-  // showHintActiveTime = 0;
-  // hintJustClosed = false;
+  configureEasyPayMonthlyGain();
 }
 
 function configureAmortizationInMonths(lpgMonthlyGain) {
@@ -2219,7 +2199,7 @@ function PMT(interestPerMonth, doseis, cost) {
 
 function configureEasyPayMonthlyGain() {
   let monthlyGain = parseFloat(lpgResult.textContent.replace('€', ''));
-  console.log('monthlyGain1', monthlyGain);
+  console.log(lpgResult.textContent, 'monthlyGain1', monthlyGain);
   if (!isPerMonthChecked) monthlyGain /= 12;
   console.log('monthlyGain2', monthlyGain);
   easyPayMonthlyGain.textContent = monthlyGain.toFixed(2) + '€';
