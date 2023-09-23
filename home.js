@@ -2078,8 +2078,8 @@ const minDoseisSliderText = document.querySelector('.min-doseis-slider-text');
 const maxDoseisSliderText = document.querySelector('.max-doseis-slider-text');
 const prokatavoliCover = document.querySelector('.prokatavoli-cover');
 const doseisCover = document.querySelector('.doseis-cover');
-const easyPayGain = document.querySelector('#easyPayGain');
-const easyPayCost = document.querySelector('#easyPayCost');
+const easyPayMonthlyGain = document.querySelector('#easyPayGain');
+const easyPayMonthlyCost = document.querySelector('#easyPayCost');
 const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 
 function handleEasyPayNoCreditOnClick() {
@@ -2215,4 +2215,10 @@ function PMT(interestPerMonth, doseis, cost) {
   pmt = (-interestPerMonth * (cost * pvif)) / (pvif - 1);
 
   return pmt;
+}
+
+function configureEasyPayMonthlyGain() {
+  let monthlyGain = lpgResult;
+  if (!isPerMonthChecked) monthlyGain /= 12;
+  easyPayMonthlyGain.textContent = monthlyGain.toFixed(2) + '€';
 }
