@@ -2136,7 +2136,7 @@ function configureEasyPayResults() {
   const enapomeinanPoso = priceWithVAT - prokatavoliSliderValueInt;
 
   const monthlyCost = -PMT(noCreditInterest / 100 / 12, doseisSliderValueInt, enapomeinanPoso);
-  easyPayMonthlyCost.textContent = monthlyCost.toFixed(2) + '€';
+  easyPayMonthlyCost.textContent = monthlyCost.toFixed(1) + '€';
 
   configureEasyPayMonthlyGain();
 
