@@ -2118,7 +2118,13 @@ function prokatavoliSliderOnChange(value) {
   outputProkatavoli.value = prokatavoliSlider.value;
   prokatavoliCover.style.width = calcCoverWidth(prokatavoliSlider) + '%';
   prokatavoliChangeMinMaxLabelsWeight();
-  configureMaxDoseisSlider(priceWithVAT - value);
+
+  const easyPayRadioIndex = getEasyPayRadioIndex();
+  if (easyPayRadioIndex === 0) {
+    configureMaxDoseisSlider(priceWithVAT - value);
+  } else if (easyPayRadioIndex === 1) {
+    doseisSliderOnChange(+doseisSlider.value);
+  }
 }
 
 function doseisSliderOnChange(value) {
@@ -2130,6 +2136,18 @@ function doseisSliderOnChange(value) {
 }
 
 function configureEasyPayResults() {
+  const easyPayRadioIndex = getEasyPayRadioIndex();
+
+  if (easyPayRadioIndex === 0) {
+    configureNoCreditResults();
+  } else if (easyPayRadioIndex === 1) {
+    configureCreditResults();
+  } else {
+    console.log('configure metrhta results');
+  }
+}
+
+function configureNoCreditResults() {
   const doseisSliderValueInt = +doseisSlider.value;
   const prokatavoliSliderValueInt = +prokatavoliSlider.value;
   const { priceWithVAT } = getSystemNamePrice();
@@ -2143,6 +2161,26 @@ function configureEasyPayResults() {
   easyPayFinalCost.textContent =
     (monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt).toFixed(1) + '€';
 }
+
+function configureCreditResults() {
+  const doseisSliderValueInt = +doseisSlider.value;
+  const prokatavoliSliderValueInt = +prokatavoliSlider.value;
+  const { priceWithVAT } = getSystemNamePrice();
+  const enapomeinanPoso = priceWithVAT - prokatavoliSliderValueInt;
+
+  const monthlyCost = getCreditMonthlyCost(enapomeinanPoso, doseisSliderValueInt);
+  easyPayMonthlyCost.textContent = monthlyCost.toFixed(1) + '€';
+  configureEasyPayMonthlyGain();
+
+  easyPayFinalCost.textContent =
+    (
+      Math.round((monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt) * 10) / 10
+    ).toFixed(1) + '€';
+}
+
+// function configureMetrhtaResults() {
+//   metrhtaFinalCost.textContent = selectedEasyPaySystemPrice.toFixed(1) + '€';
+// }
 
 function prokatavoliChangeMinMaxLabelsWeight() {
   maxProkatavoliSliderText.style.fontWeight =
@@ -2169,7 +2207,6 @@ minDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSl
 maxDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.max));
 
 function configureMaxDoseisSlider(enapomeinanPoso) {
-  console.log(enapomeinanPoso);
   let monthlyCost,
     doseisNum = 6;
 
