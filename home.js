@@ -2078,6 +2078,9 @@ const minDoseisSliderText = document.querySelector('.min-doseis-slider-text');
 const maxDoseisSliderText = document.querySelector('.max-doseis-slider-text');
 const prokatavoliCover = document.querySelector('.prokatavoli-cover');
 const doseisCover = document.querySelector('.doseis-cover');
+const easyPayGain = document.querySelector('#easyPayGain');
+const easyPayCost = document.querySelector('#easyPayCost');
+const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 
 function handleEasyPayNoCreditOnClick() {
   if (getEasyPayRadioIndex() === 0) return;
@@ -2143,7 +2146,22 @@ function doseisSliderOnChange(value) {
   outputDoseis.value = doseisSlider.value;
   doseisCover.style.width = calcCoverWidth(doseisSlider) + '%';
   doseisChangeMinMaxLabelsWeight();
-  // configureResults();
+  configureEasyPayResults();
+}
+
+function configureEasyPayResults() {
+  const doseisSliderValueInt = +doseisSlider.value;
+  const prokatavoliSliderValueInt = +prokatavoliSlider.value;
+  const { priceWithVAT } = getSystemNamePrice();
+  const enapomeinanPoso = priceWithVAT - prokatavoliSliderValueInt;
+
+  const monthlyCost = -PMT(noCreditInterest / 100 / 12, doseisSliderValueInt, enapomeinanPoso);
+  easyPayMonthlyCost.textContent = monthlyCost.toFixed(2) + '€';
+
+  configureEasyPayMonthlyGain();
+
+  easyPayFinalCost.textContent =
+    (monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt).toFixed(2) + '€';
 }
 
 function prokatavoliChangeMinMaxLabelsWeight() {
