@@ -2219,6 +2219,8 @@ function PMT(interestPerMonth, doseis, cost) {
 
 function configureEasyPayMonthlyGain() {
   let monthlyGain = parseFloat(lpgResult.textContent.replace('€', ''));
+  console.log('monthlyGain1', monthlyGain);
   if (!isPerMonthChecked) monthlyGain /= 12;
+  console.log('monthlyGain2', monthlyGain);
   easyPayMonthlyGain.textContent = monthlyGain.toFixed(2) + '€';
 }
