@@ -115,6 +115,8 @@ const ReducerDict = {
 };
 
 const VAT = 1.24;
+const noCreditInterest = 12.6;
+const creditInterest = 8.2; //7.2 //credit + isfora
 
 let fetchedYears;
 let fetchedModels;
@@ -2133,7 +2135,15 @@ function prokatavoliSliderOnChange(value) {
   outputProkatavoli.value = prokatavoliSlider.value;
   prokatavoliCover.style.width = calcCoverWidth(prokatavoliSlider) + '%';
   prokatavoliChangeMinMaxLabelsWeight();
-  // configureMaxDoseisSlider();
+  configureMaxDoseisSlider(priceWithVAT - value);
+}
+
+function doseisSliderOnChange(value) {
+  doseisSlider.value = value;
+  outputDoseis.value = doseisSlider.value;
+  doseisCover.style.width = calcCoverWidth(doseisSlider) + '%';
+  doseisChangeMinMaxLabelsWeight();
+  // configureResults();
 }
 
 function prokatavoliChangeMinMaxLabelsWeight() {
@@ -2157,9 +2167,33 @@ maxProkatavoliSliderText.addEventListener('click', e =>
   prokatavoliSliderOnChange(prokatavoliSlider.max)
 );
 
-// minDoseisSliderText.addEventListener('click', e =>
-//   doseisSliderOnChange(doseisSlider.min)
-// );
-// maxDoseisSliderText.addEventListener('click', e =>
-//   doseisSliderOnChange(doseisSlider.max)
-// );
+minDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.min));
+maxDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.max));
+
+function configureMaxDoseisSlider(enapomeinanPoso) {
+  let monthlyCost,
+    doseisNum = 6;
+
+  do {
+    monthlyCost = -PMT(noCreditInterest / 100 / 12, doseisNum, enapomeinanPoso);
+    doseisNum++;
+  } while (monthlyCost > 30);
+
+  let maxDoseis = doseisNum - 2;
+  if (maxDoseis > 36) maxDoseis = 36;
+  doseisSlider.max = maxDoseis;
+  maxDoseisSliderText.textContent = maxDoseis + ' μήνες';
+  if (parseInt(doseisSlider.value) >= maxDoseis) doseisSliderOnChange(maxDoseis);
+  else doseisSliderOnChange(doseisSlider.value);
+}
+
+function PMT(interestPerMonth, doseis, cost) {
+  let pmt, pvif;
+
+  if (interestPerMonth === 0) return -cost / doseis;
+
+  pvif = Math.pow(1 + interestPerMonth, doseis);
+  pmt = (-interestPerMonth * (cost * pvif)) / (pvif - 1);
+
+  return pmt;
+}
