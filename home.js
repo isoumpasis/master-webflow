@@ -2141,7 +2141,7 @@ function configureEasyPayResults() {
   configureEasyPayMonthlyGain();
 
   easyPayFinalCost.textContent =
-    (monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt).toFixed(2) + '€';
+    (monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt).toFixed(1) + '€';
 }
 
 function prokatavoliChangeMinMaxLabelsWeight() {
@@ -2199,8 +2199,6 @@ function PMT(interestPerMonth, doseis, cost) {
 
 function configureEasyPayMonthlyGain() {
   let monthlyGain = parseFloat(lpgResult.textContent.replace('€', ''));
-  console.log(lpgResult.textContent, 'monthlyGain1', monthlyGain);
   if (!isPerMonthChecked) monthlyGain /= 12;
-  console.log('monthlyGain2', monthlyGain);
-  easyPayMonthlyGain.textContent = monthlyGain.toFixed(2) + '€';
+  easyPayMonthlyGain.textContent = monthlyGain.toFixed(1) + '€';
 }
