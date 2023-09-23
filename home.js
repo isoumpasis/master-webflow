@@ -2171,6 +2171,7 @@ minDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSl
 maxDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.max));
 
 function configureMaxDoseisSlider(enapomeinanPoso) {
+  console.log(enapomeinanPoso);
   let monthlyCost,
     doseisNum = 6;
 
