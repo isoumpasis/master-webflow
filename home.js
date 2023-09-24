@@ -188,7 +188,7 @@ function resetEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
-  handleEasyPayNoCreditOnClick();
+  handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
 }
 
 function initSliders() {
@@ -2062,17 +2062,17 @@ const easyPayMonthlyGain = document.querySelector('#easyPayGain');
 const easyPayMonthlyCost = document.querySelector('#easyPayCost');
 const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 
-function handleEasyPayNoCreditOnClick() {
+function handleEasyPayNoCreditOnClick(options = {}) {
   if (getEasyPayRadioIndex() === 0) return;
   console.log('easy pay no credit');
   selectEasyPayRadioIndex(0);
-  prokatavoliSliderOnChange(0);
+  prokatavoliSliderOnChange(options?.prokatavoli ? options.prokatavoli : +prokatavoliSlider.value);
 }
 function handleEasyPayCreditOnClick() {
   if (getEasyPayRadioIndex() === 1) return;
   console.log('easy pay credit');
   selectEasyPayRadioIndex(1);
-  prokatavoliSliderOnChange(200);
+  prokatavoliSliderOnChange(+prokatavoliSlider.value);
 }
 function handleEasyPayCashOnClick() {
   if (getEasyPayRadioIndex() === 2) return;
@@ -2123,6 +2123,8 @@ function prokatavoliSliderOnChange(value) {
   if (easyPayRadioIndex === 0) {
     configureMaxDoseisSlider(priceWithVAT - value);
   } else if (easyPayRadioIndex === 1) {
+    doseisSlider.max = 36;
+    doseisSlider.min = 3;
     doseisSliderOnChange(+doseisSlider.value);
   }
 }
