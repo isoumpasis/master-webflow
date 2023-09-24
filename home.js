@@ -2121,12 +2121,19 @@ function prokatavoliSliderOnChange(value) {
 
   const easyPayRadioIndex = getEasyPayRadioIndex();
   if (easyPayRadioIndex === 0) {
-    configureMaxDoseisSlider(priceWithVAT - value);
+    configureMinMaxDoseisSlider(priceWithVAT - value);
   } else if (easyPayRadioIndex === 1) {
-    doseisSlider.max = 36;
-    doseisSlider.min = 3;
+    resetEasyPayCreditSlider();
+
     doseisSliderOnChange(+doseisSlider.value);
   }
+}
+
+function resetEasyPayCreditSlider() {
+  doseisSlider.min = 3;
+  doseisSlider.max = 36;
+  minDoseisSliderText.textContent = '3 μήνες';
+  maxDoseisSliderText.textContent = '36 μήνες';
 }
 
 function doseisSliderOnChange(value) {
@@ -2226,7 +2233,9 @@ maxProkatavoliSliderText.addEventListener('click', e =>
 minDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.min));
 maxDoseisSliderText.addEventListener('click', e => doseisSliderOnChange(doseisSlider.max));
 
-function configureMaxDoseisSlider(enapomeinanPoso) {
+function configureMinMaxDoseisSlider(enapomeinanPoso) {
+  doseisSlider.min = 6;
+  minDoseisSliderText.textContent = '6 μήνες';
   let monthlyCost,
     doseisNum = 6;
 
