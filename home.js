@@ -2111,8 +2111,13 @@ function getEasyPayRadioIndex() {
 function prokatavoliSliderOnChange(value) {
   const { priceWithVAT } = getSystemNamePrice();
   const floorPrice = Math.floor(priceWithVAT / 10) * 10;
-  prokatavoliSlider.max = floorPrice - 500;
-  maxProkatavoliSliderText.textContent = floorPrice - 500 + '€';
+
+  let substractFromProkatavoliMaxWithOption = 500;
+  if (getEasyPayRadioIndex() === 1) {
+    substractFromProkatavoliMaxWithOption = 100;
+  }
+  prokatavoliSlider.max = floorPrice - substractFromProkatavoliMaxWithOption;
+  maxProkatavoliSliderText.textContent = floorPrice - substractFromProkatavoliMaxWithOption + '€';
 
   prokatavoliSlider.value = value;
   outputProkatavoli.value = prokatavoliSlider.value;
