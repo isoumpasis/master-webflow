@@ -2074,10 +2074,16 @@ function handleEasyPayCreditOnClick() {
 }
 function handleEasyPayCashOnClick() {
   if (getEasyPayRadioIndex() === 2) return;
-  console.log('easy pay cash');
   selectEasyPayRadioIndex(2);
-  // hideProkatavoli();
-  // hideDoseis();
+  configureMetrhtaResults();
+}
+
+function configureMetrhtaResults() {
+  const { priceWithVAT } = getSystemNamePrice();
+  easyPayMonthlyCost.textContent = `${priceWithVAT.toFixed(1)}€`;
+  let gain = parseFloat(lpgResult.textContent.replace('€', ''));
+  if (isPerMonthChecked) gain *= 12;
+  easyPayMonthlyGain.textContent = gain.toFixed(1) + '€';
 }
 
 function selectEasyPayRadioIndex(index) {
@@ -2100,11 +2106,19 @@ function selectEasyPayRadioIndex(index) {
   if (index === 2) {
     document.querySelector('.prokatavoli-container').style.display = 'none';
     document.querySelector('.doseis-container').style.display = 'none';
+    document.querySelector('.pay-result-flex').style.display = 'none';
     document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'flex-start';
+    document.querySelector('.easypay-doseis-text').textContent = 'Τελικό ποσό πληρωμής';
+    document.querySelector('.doseis-per-month-text').style.display = 'none';
+    document.querySelector('.gain-per-month-text').textContent = 'χρόνο';
   } else {
     document.querySelector('.prokatavoli-container').style.display = 'block';
     document.querySelector('.doseis-container').style.display = 'block';
+    document.querySelector('.pay-result-flex').style.display = 'flex';
     document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'space-between';
+    document.querySelector('.easypay-doseis-text').textContent = 'Η δόση που θα πληρώνετε';
+    document.querySelector('.doseis-per-month-text').style.display = 'block';
+    document.querySelector('.gain-per-month-text').textContent = 'μήνα';
   }
 }
 
