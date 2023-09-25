@@ -2064,13 +2064,11 @@ const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 
 function handleEasyPayNoCreditOnClick(options = {}) {
   if (getEasyPayRadioIndex() === 0) return;
-  console.log('easy pay no credit');
   selectEasyPayRadioIndex(0);
   prokatavoliSliderOnChange(options?.prokatavoli ? options.prokatavoli : +prokatavoliSlider.value);
 }
 function handleEasyPayCreditOnClick() {
   if (getEasyPayRadioIndex() === 1) return;
-  console.log('easy pay credit');
   selectEasyPayRadioIndex(1);
   prokatavoliSliderOnChange(+prokatavoliSlider.value);
 }
@@ -2098,6 +2096,16 @@ function selectEasyPayRadioIndex(index) {
     .forEach((label, i) =>
       i === index ? (label.style.fontWeight = 'bold') : (label.style.fontWeight = 'normal')
     );
+
+  if (index === 3) {
+    document.querySelector('.prokatavoli-container').style.display = 'none';
+    document.querySelector('.doseis-container').style.display = 'none';
+    document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'flex-start';
+  } else {
+    document.querySelector('.prokatavoli-container').style.display = 'block';
+    document.querySelector('.doseis-container').style.display = 'block';
+    document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'space-between';
+  }
 }
 
 function getEasyPayRadioIndex() {
