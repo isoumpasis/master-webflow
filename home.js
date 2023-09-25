@@ -2126,11 +2126,9 @@ function prokatavoliSliderOnChange(value) {
 
   const easyPayRadioIndex = getEasyPayRadioIndex();
   if (easyPayRadioIndex === 0) {
-    console.log(prokatavoliSlider.value, value);
-    configureMinMaxDoseisSlider(priceWithVAT - value);
+    configureMinMaxDoseisSlider(priceWithVAT - +prokatavoliSlider.value);
   } else if (easyPayRadioIndex === 1) {
     resetEasyPayCreditSlider();
-
     doseisSliderOnChange(+doseisSlider.value);
   }
 }
