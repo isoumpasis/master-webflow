@@ -2110,7 +2110,7 @@ function selectEasyPayRadioIndex(index) {
     document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'flex-start';
     document.querySelector('.easypay-doseis-text').textContent = 'Τελικό ποσό πληρωμής';
     document.querySelector('.doseis-per-month-text').style.display = 'none';
-    document.querySelector('.gain-per-month-text').textContent = 'χρόνο';
+    document.querySelector('.gain-per-month-text').textContent = '/χρόνο';
   } else {
     document.querySelector('.prokatavoli-container').style.display = 'block';
     document.querySelector('.doseis-container').style.display = 'block';
@@ -2118,7 +2118,7 @@ function selectEasyPayRadioIndex(index) {
     document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'space-between';
     document.querySelector('.easypay-doseis-text').textContent = 'Η δόση που θα πληρώνετε';
     document.querySelector('.doseis-per-month-text').style.display = 'block';
-    document.querySelector('.gain-per-month-text').textContent = 'μήνα';
+    document.querySelector('.gain-per-month-text').textContent = '/μήνα';
   }
 }
 
