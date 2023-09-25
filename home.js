@@ -2126,6 +2126,7 @@ function prokatavoliSliderOnChange(value) {
 
   const easyPayRadioIndex = getEasyPayRadioIndex();
   if (easyPayRadioIndex === 0) {
+    console.log(prokatavoliSlider.value, value);
     configureMinMaxDoseisSlider(priceWithVAT - value);
   } else if (easyPayRadioIndex === 1) {
     resetEasyPayCreditSlider();
