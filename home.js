@@ -82,11 +82,32 @@ const MonthsDict = [
 
 const SystemDict = {
   systems: {
-    SR: { name: 'SR', priceNoVAT: 1260 },
-    AR: { name: 'AR', priceNoVAT: 1350 },
-    PIEZO_BMW: { name: 'PIEZO BMW', priceNoVAT: 1260 },
-    PIEZO_MERCEDES: { name: 'PIEZO MERCEDES', priceNoVAT: 1330 },
-    SR_ALFA_ROMEO: { name: 'SR ALFA ROMEO', priceNoVAT: 1290 }
+    SR: {
+      name: 'SR',
+      priceNoVAT: 1260,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649002d89900bc3e320cc6d3_sr-logo-02.svg'
+    },
+    AR: {
+      name: 'AR',
+      priceNoVAT: 1350,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/648819026d04c3bdf36db28f_ar-logo-01.svg'
+    },
+    PIEZO_BMW: {
+      name: 'PIEZO BMW',
+      priceNoVAT: 1260,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64900606276ea59867a20f42_piezo-04.svg'
+    },
+    PIEZO_R_BMW: { name: 'PIEZO R BMW', priceNoVAT: 1260 },
+    PIEZO_MERCEDES: {
+      name: 'PIEZO MERCEDES',
+      priceNoVAT: 1330,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649006ad0460401ca20673dd_piezo-mercedes-05.svg'
+    },
+    SR_ALFA_ROMEO: {
+      name: 'SR ALFA ROMEO',
+      priceNoVAT: 1290,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6490042228f8db1f14a36d73_sr-alfa-03.svg'
+    }
   }
 };
 const InfoDict = {
@@ -809,6 +830,7 @@ function makeOnChange(value) {
   resetDropdowns(['year', 'model', 'engine']);
   removeFadeIn([yearDropdown, modelDropdown, engineDropdown]);
   resetCalc();
+  resetEasyPay();
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -947,6 +969,7 @@ function yearOnChange(value) {
   resetDropdowns(['model', 'engine']);
   removeFadeIn([modelDropdown, engineDropdown]);
   resetCalc();
+  resetEasyPay();
 
   // descriptionSelect.disabled = true;
   // descriptionSelect.innerHTML = '<option>Περιγραφή</option>';
@@ -1053,6 +1076,7 @@ function modelOnChange(value) {
   resetDropdowns(['engine']);
   removeFadeIn([engineDropdown]);
   resetCalc();
+  resetEasyPay();
   // suggestedContainers.forEach(container => {
   //   container.style.display = 'none';
   // });
@@ -1186,7 +1210,7 @@ function engineOnChange(value) {
   if (!value) {
     // showGuarantee(false);
     resetCalc();
-    // resetEasyPay();
+    resetEasyPay();
     // step2Triggered = false;
 
     // calcResult(false);
@@ -1223,6 +1247,7 @@ function showResults(fetchedModelObj) {
   configureTestimonialsAfterSuggestion();
 
   configureCalculatorAfterSuggestion();
+  configureEasyPayAfterSuggestion();
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -1296,6 +1321,17 @@ function showResults(fetchedModelObj) {
     () => document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' }),
     100
   );
+}
+
+function configureEasyPayAfterSuggestion() {
+  const { priceWithVAT, nameId } = getSystemNamePrice();
+  console.log('configure easy pay after suggestion', priceWithVAT, nameId);
+  document.querySelector('#priceWithVATOutput').textContent = `${priceWithVAT}€`;
+  document.querySelector('.easypay-logo-system').src = SystemDict.systems[nameId].url;
+  document.querySelector('.easypay-logo-system').style.display = 'block';
+  document.querySelector('.easypay-add-car').style.display = 'none';
+
+  handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
 }
 
 function isMobile() {
@@ -2044,7 +2080,7 @@ function getSystemNamePrice(suggestedContainer) {
   const priceNoVAT = +activeContainer.querySelector('.price').textContent.split('€')[0];
 
   const priceWithVAT = priceNoVAT * VAT;
-  return { name, priceNoVAT, priceWithVAT };
+  return { name, priceNoVAT, priceWithVAT, nameId: activeContainer.id };
 }
 
 /* EasyPay */
