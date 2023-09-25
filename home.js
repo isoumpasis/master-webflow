@@ -2097,7 +2097,7 @@ function selectEasyPayRadioIndex(index) {
       i === index ? (label.style.fontWeight = 'bold') : (label.style.fontWeight = 'normal')
     );
 
-  if (index === 3) {
+  if (index === 2) {
     document.querySelector('.prokatavoli-container').style.display = 'none';
     document.querySelector('.doseis-container').style.display = 'none';
     document.querySelector('.calculator-wrapper-xrimatod').style.justifyContent = 'flex-start';
