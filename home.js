@@ -2460,13 +2460,15 @@ function handleInvalidUnknownForm(msg) {
 
 function sendUnknownVehicle() {
   const data = {
-    name: userInfo,
-    msg: document.querySelector('#unknownVehicleMsg').value,
-    form: {
-      url: location.origin + location.pathname,
-      name: document.querySelector('#unknownForm').dataset.name,
-      date: `${new Date().toLocaleDateString('el')}, ${new Date().toLocaleTimeString('el')}`
-    }
+    name: userInfo.username,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    vehicleMsg: document.querySelector('#unknownVehicleMsg').value
+    // form: {
+    //   url: location.origin + location.pathname,
+    //   name: document.querySelector('#unknownForm').dataset.name,
+    //   date: `${new Date().toLocaleDateString('el')}, ${new Date().toLocaleTimeString('el')}`
+    // }
   };
 
   document.querySelector('#unknownSubmit').value = 'Γίνεται η αποστολή...';
