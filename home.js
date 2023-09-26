@@ -213,7 +213,7 @@ function resetEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
-  handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
+  handleEasyPayNoCreditOnClick();
 }
 
 function initSliders() {
@@ -1335,7 +1335,7 @@ function configureEasyPayAfterSuggestion() {
   document.querySelector('.easypay-logo-system').style.display = 'block';
   document.querySelector('.easypay-add-car').style.display = 'none';
 
-  handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
+  handleEasyPayNoCreditOnClick();
 }
 
 function isMobile() {
