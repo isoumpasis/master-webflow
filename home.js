@@ -2488,7 +2488,8 @@ function sendUnknownVehicle() {
       document.querySelector('#unknownSubmit').value = 'Αποστολή';
       setTimeout(() => {
         document.querySelector('.unknown-form-success').style.display = 'none';
-      }, 6000);
+        document.querySelector('.unknown-car-container').style.display = 'none';
+      }, 4000);
     })
     .catch(e => {
       console.error('Error on unknown vehicle form :', e);
