@@ -213,8 +213,6 @@ function resetEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
-  console.log('reset easy pay');
-
   handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
 }
 
@@ -2108,7 +2106,6 @@ function handleEasyPayNoCreditOnClick(options = {}) {
   if (getEasyPayRadioIndex() !== 0) {
     selectEasyPayRadioIndex(0);
   }
-  console.log('options', options, 'prokatavoli' in options, options?.prokatavoli);
   prokatavoliSliderOnChange(
     'prokatavoli' in options ? options.prokatavoli : +prokatavoliSlider.value
   );
@@ -2225,8 +2222,6 @@ function configureEasyPayResults() {
     configureNoCreditResults();
   } else if (easyPayRadioIndex === 1) {
     configureCreditResults();
-  } else {
-    console.log('configure metrhta results');
   }
 }
 
