@@ -97,7 +97,11 @@ const SystemDict = {
       priceNoVAT: 1260,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64900606276ea59867a20f42_piezo-04.svg'
     },
-    PIEZO_R_BMW: { name: 'PIEZO R BMW', priceNoVAT: 1260 },
+    PIEZO_R_BMW: {
+      name: 'PIEZO R BMW',
+      priceNoVAT: 1260,
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/651278f1884d0caef06a53c9_md-piezo-r.svg'
+    },
     PIEZO_MERCEDES: {
       name: 'PIEZO MERCEDES',
       priceNoVAT: 1330,
@@ -2101,7 +2105,9 @@ const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 function handleEasyPayNoCreditOnClick(options = {}) {
   if (getEasyPayRadioIndex() === 0) return;
   selectEasyPayRadioIndex(0);
-  prokatavoliSliderOnChange(options?.prokatavoli ? options.prokatavoli : +prokatavoliSlider.value);
+  prokatavoliSliderOnChange(
+    'prokatavoli' in options ? options.prokatavoli : +prokatavoliSlider.value
+  );
 }
 function handleEasyPayCreditOnClick() {
   if (getEasyPayRadioIndex() === 1) return;
