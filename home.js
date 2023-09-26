@@ -2436,7 +2436,7 @@ function validateUnknownForm() {
   if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
     return { valid: false, msg: 'Απαιτείται έγκυρος αριθμός τηλεφώνου (10ψηφία)' };
   if (!document.querySelector('#unknownVehicleMsg').value)
-    return { valid: false, msg: 'Παρακαλούμε γράψτε πρώτα το μοντέλο σας' };
+    return { valid: false, msg: 'Παρακαλούμε περιγράψτε το μοντέλο σας' };
   // if (!hasUserInfo()) return { valid: false, msg: 'Συμπληρώστε πρώτα τα προσωπικά σας στοιχεία' };
   return { valid: true };
 }
@@ -2479,6 +2479,9 @@ function sendUnknownVehicle() {
   })
     .then(res => res.json())
     .then(data => {
+      if (data.status !== 200) {
+        throw new Error();
+      }
       // document.querySelector('.contact-form-success').style.display = 'block';
       document.querySelector('#unknownFormSuccess').style.display = 'block';
       document.querySelector('#contactSubmit').value = 'Αποστολή';
