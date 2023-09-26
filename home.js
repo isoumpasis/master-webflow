@@ -2482,15 +2482,10 @@ function sendUnknownVehicle() {
       if (data.status !== 200) {
         throw new Error();
       }
-      // document.querySelector('.contact-form-success').style.display = 'block';
-      document.querySelector('#unknownFormSuccess').style.display = 'block';
-      document.querySelector('#contactSubmit').value = 'Αποστολή';
-      // document.querySelector('#unknownVehicleMsg').value = '';
-      // setTimeout(() => {
-      //   document.querySelector('.contact-form-success').style.display = 'none';
-      // }, 6000);
+      document.querySelector('.unknown-form-success').style.display = 'flex';
+      document.querySelector('#unknownSubmit').value = 'Αποστολή';
       setTimeout(() => {
-        document.querySelector('.#unknownFormSuccess').style.display = 'none';
+        document.querySelector('.unknown-form-success').style.display = 'none';
       }, 6000);
     })
     .catch(e => {
