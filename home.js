@@ -2460,7 +2460,7 @@ function handleInvalidUnknownForm(msg) {
 
 function sendUnknownVehicle() {
   const data = {
-    user: userInfo,
+    name: userInfo,
     msg: document.querySelector('#unknownVehicleMsg').value,
     form: {
       url: location.origin + location.pathname,
