@@ -213,6 +213,8 @@ function resetEasyPay() {
   document.querySelector('.easypay-logo-system').style.display = 'none';
   document.querySelector('.easypay-add-car').style.display = 'block';
 
+  console.log('reset easy pay');
+
   handleEasyPayNoCreditOnClick({ prokatavoli: 0 });
 }
 
