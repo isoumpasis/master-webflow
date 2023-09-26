@@ -2481,7 +2481,7 @@ function sendUnknownVehicle() {
   })
     .then(res => res.json())
     .then(data => {
-      if (data.status !== 200) {
+      if ('status' in data && data.status !== 200) {
         throw new Error();
       }
       document.querySelector('.unknown-form-success').style.display = 'flex';
