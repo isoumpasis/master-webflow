@@ -1,5 +1,5 @@
-let serverUrl = 'https://masterdirect.herokuapp.com/';
-// let serverUrl = 'http://localhost:1968/';
+// let serverUrl = 'https://masterdirect.herokuapp.com/';
+let serverUrl = 'http://localhost:1968/';
 
 const baseUrl = location.origin;
 const mapUrl = '/stores';
@@ -14,7 +14,7 @@ let emailSummaryUrl = serverUrl + 'summaries/email/system';
 const mapBaseUrl = baseUrl + mapUrl;
 const numPlaceUrl = serverUrl + 'map/pins/numPlace';
 const closestUrl = serverUrl + 'map/pins/closest';
-const urlContactForm = serverUrl + 'contact/';
+const urlUnknownForm = serverUrl + 'unknown_vehicle/';
 const easyPayFileUploaderUrl = serverUrl + 'summaries/easyPay';
 const urlNotConvForm = serverUrl + 'notConvertible';
 
@@ -139,6 +139,9 @@ const ReducerDict = {
   DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 }
 };
 
+let userInfo = { username: '', email: '', phone: '' };
+const preferredStorage = localStorage;
+
 const VAT = 1.24;
 const noCreditInterest = 12.6;
 const creditInterest = 8.2; //7.2 //credit + isfora
@@ -188,7 +191,88 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalc();
   calcResult();
   initEasyPay();
+  initUserInfo();
 });
+
+function initUserInfo() {
+  userInfo = getUserInfo() || {};
+  [...document.querySelectorAll('.user-info-username')].map(el => {
+    el.value = userInfo.username || '';
+    el.autocomplete = 'name';
+  });
+  [...document.querySelectorAll('.user-info-email')].map(el => {
+    el.value = userInfo.email || '';
+    el.autocomplete = 'email';
+  });
+  [...document.querySelectorAll('.user-info-phone')].map(el => {
+    el.value = userInfo.phone || '';
+    el.autocomplete = 'phone';
+  });
+  [...document.querySelectorAll('.user-info-address')].map(el => {
+    el.value = userInfo.address || '';
+    el.autocomplete = 'street-address';
+  });
+  [...document.querySelectorAll('.user-info-comment')].map(el => {
+    el.value = userInfo.comment || '';
+  });
+  // userInfo.category = 0;
+
+  [...document.querySelectorAll('.user-info-username')].map(element =>
+    element.addEventListener('input', e => {
+      [...document.querySelectorAll('.user-info-username')].map(el => {
+        el.value = e.target.value;
+      });
+      userInfo.username = e.target.value;
+      saveUserInfo();
+    })
+  );
+  [...document.querySelectorAll('.user-info-email')].map(element =>
+    element.addEventListener('input', e => {
+      [...document.querySelectorAll('.user-info-email')].map(el => {
+        el.value = e.target.value;
+      });
+      userInfo.email = e.target.value;
+      saveUserInfo();
+    })
+  );
+
+  [...document.querySelectorAll('.user-info-phone')].map(element =>
+    element.addEventListener('input', e => {
+      [...document.querySelectorAll('.user-info-phone')].map(el => {
+        el.value = e.target.value;
+      });
+      userInfo.phone = e.target.value;
+      saveUserInfo();
+    })
+  );
+  [...document.querySelectorAll('.user-info-address')].map(element =>
+    element.addEventListener('input', e => {
+      [...document.querySelectorAll('.user-info-address')].map(el => {
+        el.value = e.target.value;
+      });
+      userInfo.address = e.target.value;
+      saveUserInfo();
+    })
+  );
+  [...document.querySelectorAll('.user-info-comment')].map(element =>
+    element.addEventListener('input', e => {
+      [...document.querySelectorAll('.user-info-comment')].map(el => {
+        el.value = e.target.value;
+      });
+      userInfo.comment = e.target.value;
+      saveUserInfo();
+    })
+  );
+}
+
+function saveUserInfo() {
+  if (typeof Storage !== 'undefined')
+    preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
+}
+function getUserInfo() {
+  if (typeof Storage !== 'undefined') return JSON.parse(preferredStorage.getItem('userInfo'));
+  return null;
+}
 
 function initEasyPay() {
   initSliders();
@@ -2337,3 +2421,74 @@ function configureEasyPayMonthlyGain() {
   if (!isPerMonthChecked) monthlyGain /= 12;
   easyPayMonthlyGain.textContent = monthlyGain.toFixed(1) + '€';
 }
+
+/* UNKNOWN FORM */
+document.querySelector('#unknownForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const validationResult = validateUnknownForm();
+  if (!validationResult.valid) return handleInvalidUnknownForm(validationResult.msg);
+  sendUnknownVehicle();
+});
+
+function validateUnknownForm() {
+  if (!userInfo.username) return { valid: false, msg: 'Απαιτείται ονοματεπώνυμο' };
+  if (!isEmail(userInfo.email)) return { valid: false, msg: 'Απαιτείται έγκυρο email' };
+  if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
+    return { valid: false, msg: 'Απαιτείται έγκυρος αριθμός τηλεφώνου (10ψηφία)' };
+  if (!document.querySelector('#unknownVehicleMsg').value)
+    return { valid: false, msg: 'Παρακαλούμε γράψτε πρώτα το μοντέλο σας' };
+  // if (!hasUserInfo()) return { valid: false, msg: 'Συμπληρώστε πρώτα τα προσωπικά σας στοιχεία' };
+  return { valid: true };
+}
+
+function handleInvalidUnknownForm(msg) {
+  // const formErrorEl = document.querySelector('.unknown-form-error');
+  // formErrorEl.style.display = 'block';
+  // formErrorEl.textContent = msg;
+  // setTimeout(() => (formErrorEl.style.display = 'none'), 4000);
+  const formErrorEl = document.querySelector('#unknownFormError');
+  formErrorEl.style.display = 'block';
+  formErrorEl.textContent = msg;
+  setTimeout(() => (formErrorEl.style.display = 'none'), 4000);
+}
+
+function sendUnknownVehicle() {
+  const data = {
+    user: userInfo,
+    msg: document.querySelector('#unknownVehicleMsg').value,
+    form: {
+      url: location.origin + location.pathname,
+      name: document.querySelector('#unknownForm').dataset.name,
+      date: `${new Date().toLocaleDateString('el')}, ${new Date().toLocaleTimeString('el')}`
+    }
+  };
+
+  document.querySelector('#unknownSubmit').value = 'Γίνεται η αποστολή...';
+  fetch(urlUnknownForm, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ data })
+  })
+    .then(res => res.json())
+    .then(data => {
+      // document.querySelector('.contact-form-success').style.display = 'block';
+      document.querySelector('#unknownFormSuccess').style.display = 'block';
+      document.querySelector('#contactSubmit').value = 'Αποστολή';
+      // document.querySelector('#unknownVehicleMsg').value = '';
+      // setTimeout(() => {
+      //   document.querySelector('.contact-form-success').style.display = 'none';
+      // }, 6000);
+      setTimeout(() => {
+        document.querySelector('.#unknownFormSuccess').style.display = 'none';
+      }, 6000);
+    })
+    .catch(e => {
+      console.error('Error on unknown vehicle form :', e);
+      handleInvalidUnknownForm('Υπήρξε πρόβλημα κατά την αποστολή, προσπαθήστε αργότερα');
+      document.querySelector('#unknownSubmit').value = 'Αποστολή';
+    });
+}
+
+/* /UNKNOWN FORM */
