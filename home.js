@@ -2105,21 +2105,24 @@ const easyPayMonthlyCost = document.querySelector('#easyPayCost');
 const easyPayFinalCost = document.querySelector('#easyPayFinalCost');
 
 function handleEasyPayNoCreditOnClick(options = {}) {
-  if (getEasyPayRadioIndex() === 0) return;
-  selectEasyPayRadioIndex(0);
+  if (getEasyPayRadioIndex() !== 0) {
+    selectEasyPayRadioIndex(0);
+  }
   console.log('options', options, 'prokatavoli' in options, options?.prokatavoli);
   prokatavoliSliderOnChange(
     'prokatavoli' in options ? options.prokatavoli : +prokatavoliSlider.value
   );
 }
 function handleEasyPayCreditOnClick() {
-  if (getEasyPayRadioIndex() === 1) return;
-  selectEasyPayRadioIndex(1);
+  if (getEasyPayRadioIndex() !== 1) {
+    selectEasyPayRadioIndex(1);
+  }
   prokatavoliSliderOnChange(+prokatavoliSlider.value);
 }
 function handleEasyPayCashOnClick() {
-  if (getEasyPayRadioIndex() === 2) return;
-  selectEasyPayRadioIndex(2);
+  if (getEasyPayRadioIndex() !== 2) {
+    selectEasyPayRadioIndex(2);
+  }
   configureMetrhtaResults();
 }
 
