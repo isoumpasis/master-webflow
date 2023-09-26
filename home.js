@@ -2455,7 +2455,7 @@ function handleInvalidUnknownForm(msg) {
   const formErrorEl = document.querySelector('#unknownFormError');
   formErrorEl.style.display = 'block';
   formErrorEl.textContent = msg;
-  setTimeout(() => (formErrorEl.style.display = 'none'), 4000);
+  setTimeout(() => (formErrorEl.style.display = 'none'), 3000);
 }
 
 function sendUnknownVehicle() {
@@ -2489,7 +2489,7 @@ function sendUnknownVehicle() {
       setTimeout(() => {
         document.querySelector('.unknown-form-success').style.display = 'none';
         document.querySelector('.unknown-car-container .close-div').click();
-      }, 4000);
+      }, 3000);
     })
     .catch(e => {
       console.error('Error on unknown vehicle form :', e);
