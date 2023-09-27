@@ -112,7 +112,7 @@ function handleInvalidContactForm(msg) {
   const formErrorEl = document.querySelector('#contactFormError');
   formErrorEl.style.display = 'block';
   formErrorEl.textContent = msg;
-  setTimeout(() => (formErrorEl.style.display = 'none'), 4000);
+  setTimeout(() => (formErrorEl.style.display = 'none'), 3000);
 }
 
 function sendContactForm() {
