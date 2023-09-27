@@ -2470,6 +2470,7 @@ function sendUnknownVehicle() {
       if ('status' in data && data.status !== 200) {
         throw new Error();
       }
+      document.querySelector('#unknownFormError').style.display = 'none';
       document.querySelector('.unknown-form-success').style.display = 'flex';
       document.querySelector('#unknownSubmit').value = 'Αποστολή';
       document.querySelector('#unknownSubmit').value = '';
@@ -2620,6 +2621,7 @@ function sendContactForm() {
       if ('status' in data && data.status !== 200) {
         throw new Error();
       }
+      document.querySelector('#contactFormError').style.display = 'none';
       document.querySelector('.contact-form-success').style.display = 'flex';
       document.querySelector('#contactSubmit').value = 'Αποστολή';
       document.querySelector('#contactMsg').value = '';
