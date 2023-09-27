@@ -120,6 +120,7 @@ function sendContactForm() {
     name: userInfo.username,
     email: userInfo.email,
     phone: userInfo.phone,
+    address: userInfo.address,
     contactMsg: document.querySelector('#contactMsg').value,
     contactType: 'system'
     // form: {
