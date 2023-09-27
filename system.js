@@ -120,7 +120,7 @@ function sendContactForm() {
     name: userInfo.username,
     email: userInfo.email,
     phone: userInfo.phone,
-    vehicleMsg: document.querySelector('#contactMsg').value,
+    contactMsg: document.querySelector('#contactMsg').value,
     contactType: 'system'
     // form: {
     //   url: location.origin + location.pathname,
@@ -149,7 +149,7 @@ function sendContactForm() {
       }, 3000);
     })
     .catch(e => {
-      console.error('Error on contact vehicle form :', e);
+      console.error('Error on contact system form :', e);
       handleInvalidContactForm('Υπήρξε πρόβλημα κατά την αποστολή, προσπαθήστε αργότερα');
       document.querySelector('#contactSubmit').value = 'Αποστολή';
     });
