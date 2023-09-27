@@ -85,10 +85,10 @@ document.querySelector('#contactForm').addEventListener('submit', e => {
 
 function validateContactForm() {
   if (!userInfo.username) return { valid: false, msg: 'Απαιτείται ονοματεπώνυμο' };
-  if (!userInfo.address) return { valid: false, msg: 'Απαιτείται διεύθυνση' };
   if (!isEmail(userInfo.email)) return { valid: false, msg: 'Απαιτείται έγκυρο email' };
   if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
     return { valid: false, msg: 'Απαιτείται έγκυρος αριθμός τηλεφώνου (10ψηφία)' };
+  if (!userInfo.address) return { valid: false, msg: 'Απαιτείται διεύθυνση' };
   if (!document.querySelector('#contactMsg').value)
     return { valid: false, msg: 'Παρακαλούμε γράψτε πρώτα το μήνυμα σας' };
   if (!hasUserInfo()) return { valid: false, msg: 'Συμπληρώστε πρώτα τα προσωπικά σας στοιχεία' };
@@ -145,6 +145,7 @@ function sendContactForm() {
       }
       document.querySelector('.contact-form-success').style.display = 'flex';
       document.querySelector('#contactSubmit').value = 'Αποστολή';
+      document.querySelector('#contactMsg').value = '';
       setTimeout(() => {
         document.querySelector('.contact-form-success').style.display = 'none';
       }, 3000);
