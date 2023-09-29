@@ -2605,7 +2605,7 @@ function sendContactForm() {
     phone: userInfo.phone,
     address: userInfo.address,
     contactMsg: document.querySelector('#contactMsg').value,
-    contactType: 'home'
+    contactType: 'home' //
   };
 
   document.querySelector('#contactSubmit').value = 'Γίνεται η αποστολή...';
