@@ -1,22 +1,14 @@
 let serverUrl = 'https://masterdirect.herokuapp.com/';
 // let serverUrl = 'http://localhost:1968/';
 
-const baseUrl = location.origin;
-const mapUrl = '/stores';
 const urlYears = serverUrl + 'vehicleDB/get/years';
 const urlModels = serverUrl + 'vehicleDB/get/models';
 const urlEngineCodes = serverUrl + 'vehicleDB/get/descriptions';
 const urlFuelPrices = serverUrl + 'fuelPrices';
 let downloadSummaryUrl = serverUrl + 'summaries/download/system';
-// const downloadSummaryUrl = 'http://localhost:1917/summaries/download/system';
 let emailSummaryUrl = serverUrl + 'summaries/email/system';
-// const emailSummaryUrl = 'http://localhost:1917/summaries/email/system';
-const mapBaseUrl = baseUrl + mapUrl;
-const numPlaceUrl = serverUrl + 'map/pins/numPlace';
-const closestUrl = serverUrl + 'map/pins/closest';
 const urlUnknownForm = serverUrl + 'unknown_vehicle/';
-const easyPayFileUploaderUrl = serverUrl + 'summaries/easyPay';
-const urlNotConvForm = serverUrl + 'notConvertible';
+const urlContactForm = 'contact/';
 
 const makeImgPrefix = 'https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/';
 const makeImgDict = {
@@ -2474,7 +2466,7 @@ function sendUnknownVehicle() {
       document.querySelector('.unknown-form-success').style.display = 'flex';
       document.querySelector('#unknownSubmit').value = 'Αποστολή';
       document.querySelector('#unknownSubmit').value = '';
-
+      document.querySelector('#unknownVehicleMsg').value = '';
       setTimeout(() => {
         document.querySelector('.unknown-form-success').style.display = 'none';
         document.querySelector('.unknown-car-container .close-div').click();
@@ -2490,10 +2482,6 @@ function sendUnknownVehicle() {
 /* /UNKNOWN FORM */
 
 /* CONTACT FORM */
-
-const urlContactForm = 'http://localhost:1968/contact/';
-// const urlContactForm = 'https://masterdirect.herokuapp.com/contact/';
-
 document.addEventListener('DOMContentLoaded', () => {
   initUserInfo();
 });
