@@ -122,7 +122,7 @@ function sendContactForm() {
     phone: userInfo.phone,
     address: userInfo.address,
     contactMsg: document.querySelector('#contactMsg').value,
-    contactType: 'system'
+    contactType: 'Συστήματος'
     // form: {
     //   url: location.origin + location.pathname,
     //   name: document.querySelector('#unknownForm').dataset.name,

@@ -2593,7 +2593,7 @@ function sendContactForm() {
     phone: userInfo.phone,
     address: userInfo.address,
     contactMsg: document.querySelector('#contactMsg').value,
-    contactType: 'home' //
+    contactType: 'Αρχικής'
   };
 
   document.querySelector('#contactSubmit').value = 'Γίνεται η αποστολή...';
