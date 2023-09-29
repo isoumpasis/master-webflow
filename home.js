@@ -8,7 +8,7 @@ const urlFuelPrices = serverUrl + 'fuelPrices';
 let downloadSummaryUrl = serverUrl + 'summaries/download/system';
 let emailSummaryUrl = serverUrl + 'summaries/email/system';
 const urlUnknownForm = serverUrl + 'unknown_vehicle/';
-const urlContactForm = 'contact/';
+const urlContactForm = serverUrl + 'contact/';
 
 const makeImgPrefix = 'https://uploads-ssl.webflow.com/60362f40a83dcf0034eb880b/';
 const makeImgDict = {
