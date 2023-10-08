@@ -2554,7 +2554,6 @@ function initUserInfo() {
     saveUserInfo();
   })
 );
-
 [...document.querySelectorAll('.installer-checkbox-wrapper')].map(element =>
   element.addEventListener('click', e => {
     const prevDisplay = document.querySelector('.user-info-installer').style.display;

@@ -35,6 +35,9 @@ function initUserInfo() {
     el.value = userInfo.address || '';
     el.autocomplete = 'street-address';
   });
+  [...document.querySelectorAll('.user-info-installer')].map(el => {
+    el.style.display = userInfo.installer ? 'block' : 'none';
+  });
 }
 
 [...document.querySelectorAll('.user-info-username')].map(element =>
@@ -70,6 +73,16 @@ function initUserInfo() {
       el.value = e.target.value;
     });
     userInfo.address = e.target.value;
+    saveUserInfo();
+  })
+);
+[...document.querySelectorAll('.installer-checkbox-wrapper')].map(element =>
+  element.addEventListener('click', e => {
+    const prevDisplay = document.querySelector('.user-info-installer').style.display;
+    [...document.querySelectorAll('.user-info-installer')].map(el => {
+      el.style.display = prevDisplay !== 'block' ? 'block' : 'none';
+    });
+    userInfo.installer = prevDisplay !== 'block';
     saveUserInfo();
   })
 );
@@ -121,13 +134,9 @@ function sendContactForm() {
     email: userInfo.email,
     phone: userInfo.phone,
     address: userInfo.address,
+    isInstaller: !!userInfo.installer,
     contactMsg: document.querySelector('#contactMsg').value,
     contactType: 'Επικοινωνίας'
-    // form: {
-    //   url: location.origin + location.pathname,
-    //   name: document.querySelector('#unknownForm').dataset.name,
-    //   date: `${new Date().toLocaleDateString('el')}, ${new Date().toLocaleTimeString('el')}`
-    // }
   };
 
   document.querySelector('#contactSubmit').value = 'Γίνεται η αποστολή...';
