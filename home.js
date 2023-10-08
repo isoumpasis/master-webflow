@@ -2558,18 +2558,10 @@ function initUserInfo() {
 [...document.querySelectorAll('.installer-checkbox-wrapper')].map(element =>
   element.addEventListener('click', e => {
     const prevDisplay = document.querySelector('.user-info-installer').style.display;
-    console.log('prev', prevDisplay);
     [...document.querySelectorAll('.user-info-installer')].map(el => {
       el.style.display = prevDisplay !== 'block' ? 'block' : 'none';
-      console.log(
-        'element square',
-        el,
-        el.style.display,
-        prevDisplay !== 'block' ? 'block' : 'none'
-      );
     });
     userInfo.installer = prevDisplay !== 'block';
-    console.log('after', userInfo.installer);
     saveUserInfo();
   })
 );
@@ -2614,12 +2606,10 @@ function sendContactForm() {
     email: userInfo.email,
     phone: userInfo.phone,
     address: userInfo.address,
-    isInstaller: userInfo.installer,
+    isInstaller: !!userInfo.installer,
     contactMsg: document.querySelector('#contactMsg').value,
     contactType: 'Αρχικής'
   };
-
-  console.log('data', data);
 
   document.querySelector('#contactSubmit').value = 'Γίνεται η αποστολή...';
   fetch(urlContactForm, {
