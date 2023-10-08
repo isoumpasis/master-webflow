@@ -2561,6 +2561,12 @@ function initUserInfo() {
     console.log('prev', prevDisplay);
     [...document.querySelectorAll('.user-info-installer')].map(el => {
       el.style.display = prevDisplay !== 'block' ? 'block' : 'none';
+      console.log(
+        'element square',
+        el,
+        el.style.display,
+        prevDisplay !== 'block' ? 'block' : 'none'
+      );
     });
     userInfo.installer = prevDisplay !== 'block';
     console.log('after', userInfo.installer);
