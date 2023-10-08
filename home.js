@@ -2557,11 +2557,13 @@ function initUserInfo() {
 
 [...document.querySelectorAll('.installer-checkbox-wrapper')].map(element =>
   element.addEventListener('click', e => {
+    const prevDisplay = document.querySelector('.user-info-installer').style.display;
+    console.log('prev', prevDisplay);
     [...document.querySelectorAll('.user-info-installer')].map(el => {
-      const prevDisplay = el.style.display;
       el.style.display = prevDisplay === 'block' ? 'none' : 'block';
     });
     userInfo.installer = prevDisplay === 'block';
+    console.log('after', userInfo.installer);
     saveUserInfo();
   })
 );
