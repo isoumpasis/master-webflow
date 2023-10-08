@@ -2559,15 +2559,15 @@ function initUserInfo() {
   element.addEventListener('click', e => {
     const prevDisplay = document.querySelector('.user-info-installer').style.display;
     console.log('prev', prevDisplay);
-    // [...document.querySelectorAll('.user-info-installer')].map(el => {
-    //   el.style.display = prevDisplay !== 'block' ? 'block' : 'none';
-    //   console.log(
-    //     'element square',
-    //     el,
-    //     el.style.display,
-    //     prevDisplay !== 'block' ? 'block' : 'none'
-    //   );
-    // });
+    [...document.querySelectorAll('.user-info-installer')].map(el => {
+      el.style.display = prevDisplay !== 'block' ? 'block' : 'none';
+      console.log(
+        'element square',
+        el,
+        el.style.display,
+        prevDisplay !== 'block' ? 'block' : 'none'
+      );
+    });
     userInfo.installer = prevDisplay !== 'block';
     console.log('after', userInfo.installer);
     saveUserInfo();
