@@ -2619,7 +2619,7 @@ function sendContactForm() {
     contactType: 'Αρχικής'
   };
 
-  console.log('data');
+  console.log('data', data);
 
   document.querySelector('#contactSubmit').value = 'Γίνεται η αποστολή...';
   fetch(urlContactForm, {
