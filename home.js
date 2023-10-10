@@ -172,6 +172,7 @@ let activeContainer;
 const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
+  initUserInfo();
   initCustomDropdowns();
   initSystemPrices();
   initCardFiles();
@@ -183,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalc();
   calcResult();
   initEasyPay();
-  initUserInfo();
 });
 
 function saveUserInfo() {
@@ -1753,7 +1753,7 @@ function setPlaceSelect(placeValue) {
   // storesLocationSelect.value = placeValue;
 }
 
-function modifyFuelPriceSliders(value) {
+function modifyFuelPricesSliders(value) {
   const locationObj = fuelPrices.find(obj => obj.place.indexOf(value) !== -1);
   if (!locationObj) return;
 
@@ -1777,7 +1777,7 @@ function modifyFuelPriceSliders(value) {
 
 function locationOnChange(value) {
   setPlaceSelect(value);
-  modifyFuelPriceSliders(value);
+  modifyFuelPricesSliders(value);
 
   // storesLocationSelect.value = value;
   // document.querySelector('.searching-place-text-location').textContent =
@@ -2414,10 +2414,6 @@ function sendUnknownVehicle() {
 /* /UNKNOWN FORM */
 
 /* CONTACT FORM */
-document.addEventListener('DOMContentLoaded', () => {
-  initUserInfo();
-});
-
 function saveUserInfo() {
   if (typeof Storage !== 'undefined')
     preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
