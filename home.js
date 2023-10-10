@@ -2438,9 +2438,11 @@ function initUserInfo() {
     el.value = userInfo.address || '';
     el.autocomplete = 'street-address';
   });
-  [...document.querySelectorAll('.user-info-region')].map(el => {
+  [...document.querySelectorAll('.user-info-region')].map((el, index) => {
     el.value = userInfo.region || 'ΑΤΤΙΚΗΣ';
-    initFuelPrices();
+    if (index === 0) {
+      initFuelPrices();
+    }
     // locationOnChange(el.value);
   });
   [...document.querySelectorAll('.user-info-installer')].map(el => {
