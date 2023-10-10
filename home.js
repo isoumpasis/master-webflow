@@ -2439,7 +2439,10 @@ function initUserInfo() {
     el.autocomplete = 'street-address';
   });
   [...document.querySelectorAll('.user-info-region')].map((el, index) => {
-    el.value = userInfo.region || 'ΑΤΤΙΚΗΣ';
+    if (!userInfo.region) {
+      userInfo.region = 'ΑΤΤΙΚΗΣ';
+    }
+    el.value = userInfo.region;
     if (index === 0) {
       initFuelPrices();
     }
