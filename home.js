@@ -1721,19 +1721,9 @@ function initCalc() {
 }
 
 function initFuelPrices() {
-  fuelPricesSelect.addEventListener('change', e => {
-    locationOnChange(e.target.value);
-    // fuelPricesSelectVehicle.value = e.target.value;
-    // modifyFuelPriceSliders(e.target.value, { save: true });
-    // [...document.querySelectorAll('.place-calc-descr')].map(
-    //   el =>
-    //     (el.textContent =
-    //       fuelPricesSelectVehicle.options[fuelPricesSelectVehicle.selectedIndex].textContent)
-    // );
-
-    // storesLocationSelect.value = e.target.value;
-    // locationOnChange(storesLocationSelect.value);
-  });
+  // fuelPricesSelect.addEventListener('change', e => {
+  //   locationOnChange(e.target.value);
+  // });
   fetch(urlFuelPrices, {
     method: 'POST',
     headers: {
@@ -2457,6 +2447,7 @@ function initUserInfo() {
   });
   [...document.querySelectorAll('.user-info-region')].map(el => {
     el.value = userInfo.region || 'ΑΤΤΙΚΗΣ';
+    locationOnChange(el.value);
   });
   [...document.querySelectorAll('.user-info-installer')].map(el => {
     el.style.display = userInfo.installer ? 'block' : 'none';
@@ -2501,10 +2492,12 @@ function initUserInfo() {
 );
 [...document.querySelectorAll('.user-info-region')].map(element =>
   element.addEventListener('change', e => {
+    const value = e.target.value;
     [...document.querySelectorAll('.user-info-region')].map(el => {
-      el.value = e.target.value;
+      el.value = value;
     });
-    userInfo.region = e.target.value;
+    locationOnChange(value);
+    userInfo.region = value;
     saveUserInfo();
   })
 );
