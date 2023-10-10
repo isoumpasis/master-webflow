@@ -172,6 +172,7 @@ let activeContainer;
 const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
+  initFuelPrices();
   initUserInfo();
   initCustomDropdowns();
   initSystemPrices();
@@ -1715,7 +1716,7 @@ function initCalc() {
   selectConsumptionRadioIndex(0);
   document.querySelector('.consumption-wrapper').style.display = 'none';
 
-  initFuelPrices();
+  // initFuelPrices();
 
   resetCalc();
 }
