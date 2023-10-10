@@ -2394,7 +2394,6 @@ function sendUnknownVehicle() {
       document.querySelector('#unknownFormError').style.display = 'none';
       document.querySelector('.unknown-form-success').style.display = 'flex';
       document.querySelector('#unknownSubmit').value = 'Αποστολή';
-      document.querySelector('#unknownSubmit').value = '';
       document.querySelector('#unknownVehicleMsg').value = '';
       setTimeout(() => {
         document.querySelector('.unknown-form-success').style.display = 'none';
