@@ -172,7 +172,6 @@ let activeContainer;
 const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 
 document.addEventListener('DOMContentLoaded', () => {
-  initFuelPrices();
   initUserInfo();
   initCustomDropdowns();
   initSystemPrices();
@@ -1735,11 +1734,8 @@ function initFuelPrices() {
     .then(data => {
       data.pop(); //removes m.o.
       fuelPrices = data;
-      const newValue = 'ΑΤΤΙΚΗΣ';
-      // userSelections.fuelPrices = {
-      //   prices: fuelPrices
-      // };
-      locationOnChange(newValue);
+      // const newValue = 'ΑΤΤΙΚΗΣ';
+      locationOnChange(userInfo.region);
     })
     .catch(e => console.error('Error on FuelPrices Fetch:', e));
 }
@@ -2444,7 +2440,8 @@ function initUserInfo() {
   });
   [...document.querySelectorAll('.user-info-region')].map(el => {
     el.value = userInfo.region || 'ΑΤΤΙΚΗΣ';
-    locationOnChange(el.value);
+    initFuelPrices();
+    // locationOnChange(el.value);
   });
   [...document.querySelectorAll('.user-info-installer')].map(el => {
     el.style.display = userInfo.installer ? 'block' : 'none';
