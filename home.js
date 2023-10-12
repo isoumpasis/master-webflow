@@ -1652,7 +1652,6 @@ function configureSuggestedContainerTabs() {
 }
 
 function configureSuggestedContainerForTabletOrMobile() {
-  activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
   activeContainer.querySelector('.system-right').style.display = 'none';
 }
 
