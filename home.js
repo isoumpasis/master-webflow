@@ -1652,7 +1652,7 @@ function configureSuggestedContainerTabs() {
 }
 
 function configureSuggestedContainerForTabletOrMobile() {
-  activeContainer.querySelector('.system-right').style.display = 'none';
+  // activeContainer.querySelector('.system-right').style.display = 'none';
 }
 
 function showLearnMoreAtRight() {
