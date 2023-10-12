@@ -232,5 +232,5 @@ input[type='number'] {
   pointer-events: none;
 }
 #testimonialsSection {
-  overflow-x: hidden;
+  overflow: hidden;
 }
