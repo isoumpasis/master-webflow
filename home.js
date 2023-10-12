@@ -1346,6 +1346,9 @@ function configureEasyPayAfterSuggestion() {
 function isMobile() {
   return window.matchMedia('screen and (max-width: 768px)').matches;
 }
+function isTabletOrMobile() {
+  return window.matchMedia('screen and (max-width: 991px)').matches;
+}
 
 function configureSuggestedContainer() {
   showSuggestedContainer();
@@ -1633,7 +1636,11 @@ function configureSuggestedContainerTabs() {
   resetLearnMore();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
     console.log('no media no info');
-    showLearnMoreAtRight();
+    if (isTabletOrMobile()) {
+      configureSuggestedContainerForTabletOrMobile();
+    } else {
+      showLearnMoreAtRight();
+    }
   } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
     console.log('media no info');
   } else if (mediaDisplay !== 'block' && infoDisplay === 'block') {
@@ -1644,6 +1651,11 @@ function configureSuggestedContainerTabs() {
   }
 }
 
+function configureSuggestedContainerForTabletOrMobile() {
+  activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
+  activeContainer.querySelector('.system-right').style.display = 'none';
+}
+
 function showLearnMoreAtRight() {
   activeContainer.querySelector('.info-button').style.display = 'none';
   activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
@@ -1651,6 +1663,7 @@ function showLearnMoreAtRight() {
 }
 
 function resetLearnMore() {
+  activeContainer.querySelector('.system-right').style.display = 'flex';
   activeContainer.querySelector('.info-button').style.display = 'inline-block';
   activeContainer.querySelector('.overlay-wrapper').classList.remove('learn-more-at-right');
   activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'block';
