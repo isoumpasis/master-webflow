@@ -210,8 +210,8 @@ input[type='range']::-ms-thumb:hover {
 /* End of Testimonail CSS */
 
 .learn-more-at-right {
-  left: 50%;
-  width: 50%;
+  left: 100%;
+  width: 100%;
   height: auto !important;
 }
 
