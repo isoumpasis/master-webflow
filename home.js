@@ -1457,8 +1457,8 @@ const optimizationsVideoMain = ['h_700'];
 const optimizationsImgMain = ['h_800'];
 const optimizationsVideoSide = ['h_400'];
 const optimizationsImgSide = ['h_400'];
-const optimizationsVideoGallerySide = ['h_100'];
-const optimizationsImgGallerySide = ['h_100'];
+const optimizationsVideoGallerySide = ['h_60'];
+const optimizationsImgGallerySide = ['h_80'];
 
 function optimizeFileUrl(url, optimizationArray = []) {
   const splitted = url.split('/upload/');
