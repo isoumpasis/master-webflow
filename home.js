@@ -310,6 +310,7 @@ function adjustPriceAfterEmulatorChange() {
     addToContainerPrice(-EmulatorDict.f.price);
   }
   calcResult();
+  configureEasyPayAfterSuggestion();
 }
 function adjustPriceAfterReducerChange(amount) {
   addToContainerPrice(amount);
