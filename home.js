@@ -1507,8 +1507,8 @@ function setCardFilesAppearance(sideFiles) {
   } else if (foundVehicleObj.files.length === 2) {
     sideFiles.forEach((side, i) => {
       side.style.display = 'block';
-      side.style.width = '0%';
-      mainFile.style.height = '100%';
+      side.style.width = '50%';
+      mainFile.style.height = '290px'; //'230px';
       if (i >= 1) {
         side.style.display = 'none';
       }
