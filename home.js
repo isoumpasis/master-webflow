@@ -1478,7 +1478,9 @@ function optimizeFileUrl(url, optimizationArray = []) {
 function setCardFilesAppearance(sideFiles) {
   const mainFile = activeContainer.querySelector('.main-file');
   const moreFilesContainer = activeContainer.querySelector('.more-files-container');
+  const galleryFlex = activeContainer.querySelector('.gallery-flex');
   moreFilesContainer.style.display = 'none';
+  galleryFlex.style.display = 'flex';
   if (foundVehicleObj.files.length > 4) {
     sideFiles.forEach(side => {
       side.style.display = 'block';
@@ -1517,7 +1519,8 @@ function setCardFilesAppearance(sideFiles) {
     sideFiles.forEach((side, i) => {
       side.style.display = 'none';
       side.style.width = '0%';
-      mainFile.style.height = '100%';
+      mainFile.style.height = '98%';
+      galleryFlex.style.display = 'none';
     });
   }
 }
