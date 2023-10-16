@@ -1386,6 +1386,8 @@ function showSuggestedContainer() {
     foundContainer = document.querySelector('.ar-container');
   } else if (system === SystemDict.systems.PIEZO_BMW.name) {
     foundContainer = document.querySelector('.piezo-bmw-container');
+  } else if (system === SystemDict.systems.PIEZO_R_BMW.name) {
+    foundContainer = document.querySelector('.piezo-r-bmw-container');
   } else if (system === SystemDict.systems.PIEZO_MERCEDES.name) {
     foundContainer = document.querySelector('.piezo-mercedes-container');
   } else if (system === SystemDict.systems.SR_ALFA_ROMEO.name) {
