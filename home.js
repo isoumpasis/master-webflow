@@ -963,8 +963,9 @@ function populateYearDropdown(fetchedYears) {
     const inputField = yearDropdown.querySelector('.chosen-value');
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
+  } else {
+    openDropdown(yearDropdown);
   }
-  openDropdown(yearDropdown);
 }
 
 const openDropdown = dropdownType => {
@@ -1086,8 +1087,9 @@ function populateModelDropdown(fetchedModels) {
     const inputField = modelDropdown.querySelector('.chosen-value');
     inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
+  } else {
+    openDropdown(modelDropdown);
   }
-  openDropdown(modelDropdown);
 }
 function modelOnChange(value) {
   resetDropdowns(['engine']);
@@ -1205,8 +1207,9 @@ function populateEngineDropdown(fetchedModelObj) {
     const inputField = engineDropdown.querySelector('.chosen-value');
     inputField.value = engineCodes[0];
     dropdownValueSelected(engineCodes[0], 'engineDropdown');
+  } else {
+    openDropdown(engineDropdown);
   }
-  openDropdown(engineDropdown);
 }
 
 function engineOnChange(value) {
