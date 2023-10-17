@@ -2735,6 +2735,12 @@ function prepareSummaryData() {
             ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
             : undefined,
         easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
+      },
+      else: {
+        selectedMake,
+        selectedYear,
+        selectedModel,
+        selectedEngine
       }
     }
   };
