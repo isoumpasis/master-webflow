@@ -979,7 +979,7 @@ const openDropdown = dropdownType => {
   dropdownArray.forEach(dropdown => {
     dropdown.classList.remove('closed');
   });
-  dropdownType.querySelector('input').focus();
+  setTimeout(() => dropdownType.querySelector('input').focus(), 100);
   setFocusedLi(dropdownType.id);
 };
 
