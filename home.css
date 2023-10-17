@@ -40,7 +40,9 @@ body {
   overflow-x: hidden;
   text-align: center;
 }
-
+.custom-dropdown {
+  width: 400px;
+}
 .year-dropdown,
 .model-dropdown,
 .engine-dropdown {
