@@ -2663,7 +2663,7 @@ function sendSummaryForm() {
     .then(blob => {
       if (!blob) return;
       const newBlob = new Blob([blob], { type: 'image/png' });
-      downloadFile(newBlob, 'Η προσφορά μου -' + dataToSend.userInfo.username);
+      downloadFile(newBlob, 'Η προσφορά μου -' + data.name);
       // endLoadingSelect(e.target, triggeredFrom, 'download');
       // submitSummaryBtn.removeAttribute('disabled');
       // submitSummaryBtn.style.cursor = 'pointer';
