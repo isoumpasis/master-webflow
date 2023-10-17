@@ -1226,7 +1226,7 @@ function engineOnChange(value) {
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
   console.log('foundVehicleOBj', foundVehicleObj);
 
-  showResults(fetchedModelObj);
+  showResults();
 
   if (!value) {
     // showGuarantee(false);
@@ -1257,7 +1257,7 @@ function runConsumptionRace(vehicles) {
   return consumptionObjs.sort((a, b) => b.conSum - a.conSum);
 }
 
-function showResults(fetchedModelObj) {
+function showResults() {
   configureSuggestedContainer();
 
   configureTestimonialsAfterSuggestion();
