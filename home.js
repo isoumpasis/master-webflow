@@ -289,7 +289,6 @@ function initPopups() {
 }
 
 function initTestimonials() {
-  console.log('init testimonials');
   //remove all but the first
   document.querySelectorAll('.comments-slider .w-slide').forEach((el, index) => {
     if (index !== 0) {
@@ -1336,7 +1335,6 @@ function showResults(fetchedModelObj) {
 
 function configureEasyPayAfterSuggestion() {
   const { priceWithVAT, nameId } = getSystemNamePrice();
-  console.log('configure easy pay after suggestion', priceWithVAT, nameId);
   document.querySelector('#priceWithVATOutput').textContent = `${priceWithVAT}€`;
   document.querySelector('.easypay-logo-system').src = SystemDict.systems[nameId].url;
   document.querySelector('.easypay-logo-system').style.display = 'block';
@@ -1401,7 +1399,6 @@ function showSuggestedContainer() {
 
 function configureFilesGallery() {
   if (!foundVehicleObj?.files?.length) {
-    console.log('vehicle no files');
     activeContainer.querySelector('.media-tab').style.display = 'none';
     return;
   }
@@ -1642,19 +1639,19 @@ function configureSuggestedContainerTabs() {
   const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
   resetLearnMore();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
-    console.log('no media no info');
+    // console.log('no media no info');
     if (isTabletOrMobile()) {
       configureSuggestedContainerForTabletOrMobile();
     } else {
       showLearnMoreAtRight();
     }
   } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
-    console.log('media no info');
+    // console.log('media no info');
   } else if (mediaDisplay !== 'block' && infoDisplay === 'block') {
-    console.log('no media info');
+    // console.log('no media info');
     activeContainer.querySelector('.info-tab').click();
   } else if (mediaDisplay === 'block' && infoDisplay === 'block') {
-    console.log('media info');
+    // console.log('media info');
   }
 }
 
@@ -1985,7 +1982,7 @@ function calcCoverWidth(slider) {
 function configureTestimonialsAfterSuggestion() {
   initTestimonials();
   if (!foundVehicleObj?.testimonials?.length) {
-    console.log('no testimonials');
+    // console.log('no testimonials');
     return;
   }
   document.querySelector('#testimonialMakeImg').src =
@@ -2633,6 +2630,7 @@ function handleInvalidSummaryForm(msg) {
 
 function sendSummaryForm() {
   const data = prepareSummaryData();
+  console.log('data', data);
 
   document.querySelector('#submitSummaryBtn').value = 'Η προσφορά σας αποθηκεύεται...';
   fetch(submitSummaryUrl, {
