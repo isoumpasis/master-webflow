@@ -2638,7 +2638,7 @@ function sendSummaryForm() {
   const data = prepareSummaryData();
   console.log('data', data);
 
-  document.querySelector('#submitSummaryBtn').value = 'Η προσφορά σας αποθηκεύεται...';
+  document.querySelector('#submitSummaryBtnText').textContent = 'Η προσφορά σας αποθηκεύεται...';
   fetch(submitSummaryUrl, {
     method: 'POST',
     headers: {
@@ -2646,14 +2646,34 @@ function sendSummaryForm() {
     },
     body: JSON.stringify(data)
   })
-    .then(res => res.json())
-    .then(data => {
-      if ('status' in data && data.status !== 200) {
-        throw new Error();
+    .then(res => {
+      if (res.status !== 200) {
+        // endLoadingSelect(e.target, triggeredFrom, 'download');
+        // submitSummaryBtn.removeAttribute('disabled');
+        // submitSummaryBtn.style.cursor = 'pointer';
+        if (res.status === 429) {
+          handleInvalidSummaryForm(
+            'Έχετε ξεπεράσει το όριο των κλήσεων για την προσφορά, προσπαθήστε αργότερα'
+          );
+        }
+        return null;
       }
+      return res.blob();
+    })
+    .then(blob => {
+      if (!blob) return;
+      const newBlob = new Blob([blob], { type: 'image/png' });
+      downloadFile(newBlob, 'Η προσφορά μου -' + dataToSend.userInfo.username);
+      // endLoadingSelect(e.target, triggeredFrom, 'download');
+      // submitSummaryBtn.removeAttribute('disabled');
+      // submitSummaryBtn.style.cursor = 'pointer';
+
+      // closeSummaryForm();
+      // trigger_system_summary('download');
+
       document.querySelector('#summaryFormError').style.display = 'none';
       document.querySelector('.summary-form-success').style.display = 'flex';
-      document.querySelector('#submitSummaryBtn').value = 'Αποθηκευστε την προσφορα σας!';
+      document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
       setTimeout(() => {
         document.querySelector('.summary-form-success').style.display = 'none';
       }, 5000);
@@ -2661,8 +2681,24 @@ function sendSummaryForm() {
     .catch(e => {
       console.error('Error on summary form :', e);
       handleInvalidSummaryForm('Υπήρξε πρόβλημα κατά την αποθήκευση, προσπαθήστε αργότερα');
-      document.querySelector('#submitSummaryBtn').value = 'Αποθηκευστε την προσφορα σας!';
+      document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
     });
+}
+
+function downloadFile(blob, fileName) {
+  if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+    window.navigator.msSaveOrOpenBlob(newBlob);
+    return;
+  }
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName + '.png';
+  document.body.append(link);
+  link.click();
+  link.remove();
+
+  // in case the Blob uses a lot of memory
+  setTimeout(() => URL.revokeObjectURL(link.href), 7000);
 }
 
 function prepareSummaryData() {
