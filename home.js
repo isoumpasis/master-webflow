@@ -2671,7 +2671,7 @@ function prepareSummaryData() {
     email: userInfo.email,
     phone: userInfo.phone,
     region: userInfo.region,
-    vehicle: foundVehicleObj.id,
+    vehicle: foundVehicleObj._id,
     metadata: {
       emulator: {
         isEmulatorSelected: isEmulatorFChecked,
