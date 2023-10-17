@@ -1,12 +1,13 @@
-let serverUrl = 'https://masterdirect.herokuapp.com/';
-// let serverUrl = 'http://localhost:1968/';
+// let serverUrl = 'https://masterdirect.herokuapp.com/';
+let serverUrl = 'http://localhost:1968/';
 
 const urlYears = serverUrl + 'vehicleDB/get/years';
 const urlModels = serverUrl + 'vehicleDB/get/models';
 const urlEngineCodes = serverUrl + 'vehicleDB/get/descriptions';
 const urlFuelPrices = serverUrl + 'fuelPrices';
-let downloadSummaryUrl = serverUrl + 'summaries/download/system';
-let emailSummaryUrl = serverUrl + 'summaries/email/system';
+const submitSummaryUrl = serverUrl + 'summary/submit';
+// let downloadSummaryUrl = serverUrl + 'summaries/download/system';
+// let emailSummaryUrl = serverUrl + 'summaries/email/system';
 const urlUnknownForm = serverUrl + 'unknown_vehicle/';
 const urlContactForm = serverUrl + 'contact/';
 
@@ -2601,3 +2602,74 @@ function sendContactForm() {
     });
 }
 /* /CONTACT FORM */
+
+/* SUMMARY FORM */
+document.querySelector('#submitSummaryBtn').addEventListener('click', e => {
+  e.preventDefault();
+  const validationResult = validateSummaryForm();
+  if (!validationResult.valid) return handleInvalidSummaryForm(validationResult.msg);
+  sendSummaryForm();
+});
+
+function validateSummaryForm() {
+  if (!getActiveContainer())
+    return {
+      valid: false,
+      msg: 'Θα πρέπει πρώτα να επιλέξετε το όχημα σας!'
+    };
+  if (!userInfo.username) return { valid: false, msg: 'Απαιτείται ονοματεπώνυμο' };
+  if (!isEmail(userInfo.email)) return { valid: false, msg: 'Απαιτείται έγκυρο email' };
+  if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
+    return { valid: false, msg: 'Απαιτείται έγκυρος αριθμός τηλεφώνου (10ψηφία)' };
+  return { valid: true };
+}
+
+function handleInvalidSummaryForm(msg) {
+  const formErrorEl = document.querySelector('#summaryFormError');
+  formErrorEl.style.display = 'block';
+  formErrorEl.textContent = msg;
+  setTimeout(() => (formErrorEl.style.display = 'none'), 3000);
+}
+
+function sendSummaryForm() {
+  const data = prepareSummaryData();
+
+  document.querySelector('#submitSummaryBtn').value = 'Η προσφορά σας αποθηκεύεται...';
+  fetch(submitSummaryUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+    .then(res => res.json())
+    .then(data => {
+      if ('status' in data && data.status !== 200) {
+        throw new Error();
+      }
+      document.querySelector('#summaryFormError').style.display = 'none';
+      document.querySelector('.summary-form-success').style.display = 'flex';
+      document.querySelector('#submitSummaryBtn').value = 'Αποθηκευστε την προσφορα σας!';
+      setTimeout(() => {
+        document.querySelector('.summary-form-success').style.display = 'none';
+      }, 5000);
+    })
+    .catch(e => {
+      console.error('Error on summary form :', e);
+      handleInvalidSummaryForm('Υπήρξε πρόβλημα κατά την αποθήκευση, προσπαθήστε αργότερα');
+      document.querySelector('#submitSummaryBtn').value = 'Αποθηκευστε την προσφορα σας!';
+    });
+}
+
+function prepareSummaryData() {
+  return {
+    name: userInfo.username,
+    email: userInfo.email,
+    phone: userInfo.phone,
+    address: userInfo.address,
+    region: userInfo.region,
+    isInstaller: !!userInfo.installer
+  };
+}
+
+/* /SUMMARY FORM */
