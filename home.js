@@ -827,17 +827,14 @@ function dropdownValueSelected(value, dbId) {
     selectedMake = value === 'VOLKSWAGEN' ? 'VW' : value;
     // console.log('make on change', selectedMake);
     makeOnChange(selectedMake);
-    yearDropdown.querySelector('input').focus();
   } else if (dbId === 'yearDropdown') {
     selectedYear = value;
     // console.log('year on change', selectedYear);
     yearOnChange(selectedYear);
-    modelDropdown.querySelector('input').focus();
   } else if (dbId === 'modelDropdown') {
     selectedModel = value;
     // console.log('model on change', selectedModel);
     modelOnChange(selectedModel);
-    engineDropdown.querySelector('input').focus();
   } else if (dbId === 'engineDropdown') {
     selectedEngine = value;
     // console.log('engine on change', selectedEngine);
