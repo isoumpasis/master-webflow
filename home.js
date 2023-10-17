@@ -1247,11 +1247,6 @@ function engineOnChange(value) {
 
     return;
   }
-
-  // showResults(fetchedModelObj);
-  // calcResult(false);
-
-  // saveUserSelections();
 }
 
 function runConsumptionRace(vehicles) {
@@ -1338,10 +1333,10 @@ function showResults(fetchedModelObj) {
   //     suggestedContainer.classList.contains('not-convertible-form-container')
   //   );
   // }
-  setTimeout(
-    () => document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' }),
-    100
-  );
+  setTimeout(() => {
+    document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' });
+    closeDropdowns();
+  }, 100);
 }
 
 function configureEasyPayAfterSuggestion() {
