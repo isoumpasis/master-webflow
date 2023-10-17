@@ -132,6 +132,12 @@ const ReducerDict = {
   DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 }
 };
 
+const EasyPayDict = {
+  0: 'Χωρίς πιστωτική',
+  1: 'Με πιστωτική',
+  2: 'Μετρητά'
+};
+
 let userInfo = { username: '', email: '', phone: '', address: '' };
 const preferredStorage = localStorage;
 
@@ -2664,9 +2670,37 @@ function prepareSummaryData() {
     name: userInfo.username,
     email: userInfo.email,
     phone: userInfo.phone,
-    address: userInfo.address,
     region: userInfo.region,
-    isInstaller: !!userInfo.installer
+    vehicle: foundVehicleObj.id,
+    metadata: {
+      emulator: {
+        isEmulatorSelected: isEmulatorFChecked,
+        emulatorType: isEmulatorFChecked ? 'f' : undefined,
+        emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined
+      },
+      calc: {
+        kmPerYearValue: +calcSliders[0].value,
+        driveOftenIndex: getConsumptionRadioIndex(),
+        trueConsumption: +calcSliders[1].value,
+        gain: +lpgResult.textContent.replace('€', ''),
+        percentage: +lpgPercentageEl.textContent.replace('%', ''),
+        amortization: +document.querySelector('.amortization-months').textContent,
+        perMonthCheckbox: isPerMonthChecked
+      },
+      easyPay: {
+        systemName: foundVehicleObj.master,
+        priceNoVAT: +getActiveContainer().querySelector('.price').textContent.replace('€', ''),
+        priceWithVAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
+        easyPayMethod: EasyPayDict[getEasyPayRadioIndex()],
+        prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
+        doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
+        easyPayFinalCost:
+          getEasyPayRadioIndex() !== 2
+            ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
+            : undefined,
+        easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
+      }
+    }
   };
 }
 
