@@ -968,6 +968,7 @@ function populateYearDropdown(fetchedYears) {
 }
 
 const openDropdown = dropdownType => {
+  closeDropdowns();
   const dropdown = dropdownType.querySelector('.value-list');
   const inputImg = dropdownType.querySelector('.input-container .img-arrow');
   const dropdownArray = [...dropdown.querySelectorAll('li')];
