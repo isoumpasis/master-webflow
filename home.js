@@ -1210,6 +1210,7 @@ function populateEngineDropdown(fetchedModelObj) {
 }
 
 function engineOnChange(value) {
+  closeDropdown('engineDropdown');
   const selectedHP = parseInt(value.split(' ')[0]);
   let selectedEngineCode = value.split(' - ')[1];
 
