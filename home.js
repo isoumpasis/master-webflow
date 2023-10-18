@@ -2736,11 +2736,12 @@ function prepareSummaryData() {
             : undefined,
         easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
       },
-      else: {
+      meta: {
         selectedMake,
         selectedYear,
         selectedModel,
-        selectedEngine
+        selectedEngine,
+        makeImgUrl: makeImgPrefix + makeImgDict[selectedMake]
       }
     }
   };
