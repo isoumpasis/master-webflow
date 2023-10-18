@@ -192,7 +192,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initCalc();
   calcResult();
   initEasyPay();
+  showFacebookBrowserProblem();
 });
+
+function showFacebookBrowserProblem() {
+  document.querySelector('.facebook-browser-div').style.display = isFacebookBrowser()
+    ? 'block'
+    : 'none';
+}
+function isFacebookBrowser() {
+  let ua = navigator.userAgent || navigator.vendor || window.opera;
+  return ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
+}
 
 function saveUserInfo() {
   if (typeof Storage !== 'undefined')
