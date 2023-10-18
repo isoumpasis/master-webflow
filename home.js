@@ -2697,7 +2697,7 @@ function downloadFile(blob, fileName) {
   link.click();
   link.remove();
 
-  //in case the Blob uses a lot of memory
+  //in case Blob uses a lot of memory
   setTimeout(() => URL.revokeObjectURL(link.href), 7000);
 }
 
