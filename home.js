@@ -2747,7 +2747,7 @@ function prepareSummaryData() {
         systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
         hasEmulatorOption: !!foundVehicleObj.emulators.length,
         emulatorText: foundVehicleObj.emulators.length
-          ? EmulatorDict[foundVehicleObj.emulators[0]].text
+          ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
           : undefined
       }
     }
