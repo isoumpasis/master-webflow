@@ -2034,9 +2034,6 @@ function updateWebflowSlider() {
 }
 
 function configureCalculatorAfterSuggestion() {
-  // document.querySelector('#calcTitle').textContent =
-  //   'Υπολόγισε πόσα θα εξοικονομείς με το αυτοκίνητό σου!';
-
   document.querySelector('.in-consumption-value').textContent = foundVehicleObj.consumption[0];
   document.querySelector('.out-consumption-value').textContent = foundVehicleObj.consumption[1];
   document.querySelector('.combined-consumption-value').textContent =
@@ -2065,9 +2062,6 @@ function configureCalculatorAfterSuggestion() {
 }
 
 function resetCalc() {
-  // document.querySelector('#calcTitle').innerHTML =
-  // 'Υπολόγισε πόσα θα εξοικονομείς με ένα σύστημα Lovato!';
-
   document.querySelector('#consumptionHeaderTextCalc').textContent =
     'Πόσα λίτρα καταναλώνετε στα 100 χλμ;';
   document.querySelector('#consumptionMoreInfoTextCalc').textContent = 'αυτοκινήτου';
@@ -2080,11 +2074,6 @@ function resetCalc() {
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
   document.querySelector('.consumption-wrapper').style.display = 'none';
-
-  // if (!getActiveContainer()) {
-  //   document.querySelector('#vehicle').style.paddingBottom = '6%';
-  //   document.querySelector('#calculator').style.paddingTop = '6%';
-  // }
 }
 
 function getSystemNamePrice(suggestedContainer) {
@@ -2270,10 +2259,6 @@ function configureCreditResults() {
       Math.round((monthlyCost * doseisSliderValueInt + prokatavoliSliderValueInt) * 10) / 10
     ).toFixed(1) + '€';
 }
-
-// function configureMetrhtaResults() {
-//   metrhtaFinalCost.textContent = selectedEasyPaySystemPrice.toFixed(1) + '€';
-// }
 
 function getCreditMonthlyCost(poso, doseis) {
   let posoEksoflisis =
@@ -2641,8 +2626,8 @@ function handleInvalidSummaryForm(msg) {
 
 function sendSummaryForm() {
   const data = prepareSummaryData();
-  console.log('data', data);
 
+  startLoadingSummary();
   document.querySelector('#submitSummaryBtnText').textContent = 'Η προσφορά σας αποθηκεύεται...';
   fetch(submitSummaryUrl, {
     method: 'POST',
@@ -2653,9 +2638,7 @@ function sendSummaryForm() {
   })
     .then(res => {
       if (res.status !== 200) {
-        // endLoadingSelect(e.target, triggeredFrom, 'download');
-        // submitSummaryBtn.removeAttribute('disabled');
-        // submitSummaryBtn.style.cursor = 'pointer';
+        endLoadingSummary();
         if (res.status === 429) {
           handleInvalidSummaryForm(
             'Έχετε ξεπεράσει το όριο των κλήσεων για την προσφορά, προσπαθήστε αργότερα'
@@ -2666,15 +2649,13 @@ function sendSummaryForm() {
       return res.blob();
     })
     .then(blob => {
-      if (!blob) return;
-      // const newBlob = new Blob([blob], { type: 'image/png' });
+      if (!blob) {
+        endLoadingSummary();
+        return;
+      }
       const newBlob = new Blob([blob], { type: 'application/pdf' });
-      downloadFile(newBlob, 'Η προσφορά μου -' + data.name);
-      // endLoadingSelect(e.target, triggeredFrom, 'download');
-      // submitSummaryBtn.removeAttribute('disabled');
-      // submitSummaryBtn.style.cursor = 'pointer';
-
-      // closeSummaryForm();
+      downloadFile(newBlob, 'Η προσφορά μου - ' + data.name);
+      endLoadingSummary();
       // trigger_system_summary('download');
 
       document.querySelector('#summaryFormError').style.display = 'none';
@@ -2689,6 +2670,13 @@ function sendSummaryForm() {
       handleInvalidSummaryForm('Υπήρξε πρόβλημα κατά την αποθήκευση, προσπαθήστε αργότερα');
       document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
     });
+}
+
+function startLoadingSummary() {
+  document.querySelector('.loading-summary').style.display = 'block';
+}
+function endLoadingSummary() {
+  document.querySelector('.loading-summary').style.display = 'none';
 }
 
 function downloadFile(blob, fileName) {
