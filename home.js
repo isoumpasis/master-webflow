@@ -2748,7 +2748,8 @@ function prepareSummaryData() {
         hasEmulatorOption: !!foundVehicleObj.emulators.length,
         emulatorText: foundVehicleObj.emulators.length
           ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
-          : undefined
+          : undefined,
+        emulatorPrice: EmulatorDict.f.price
       }
     }
   };
