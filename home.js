@@ -124,7 +124,8 @@ const TankDict = {
 
 const EmulatorDict = {
   f: {
-    price: 85
+    price: 85,
+    text: 'Εξομοιωτής στάθμης βενζίνης'
   }
 };
 const ReducerDict = {
@@ -2741,7 +2742,12 @@ function prepareSummaryData() {
         selectedYear,
         selectedModel,
         selectedEngine,
-        makeImgUrl: makeImgPrefix + makeImgDict[selectedMake]
+        makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
+        systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
+        hasEmulatorOption: !!foundVehicleObj.emulators.length,
+        emulatorText: foundVehicleObj.emulators.length
+          ? EmulatorDict[foundVehicleObj.emulators[0]].text
+          : undefined
       }
     }
   };
