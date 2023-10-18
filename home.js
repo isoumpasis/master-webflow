@@ -2639,10 +2639,13 @@ function sendSummaryForm() {
     .then(res => {
       if (res.status !== 200) {
         endLoadingSummary();
+        console.log(res);
         if (res.status === 429) {
           handleInvalidSummaryForm(
             'Έχετε ξεπεράσει το όριο των κλήσεων για την προσφορά, προσπαθήστε αργότερα'
           );
+        } else {
+          handleInvalidSummaryForm('kat iphge lahtos');
         }
         return null;
       }
