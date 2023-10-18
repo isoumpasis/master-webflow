@@ -2628,7 +2628,6 @@ function sendSummaryForm() {
   const data = prepareSummaryData();
 
   startLoadingSummary();
-  document.querySelector('#submitSummaryBtnText').textContent = 'Η προσφορά σας αποθηκεύεται...';
   fetch(submitSummaryUrl, {
     method: 'POST',
     headers: {
@@ -2638,14 +2637,12 @@ function sendSummaryForm() {
   })
     .then(res => {
       if (res.status !== 200) {
-        endLoadingSummary();
-        console.log(res);
         if (res.status === 429) {
-          handleInvalidSummaryForm(
+          endLoadingSummary(
             'Έχετε ξεπεράσει το όριο των κλήσεων για την προσφορά, προσπαθήστε αργότερα'
           );
         } else {
-          handleInvalidSummaryForm('kat iphge lahtos');
+          endLoadingSummary(res.statusText || 'Κάτι πήγε στραβά, προσπαθήστε αργότερα');
         }
         return null;
       }
@@ -2653,7 +2650,7 @@ function sendSummaryForm() {
     })
     .then(blob => {
       if (!blob) {
-        endLoadingSummary();
+        endLoadingSummary('Κάτι πήγε στραβά, προσπαθήστε αργότερα');
         return;
       }
       const newBlob = new Blob([blob], { type: 'application/pdf' });
@@ -2663,23 +2660,26 @@ function sendSummaryForm() {
 
       document.querySelector('#summaryFormError').style.display = 'none';
       document.querySelector('.summary-form-success').style.display = 'flex';
-      document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
       setTimeout(() => {
         document.querySelector('.summary-form-success').style.display = 'none';
       }, 5000);
     })
     .catch(e => {
       console.error('Error on summary form :', e);
-      handleInvalidSummaryForm('Υπήρξε πρόβλημα κατά την αποθήκευση, προσπαθήστε αργότερα');
-      document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
+      endLoadingSummary('Υπήρξε πρόβλημα κατά την αποθήκευση, προσπαθήστε αργότερα');
     });
 }
 
 function startLoadingSummary() {
   document.querySelector('.loading-summary').style.display = 'block';
+  document.querySelector('#submitSummaryBtnText').textContent = 'Η προσφορά σας αποθηκεύεται...';
 }
-function endLoadingSummary() {
+function endLoadingSummary(errorMsg = null) {
   document.querySelector('.loading-summary').style.display = 'none';
+  if (errorMsg) {
+    handleInvalidSummaryForm(msg);
+  }
+  document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
 }
 
 function downloadFile(blob, fileName) {
