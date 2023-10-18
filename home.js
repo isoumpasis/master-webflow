@@ -2677,7 +2677,7 @@ function startLoadingSummary() {
 function endLoadingSummary(errorMsg = null) {
   document.querySelector('.loading-summary').style.display = 'none';
   if (errorMsg) {
-    handleInvalidSummaryForm(msg);
+    handleInvalidSummaryForm(errorMsg);
   }
   document.querySelector('#submitSummaryBtnText').textContent = 'Αποθηκευστε την προσφορα σας!';
 }
