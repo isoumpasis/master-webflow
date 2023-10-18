@@ -2349,7 +2349,11 @@ function PMT(interestPerMonth, doseis, cost) {
 
 function configureEasyPayMonthlyGain() {
   let monthlyGain = parseFloat(lpgResult.textContent.replace('€', ''));
-  if (!isPerMonthChecked && getEasyPayRadioIndex() !== 2) monthlyGain /= 12;
+  if (getEasyPayRadioIndex() !== 2) {
+    if (!isPerMonthChecked) monthlyGain /= 12;
+  } else {
+    if (isPerMonthChecked) monthlyGain *= 12;
+  }
   easyPayMonthlyGain.textContent = monthlyGain.toFixed(1) + '€';
 }
 
