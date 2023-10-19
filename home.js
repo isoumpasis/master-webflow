@@ -1302,6 +1302,7 @@ function showResults() {
 
   configureCalculatorAfterSuggestion();
   configureEasyPayAfterSuggestion();
+  adjustPaddings(30);
   // const years = yearSelect.value;
 
   // resetNotConvForm();
@@ -1375,6 +1376,10 @@ function showResults() {
     document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' });
     closeDropdowns();
   }, 100);
+}
+
+function adjustPaddings(paddingTop) {
+  document.querySelector('#calcSection').style.paddingTop = `${paddingTop}px`;
 }
 
 function configureEasyPayAfterSuggestion() {
@@ -2099,6 +2104,7 @@ function configureCalculatorAfterSuggestion() {
 }
 
 function resetCalc() {
+  adjustPaddings(0);
   document.querySelector('#consumptionHeaderTextCalc').textContent =
     'Πόσα λίτρα καταναλώνετε στα 100 χλμ;';
   document.querySelector('#consumptionMoreInfoTextCalc').textContent = 'αυτοκινήτου';
