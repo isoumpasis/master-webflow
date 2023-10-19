@@ -188,6 +188,7 @@ const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 document.addEventListener('DOMContentLoaded', () => {
   initUserInfo();
   initCustomDropdowns();
+  initHeroSection();
   initSystemPrices();
   initCardFiles();
   initGalleryFiles();
@@ -200,6 +201,22 @@ document.addEventListener('DOMContentLoaded', () => {
   initEasyPay();
   showFacebookBrowserProblem();
 });
+
+function initHeroSection() {
+  const hero = document.querySelector('.hero-section');
+  const heroOffsetTop = hero.offsetTop;
+  const heroHeight = hero.clientHeight;
+  console.log({ heroOffsetTop, heroHeight });
+
+  const dropdowns = document.querySelector('.hero-subflex');
+  const dropdownsOffsetTop = dropdowns.offsetTop;
+  const dropdownsHeight = dropdowns.clientHeight;
+  console.log({ dropdownsOffsetTop, dropdownsHeight });
+
+  const bottomPx = dropdownsOffsetTop - (heroOffsetTop + heroHeight + dropdownsHeight);
+  console.log('bottomPx', bottomPx);
+  dropdowns.style.bottom = `${bottomPx}px`;
+}
 
 function showFacebookBrowserProblem() {
   document.querySelector('.facebook-browser-div').style.display = isFacebookBrowser()
