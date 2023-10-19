@@ -213,9 +213,10 @@ function initHeroSection() {
   const dropdownsHeight = dropdowns.clientHeight;
   console.log({ dropdownsOffsetTop, dropdownsHeight });
   const webflowOffset = 450;
+  const substract = 150;
 
   const bottomPx =
-    dropdownsOffsetTop + webflowOffset - (heroOffsetTop + heroHeight + dropdownsHeight);
+    dropdownsOffsetTop + webflowOffset - (heroOffsetTop + heroHeight + dropdownsHeight + substract);
   console.log('bottomPx', bottomPx);
   // dropdowns.style.bottom = `${bottomPx}px`;
 }
