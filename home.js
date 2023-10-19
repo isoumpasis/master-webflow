@@ -215,7 +215,7 @@ function initHeroSection() {
 
   const bottomPx = dropdownsOffsetTop - (heroOffsetTop + heroHeight + dropdownsHeight);
   console.log('bottomPx', bottomPx);
-  dropdowns.style.bottom = `${bottomPx}px`;
+  // dropdowns.style.bottom = `${bottomPx}px`;
 }
 
 function showFacebookBrowserProblem() {
