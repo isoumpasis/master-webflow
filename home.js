@@ -2168,6 +2168,11 @@ function selectEasyPayRadioIndex(index) {
     .forEach((label, i) =>
       i === index ? (label.style.fontWeight = 'bold') : (label.style.fontWeight = 'normal')
     );
+  document
+    .querySelectorAll('.easypay-label')
+    .forEach((label, i) =>
+      i === index ? (label.style.outlineWidth = '5px') : (label.style.outlineWidth = '1px')
+    );
 
   if (index === 2) {
     document.querySelector('.prokatavoli-container').style.display = 'none';
