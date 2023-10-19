@@ -78,32 +78,38 @@ const SystemDict = {
     SR: {
       name: 'SR',
       priceNoVAT: 1260,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649002d89900bc3e320cc6d3_sr-logo-02.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649002d89900bc3e320cc6d3_sr-logo-02.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da844f1e4949334e7694_sr-logo-02.png'
     },
     AR: {
       name: 'AR',
       priceNoVAT: 1350,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/648819026d04c3bdf36db28f_ar-logo-01.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/648819026d04c3bdf36db28f_ar-logo-01.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84897adf2ac0f7e18b_ar-logo-01.png'
     },
     PIEZO_BMW: {
       name: 'PIEZO BMW',
       priceNoVAT: 1260,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64900606276ea59867a20f42_piezo-04.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64900606276ea59867a20f42_piezo-04.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84897adf2ac0f7e169_piezo-04.png'
     },
     PIEZO_R_BMW: {
       name: 'PIEZO R BMW',
       priceNoVAT: 1260,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/651278f1884d0caef06a53c9_md-piezo-r.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/651278f1884d0caef06a53c9_md-piezo-r.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84e7a9be2cfd4ec617_md-piezo-r.png'
     },
     PIEZO_MERCEDES: {
       name: 'PIEZO MERCEDES',
       priceNoVAT: 1330,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649006ad0460401ca20673dd_piezo-mercedes-05.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649006ad0460401ca20673dd_piezo-mercedes-05.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8419fe0366b3ce9dc0_piezo-mercedes-05.png'
     },
     SR_ALFA_ROMEO: {
       name: 'SR ALFA ROMEO',
       priceNoVAT: 1290,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6490042228f8db1f14a36d73_sr-alfa-03.svg'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6490042228f8db1f14a36d73_sr-alfa-03.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8483ef92fddeaf876b_sr-alfa-03.png'
     }
   }
 };
@@ -2751,6 +2757,7 @@ function prepareSummaryData() {
         selectedEngine,
         makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
         systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
+        systemImgPng: SystemDict.systems[getActiveContainer().id].png,
         hasEmulatorOption: !!foundVehicleObj.emulators.length,
         emulatorText: foundVehicleObj.emulators.length
           ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
