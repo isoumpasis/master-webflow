@@ -78,9 +78,9 @@ body {
     transform: none !important;
     transform-style: unset !important;
   }
-  /* .custom-dropdown {
-    width: auto !important;
-  } */
+  .value-list {
+    transition: none;
+  }
 
   .fixed-dropdown {
     position: fixed;
