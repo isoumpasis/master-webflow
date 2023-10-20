@@ -694,16 +694,18 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 function addFixedDropdown(customDropdown) {
   if (!isTabletOrMobile()) return;
   customDropdown.classList.add('fixed-dropdown');
-  document.querySelector('.popup-bg').style.display = 'block';
-  document.querySelector('.popup-bg').style.opacity = 0.75;
+  document.querySelector('.popup-dropdown').style.display = 'block';
+  document.querySelector('.popup-dropdown').style.opacity = 0.75;
   document.querySelector('body').style.overflowY = 'hidden';
+  document.querySelector('.navigation').style.display = 'none';
 }
 function removeFixedDropdown(customDropdown) {
   if (!isTabletOrMobile()) return;
   customDropdown.classList.remove('fixed-dropdown');
-  document.querySelector('.popup-bg').style.display = 'none';
-  document.querySelector('.popup-bg').style.opacity = 0;
+  document.querySelector('.popup-dropdown').style.display = 'none';
+  document.querySelector('.popup-dropdown').style.opacity = 0;
   document.querySelector('body').style.overflowY = 'auto';
+  document.querySelector('.navigation').style.display = 'block';
 }
 
 function setFocusedLi(dropdownId) {
