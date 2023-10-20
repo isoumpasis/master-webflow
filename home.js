@@ -188,7 +188,6 @@ const fuelPricesSelect = document.querySelector('#fuelPricesSelect');
 document.addEventListener('DOMContentLoaded', () => {
   initUserInfo();
   initCustomDropdowns();
-  initHeroSection();
   initSystemPrices();
   initCardFiles();
   initGalleryFiles();
@@ -202,7 +201,9 @@ document.addEventListener('DOMContentLoaded', () => {
   showFacebookBrowserProblem();
 });
 
-function initHeroSection() {
+window.addEventListener('resize', adjustDropdownsBelowHero);
+
+function adjustDropdownsBelowHero() {
   const hero = document.querySelector('.hero-section');
   const heroOffsetTop = hero.offsetTop;
   const heroHeight = hero.clientHeight;
@@ -539,6 +540,7 @@ function resetContainerPrice(container) {
 }
 
 function initCustomDropdowns() {
+  adjustDropdownsBelowHero();
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'ΜΑΡΚΑ' });
