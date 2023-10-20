@@ -553,6 +553,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   const _openDropdown = () => {
     dropdown.classList.add('open');
+    customDropdown.classList.add('fixed-dropdown');
     inputImg.style.transform = 'rotate(180deg)';
     // dropdown.scrollTop = 0;
     dropdownArray.forEach(dropdown => {

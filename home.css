@@ -79,7 +79,7 @@ body {
     transform-style: none;
   }
 
-  .value-list.open .custom-dropdown {
+  .fixed-dropdown {
     position: fixed;
     top: 100px;
   }
