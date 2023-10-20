@@ -78,6 +78,9 @@ body {
     transform: none !important;
     transform-style: unset !important;
   }
+  .custom-dropdown {
+    width: auto !important;
+  }
 
   .fixed-dropdown {
     position: fixed;
