@@ -78,6 +78,13 @@ body {
     transform: none !important;
     transform-style: unset !important;
   }
+
+  .chosen-value,
+  .value-list,
+  .custom-dropdown {
+    transition: none !important;
+  }
+
   .fixed-dropdown {
     position: fixed;
     top: 20%;
