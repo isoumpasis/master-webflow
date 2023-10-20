@@ -553,7 +553,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
   const _openDropdown = () => {
     dropdown.classList.add('open');
-    customDropdown.classList.add('fixed-dropdown');
+    addFixedDropdown(customDropdown);
     inputImg.style.transform = 'rotate(180deg)';
     // dropdown.scrollTop = 0;
     dropdownArray.forEach(dropdown => {
@@ -689,6 +689,17 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     _openDropdown();
     setFocusedLi(dropdownId);
   });
+}
+
+function addFixedDropdown(customDropdown) {
+  customDropdown.classList.add('fixed-dropdown');
+  document.querySelector('popup-bg').style.display = 'block';
+  document.querySelector('body').style.overflowY = 'hidden';
+}
+function removeFixedDropdown(customDropdown) {
+  customDropdown.classList.remove('fixed-dropdown');
+  document.querySelector('popup-bg').style.display = 'none';
+  document.querySelector('body').style.overflowY = 'auto';
 }
 
 function setFocusedLi(dropdownId) {
@@ -827,7 +838,7 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
-  document.querySelector(`#${dbId}`).classList.remove('fixed-dropdown');
+  removeFixedDropdown(document.querySelector(`#${dbId}`));
   const inputImg = document.querySelector(`#${dbId} .input-container .img-arrow`);
   inputImg.style.transform = 'rotate(0deg)';
   // if (isMobile()) {
