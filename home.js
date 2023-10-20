@@ -2183,6 +2183,7 @@ function configureMetrhtaResults() {
 }
 
 function selectEasyPayRadioIndex(index) {
+  console.log('selectedEasyPayRadioIndex', index);
   document
     .querySelectorAll('.easypay-label input')
     .forEach((radio, i) => (radio.checked = i === index));
