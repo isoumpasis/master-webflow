@@ -700,6 +700,7 @@ function addFixedDropdown(customDropdown) {
   document.querySelector('.navigation').style.display = 'none';
 }
 function removeFixedDropdown(customDropdown) {
+  return;
   if (!isTabletOrMobile()) return;
   customDropdown.classList.remove('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'none';
