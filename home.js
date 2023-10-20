@@ -827,7 +827,7 @@ function disableDropdown(db) {
 function closeDropdown(dbId) {
   const valueList = document.querySelector(`#${dbId} .value-list`);
   valueList.classList.remove('open');
-  document.querySelector(`#${dbId}`).classList.remove('fixed-dropdown');
+  // document.querySelector(`#${dbId}`).classList.remove('fixed-dropdown');
   const inputImg = document.querySelector(`#${dbId} .input-container .img-arrow`);
   inputImg.style.transform = 'rotate(0deg)';
   // if (isMobile()) {
