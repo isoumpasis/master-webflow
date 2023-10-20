@@ -1390,7 +1390,7 @@ function configureEasyPayAfterSuggestion() {
 }
 
 function isMobile() {
-  return window.matchMedia('screen and (max-width: 768px)').matches;
+  return window.matchMedia('screen and (max-width: 767px)').matches;
 }
 function isTabletOrMobile() {
   return window.matchMedia('screen and (max-width: 991px)').matches;
