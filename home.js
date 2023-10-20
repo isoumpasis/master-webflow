@@ -984,7 +984,7 @@ function populateYearDropdown(fetchedYears) {
     inputField.value = fetchedYears[0];
     dropdownValueSelected(fetchedYears[0], 'yearDropdown');
   } else {
-    openDropdown(yearDropdown);
+    if (!isTabletOrMobile()) openDropdown(yearDropdown);
   }
 }
 
@@ -1108,7 +1108,7 @@ function populateModelDropdown(fetchedModels) {
     inputField.value = fetchedModels[0];
     dropdownValueSelected(fetchedModels[0], 'modelDropdown');
   } else {
-    openDropdown(modelDropdown);
+    if (!isTabletOrMobile()) openDropdown(modelDropdown);
   }
 }
 function modelOnChange(value) {
@@ -1228,7 +1228,7 @@ function populateEngineDropdown(fetchedModelObj) {
     inputField.value = engineCodes[0];
     dropdownValueSelected(engineCodes[0], 'engineDropdown');
   } else {
-    openDropdown(engineDropdown);
+    if (!isTabletOrMobile()) openDropdown(engineDropdown);
   }
 }
 
