@@ -72,6 +72,14 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+@media only screen and (max-width: 767px) {
+  #vehicleForm,
+  .hero-subflex {
+    transform: none;
+    transform-style: none;
+  }
+}
+
 /*Sliders */
 input[type='range'] {
   -webkit-appearance: none;
