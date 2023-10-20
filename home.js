@@ -692,7 +692,7 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 }
 
 function addFixedDropdown(customDropdown) {
-  document.querySelector('body').scrollIntoView();
+  document.querySelector('body').scrollIntoView({ behavior: 'smooth' });
   if (!isTabletOrMobile()) return;
   customDropdown.classList.add('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'block';
