@@ -692,8 +692,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 }
 
 function addFixedDropdown(customDropdown) {
-  document.querySelector('body').scrollIntoView();
   if (!isTabletOrMobile()) return;
+  document.querySelector('body').scrollIntoView();
   customDropdown.classList.add('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'block';
   document.querySelector('.popup-dropdown').style.opacity = 0.75;
@@ -702,6 +702,7 @@ function addFixedDropdown(customDropdown) {
 }
 function removeFixedDropdown(customDropdown) {
   if (!isTabletOrMobile()) return;
+  document.querySelector('#vehicleSelectionForm').scrollIntoView();
   customDropdown.classList.remove('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'none';
   document.querySelector('.popup-dropdown').style.opacity = 0;
