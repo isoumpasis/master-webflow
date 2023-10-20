@@ -201,29 +201,30 @@ document.addEventListener('DOMContentLoaded', () => {
   showFacebookBrowserProblem();
 });
 
-window.addEventListener('resize', adjustDropdownsBelowHero);
+// window.addEventListener('resize', adjustDropdownsBelowHero);
 
-function adjustDropdownsBelowHero() {
-  const hero = document.querySelector('.hero-section');
-  const heroOffsetTop = hero.offsetTop;
-  const heroHeight = hero.clientHeight;
-  console.log({ heroOffsetTop, heroHeight });
+// function adjustDropdownsBelowHero() {
+//   const hero = document.querySelector('.hero-section');
+//   const heroOffsetTop = hero.offsetTop;
+//   const heroHeight = hero.clientHeight;
+//   console.log({ heroOffsetTop, heroHeight });
 
-  const dropdowns = document.querySelector('.hero-subflex');
-  const dropdownsOffsetTop = dropdowns.offsetTop;
-  const dropdownsHeight = dropdowns.clientHeight;
-  console.log({ dropdownsOffsetTop, dropdownsHeight });
-  const webflowOffset = 450;
-  const substract = 150;
+//   const dropdowns = document.querySelector('.hero-subflex');
 
-  if (dropdownsOffsetTop - heroOffsetTop - heroHeight < 250) {
-    return;
-  }
-  const bottomPx =
-    dropdownsOffsetTop + webflowOffset - (heroOffsetTop + heroHeight + dropdownsHeight + substract);
-  console.log('bottomPx', bottomPx);
-  dropdowns.style.bottom = `${bottomPx}px`;
-}
+//   const dropdownsOffsetTop = dropdowns.offsetTop;
+//   const dropdownsHeight = dropdowns.clientHeight;
+//   console.log({ dropdownsOffsetTop, dropdownsHeight });
+//   const webflowOffset = 450;
+//   const substract = 150;
+
+//   // if (dropdownsOffsetTop - heroOffsetTop - heroHeight < 250) {
+//   //   return;
+//   // }
+//   const bottomPx =
+//     dropdownsOffsetTop + webflowOffset - (heroOffsetTop + heroHeight + dropdownsHeight + substract);
+//   console.log('bottomPx', bottomPx);
+//   dropdowns.style.bottom = `${bottomPx}px`;
+// }
 
 function showFacebookBrowserProblem() {
   document.querySelector('.facebook-browser-div').style.display = isFacebookBrowser()
@@ -543,7 +544,7 @@ function resetContainerPrice(container) {
 }
 
 function initCustomDropdowns() {
-  adjustDropdownsBelowHero();
+  // adjustDropdownsBelowHero();
   customDropdowns = [...document.querySelectorAll('.custom-dropdown')];
 
   initCustomDropdown({ dropdownId: 'makeDropdown', placeholderStr: 'ΜΑΡΚΑ' });
