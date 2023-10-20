@@ -78,6 +78,11 @@ body {
     transform: none;
     transform-style: none;
   }
+
+  .value-list.open .custom-dropdown {
+    position: fixed;
+    top: 100px;
+  }
 }
 
 /*Sliders */
