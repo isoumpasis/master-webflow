@@ -75,13 +75,16 @@ body {
 @media only screen and (max-width: 767px) {
   #vehicleForm,
   .hero-subflex {
-    transform: none;
-    transform-style: none;
+    transform: none !important;
+    transform-style: unset !important;
   }
 
   .fixed-dropdown {
     position: fixed;
     top: 100px;
+    width: auto;
+    left: 10%;
+    right: 10%;
   }
 }
 
