@@ -525,6 +525,7 @@ function initCustomDropdowns() {
   initCustomDropdown({ dropdownId: 'yearDropdown', placeholderStr: 'ΧΡΟΝΟΛΟΓΙΑ' });
   initCustomDropdown({ dropdownId: 'modelDropdown', placeholderStr: 'ΜΟΝΤΕΛΟ' });
   initCustomDropdown({ dropdownId: 'engineDropdown', placeholderStr: 'ΚΙΝΗΤΗΡΑ' });
+  document.querySelector('body').scrollIntoView();
 }
 
 function initCustomDropdown({ dropdownId, placeholderStr }) {
