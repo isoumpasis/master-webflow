@@ -216,6 +216,9 @@ function adjustDropdownsBelowHero() {
   const webflowOffset = 450;
   const substract = 150;
 
+  if (dropdownsOffsetTop - heroOffsetTop - heroHeight < 250) {
+    return;
+  }
   const bottomPx =
     dropdownsOffsetTop + webflowOffset - (heroOffsetTop + heroHeight + dropdownsHeight + substract);
   console.log('bottomPx', bottomPx);
