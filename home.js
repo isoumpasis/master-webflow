@@ -693,12 +693,12 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
 
 function addFixedDropdown(customDropdown) {
   customDropdown.classList.add('fixed-dropdown');
-  document.querySelector('popup-bg').style.display = 'block';
+  document.querySelector('.popup-bg').style.display = 'block';
   document.querySelector('body').style.overflowY = 'hidden';
 }
 function removeFixedDropdown(customDropdown) {
   customDropdown.classList.remove('fixed-dropdown');
-  document.querySelector('popup-bg').style.display = 'none';
+  document.querySelector('.popup-bg').style.display = 'none';
   document.querySelector('body').style.overflowY = 'auto';
 }
 
