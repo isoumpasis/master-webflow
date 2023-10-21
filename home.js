@@ -453,7 +453,10 @@ function closeGallery() {
   document.querySelector('body').style.overflowY = 'auto';
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
   galleryMainVideo.pause();
-  getActiveContainer().querySelector('.lightbox-video video').play();
+  mainCardVideo = getActiveContainer().querySelector('.lightbox-video video');
+  if (mainCardVideo.style.display === 'block') {
+    mainCardVideo?.play();
+  }
 }
 
 function selectMainGalleryFile(index) {
