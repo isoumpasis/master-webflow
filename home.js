@@ -348,7 +348,9 @@ function addToContainerPrice(amount) {
 }
 
 function initCardFiles() {
-  const cardMainFileContainers = [...document.querySelectorAll('.main-file video, .main-file.img')];
+  const cardMainFileContainers = [
+    ...document.querySelectorAll('.main-file video, .main-file .img')
+  ];
   cardMainFileContainers.forEach(c => {
     c.addEventListener('click', e => {
       e.preventDefault();
