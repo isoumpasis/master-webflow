@@ -678,11 +678,8 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     inputField.setSelectionRange(0, inputField.value.length);
 
     if (_isDropdownOpen()) {
-      console.log('Dropdown is already open');
       inputField.setAttribute('inputmode', 'text');
-      setTimeout(() => {
-        inputField.focus();
-      }, 100);
+      prompt();
     } else {
       // console.log('dropdown was closed before now opening!');
       _openDropdown();
