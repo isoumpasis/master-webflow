@@ -2712,7 +2712,7 @@ function sendSummaryForm() {
         return;
       }
       const newBlob = new Blob([blob], { type: 'application/pdf' });
-      downloadFile(newBlob, 'Η προσφορά μου - ' + data.name);
+      downloadFile(newBlob, 'Προσφορά Master Direct ' + data.name);
       endLoadingSummary();
       // trigger_system_summary('download');
 
