@@ -1491,11 +1491,12 @@ function addFileToLightbox(file, box, boxType) {
       file.url,
       boxType === 'main' ? optimizationsVideoMain : optimizationsVideoSide
     );
-    video.controls = true;
+    // video.controls = true;
+    video.removeAttribute('controls');
     boxVideo.style.display = 'block';
-    if (boxType === 'side') {
-      video.controls = false;
-    }
+    // if (boxType === 'side') {
+    //   video.controls = false;
+    // }
   } else {
     boxVideo.style.display = 'none';
     boxImage.src = optimizeFileUrl(
@@ -1594,7 +1595,8 @@ function setFilesToSideGallery(sideGalleryFiles) {
     if (file.fileType === 'video') {
       image.style.display = 'none';
       video.src = optimizeFileUrl(file.url, optimizationsVideoGallerySide);
-      video.controls = false;
+      // video.controls = false;
+      video.removeAttribute('controls');
       video.style.display = 'block';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'block';
       sideGalleryFiles[index].querySelector('.video-overlay').style.display = 'block';
