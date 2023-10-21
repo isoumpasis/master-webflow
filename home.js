@@ -468,17 +468,21 @@ function initGalleryFiles() {
       if (xDiff > 0) {
         /* right swipe */
         console.log('right');
+        alert('right');
       } else {
         /* left swipe */
         console.log('left');
+        alert('left');
       }
     } else {
       if (yDiff > 0) {
         /* down swipe */
         console.log('down');
+        alert('down');
       } else {
         /* up swipe */
         console.log('up');
+        alert('up');
       }
     }
     /* reset values */
