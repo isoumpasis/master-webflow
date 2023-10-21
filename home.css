@@ -207,9 +207,9 @@ input[type='range']::-ms-thumb:hover {
 
 .cover {
   position: absolute;
-  height: 15px;
+  height: 16px;
   right: -2px;
-  bottom: 10px;
+  bottom: 9px;
   background: #bebebe;
   border-radius: 25px;
   z-index: 0;
