@@ -453,9 +453,9 @@ function closeGallery() {
   document.querySelector('body').style.overflowY = 'auto';
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
   galleryMainVideo.pause();
-  mainCardVideo = getActiveContainer().querySelector('.lightbox-video video');
+  mainCardVideo = getActiveContainer().querySelector('.lightbox-video');
   if (mainCardVideo.style.display === 'block') {
-    mainCardVideo?.play();
+    getActiveContainer().querySelector('.lightbox-video video')?.play();
   }
 }
 
