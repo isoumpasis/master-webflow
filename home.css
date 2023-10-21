@@ -283,7 +283,8 @@ input[type='number'] {
 
 .gallery-main-video video {
   object-fit: contain !important;
-  height: 500px;
   border: 1px solid black;
   border-radius: 1px;
+  width: 200px;
+  height: 200px;
 }
