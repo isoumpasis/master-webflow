@@ -2028,7 +2028,7 @@ function configureAmortizationInMonths(lpgMonthlyGain) {
 function calcCoverWidth(slider) {
   const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
   const offset = sliderMaxMin > 0.2 ? 0 : 1.5;
-  const firefoxOffset = isFirefoxBrowser() ? 1.5 : 0;
+  const firefoxOffset = isFirefoxBrowser() ? (sliderMaxMin > 0.6 ? 2 : 1.5) : 0;
   return sliderMaxMin * 100 + offset - firefoxOffset;
 }
 
