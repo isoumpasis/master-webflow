@@ -466,23 +466,25 @@ function initGalleryFiles() {
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       /*most significant*/
       if (xDiff > 0) {
-        /* right swipe */
-        console.log('right');
-        alert('right');
-      } else {
         /* left swipe */
         console.log('left');
         alert('left');
+        selectMainGalleryFile(galleryMainFileSelectedIndex - 1);
+      } else {
+        /* right swipe */
+        console.log('right');
+        selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
+        alert('right');
       }
     } else {
       if (yDiff > 0) {
-        /* down swipe */
-        console.log('down');
-        alert('down');
-      } else {
         /* up swipe */
         console.log('up');
         alert('up');
+      } else {
+        /* down swipe */
+        console.log('down');
+        alert('down');
       }
     }
     /* reset values */
