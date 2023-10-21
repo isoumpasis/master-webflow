@@ -351,8 +351,11 @@ function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
   cardMainFileContainers.forEach(c =>
     c.addEventListener('click', e => {
+      console.log('clicked on main file', e);
       e.preventDefault();
+      console.log('before open gallery');
       openGallery();
+      console.log('after open gallery');
     })
   );
 
