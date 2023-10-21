@@ -853,7 +853,7 @@ function closeDropdown(dbId) {
   const inputImg = document.querySelector(`#${dbId} .input-container .img-arrow`);
   inputImg.style.transform = 'rotate(0deg)';
   // if (isMobile()) {
-  // document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
+  document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   // }
 }
 
@@ -864,7 +864,7 @@ function closeDropdowns() {
 }
 
 function dropdownValueSelected(value, dbId) {
-  // document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
+  document.querySelector(`#${dbId} .chosen-value`).setAttribute('inputmode', 'none');
   if (dbId === 'makeDropdown') {
     selectedMake = value === 'VOLKSWAGEN' ? 'VW' : value;
     // console.log('make on change', selectedMake);
