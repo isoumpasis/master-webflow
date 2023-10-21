@@ -280,3 +280,7 @@ input[type='number'] {
 .main-image-gradient {
   pointer-events: none;
 }
+
+.gallery-main-video video {
+  object-fit: contain !important;
+}
