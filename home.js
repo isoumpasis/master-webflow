@@ -453,6 +453,7 @@ function closeGallery() {
   document.querySelector('body').style.overflowY = 'auto';
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
   galleryMainVideo.pause();
+  getActiveContainer().querySelector('.lightbox-video video').play();
 }
 
 function selectMainGalleryFile(index) {
