@@ -217,10 +217,10 @@ input[type='range']::-ms-thumb:hover {
   float: right;
   pointer-events: none;
 }
-
+/* 
 #systemsContainer {
   scroll-margin-top: 100px;
-}
+} */
 
 .highlight {
   pointer-events: none;
