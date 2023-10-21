@@ -349,13 +349,13 @@ function addToContainerPrice(amount) {
 
 function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
-  cardMainFileContainers.forEach(c =>
+  cardMainFileContainers.forEach(c => {
     c.removeAttribute('controls');
     c.addEventListener('click', e => {
       e.preventDefault();
       openGallery();
-    })
-  );
+    });
+  });
 
   const cardMainFiles = [...document.querySelectorAll('.main-file .lightbox-image')];
   cardMainFiles.forEach(cardMainFile => {
