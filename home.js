@@ -350,7 +350,6 @@ function addToContainerPrice(amount) {
 function initCardFiles() {
   const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
   cardMainFileContainers.forEach(c => {
-    c.removeAttribute('controls');
     c.addEventListener('click', e => {
       e.preventDefault();
       openGallery();
