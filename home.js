@@ -379,8 +379,8 @@ function initCardFiles() {
     file.removeAttribute('sizes');
   });
 }
-var xDown = null;
-var yDown = null;
+let xDown = null,
+  yDown = null;
 function initGalleryFiles() {
   document.querySelector('.gallery-wrap').addEventListener('click', () => {
     closeGallery();
@@ -441,10 +441,7 @@ function initGalleryFiles() {
   galleryMainFile.addEventListener('touchmove', handleTouchMove, false);
 
   function getTouches(evt) {
-    return (
-      evt.touches || // browser API
-      evt.originalEvent.touches
-    ); // jQuery
+    return evt.touches || evt.originalEvent.touches;
   }
 
   function handleTouchStart(evt) {
@@ -458,37 +455,28 @@ function initGalleryFiles() {
       return;
     }
 
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
-
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) {
       /*most significant*/
       if (xDiff > 0) {
         /* right swipe */
-        console.log('right');
         selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
-        // alert('right');
       } else {
         /* left swipe */
-        console.log('left');
-        // alert('left');
         selectMainGalleryFile(galleryMainFileSelectedIndex - 1);
       }
     } else {
       if (yDiff > 0) {
         /* down swipe */
-        console.log('down');
-        // alert('down');
+        closeGallery();
       } else {
         /* up swipe */
-        console.log('up');
-        // alert('up');
       }
     }
-    /* reset values */
     xDown = null;
     yDown = null;
   }
