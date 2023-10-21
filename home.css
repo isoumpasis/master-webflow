@@ -283,4 +283,5 @@ input[type='number'] {
 
 .gallery-main-video video {
   object-fit: contain !important;
+  height: 500px;
 }
