@@ -219,7 +219,7 @@ input[type='range']::-ms-thumb:hover {
 }
 
 #systemsContainer {
-  scroll-margin-top: 70px;
+  scroll-margin-top: 60px;
 }
 
 .highlight {
