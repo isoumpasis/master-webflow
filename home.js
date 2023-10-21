@@ -475,6 +475,7 @@ function initGalleryFiles() {
         closeGallery();
       } else {
         /* up swipe */
+        closeGallery();
       }
     }
     xDown = null;
