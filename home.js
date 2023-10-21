@@ -244,6 +244,7 @@ function resetEasyPay() {
   document.querySelector('.easypay-add-car').style.display = 'block';
 
   handleEasyPayNoCreditOnClick();
+  selectEasyPayRadioIndex(0);
 }
 
 function initSliders() {
