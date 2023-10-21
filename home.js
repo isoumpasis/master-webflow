@@ -349,7 +349,7 @@ function addToContainerPrice(amount) {
 
 function initCardFiles() {
   const cardMainFileContainers = [
-    ...document.querySelectorAll('.main-file .lightbox-video, .main-file .lightbox-img')
+    ...document.querySelectorAll('.main-file .lightbox-video, .main-file .lightbox-image')
   ];
   cardMainFileContainers.forEach(c => {
     c.addEventListener('click', e => {
