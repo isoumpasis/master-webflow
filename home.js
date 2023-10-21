@@ -436,8 +436,9 @@ function initGalleryFiles() {
     }
   });
 
-  document.addEventListener('touchstart', handleTouchStart, false);
-  document.addEventListener('touchmove', handleTouchMove, false);
+  const galleryMainFile = document.querySelector('.gallery-main-file');
+  galleryMainFile.addEventListener('touchstart', handleTouchStart, false);
+  galleryMainFile.addEventListener('touchmove', handleTouchMove, false);
 
   function getTouches(evt) {
     return (
