@@ -215,6 +215,7 @@ input[type='range']::-ms-thumb:hover {
   z-index: 0;
   width: 76%;
   float: right;
+  pointer-events: none;
 }
 
 #systemsContainer {
