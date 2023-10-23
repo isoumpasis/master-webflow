@@ -244,6 +244,7 @@ function resetEasyPay() {
   document.querySelector('.easypay-add-car').style.display = 'block';
 
   handleEasyPayNoCreditOnClick();
+  selectEasyPayRadioIndex(0);
 }
 
 function initSliders() {
@@ -347,13 +348,15 @@ function addToContainerPrice(amount) {
 }
 
 function initCardFiles() {
-  const cardMainFileContainers = [...document.querySelectorAll('.main-file')];
-  cardMainFileContainers.forEach(c =>
+  const cardMainFileContainers = [
+    ...document.querySelectorAll('.main-file .lightbox-video, .main-file .lightbox-image')
+  ];
+  cardMainFileContainers.forEach(c => {
     c.addEventListener('click', e => {
       e.preventDefault();
       openGallery();
-    })
-  );
+    });
+  });
 
   const cardMainFiles = [...document.querySelectorAll('.main-file .lightbox-image')];
   cardMainFiles.forEach(cardMainFile => {
@@ -376,7 +379,8 @@ function initCardFiles() {
     file.removeAttribute('sizes');
   });
 }
-
+let xDown = null,
+  yDown = null;
 function initGalleryFiles() {
   document.querySelector('.gallery-wrap').addEventListener('click', () => {
     closeGallery();
@@ -431,6 +435,52 @@ function initGalleryFiles() {
       selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
     }
   });
+
+  const galleryMainFile = document.querySelector('.gallery-main-file');
+  galleryMainFile.addEventListener('touchstart', handleTouchStart, false);
+  galleryMainFile.addEventListener('touchmove', handleTouchMove, false);
+
+  function getTouches(evt) {
+    return evt.touches || evt.originalEvent.touches;
+  }
+
+  function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];
+    xDown = firstTouch.clientX;
+    yDown = firstTouch.clientY;
+  }
+
+  function handleTouchMove(evt) {
+    if (!xDown || !yDown) {
+      return;
+    }
+
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
+
+    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+      /*most significant*/
+      if (xDiff > 0) {
+        /* right swipe */
+        selectMainGalleryFile(galleryMainFileSelectedIndex + 1);
+      } else {
+        /* left swipe */
+        selectMainGalleryFile(galleryMainFileSelectedIndex - 1);
+      }
+    } else {
+      if (yDiff > 0) {
+        /* down swipe */
+        closeGallery();
+      } else {
+        /* up swipe */
+        closeGallery();
+      }
+    }
+    xDown = null;
+    yDown = null;
+  }
 }
 
 function openGallery(selectedIndex = 0) {
@@ -450,6 +500,10 @@ function closeGallery() {
   document.querySelector('body').style.overflowY = 'auto';
   const galleryMainVideo = document.querySelector('.gallery-main-video video');
   galleryMainVideo.pause();
+  mainCardVideo = getActiveContainer().querySelector('.lightbox-video');
+  if (mainCardVideo.style.display === 'block') {
+    getActiveContainer().querySelector('.lightbox-video video')?.play();
+  }
 }
 
 function selectMainGalleryFile(index) {
@@ -677,7 +731,6 @@ function initCustomDropdown({ dropdownId, placeholderStr }) {
     inputField.setSelectionRange(0, inputField.value.length);
 
     if (_isDropdownOpen()) {
-      // console.log('Dropdown is already open');
       inputField.setAttribute('inputmode', 'text');
     } else {
       // console.log('dropdown was closed before now opening!');
@@ -1489,11 +1542,12 @@ function addFileToLightbox(file, box, boxType) {
       file.url,
       boxType === 'main' ? optimizationsVideoMain : optimizationsVideoSide
     );
-    video.controls = true;
+    // video.controls = true;
+    video.removeAttribute('controls');
     boxVideo.style.display = 'block';
-    if (boxType === 'side') {
-      video.controls = false;
-    }
+    // if (boxType === 'side') {
+    //   video.controls = false;
+    // }
   } else {
     boxVideo.style.display = 'none';
     boxImage.src = optimizeFileUrl(
@@ -1572,7 +1626,9 @@ function setCardFilesAppearance(sideFiles) {
     sideFiles.forEach((side, i) => {
       side.style.display = 'none';
       side.style.width = '0%';
-      mainFile.style.height = '98%';
+      if (!isTabletOrMobile()) {
+        mainFile.style.height = '98%';
+      }
       galleryFlex.style.display = 'none';
     });
   }
@@ -1592,7 +1648,8 @@ function setFilesToSideGallery(sideGalleryFiles) {
     if (file.fileType === 'video') {
       image.style.display = 'none';
       video.src = optimizeFileUrl(file.url, optimizationsVideoGallerySide);
-      video.controls = false;
+      // video.controls = false;
+      video.removeAttribute('controls');
       video.style.display = 'block';
       sideGalleryFiles[index].querySelector('.gallery-video').style.display = 'block';
       sideGalleryFiles[index].querySelector('.video-overlay').style.display = 'block';
@@ -2027,7 +2084,12 @@ function configureAmortizationInMonths(lpgMonthlyGain) {
 function calcCoverWidth(slider) {
   const sliderMaxMin = (slider.max - slider.value) / (slider.max - slider.min);
   const offset = sliderMaxMin > 0.2 ? 0 : 1.5;
-  return sliderMaxMin * 100 + offset;
+  const firefoxOffset = isFirefoxBrowser() ? (sliderMaxMin > 0.6 ? 2 : 1.5) : 0;
+  return sliderMaxMin * 100 + offset - firefoxOffset;
+}
+
+function isFirefoxBrowser() {
+  return navigator?.userAgent?.toLowerCase()?.includes('firefox');
 }
 
 /* Calculator END */
@@ -2183,7 +2245,6 @@ function configureMetrhtaResults() {
 }
 
 function selectEasyPayRadioIndex(index) {
-  console.log('selectedEasyPayRadioIndex', index);
   document
     .querySelectorAll('.easypay-label input')
     .forEach((radio, i) => (radio.checked = i === index));
@@ -2707,7 +2768,7 @@ function sendSummaryForm() {
         return;
       }
       const newBlob = new Blob([blob], { type: 'application/pdf' });
-      downloadFile(newBlob, 'Η προσφορά μου - ' + data.name);
+      downloadFile(newBlob, 'Προσφορά Master Direct ' + data.name);
       endLoadingSummary();
       // trigger_system_summary('download');
 

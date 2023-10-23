@@ -207,18 +207,19 @@ input[type='range']::-ms-thumb:hover {
 
 .cover {
   position: absolute;
-  height: 15px;
+  height: 16px;
   right: -2px;
-  bottom: 10px;
+  bottom: 9px;
   background: #bebebe;
   border-radius: 25px;
   z-index: 0;
   width: 76%;
   float: right;
+  pointer-events: none;
 }
 
 #systemsContainer {
-  scroll-margin-top: 130px;
+  scroll-margin-top: 45px;
 }
 
 .highlight {
@@ -273,4 +274,9 @@ input[type='number'] {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
   }
+}
+
+.click-icon-div,
+.main-image-gradient {
+  pointer-events: none;
 }
