@@ -2820,7 +2820,11 @@ function prepareSummaryData() {
     region: userInfo.region,
     vehicle: foundVehicleObj._id,
     metadata: {
-      emulator: {
+      vehicle: {
+        selectedMake,
+        selectedYear,
+        selectedModel,
+        selectedEngine,
         isEmulatorSelected: isEmulatorFChecked,
         emulatorType: isEmulatorFChecked ? 'f' : undefined,
         emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined
@@ -2848,10 +2852,6 @@ function prepareSummaryData() {
         easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
       },
       meta: {
-        selectedMake,
-        selectedYear,
-        selectedModel,
-        selectedEngine,
         makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
         systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
         systemImgPng: SystemDict.systems[getActiveContainer().id].png,
