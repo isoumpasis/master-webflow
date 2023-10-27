@@ -1360,75 +1360,9 @@ function showResults() {
   configureCalculatorAfterSuggestion();
   configureEasyPayAfterSuggestion();
   adjustPaddings(30);
-  // const years = yearSelect.value;
 
-  // resetNotConvForm();
+  trigger_car_select();
 
-  // if (suggestedPricesChanges.length) resetToDefaultPrices();
-
-  // if (fetchedModelObj.isDirect) {
-  //   showDirectResults(fetchedModelObj);
-  // } else if (fetchedModelObj.isMonou) {
-  //   showMonouResults(fetchedModelObj);
-  // } else {
-  //   showCylinderResults(fetchedModelObj, years);
-  // }
-
-  // const suggestedContainer = getActiveContainer();
-
-  // userSelections.vehicle.suggestions = {
-  //   ...userSelections.vehicle.suggestions,
-  //   containerId: suggestedContainer.id
-  // };
-  // saveUserSelections();
-
-  // adjustSectionPaddings();
-
-  // //If there is a suggestion
-  // if (
-  //   suggestedContainer &&
-  //   !suggestedContainer.classList.contains(
-  //     `not-convertible-${userSelections.selectedFuel}-container`
-  //   ) &&
-  //   !suggestedContainer.classList.contains('not-convertible-form-container')
-  // ) {
-  //   showGuarantee(true);
-  //   displayEmulatorInfo(suggestedContainer);
-
-  //   configureCalculatorAfterSuggestion();
-  //   configureEasyPayAfterSuggestion();
-  //   configureLastStepAfterSuggestion();
-  // } else {
-  //   showGuarantee(false);
-  //   resetCalc();
-  //   resetEasyPay();
-  //   updateBasketSection({ resetNoVehicle: true });
-  //   resetProgressSteps();
-  // }
-
-  // configureUserSelectionsAfterResults();
-
-  // if (
-  //   suggestedContainer &&
-  //   !suggestedContainer.classList.contains(
-  //     `not-convertible-${userSelections.selectedFuel}-container`
-  //   ) &&
-  //   !suggestedContainer.classList.contains('not-convertible-form-container')
-  // ) {
-  //   updateBasketSection({
-  //     vehicle: true,
-  //     calculator: true,
-  //     easyPay: true,
-  //     prokatavoliDoseis: true,
-  //     easyPayMonthlyGain: true
-  //   });
-  //   trigger_car_step_2();
-  //   togglePulse('.summary-pulse', true);
-  // } else if (suggestedContainer) {
-  //   trigger_not_convertible(
-  //     suggestedContainer.classList.contains('not-convertible-form-container')
-  //   );
-  // }
   setTimeout(() => {
     document.querySelector('#systemsContainer').scrollIntoView({ behavior: 'smooth' });
     closeDropdowns();
@@ -2866,3 +2800,39 @@ function prepareSummaryData() {
 }
 
 /* /SUMMARY FORM */
+
+/* GTAG */
+let gtagDebug = false;
+function triggerGtagEvent(eventName, params = {}) {
+  if (!gtagDebug && window.location.href.includes('webflow.io'))
+    return { status: 'Error', message: 'dev' };
+  if (typeof gtag === 'undefined') return { status: 'Error', message: 'gtag undefined' };
+  if (typeof eventName === 'undefined' || eventName === '')
+    return { status: 'Error', message: 'eventName undefined' };
+
+  // params.source_referrer_domain = sourceReferrerDomain;
+  // gtag('event', eventName, params);
+  // return {
+  //   status: 'OK',
+  //   message: `"${eventName}" event triggered with params: "${
+  //     Object.keys(params).length && JSON.stringify(params)
+  //   }"`
+  // };
+  console.log(
+    `"${eventName}" event triggered with params: "${
+      Object.keys(params).length && JSON.stringify(params)
+    }"`
+  );
+}
+
+function trigger_car_select() {
+  triggerGtagEvent('car_select', {
+    vehicle_make: selectedMake,
+    vehicle_year: selectedYear,
+    vehicle_model: selectedModel,
+    vehicle_engine: selectedEngine,
+    vehicle_hp: foundVehicleObj.hp,
+    vehicle_litres: foundVehicleObj.litres,
+    suggested_system: foundVehicleObj.master
+  });
+}
