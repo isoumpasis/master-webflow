@@ -2830,7 +2830,7 @@ function trigger_car_select() {
     vehicle_make: selectedMake,
     vehicle_year: selectedYear,
     vehicle_model: selectedModel,
-    vehicle_engine: selectedEngine,
+    vehicle_engine: selectedEngine.split(' - ')[1],
     vehicle_hp: foundVehicleObj.hp,
     vehicle_litres: foundVehicleObj.litres,
     suggested_system: foundVehicleObj.master
