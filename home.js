@@ -2822,24 +2822,24 @@ function triggerGtagEvent(eventName, params = {}) {
     return { status: 'Error', message: 'eventName undefined' };
 
   // params.source_referrer_domain = sourceReferrerDomain;
-  // gtag('event', eventName, params);
-  // return {
-  //   status: 'OK',
-  //   message: `"${eventName}" event triggered with params: "${
-  //     Object.keys(params).length && JSON.stringify(params)
-  //   }"`
-  // };
+  gtag('event', eventName, params);
   console.log(
     `"${eventName}" event triggered with params: "${
       Object.keys(params).length && JSON.stringify(params)
     }"`
   );
+  return {
+    status: 'OK',
+    message: `"${eventName}" event triggered with params: "${
+      Object.keys(params).length && JSON.stringify(params)
+    }"`
+  };
 }
 
 function trigger_car_select() {
   triggerGtagEvent('car_select', {
     make: selectedMake,
-    year: selectedYear,
+    year: +selectedYear,
     model: selectedModel,
     engine: selectedEngine.split(' - ')[1],
     hp: foundVehicleObj.hp,
@@ -2851,7 +2851,7 @@ function trigger_car_select() {
 function trigger_system_summary() {
   triggerGtagEvent('system_summary', {
     make: selectedMake,
-    year: selectedYear,
+    year: +selectedYear,
     model: selectedModel,
     engine: selectedEngine.split(' - ')[1],
     hp: foundVehicleObj.hp,
