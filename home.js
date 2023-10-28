@@ -2813,7 +2813,8 @@ function getVehicleFilesByType(type) {
 }
 
 /* GTAG */
-let gtagDebug = false;
+let gtagDebug = true;
+// let gtagDebug = false;
 function triggerGtagEvent(eventName, params = {}) {
   if (!gtagDebug && window.location.href.includes('webflow.io'))
     return { status: 'Error', message: 'dev' };
