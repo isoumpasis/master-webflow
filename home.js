@@ -2876,7 +2876,7 @@ function trigger_system_summary() {
     price_with_VAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
     easypay_method: EasyPayDict[getEasyPayRadioIndex()],
     prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
-    doseis: getEasyPayRadioIe() !== 2 ? +doseisSlider.value : undefined,
+    doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
     easypay_final_cost:
       getEasyPayRadioIndex() !== 2
         ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
