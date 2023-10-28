@@ -128,6 +128,12 @@ const TankDict = {
   }
 };
 
+const consumptionDict = {
+  0: 'Εντός πόλης',
+  1: 'Εκτός πόλης',
+  2: 'Μικτά'
+};
+
 const EmulatorDict = {
   f: {
     price: 85,
@@ -2801,6 +2807,11 @@ function prepareSummaryData() {
 
 /* /SUMMARY FORM */
 
+function getVehicleFilesByType(type) {
+  if (!foundVehicleObj) return [];
+  return foundVehicleObj.files.filter(file => file.fileType === type);
+}
+
 /* GTAG */
 let gtagDebug = false;
 function triggerGtagEvent(eventName, params = {}) {
@@ -2847,12 +2858,14 @@ function trigger_system_summary() {
     litres: foundVehicleObj.litres,
     region: userInfo.region,
     files: foundVehicleObj.files?.length,
+    videos: getVehicleFilesByType('video'),
+    images: getVehicleFilesByType('image'),
     testimonials: foundVehicleObj.testimonials?.length,
     has_emulators: !!foundVehicleObj.emulators.length,
     is_emulator_selected: isEmulatorFChecked,
     emulator_type: isEmulatorFChecked ? 'f' : undefined,
     km: +calcSliders[0].value,
-    drive_often_index: getConsumptionRadioIndex(),
+    drive_often: consumptionDict[getConsumptionRadioIndex()],
     true_consumption: +calcSliders[1].value,
     gain: +lpgResult.textContent.replace('€', ''),
     percentage: +lpgPercentageEl.textContent.replace('%', ''),
@@ -2863,7 +2876,7 @@ function trigger_system_summary() {
     price_with_VAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
     easypay_method: EasyPayDict[getEasyPayRadioIndex()],
     prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
-    doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
+    doseis: getEasyPayRadioIe() !== 2 ? +doseisSlider.value : undefined,
     easypay_final_cost:
       getEasyPayRadioIndex() !== 2
         ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
