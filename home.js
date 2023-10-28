@@ -2868,6 +2868,9 @@ function trigger_system_summary() {
       getEasyPayRadioIndex() !== 2
         ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
         : undefined,
-    easypay_monthly_cost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
+    easypay_monthly_cost:
+      getEasyPayRadioIndex() !== 2
+        ? undefined
+        : +document.querySelector('#easyPayCost').textContent.replace('€', '')
   });
 }
