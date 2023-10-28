@@ -2704,7 +2704,7 @@ function sendSummaryForm() {
       const newBlob = new Blob([blob], { type: 'application/pdf' });
       downloadFile(newBlob, 'Προσφορά Master Direct ' + data.name);
       endLoadingSummary();
-      // trigger_system_summary('download');
+      trigger_system_summary();
 
       document.querySelector('#summaryFormError').style.display = 'none';
       document.querySelector('.summary-form-success').style.display = 'flex';
@@ -2827,12 +2827,47 @@ function triggerGtagEvent(eventName, params = {}) {
 
 function trigger_car_select() {
   triggerGtagEvent('car_select', {
-    vehicle_make: selectedMake,
-    vehicle_year: selectedYear,
-    vehicle_model: selectedModel,
-    vehicle_engine: selectedEngine.split(' - ')[1],
-    vehicle_hp: foundVehicleObj.hp,
-    vehicle_litres: foundVehicleObj.litres,
-    suggested_system: foundVehicleObj.master
+    make: selectedMake,
+    year: selectedYear,
+    model: selectedModel,
+    engine: selectedEngine.split(' - ')[1],
+    hp: foundVehicleObj.hp,
+    litres: foundVehicleObj.litres,
+    system: foundVehicleObj.master
+  });
+}
+
+function trigger_system_summary() {
+  triggerGtagEvent('system_summary', {
+    make: selectedMake,
+    year: selectedYear,
+    model: selectedModel,
+    engine: selectedEngine.split(' - ')[1],
+    hp: foundVehicleObj.hp,
+    litres: foundVehicleObj.litres,
+    region: userInfo.region,
+    files: foundVehicleObj.files?.length,
+    testimonials: foundVehicleObj.testimonials?.length,
+    has_emulators: !!foundVehicleObj.emulators.length,
+    is_emulator_selected: isEmulatorFChecked,
+    emulator_type: isEmulatorFChecked ? 'f' : undefined,
+    km: +calcSliders[0].value,
+    drive_often_index: getConsumptionRadioIndex(),
+    true_consumption: +calcSliders[1].value,
+    gain: +lpgResult.textContent.replace('€', ''),
+    percentage: +lpgPercentageEl.textContent.replace('%', ''),
+    amortization: +document.querySelector('.amortization-months').textContent,
+    per_month_checkbox: isPerMonthChecked,
+    system: foundVehicleObj.master,
+    price_no_VAT: +getActiveContainer().querySelector('.price').textContent.replace('€', ''),
+    price_with_VAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
+    easypay_method: EasyPayDict[getEasyPayRadioIndex()],
+    prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
+    doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
+    easypay_final_cost:
+      getEasyPayRadioIndex() !== 2
+        ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
+        : undefined,
+    easypay_monthly_cost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
   });
 }
