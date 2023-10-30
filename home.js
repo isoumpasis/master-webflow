@@ -1325,7 +1325,7 @@ function engineOnChange(value) {
   );
 
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
-  console.log('foundVehicleOBj', foundVehicleObj);
+  // console.log('foundVehicleOBj', foundVehicleObj);
 
   showResults();
 
