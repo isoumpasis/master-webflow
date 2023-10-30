@@ -756,7 +756,7 @@ function addFixedDropdown(customDropdown) {
   document.querySelector('body').scrollIntoView();
   customDropdown.classList.add('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'block';
-  // document.querySelector('.popup-dropdown').style.opacity = 0.9;
+  document.querySelector('.popup-dropdown').style.opacity = 0.9;
   document.querySelector('body').style.overflowY = 'hidden';
   document.querySelector('.navigation').style.display = 'none';
 }
@@ -767,7 +767,7 @@ function removeFixedDropdown(customDropdown) {
   }
   customDropdown.classList.remove('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'none';
-  // document.querySelector('.popup-dropdown').style.opacity = 0;
+  document.querySelector('.popup-dropdown').style.opacity = 0;
   document.querySelector('body').style.overflowY = 'auto';
   document.querySelector('.navigation').style.display = 'block';
 }
