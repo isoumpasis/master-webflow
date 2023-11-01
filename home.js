@@ -222,6 +222,7 @@ function saveUserInfo() {
   userInfo.email = userInfo?.email?.trim();
   userInfo.phone = userInfo?.phone?.trim();
   userInfo.address = userInfo?.address?.trim();
+  console.log.(userInfo)
   if (typeof Storage !== 'undefined')
     preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
 }
