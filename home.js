@@ -222,7 +222,6 @@ function saveUserInfo() {
   userInfo.email = userInfo?.email?.trim();
   userInfo.phone = userInfo?.phone?.trim();
   userInfo.address = userInfo?.address?.trim();
-  console.log.(userInfo)
   if (typeof Storage !== 'undefined')
     preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
 }
@@ -2481,14 +2480,6 @@ function sendUnknownVehicle() {
 /* /UNKNOWN FORM */
 
 /* CONTACT FORM */
-function saveUserInfo() {
-  if (typeof Storage !== 'undefined')
-    preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
-}
-function getUserInfo() {
-  if (typeof Storage !== 'undefined') return JSON.parse(preferredStorage.getItem('userInfo'));
-  return null;
-}
 
 function initUserInfo() {
   userInfo = getUserInfo() || {};
