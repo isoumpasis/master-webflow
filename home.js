@@ -218,6 +218,10 @@ function isFacebookBrowser() {
 }
 
 function saveUserInfo() {
+  userInfo.username = userInfo?.username?.trim();
+  userInfo.email = userInfo?.email?.trim();
+  userInfo.phone = userInfo?.phone?.trim();
+  userInfo.address = userInfo?.address?.trim();
   if (typeof Storage !== 'undefined')
     preferredStorage.setItem('userInfo', JSON.stringify(userInfo));
 }
@@ -2659,9 +2663,6 @@ document.querySelector('#submitSummaryBtn').addEventListener('click', e => {
 });
 
 function validateSummaryForm() {
-  userInfo.username = userInfo?.username?.trim();
-  userInfo.email = userInfo?.email?.trim();
-  userInfo.phone = userInfo?.phone?.trim();
   if (!getActiveContainer())
     return {
       valid: false,
