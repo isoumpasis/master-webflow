@@ -2659,11 +2659,15 @@ document.querySelector('#submitSummaryBtn').addEventListener('click', e => {
 });
 
 function validateSummaryForm() {
+  userInfo.username = userInfo?.username?.trim();
+  userInfo.email = userInfo?.email?.trim();
+  userInfo.phone = userInfo?.phone?.trim();
   if (!getActiveContainer())
     return {
       valid: false,
       msg: 'Θα πρέπει πρώτα να επιλέξετε το όχημα σας!'
     };
+
   if (!userInfo.username) return { valid: false, msg: 'Απαιτείται ονοματεπώνυμο' };
   if (!isEmail(userInfo.email)) return { valid: false, msg: 'Απαιτείται έγκυρο email' };
   if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
