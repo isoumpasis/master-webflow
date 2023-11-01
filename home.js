@@ -756,7 +756,7 @@ function addFixedDropdown(customDropdown) {
   document.querySelector('body').scrollIntoView();
   customDropdown.classList.add('fixed-dropdown');
   document.querySelector('.popup-dropdown').style.display = 'block';
-  document.querySelector('.popup-dropdown').style.opacity = 0.75;
+  document.querySelector('.popup-dropdown').style.opacity = 0.9;
   document.querySelector('body').style.overflowY = 'hidden';
   document.querySelector('.navigation').style.display = 'none';
 }
@@ -1325,7 +1325,7 @@ function engineOnChange(value) {
   );
 
   foundVehicleObj = runConsumptionRace(foundVehicles)[0].veh;
-  console.log('foundVehicleOBj', foundVehicleObj);
+  // console.log('foundVehicleOBj', foundVehicleObj);
 
   showResults();
 
@@ -2824,11 +2824,11 @@ function triggerGtagEvent(eventName, params = {}) {
 
   // params.source_referrer_domain = sourceReferrerDomain;
   gtag('event', eventName, params);
-  console.log(
-    `"${eventName}" event triggered with params: "${
-      Object.keys(params).length && JSON.stringify(params)
-    }"`
-  );
+  // console.log(
+  //   `"${eventName}" event triggered with params: "${
+  //     Object.keys(params).length && JSON.stringify(params)
+  //   }"`
+  // );
   return {
     status: 'OK',
     message: `"${eventName}" event triggered with params: "${
