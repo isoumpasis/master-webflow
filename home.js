@@ -1571,7 +1571,7 @@ function setCardFilesAppearance(sideFiles) {
       side.style.display = 'none';
       side.style.width = '0%';
       if (!isTabletOrMobile()) {
-        mainFile.style.height = '98%';
+        mainFile.style.height = '100%';
       }
       galleryFlex.style.display = 'none';
     });
