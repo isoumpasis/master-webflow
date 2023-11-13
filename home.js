@@ -2815,7 +2815,8 @@ let gtagDebug = false;
 function triggerGtagEvent(eventName, params = {}) {
   if (!gtagDebug && window.location.href.includes('webflow.io'))
     return { status: 'Error', message: 'dev' };
-  if (typeof gtag === 'undefined') return { status: 'Error', message: 'gtag undefined' };
+  if (typeof gtag === 'undefined' || typeof fbq === 'undefined')
+    return { status: 'Error', message: 'gtag undefined' };
   if (typeof eventName === 'undefined' || eventName === '')
     return { status: 'Error', message: 'eventName undefined' };
 
@@ -2826,6 +2827,7 @@ function triggerGtagEvent(eventName, params = {}) {
   //     Object.keys(params).length && JSON.stringify(params)
   //   }"`
   // );
+  fbq('trackCustom', eventName, params);
   return {
     status: 'OK',
     message: `"${eventName}" event triggered with params: "${
