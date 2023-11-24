@@ -569,7 +569,7 @@ function getActiveContainer() {
 
 function hideSuggestedContainers() {
   suggestedContainers.forEach(c => {
-    c.querySelector('.overlay-wrapper').style.height = '0px';
+    // c.querySelector('.overlay-wrapper').style.height = '0px';
     c.querySelector('[data-w-tab="Tab 1"]').click();
     unCheckFEmulator(c);
     resetContainerPrice(c);
@@ -1691,14 +1691,15 @@ function configureVehicleInformation() {
 function configureSuggestedContainerTabs() {
   const mediaDisplay = activeContainer.querySelector('.media-tab').style.display;
   const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
-  resetLearnMore();
+  // resetLearnMore();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
     // console.log('no media no info');
     if (isTabletOrMobile()) {
       configureSuggestedContainerForTabletOrMobile();
-    } else {
-      showLearnMoreAtRight();
     }
+    // else {
+    //   showLearnMoreAtRight();
+    // }
   } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
     // console.log('media no info');
   } else if (mediaDisplay !== 'block' && infoDisplay === 'block') {
@@ -1713,19 +1714,19 @@ function configureSuggestedContainerForTabletOrMobile() {
   activeContainer.querySelector('.system-right').style.display = 'none';
 }
 
-function showLearnMoreAtRight() {
-  activeContainer.querySelector('.info-button').style.display = 'none';
-  activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
-  activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'none';
-}
+// function showLearnMoreAtRight() {
+//   activeContainer.querySelector('.info-button').style.display = 'none';
+//   activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
+//   activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'none';
+// }
 
-function resetLearnMore() {
-  activeContainer.querySelector('.system-right').style.display = 'flex';
-  activeContainer.querySelector('.info-button').style.display = 'inline-block';
-  activeContainer.querySelector('.overlay-wrapper').classList.remove('learn-more-at-right');
-  activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'block';
-  activeContainer.querySelector('.overlay-wrapper .overflow-wrap').scrollTop = 0;
-}
+// function resetLearnMore() {
+//   activeContainer.querySelector('.system-right').style.display = 'flex';
+//   activeContainer.querySelector('.info-button').style.display = 'inline-block';
+//   activeContainer.querySelector('.overlay-wrapper').classList.remove('learn-more-at-right');
+//   activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'block';
+//   activeContainer.querySelector('.overlay-wrapper .overflow-wrap').scrollTop = 0;
+// }
 
 function unCheckFEmulator(suggestedContainer) {
   const emulatorFSquare = suggestedContainer.querySelector('.emulator-f-square');
