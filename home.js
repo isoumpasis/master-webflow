@@ -570,7 +570,7 @@ function getActiveContainer() {
 function hideSuggestedContainers() {
   suggestedContainers.forEach(c => {
     // c.querySelector('.overlay-wrapper').style.height = '0px';
-    c.querySelector('[data-w-tab="Tab 1"]').click();
+    c.querySelector('[data-w-tab="Tab 1"].w-tab-link').click();
     unCheckFEmulator(c);
     resetContainerPrice(c);
     c.style.display = 'none';
@@ -1693,7 +1693,6 @@ function configureSuggestedContainerTabs() {
   const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
   resetAdvantagesTab();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
-    console.log('no media no info');
     // if (isTabletOrMobile()) {
     //   configureSuggestedContainerForTabletOrMobile();
     // }
@@ -1715,14 +1714,14 @@ function configureSuggestedContainerTabs() {
 // }
 
 function showLearnMoreAtRight() {
-  activeContainer.querySelector('[data-w-tab="Tab 3"]').click();
+  activeContainer.querySelector('[data-w-tab="Tab 3"].w-tab-link').click();
   // activeContainer.querySelector('.info-button').style.display = 'none';
   // activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
   // activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'none';
 }
 
 function resetAdvantagesTab() {
-  activeContainer.querySelector('[data-w-tab="Tab 3"]').scrollTop = 0;
+  activeContainer.querySelector('[data-w-tab="Tab 3"].w-tab-pane').scrollTop = 0;
 }
 
 function unCheckFEmulator(suggestedContainer) {
