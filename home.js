@@ -1715,7 +1715,7 @@ function configureSuggestedContainerTabs() {
 
 function clickAdvantagesTab() {
   activeContainer.querySelector('[data-w-tab="Tab 3"].w-tab-link').click();
-  setTimeout(resetAdvantagesTab, 300);
+  resetAdvantagesTab();
 }
 
 function resetAdvantagesTab() {
