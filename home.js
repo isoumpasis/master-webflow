@@ -2882,3 +2882,21 @@ function trigger_system_summary() {
         : +document.querySelector('#easyPayCost').textContent.replace('€', '')
   });
 }
+
+document.querySelectorAll('.interest-in-summary-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    trigger_interest_in_summary();
+  });
+});
+
+function trigger_interest_in_summary() {
+  triggerGtagEvent('interest_in_summary', {
+    make: selectedMake,
+    year: +selectedYear,
+    model: selectedModel,
+    engine: selectedEngine.split(' - ')[1],
+    hp: foundVehicleObj.hp,
+    litres: foundVehicleObj.litres,
+    system: foundVehicleObj.master
+  });
+}
