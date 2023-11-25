@@ -2901,7 +2901,7 @@ function trigger_interest_in_summary() {
   });
 }
 
-document.querySelector('#summaryMenuBtn').addEventListener('click', () => trigger_summary_menu_btn);
+document.querySelector('#summaryMenuBtn').addEventListener('click', trigger_summary_menu_btn);
 
 function trigger_summary_menu_btn() {
   triggerGtagEvent('summary_menu_btn');
