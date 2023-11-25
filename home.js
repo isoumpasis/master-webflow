@@ -2900,3 +2900,9 @@ function trigger_interest_in_summary() {
     system: foundVehicleObj.master
   });
 }
+
+document.querySelector('#summaryMenuBtn').addEventListener('click', () => trigger_summary_menu_btn);
+
+function trigger_summary_menu_btn() {
+  triggerGtagEvent('summary_menu_btn');
+}
