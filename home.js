@@ -1691,13 +1691,13 @@ function configureVehicleInformation() {
 function configureSuggestedContainerTabs() {
   const mediaDisplay = activeContainer.querySelector('.media-tab').style.display;
   const infoDisplay = activeContainer.querySelector('.info-tab').style.display;
-  resetAdvantagesTab();
+  // resetAdvantagesTab();
   if (mediaDisplay !== 'block' && infoDisplay !== 'block') {
     // if (isTabletOrMobile()) {
     //   configureSuggestedContainerForTabletOrMobile();
     // }
     // else {
-    showLearnMoreAtRight();
+    clickAdvantagesTab();
     // }
   } else if (mediaDisplay === 'block' && infoDisplay !== 'block') {
     // console.log('media no info');
@@ -1713,11 +1713,9 @@ function configureSuggestedContainerTabs() {
 //   activeContainer.querySelector('.system-right').style.display = 'none';
 // }
 
-function showLearnMoreAtRight() {
+function clickAdvantagesTab() {
   activeContainer.querySelector('[data-w-tab="Tab 3"].w-tab-link').click();
-  // activeContainer.querySelector('.info-button').style.display = 'none';
-  // activeContainer.querySelector('.overlay-wrapper').classList.add('learn-more-at-right');
-  // activeContainer.querySelector('.overlay-wrapper .close-div').style.display = 'none';
+  resetAdvantagesTab();
 }
 
 function resetAdvantagesTab() {
