@@ -1,13 +1,11 @@
-let serverUrl = 'https://masterdirect.herokuapp.com/';
-// let serverUrl = 'http://localhost:1968/'; //
+// let serverUrl = 'https://masterdirect.herokuapp.com/';
+let serverUrl = 'http://localhost:1968/';
 
 const urlYears = serverUrl + 'vehicleDB/get/years';
 const urlModels = serverUrl + 'vehicleDB/get/models';
 const urlEngineCodes = serverUrl + 'vehicleDB/get/descriptions';
 const urlFuelPrices = serverUrl + 'fuelPrices';
 const submitSummaryUrl = serverUrl + 'summary';
-// let downloadSummaryUrl = serverUrl + 'summaries/download/system';
-// let emailSummaryUrl = serverUrl + 'summaries/email/system';
 const urlUnknownForm = serverUrl + 'unknown_vehicle/';
 const urlContactForm = serverUrl + 'contact/';
 
