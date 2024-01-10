@@ -410,14 +410,13 @@ function initGalleryFiles() {
   const galleryFilesContainer = document.querySelector('.gallery-files-container');
   galleryFilesContainer.addEventListener('click', e => e.stopPropagation());
 
-  const gallerySideFiles = [...document.querySelectorAll('.gallery-side-file img')];
-  gallerySideFiles.forEach(file => {
-    file.removeAttribute('srcset');
-    file.removeAttribute('sizes');
+  const gallerySideFileImgs = [...document.querySelectorAll('.gallery-side-file img')];
+  gallerySideFileImgs.forEach(img => {
+    img.removeAttribute('srcset');
+    img.removeAttribute('sizes');
   });
 
   const gallerySideFileContainers = [...document.querySelectorAll('.gallery-side-file')];
-
   gallerySideFileContainers.forEach((sideFile, index) => {
     sideFile.addEventListener('click', () => {
       selectMainGalleryFile(index);
@@ -1470,6 +1469,7 @@ function configureFilesGallery() {
 
   //set files to files gallery
   const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
+  cloneSideGalleryFilesIfNeeded(sideGalleryFiles);
   removeAllFilesFromGallery(sideGalleryFiles);
   setFilesToSideGallery(sideGalleryFiles);
   selectMainGalleryFile(0);
@@ -1575,6 +1575,25 @@ function setCardFilesAppearance(sideFiles) {
       }
       galleryFlex.style.display = 'none';
     });
+  }
+}
+
+function cloneSideGalleryFilesIfNeeded(sideGalleryFiles) {
+  const vehicleFilesLength = foundVehicleObj.files.length;
+  const sideGalleryFilesLength = sideGalleryFiles.length;
+  const numberOfClonesNeeded = vehicleFilesLength - sideGalleryFilesLength;
+  if (numberOfClonesNeeded <= 0) return;
+
+  const galleryContainer = document.querySelector('.gallery-files-container');
+
+  for (let i = 0; i < numberOfClonesNeeded; i++) {
+    //clone first sideGalleryFile, configure and append
+    let newSideGalleryFile = sideGalleryFiles[0].cloneNode(true);
+    newSideGalleryFile.addEventListener('click', () => {
+      selectMainGalleryFile(sideGalleryFilesLength + i);
+    });
+    galleryContainer.appendChild(newSideGalleryFile);
+    console.log('new sidegallery cloned', i, sideGalleryFiles + i, newSideGalleryFile);
   }
 }
 
