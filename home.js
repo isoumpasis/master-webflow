@@ -1585,7 +1585,6 @@ function cloneSideGalleryFilesIfNeeded() {
   if (numberOfClonesNeeded <= 0) return;
 
   const galleryContainer = document.querySelector('.gallery-files-container');
-
   for (let i = 0; i < numberOfClonesNeeded; i++) {
     //clone first sideGalleryFile, configure and append
     let newSideGalleryFile = sideGalleryFiles[0].cloneNode(true);
@@ -1593,7 +1592,6 @@ function cloneSideGalleryFilesIfNeeded() {
       selectMainGalleryFile(sideGalleryFilesLength + i);
     });
     galleryContainer.appendChild(newSideGalleryFile);
-    console.log('new sidegallery cloned', i, sideGalleryFiles + i, newSideGalleryFile);
   }
 }
 
