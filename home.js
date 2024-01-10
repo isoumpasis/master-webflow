@@ -1468,10 +1468,9 @@ function configureFilesGallery() {
   });
 
   //set files to files gallery
-  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
-  cloneSideGalleryFilesIfNeeded(sideGalleryFiles);
-  removeAllFilesFromGallery(sideGalleryFiles);
-  setFilesToSideGallery(sideGalleryFiles);
+  cloneSideGalleryFilesIfNeeded();
+  removeAllFilesFromGallery();
+  setFilesToSideGallery();
   selectMainGalleryFile(0);
 }
 
@@ -1578,7 +1577,8 @@ function setCardFilesAppearance(sideFiles) {
   }
 }
 
-function cloneSideGalleryFilesIfNeeded(sideGalleryFiles) {
+function cloneSideGalleryFilesIfNeeded() {
+  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
   const vehicleFilesLength = foundVehicleObj.files.length;
   const sideGalleryFilesLength = sideGalleryFiles.length;
   const numberOfClonesNeeded = vehicleFilesLength - sideGalleryFilesLength;
@@ -1597,11 +1597,13 @@ function cloneSideGalleryFilesIfNeeded(sideGalleryFiles) {
   }
 }
 
-function removeAllFilesFromGallery(sideGalleryFiles) {
+function removeAllFilesFromGallery() {
+  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
   sideGalleryFiles.forEach(f => (f.style.display = 'none'));
 }
 
-function setFilesToSideGallery(sideGalleryFiles) {
+function setFilesToSideGallery() {
+  const sideGalleryFiles = [...document.querySelectorAll('.gallery-side-file')];
   foundVehicleObj.files.forEach((file, index) => {
     sideGalleryFiles[index].style.display = 'block';
 
