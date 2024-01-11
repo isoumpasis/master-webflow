@@ -103,8 +103,8 @@ const SystemDict = {
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649006ad0460401ca20673dd_piezo-mercedes-05.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8419fe0366b3ce9dc0_piezo-mercedes-05.png'
     },
-    SR_ALFA_ROMEO: {
-      name: 'SR ALFA ROMEO',
+    SE: {
+      name: 'SE',
       priceNoVAT: 1290,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6490042228f8db1f14a36d73_sr-alfa-03.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8483ef92fddeaf876b_sr-alfa-03.png'
@@ -1436,8 +1436,8 @@ function showSuggestedContainer() {
     foundContainer = document.querySelector('.piezo-r-bmw-container');
   } else if (system === SystemDict.systems.PIEZO_MERCEDES.name) {
     foundContainer = document.querySelector('.piezo-mercedes-container');
-  } else if (system === SystemDict.systems.SR_ALFA_ROMEO.name) {
-    foundContainer = document.querySelector('.sr-alfa-romeo-container');
+  } else if (system === SystemDict.systems.SE.name) {
+    foundContainer = document.querySelector('.se-container');
   }
 
   foundContainer.style.display = 'block';
