@@ -106,8 +106,8 @@ const SystemDict = {
     SE: {
       name: 'SE',
       priceNoVAT: 1290,
-      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6490042228f8db1f14a36d73_sr-alfa-03.svg',
-      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8483ef92fddeaf876b_sr-alfa-03.png'
+      url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/659fe6cafaf80e531a5f5f22_se-logo-01.svg',
+      png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/659ff6bcb6931cb72833d274_se-logo-01.png'
     }
   }
 };
