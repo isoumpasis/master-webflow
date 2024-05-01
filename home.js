@@ -1354,7 +1354,10 @@ function engineOnChange(value) {
 function runConsumptionRace(vehicles) {
   const consumptionObjs = [];
   vehicles.forEach(veh => {
-    consumptionObjs.push({ conSum: veh.consumption.reduce((prev, curr) => prev + curr, 0), veh });
+    consumptionObjs.push({
+      conSum: veh.consumption_in + veh.consumption_out + veh.consumption_mixed,
+      veh
+    });
   });
   return consumptionObjs.sort((a, b) => b.conSum - a.conSum);
 }
