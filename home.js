@@ -2778,49 +2778,45 @@ function prepareSummaryData() {
     email: userInfo.email,
     phone: userInfo.phone,
     region: userInfo.region,
-    vehicle: foundVehicleObj._id,
-    metadata: {
-      vehicle: {
-        selectedMake,
-        selectedYear,
-        selectedModel,
-        selectedEngine,
-        isEmulatorSelected: isEmulatorFChecked,
-        emulatorType: isEmulatorFChecked ? 'f' : undefined,
-        emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined
-      },
-      calc: {
-        kmPerYearValue: +calcSliders[0].value,
-        driveOftenIndex: getConsumptionRadioIndex(),
-        trueConsumption: +calcSliders[1].value,
-        gain: +lpgResult.textContent.replace('€', ''),
-        percentage: +lpgPercentageEl.textContent.replace('%', ''),
-        amortization: +document.querySelector('.amortization-months').textContent,
-        perMonthCheckbox: isPerMonthChecked
-      },
-      easyPay: {
-        systemName: foundVehicleObj.master,
-        priceNoVAT: +getActiveContainer().querySelector('.price').textContent.replace('€', ''),
-        priceWithVAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
-        easyPayMethod: EasyPayDict[getEasyPayRadioIndex()],
-        prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
-        doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
-        easyPayFinalCost:
-          getEasyPayRadioIndex() !== 2
-            ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
-            : undefined,
-        easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', '')
-      },
-      meta: {
-        makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
-        systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
-        systemImgPng: SystemDict.systems[getActiveContainer().id].png,
-        hasEmulatorOption: !!foundVehicleObj.emulators.length,
-        emulatorText: foundVehicleObj.emulators.length
-          ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
-          : undefined,
-        emulatorPrice: EmulatorDict.f.price
-      }
+    vehicle: foundVehicleObj.id,
+
+    selectedMake,
+    selectedYear,
+    selectedModel,
+    selectedEngine,
+    isEmulatorSelected: isEmulatorFChecked,
+    emulatorType: isEmulatorFChecked ? 'f' : undefined,
+    emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined,
+
+    kmPerYearValue: +calcSliders[0].value,
+    driveOftenIndex: getConsumptionRadioIndex(),
+    trueConsumption: +calcSliders[1].value,
+    gain: +lpgResult.textContent.replace('€', ''),
+    percentage: +lpgPercentageEl.textContent.replace('%', ''),
+    amortization: +document.querySelector('.amortization-months').textContent,
+    perMonthCheckbox: isPerMonthChecked,
+
+    systemName: foundVehicleObj.master,
+    priceNoVAT: +getActiveContainer().querySelector('.price').textContent.replace('€', ''),
+    priceWithVAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
+    easyPayMethod: EasyPayDict[getEasyPayRadioIndex()],
+    prokatavoli: getEasyPayRadioIndex() !== 2 ? +prokatavoliSlider.value : undefined,
+    doseis: getEasyPayRadioIndex() !== 2 ? +doseisSlider.value : undefined,
+    easyPayFinalCost:
+      getEasyPayRadioIndex() !== 2
+        ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
+        : undefined,
+    easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', ''),
+
+    meta: {
+      makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
+      systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
+      systemImgPng: SystemDict.systems[getActiveContainer().id].png,
+      hasEmulatorOption: !!foundVehicleObj.emulators.length,
+      emulatorText: foundVehicleObj.emulators.length
+        ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
+        : undefined,
+      emulatorPrice: EmulatorDict.f.price
     }
   };
 }
