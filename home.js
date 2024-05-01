@@ -2463,7 +2463,7 @@ function sendUnknownVehicle() {
     name: userInfo.username,
     email: userInfo.email,
     phone: userInfo.phone,
-    vehicleMsg: document.querySelector('#unknownVehicleMsg').value
+    vehicleDescription: document.querySelector('#unknownVehicleMsg').value
     // form: {
     //   url: location.origin + location.pathname,
     //   name: document.querySelector('#unknownForm').dataset.name,
