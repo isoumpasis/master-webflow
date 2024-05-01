@@ -1632,9 +1632,9 @@ function setFilesToSideGallery() {
 function configureVehicleInformation() {
   if (
     foundVehicleObj?.emulators?.length ||
-    foundVehicleObj?.info?.tank ||
-    foundVehicleObj?.info?.filling ||
-    foundVehicleObj?.info?.comments?.length ||
+    foundVehicleObj?.tank ||
+    foundVehicleObj?.filling ||
+    foundVehicleObj?.comments?.length ||
     foundVehicleObj?.reducer
   ) {
     activeContainer.querySelector('.info-tab').style.display = 'block';
@@ -1642,11 +1642,11 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-tab').style.display = 'none';
   }
 
-  if (foundVehicleObj.info?.comments?.length) {
+  if (foundVehicleObj?.comments?.length) {
     activeContainer.querySelector('.info-extra-container').style.display = 'flex';
     activeContainer.querySelector('.info-extra-container + .divider').style.display = 'block';
     [...activeContainer.querySelectorAll('.car-info-extra')].forEach(comment => comment.remove());
-    foundVehicleObj.info?.comments.forEach(comment => {
+    foundVehicleObj?.comments.forEach(comment => {
       const commentEl = document.createElement('div');
       commentEl.classList.add('car-info-extra');
       commentEl.textContent = comment;
@@ -1682,13 +1682,13 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-emulator-f-container + .divider').style.display = 'none';
   }
 
-  if (foundVehicleObj?.info?.tank) {
+  if (foundVehicleObj?.tank) {
     activeContainer.querySelector('.info-tank-container').style.display = 'flex';
     activeContainer.querySelector('.info-tank-container + .divider').style.display = 'block';
-    activeContainer.querySelector('.tank-txt').textContent = foundVehicleObj.info.tank;
-    const foundVehicleTankType = foundVehicleObj.info.tank.includes('ΕΣΩΤΕΡΙΚΗ')
+    activeContainer.querySelector('.tank-txt').textContent = foundVehicleObj.tank;
+    const foundVehicleTankType = foundVehicleObj.tank.includes('ΕΣΩΤΕΡΙΚΗ')
       ? 'INT'
-      : foundVehicleObj.info.tank.includes('ΕΞΩΤΕΡΙΚΗ')
+      : foundVehicleObj.tank.includes('ΕΞΩΤΕΡΙΚΗ')
       ? 'EX'
       : 'CYL';
     activeContainer.querySelector('.tank-img').src = TankDict.url[foundVehicleTankType];
@@ -1697,11 +1697,11 @@ function configureVehicleInformation() {
     activeContainer.querySelector('.info-tank-container + .divider').style.display = 'none';
   }
 
-  if (foundVehicleObj?.info?.filling) {
+  if (foundVehicleObj?.filling) {
     activeContainer.querySelector('.info-filling-container').style.display = 'flex';
     // activeContainer.querySelector('.info-filling-container + .divider').style.display = 'block';
     activeContainer.querySelector('.filling-txt').textContent =
-      InfoDict.filling[foundVehicleObj.info.filling];
+      InfoDict.filling[foundVehicleObj.filling];
   } else {
     activeContainer.querySelector('.info-filling-container').style.display = 'none';
     // activeContainer.querySelector('.info-filling-container + .divider').style.display = 'none';
