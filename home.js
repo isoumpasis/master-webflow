@@ -2101,12 +2101,20 @@ function updateWebflowSlider() {
 }
 
 function configureCalculatorAfterSuggestion() {
-  document.querySelector('.in-consumption-value').textContent = foundVehicleObj.consumption[0];
-  document.querySelector('.out-consumption-value').textContent = foundVehicleObj.consumption[1];
+  document.querySelector('.in-consumption-value').textContent = foundVehicleObj.consumption_in;
+  document.querySelector('.out-consumption-value').textContent = foundVehicleObj.consumption_out;
   document.querySelector('.combined-consumption-value').textContent =
-    foundVehicleObj.consumption[2];
+    foundVehicleObj.consumption_mixed;
 
-  calcSliders[1].value = foundVehicleObj.consumption[getConsumptionRadioIndex()];
+  // calcSliders[1].value = foundVehicleObj.consumption[getConsumptionRadioIndex()];
+  const consumptionRadioIndex = getConsumptionRadioIndex();
+  if (consumptionRadioIndex === 0) {
+    calcSliders[1].value = foundVehicleObj.consumption_in;
+  } else if (consumptionRadioIndex === 1) {
+    calcSliders[1].value = foundVehicleObj.consumption_out;
+  } else {
+    calcSliders[1].value = foundVehicleObj.consumption_mixed;
+  }
   calcOutputs[1].value = calcSliders[1].value;
   calcCovers[1].style.width = calcCoverWidth(calcSliders[1]) + '%';
 
