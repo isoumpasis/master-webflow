@@ -2812,8 +2812,8 @@ function prepareSummaryData() {
       makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
       systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
       systemImgPng: SystemDict.systems[getActiveContainer().id].png,
-      hasEmulatorOption: !!foundVehicleObj.emulators.length,
-      emulatorText: foundVehicleObj.emulators.length
+      hasEmulatorOption: !!foundVehicleObj.emulators?.length,
+      emulatorText: foundVehicleObj.emulators?.length
         ? EmulatorDict[foundVehicleObj.emulators[0].toLowerCase()].text
         : undefined,
       emulatorPrice: EmulatorDict.f.price
@@ -2880,7 +2880,7 @@ function trigger_system_summary() {
     videos: getVehicleFilesByType('video').length,
     images: getVehicleFilesByType('image').length,
     testimonials: foundVehicleObj.testimonials?.length,
-    has_emulators: !!foundVehicleObj.emulators.length,
+    has_emulators: !!foundVehicleObj.emulators?.length,
     is_emulator_selected: isEmulatorFChecked,
     emulator_type: isEmulatorFChecked ? 'f' : undefined,
     km: +calcSliders[0].value,
