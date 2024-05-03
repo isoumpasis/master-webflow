@@ -1,5 +1,5 @@
-// const urlContactForm = 'http://localhost:1968/contact/';
-const urlContactForm = 'https://masterdirect.herokuapp.com/contact/';
+const urlContactForm = 'http://localhost:1968/contact/';
+// const urlContactForm = 'https://masterdirect.herokuapp.com/contact/';
 
 const preferredStorage = localStorage;
 let userInfo = { username: '', email: '', phone: '', address: '' };
@@ -101,7 +101,7 @@ function validateContactForm() {
   if (!isEmail(userInfo.email)) return { valid: false, msg: 'Απαιτείται έγκυρο email' };
   if (isNaN(userInfo.phone) || userInfo.phone.length != 10)
     return { valid: false, msg: 'Απαιτείται έγκυρος αριθμός τηλεφώνου (10ψηφία)' };
-  if (!userInfo.address) return { valid: false, msg: 'Απαιτείται διεύθυνση' };
+  if (!userInfo.address) return { valid: false, msg: 'Απαιτείται περιοχή / διεύθυνση' };
   if (!document.querySelector('#contactMsg').value)
     return { valid: false, msg: 'Παρακαλούμε γράψτε πρώτα το μήνυμα σας' };
   if (!hasUserInfo()) return { valid: false, msg: 'Συμπληρώστε πρώτα τα προσωπικά σας στοιχεία' };
