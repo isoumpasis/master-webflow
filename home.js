@@ -2778,8 +2778,7 @@ function prepareSummaryData() {
     email: userInfo.email,
     phone: userInfo.phone,
     region: userInfo.region,
-    vehicle: foundVehicleObj.id,
-
+    vehicleId: foundVehicleObj.id,
     selectedMake,
     selectedYear,
     selectedModel,
@@ -2787,7 +2786,6 @@ function prepareSummaryData() {
     isEmulatorSelected: isEmulatorFChecked,
     emulatorType: isEmulatorFChecked ? 'f' : undefined,
     emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined,
-
     kmPerYearValue: +calcSliders[0].value,
     driveOftenIndex: getConsumptionRadioIndex(),
     trueConsumption: +calcSliders[1].value,
@@ -2795,7 +2793,6 @@ function prepareSummaryData() {
     percentage: +lpgPercentageEl.textContent.replace('%', ''),
     amortization: +document.querySelector('.amortization-months').textContent,
     perMonthCheckbox: isPerMonthChecked,
-
     systemName: foundVehicleObj.master,
     priceNoVAT: +getActiveContainer().querySelector('.price').textContent.replace('€', ''),
     priceWithVAT: +document.querySelector('#priceWithVATOutput').textContent.replace('€', ''),
@@ -2807,7 +2804,6 @@ function prepareSummaryData() {
         ? +document.querySelector('#easyPayFinalCost').textContent.replace('€', '')
         : undefined,
     easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', ''),
-
     meta: {
       makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
       systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
@@ -2820,7 +2816,6 @@ function prepareSummaryData() {
     }
   };
 }
-
 /* /SUMMARY FORM */
 
 function getVehicleFilesByType(type) {
