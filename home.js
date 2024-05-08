@@ -140,7 +140,8 @@ const EmulatorDict = {
 };
 const ReducerDict = {
   UHPII: { name: 'UHPII', price: 90 },
-  DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 }
+  DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 },
+  ORION_SUPER: { name: 'ORION SUPER', price: 90 }
 };
 
 const EasyPayDict = {
@@ -1671,6 +1672,11 @@ function configureVehicleInformation() {
       activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display =
         'block';
       adjustPriceAfterReducerChange(ReducerDict.DOUBLE_UHPII.price);
+    } else if (foundVehicleObj.reducer === ReducerDict.ORION_SUPER.name) {
+      activeContainer.querySelector('.info-orion-super-container').style.display = 'flex';
+      activeContainer.querySelector('.info-orion-super-container + .divider').style.display =
+        'block';
+      adjustPriceAfterReducerChange(ReducerDict.ORION_SUPER.price);
     }
   }
 
