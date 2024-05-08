@@ -1662,6 +1662,8 @@ function configureVehicleInformation() {
   activeContainer.querySelector('.info-uhpii-container + .divider').style.display = 'none';
   activeContainer.querySelector('.info-double-uhpii-container').style.display = 'none';
   activeContainer.querySelector('.info-double-uhpii-container + .divider').style.display = 'none';
+  activeContainer.querySelector('.info-orion-super-container').style.display = 'none';
+  activeContainer.querySelector('.info-orion-super-container + .divider').style.display = 'none';
   if (foundVehicleObj?.reducer) {
     if (foundVehicleObj.reducer === ReducerDict.UHPII.name) {
       activeContainer.querySelector('.info-uhpii-container').style.display = 'flex';
