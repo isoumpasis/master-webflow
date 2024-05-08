@@ -141,7 +141,7 @@ const EmulatorDict = {
 const ReducerDict = {
   UHPII: { name: 'UHPII', price: 90 },
   DOUBLE_UHPII: { name: 'DOUBLE-UHPII', price: 130 },
-  ORION_SUPER: { name: 'ORION SUPER', price: 90 }
+  ORION_SUPER: { name: 'ORION SUPER', price: 0 }
 };
 
 const EasyPayDict = {
