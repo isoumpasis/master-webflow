@@ -2791,6 +2791,7 @@ function prepareSummaryData() {
     selectedYear,
     selectedModel,
     selectedEngine,
+    reducer: foundVehicleObj.reducer,
     isEmulatorSelected: isEmulatorFChecked,
     emulatorType: isEmulatorFChecked ? 'f' : undefined,
     emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined,
