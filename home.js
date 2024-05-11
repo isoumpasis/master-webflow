@@ -2791,7 +2791,6 @@ function prepareSummaryData() {
     selectedYear,
     selectedModel,
     selectedEngine,
-    reducer: foundVehicleObj.reducer,
     isEmulatorSelected: isEmulatorFChecked,
     emulatorType: isEmulatorFChecked ? 'f' : undefined,
     emulatorPrice: isEmulatorFChecked ? EmulatorDict.f.price : undefined,
@@ -2814,6 +2813,7 @@ function prepareSummaryData() {
         : undefined,
     easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', ''),
     meta: {
+      reducer: foundVehicleObj.reducer,
       makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
       systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
       systemImgPng: SystemDict.systems[getActiveContainer().id].png,
