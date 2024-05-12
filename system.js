@@ -1,5 +1,5 @@
-const urlContactForm = 'http://localhost:1968/contact/';
-// const urlContactForm = 'https://masterdirect.herokuapp.com/contact/';
+// const urlContactForm = 'http://localhost:1968/contact/';
+const urlContactForm = 'https://masterdirect.herokuapp.com/contact/';
 
 const preferredStorage = localStorage;
 let userInfo = { username: '', email: '', phone: '', address: '' };
