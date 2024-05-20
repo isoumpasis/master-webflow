@@ -1438,6 +1438,8 @@ function showSuggestedContainer() {
 
   if (system === SystemDict.systems.SR.name) {
     foundContainer = document.querySelector('.sr-container');
+  } else if (system === SystemDict.systems.SD.name) {
+    foundContainer = document.querySelector('.sd-container');
   } else if (system === SystemDict.systems.AR.name) {
     foundContainer = document.querySelector('.ar-container');
   } else if (system === SystemDict.systems.PIEZO_BMW.name) {
