@@ -81,7 +81,7 @@ const SystemDict = {
     },
     SD: {
       name: 'SD',
-      priceNoVAT: 1260,
+      priceNoVAT: 1280,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/664b49e6ce20602f8a2d3f19_master-direct-sd.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/664b49d6b2f33d7b21564fcb_master-direct-sd.png'
     },
