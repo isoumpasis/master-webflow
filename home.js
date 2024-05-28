@@ -1427,7 +1427,7 @@ function showCarResultContainer() {
   document.querySelector('.suggested-text-system').textContent =
     SystemDict.systems[activeContainer.id].name;
   document.querySelector('.suggested-text-consumption').textContent =
-    foundVehicleObj.extraConsumption ? '5%' : '1,5-2%';
+    foundVehicleObj.extraConsumption ? '1,5-5%' : '1,5-2%';
 
   document.querySelector('#carResultContainer').style.display = 'flex';
 }
