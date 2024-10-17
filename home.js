@@ -22,6 +22,10 @@ const makeImgDict = {
   DAEWOO: '6077f6096e3ae999700f15ad_Daewoo.png',
   DAIHATSU: '6077f6095e0f21739e801c4d_Daihatsu.png',
   DODGE: '6077f60929203581043c205d_Dodge.png',
+  DS: {
+    prefix: false,
+    url: 'https://cdn.prod.website-files.com/6423dc0021de6a2495a22761/6710acb7923462d85bcb2245_DS.png'
+  },
   FIAT: '6077f609aecccf25fc3868f0_Fiat.png',
   FORD: '6077f609ed355314a4ea8ba7_Ford.png',
   HONDA: '6077f6094bacedfa12748b66_Honda.png',
@@ -36,7 +40,11 @@ const makeImgDict = {
   LEXUS: '6077f60b02c7ef3588ff4bed_Lexus.png',
   MAZDA: '6077f60bac4c25e840296a07_Mazda.png',
   'MERCEDES-BENZ': '6077f60b2cf4c1fc9aeb4a97_Mercedes-Benz.png',
-  MG: '63132f4ce66c6bff8c0bdbba_MG.png',
+  // MG: '63132f4ce66c6bff8c0bdbba_MG.png',
+  MG: {
+    prefix: false,
+    url: 'https://cdn.prod.website-files.com/6423dc0021de6a2495a22761/6710ad607d40e1d4753aaf0b_mg.png'
+  },
   MINI: '6077f60dec0785fc99826f63_Mini.png',
   MITSUBISHI: '6077f60df4fa193ad096cf91_Mitsubishi.png',
   NISSAN: '6077f60c3f6057d3245ac3fd_Nissan.png',
@@ -1417,8 +1425,15 @@ function configureSuggestedContainer() {
   showCarResultContainer();
 }
 
+function getMakeImgUrl(make) {
+  if (makeImgDict[make].prefix === false) {
+    return makeImgDict[make].url;
+  }
+  return makeImgPrefix + makeImgDict[selectedMake];
+}
+
 function showCarResultContainer() {
-  document.querySelector('#makeImg').src = makeImgPrefix + makeImgDict[selectedMake];
+  document.querySelector('#makeImg').src = getMakeImgUrl(selectedMake);
   document.querySelector('#makeImg').alt = selectedMake;
   document.querySelector(
     '#modelName'
@@ -2075,8 +2090,7 @@ function configureTestimonialsAfterSuggestion() {
     // console.log('no testimonials');
     return;
   }
-  document.querySelector('#testimonialMakeImg').src =
-    makeImgPrefix + makeImgDict[foundVehicleObj.make];
+  document.querySelector('#testimonialMakeImg').src = getMakeImgUrl(foundVehicleObj.make);
   document.querySelector('#testimonialMakeImg').alt = foundVehicleObj.maketedMake;
   document.querySelector('#testimonialModelName').textContent = `${foundVehicleObj.model}`;
 
@@ -2822,7 +2836,7 @@ function prepareSummaryData() {
     easyPayMonthlyCost: +document.querySelector('#easyPayCost').textContent.replace('€', ''),
     meta: {
       reducer: foundVehicleObj.reducer,
-      makeImgUrl: makeImgPrefix + makeImgDict[selectedMake],
+      makeImgUrl: getMakeImgUrl(selectedMake),
       systemImgUrl: SystemDict.systems[getActiveContainer().id].url,
       systemImgPng: SystemDict.systems[getActiveContainer().id].png,
       hasEmulatorOption: !!foundVehicleObj.emulators?.length,
