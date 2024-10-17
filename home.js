@@ -40,7 +40,6 @@ const makeImgDict = {
   LEXUS: '6077f60b02c7ef3588ff4bed_Lexus.png',
   MAZDA: '6077f60bac4c25e840296a07_Mazda.png',
   'MERCEDES-BENZ': '6077f60b2cf4c1fc9aeb4a97_Mercedes-Benz.png',
-  // MG: '63132f4ce66c6bff8c0bdbba_MG.png',
   MG: {
     prefix: false,
     url: 'https://cdn.prod.website-files.com/6423dc0021de6a2495a22761/6710ad607d40e1d4753aaf0b_mg.png'
