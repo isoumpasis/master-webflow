@@ -1429,7 +1429,7 @@ function getMakeImgUrl(make) {
   if (makeImgDict[make].prefix === false) {
     return makeImgDict[make].url;
   }
-  return makeImgPrefix + makeImgDict[selectedMake];
+  return makeImgPrefix + makeImgDict[make];
 }
 
 function showCarResultContainer() {
