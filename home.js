@@ -18,7 +18,6 @@ const makeImgDict = {
   CHEVROLET: '6077f60729203574193c205c_Chevrolet.png',
   CHRYSLER: '6077f6077735848685f48c4d_Chrysler.png',
   CITROEN: '6077f607703f5581b7a6b6e9_Citroen.png',
-  // DACIA: '6077f607ac4c2566782969fa_Dacia.png',
   DACIA: {
     prefix: false,
     url: 'https://cdn.prod.website-files.com/6423dc0021de6a2495a22761/6712307671cffce96574a127_DACIA_new.png'
