@@ -85,7 +85,7 @@ const SystemDict = {
   systems: {
     SR: {
       name: 'SR',
-      priceNoVAT: 1260,
+      priceNoVAT: 200,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649002d89900bc3e320cc6d3_sr-logo-02.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da844f1e4949334e7694_sr-logo-02.png'
     },
