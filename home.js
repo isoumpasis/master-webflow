@@ -85,43 +85,43 @@ const SystemDict = {
   systems: {
     SR: {
       name: 'SR',
-      priceNoVAT: 1260,
+      priceNoVAT: 1320, //1260,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649002d89900bc3e320cc6d3_sr-logo-02.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da844f1e4949334e7694_sr-logo-02.png'
     },
     SD: {
       name: 'SD',
-      priceNoVAT: 1280,
+      priceNoVAT: 1345, //1280,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/664b49e6ce20602f8a2d3f19_master-direct-sd.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/664b49d6b2f33d7b21564fcb_master-direct-sd.png'
     },
     AR: {
       name: 'AR',
-      priceNoVAT: 1350,
+      priceNoVAT: 1365, //1350,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/648819026d04c3bdf36db28f_ar-logo-01.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84897adf2ac0f7e18b_ar-logo-01.png'
     },
     PIEZO_BMW: {
       name: 'PIEZO BMW',
-      priceNoVAT: 1260,
+      priceNoVAT: 1320, //1260,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/64900606276ea59867a20f42_piezo-04.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84897adf2ac0f7e169_piezo-04.png'
     },
     PIEZO_R_BMW: {
       name: 'PIEZO R BMW',
-      priceNoVAT: 1260,
+      priceNoVAT: 1320, //1260,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/651278f1884d0caef06a53c9_md-piezo-r.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da84e7a9be2cfd4ec617_md-piezo-r.png'
     },
     PIEZO_MERCEDES: {
       name: 'PIEZO MERCEDES',
-      priceNoVAT: 1330,
+      priceNoVAT: 1395, //1330,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/649006ad0460401ca20673dd_piezo-mercedes-05.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/6530da8419fe0366b3ce9dc0_piezo-mercedes-05.png'
     },
     SE: {
       name: 'SE',
-      priceNoVAT: 1290,
+      priceNoVAT: 1353, //1290,
       url: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/659fe6cafaf80e531a5f5f22_se-logo-01.svg',
       png: 'https://uploads-ssl.webflow.com/6423dc0021de6a2495a22761/659ff6bcb6931cb72833d274_se-logo-01.png'
     }
